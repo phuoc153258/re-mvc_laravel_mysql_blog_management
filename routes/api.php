@@ -7,7 +7,7 @@ use App\Http\Controllers\Api\BlogApiController;
 use App\Http\Controllers\Api\FileApiController;
 use App\Http\Controllers\Api\AuthApiController;
 
-Route::middleware([])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('users')->group(function () {
         Route::patch('/{id}/password', [UserApiController::class, 'changePassword']);
 
