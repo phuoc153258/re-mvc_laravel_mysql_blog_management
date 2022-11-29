@@ -36,7 +36,9 @@
             "app/Message/error/user.php",
             "app/Message/error/validate.php",
             "app/Message/error/blog.php",
+            "app/Message/error/auth.php",
             "app/Message/success/file.php",
+            "app/Message/success/auth.php",
             "app/Message/success/user.php"
         ],
         "psr-4": {

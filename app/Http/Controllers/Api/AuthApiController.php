@@ -24,14 +24,21 @@ class AuthApiController extends Controller
 
     public function login(Request $request)
     {
-        return 'hehehe';
+        try {
+            $userRequest = new LoginUserRequestDTO($request);
+            $this->authValidate->validateInfoLoginUser($userRequest);
+            $userResponse = $this->authService->login($userRequest);
+            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
     }
 
     public function register(Request $request)
     {
         try {
             $userRequest = new RegisterUserRequestDTO($request);
-            $validate = $this->authValidate->validateInfoRegisterUser($userRequest);
+            $this->authValidate->validateInfoRegisterUser($userRequest);
             $userResponse = $this->authService->register($userRequest);
             return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {

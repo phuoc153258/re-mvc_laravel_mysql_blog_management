@@ -5,7 +5,7 @@ namespace App\DTO\response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
 
-class RegisterUserResponseDTO
+class UserResponseDTO
 {
     private int $id;
     private string $username;

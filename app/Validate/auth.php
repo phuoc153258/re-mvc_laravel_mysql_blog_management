@@ -19,7 +19,6 @@ class AuthValidate
         if ($validator->fails()) {
             return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
         }
-        return $validator;
     }
 
     public function validateInfoLoginUser(LoginUserRequestDTO $user)
@@ -31,6 +30,5 @@ class AuthValidate
         if ($validator->fails()) {
             return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
         }
-        return $validator;
     }
 }
