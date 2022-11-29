@@ -14,6 +14,7 @@ use App\Traits\HttpResponse;
 
 class UserApiController extends Controller
 {
+    use HttpResponse;
     protected UserService $userService;
     protected UserValidate $userValidate;
 
@@ -28,17 +29,9 @@ class UserApiController extends Controller
         try {
             $option = new BasePaginateRequestDTO($request, 'users');
             $data = $this->userService->getList($option);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $data
-            ]);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
     public function update(Request $request, $id)
@@ -47,17 +40,9 @@ class UserApiController extends Controller
             $userRequest = new UpdateUserRequestDTO($request, $id);
             $validate = $this->userValidate->validateInfoUserUpdate($userRequest);
             $data = $this->userService->update($userRequest);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $data
-            ]);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -68,17 +53,9 @@ class UserApiController extends Controller
             $this->userService->deleteUser($id);
             $option = new BasePaginateRequestDTO($request, 'users');
             $data = $this->userService->getList($option);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $data
-            ]);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -88,17 +65,9 @@ class UserApiController extends Controller
             $request = new ChangePasswordUserRequestDTO($request, $id);
             $validate = $this->userValidate->validateInfoUserChangePassword($request);
             $data = $this->userService->changePassword($request);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $data
-            ]);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -108,17 +77,9 @@ class UserApiController extends Controller
             $validate = $this->userValidate->validateInfoUserID($id);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $userResponse = $this->userService->uploadAvatar($fileRequest, $id);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $userResponse
-            ]);
+            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 }

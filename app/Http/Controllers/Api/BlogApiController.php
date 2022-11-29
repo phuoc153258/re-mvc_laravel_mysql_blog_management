@@ -10,9 +10,11 @@ use App\DTO\request\CreateBlogRequestDTO;
 use App\DTO\request\UpdateBlogRequestDTO;
 use App\Services\BlogService;
 use App\Validate\BlogValidate;
+use App\Traits\HttpResponse;
 
 class BlogApiController extends Controller
 {
+    use HttpResponse;
     protected BlogService $blogService;
     protected BlogValidate $blogValidate;
 
@@ -27,17 +29,9 @@ class BlogApiController extends Controller
         try {
             $option = new BasePaginateRequestDTO($request, 'blogs');
             $data = $this->blogService->getList($option);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $data
-            ]);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -47,17 +41,9 @@ class BlogApiController extends Controller
             $validate = $this->blogValidate->validateInfoIdBlog($id);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $blogResponse = $this->blogService->uploadImage($fileRequest, $id);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $blogResponse
-            ]);
+            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -68,17 +54,9 @@ class BlogApiController extends Controller
             $this->blogService->deleteBlog($id);
             $option = new BasePaginateRequestDTO($request, 'blogs');
             $data = $this->blogService->getList($option);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $data
-            ]);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -89,17 +67,9 @@ class BlogApiController extends Controller
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $validate = $this->blogValidate->validateInfoCreateBlog($blogRequest);
             $blogResponse = $this->blogService->createBlog($blogRequest, $fileRequest);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $blogResponse
-            ]);
+            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 
@@ -109,17 +79,9 @@ class BlogApiController extends Controller
             $blogRequest = new UpdateBlogRequestDTO($request, $id);
             $validate = $this->blogValidate->validateInfoUpdateBlog($blogRequest);
             $blogResponse = $this->blogService->updateBlog($blogRequest);
-            return response()->json([
-                'status' => MESSAGE_BASE_SUCCESS_STATUS,
-                'message' => MESSAGE_BASE_SUCCESS,
-                'data' => $blogResponse
-            ]);
+            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
-            return response()->json([
-                'status' => MESSAGE_BASE_FAILED_STATUS,
-                'message' => MESSAGE_BASE_FAILED,
-                'data' => $th->getMessage()
-            ]);
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 }
