@@ -12,7 +12,7 @@ class UserValidate
     {
         $validator = Validator::make($user->getAll(), [
             'id' => VALIDATE_ID_MYSQL,
-            'fullname' => VALIDATE_FULLNAME,
+            'fullname' => VALIDATE_NAME,
             'email' => VALIDATE_EMAIL,
         ]);
         if ($validator->fails()) {

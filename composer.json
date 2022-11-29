@@ -49,8 +49,10 @@
             "app/DTO/request/user",
             "app/DTO/request/file",
             "app/DTO/request/blog",
+            "app/DTO/request/auth",
             "app/DTO/response/paginate",
             "app/DTO/response/user",
+            "app/DTO/response/auth",
             "app/Services",
             "app/Validate"
         ]
