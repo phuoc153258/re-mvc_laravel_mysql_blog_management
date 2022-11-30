@@ -8,11 +8,6 @@
         <div class="row justify-content-center">
             <div class="card">
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
                     <div class="container">
                         <div class="row">
                             <div class="col-4 text-center">
@@ -40,7 +35,6 @@
                                     <label for="">Content:</label>
                                     <textarea class="form-control" rows="3" id="content-create-js"></textarea>
                                 </div>
-                                <input type="text" id="user_id-create-js" value="{{ Auth::user()->id }}" hidden>
                                 <div class="d-flex flex-row-reverse mt-4" style="gap: 0 15px;">
                                     <a class="btn btn-primary" onclick="createBlog()">Submit</a>
                                     <a href="/blogs" class="btn btn-secondary">Back</a>
@@ -56,4 +50,5 @@
     <script src="{{ asset('js/blogs/data.js') }}"></script>
     <script src="{{ asset('js/blogs/file.js') }}"></script>
     <script src="{{ asset('js/blogs/index.js') }}"></script>
+    <script src="{{ asset('js/blogs/pageCreateBlog.js') }}"></script>
 @endsection

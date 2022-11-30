@@ -42,7 +42,6 @@ async function getBlog() {
         if (response.data.status) {
             emptyDataDetailsBlog();
             renderDataDetailsBlog(response.data.data);
-            addEventUploadFile();
         } else {
             await swal({
                 title: "Some thing went wrong!!!",
@@ -66,6 +65,9 @@ async function deleteBlog(id) {
         const response = await axios({
             method: "delete",
             url: URLBlog + `/${id}`,
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
         });
         if (response.data.status) {
             swal("Delete blog success !!!", "", "success");
@@ -95,7 +97,9 @@ async function createBlog() {
         const sub_title = document.getElementById("sub_title-create-js").value;
         const content = document.getElementById("content-create-js").value;
         const image = document.getElementById("image-blog-create-js").files[0];
-        const user_id = document.getElementById("user_id-create-js").value;
+        const user_id = document.getElementById(
+            "user-id-navbar-hidden-js"
+        ).value;
         let formData = new FormData();
         formData.append("title", title);
         formData.append("file", image);
@@ -105,11 +109,12 @@ async function createBlog() {
         let response = await axios.post(URLBlog, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
+                Authorization: getCookie("access_token"),
             },
         });
         if (response.data.status) {
             await swal("Create blog success !!!", "", "success");
-            location.replace(`/blogs/${response.data.data.user_id}`);
+            location.replace(`/blogs/${response.data.data.id}`);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",
@@ -139,9 +144,13 @@ async function updateBlog() {
             method: "put",
             url: URLBlog + `/${id}`,
             data: { title, sub_title, content },
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
         });
         if (response.data.status) {
-            await swal("Delete blog success !!!", "", "success");
+            await swal("Update blog success !!!", "", "success");
+            emptyDataDetailsBlog();
             renderDataDetailsBlog(response.data.data);
         } else {
             await swal({
