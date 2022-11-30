@@ -35,6 +35,17 @@ class BlogApiController extends Controller
         }
     }
 
+    public function show($id)
+    {
+        try {
+            $validate = $this->blogValidate->validateInfoIdBlog($id);
+            $blogResponse = $this->blogService->show($id);
+            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
     public function uploadImage(Request $request, $id)
     {
         try {

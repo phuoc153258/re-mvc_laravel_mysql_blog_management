@@ -7,6 +7,7 @@ use App\DTO\request\BasePaginateRequestDTO;
 use App\DTO\request\UploadFileRequestDTO;
 use App\DTO\request\CreateBlogRequestDTO;
 use App\DTO\request\UpdateBlogRequestDTO;
+use App\DTO\response\BlogResponseDTO;
 use App\Models\Blog;
 use App\Services\PaginateService;
 use App\Services\FileService;
@@ -35,7 +36,8 @@ class BlogService
             ->where('blogs.id', '=', $id)
             ->select('blogs.*', 'users.username')
             ->first();
-        return $blog;
+        $blogDTO = new BlogResponseDTO($blog);
+        return $blogDTO->toJSON();
     }
 
     public function uploadImage(UploadFileRequestDTO $file, int $id)
@@ -48,14 +50,16 @@ class BlogService
         $blog->image = $fileResponse;
 
         $blog->save();
-        return $blog;
+        $blogDTO = new BlogResponseDTO($blog);
+        return $blogDTO->toJSON();
     }
 
     public function deleteBlog($id)
     {
         $blog = Blog::find($id);
         $blog->delete();
-        return $blog;
+        $blogDTO = new BlogResponseDTO($blog);
+        return $blogDTO->toJSON();
     }
 
     public function createBlog(CreateBlogRequestDTO $blogRequest, UploadFileRequestDTO $fileRequest)
@@ -72,7 +76,8 @@ class BlogService
         $blog->image = $this->fileService->upload($fileRequest);
 
         $blog->save();
-        return $blog;
+        $blogDTO = new BlogResponseDTO($blog);
+        return $blogDTO->toJSON();
     }
 
     public function updateBlog(UpdateBlogRequestDTO $blogRequest)
@@ -84,6 +89,7 @@ class BlogService
         if ($blogRequest->getContent() != $blog->content && $blogRequest->getContent() != '') $blog->content = $blogRequest->getContent();
 
         $blog->save();
-        return $blog;
+        $blogDTO = new BlogResponseDTO($blog);
+        return $blogDTO->toJSON();
     }
 }

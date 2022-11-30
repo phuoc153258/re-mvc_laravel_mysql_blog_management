@@ -30,6 +30,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
         Route::put('/{id}', [BlogApiController::class, 'update']);
 
+        Route::get('/{id}', [BlogApiController::class, 'show']);
+
         Route::post('/', [BlogApiController::class, 'create']);
 
         Route::get('/', [BlogApiController::class, 'index']);
