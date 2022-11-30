@@ -17,6 +17,10 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
         Route::put('/{id}', [UserApiController::class, 'update']);
 
+        Route::get('/me', [UserApiController::class, 'me']);
+
+        Route::get('/{id}', [UserApiController::class, 'show']);
+
         Route::get('/', [UserApiController::class, 'index']);
     });
 

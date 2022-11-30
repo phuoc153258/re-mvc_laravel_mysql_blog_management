@@ -34,6 +34,27 @@ class UserApiController extends Controller
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
+
+    public function me(Request $request)
+    {
+        try {
+            $userResponse = $this->userService->show($request->user()->id);
+            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $userResponse = $this->userService->show($id);
+            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
     public function update(Request $request, $id)
     {
         try {

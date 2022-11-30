@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -33,6 +34,10 @@ Route::middleware([])->group(function () {
         Route::get('', [BlogController::class, 'index']);
     });
 });
+
+Route::get('/auth/login', [AuthController::class, 'login']);
+
+Route::get('/auth/register', [AuthController::class, 'register']);
 
 Route::get('/', function () {
     return view('welcome');

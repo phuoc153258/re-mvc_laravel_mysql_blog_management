@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\DTO\request\BasePaginateRequestDTO;
 use App\DTO\request\UpdateUserRequestDTO;
-use App\DTO\response\DeleteUserResponseDTO;
 use App\DTO\request\ChangePasswordUserRequestDTO;
 use App\DTO\request\UploadFileRequestDTO;
+use App\DTO\response\UserResponseDTO;
 use App\Services\PaginateService;
 use App\Services\FileService;
 
@@ -32,7 +32,8 @@ class UserService
     public  function show($id)
     {
         $user = User::find($id);
-        return $user;
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
     }
 
     public  function update(UpdateUserRequestDTO $request)

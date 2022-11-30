@@ -23,6 +23,8 @@ async function getList() {
     }
 }
 
+async function getInfoUserLogin() {}
+
 async function updateInfoUser() {
     try {
         let userId = document.getElementById("id-user-update-js").value;
@@ -147,3 +149,8 @@ async function changePassword() {
         return;
     }
 }
+
+window.onload = function () {
+    getList();
+    getInfoUserLogin();
+};

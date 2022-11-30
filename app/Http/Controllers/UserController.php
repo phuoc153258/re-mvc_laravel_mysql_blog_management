@@ -19,16 +19,9 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            $option = new BasePaginateRequestDTO($request, 'users');
-            $data = $this->userService->getList($option);
-            return view('user', [
-                'data' => $data['data'],
-                'total' => $data['total'],
-                'limit' => $data['limit'],
-                'page' => $data['page'],
-                'last_page' => $data['last_page'],
-                'sort' => $data['sort']
-            ]);
+            // $option = new BasePaginateRequestDTO($request, 'users');
+            // $data = $this->userService->getList($option);
+            return view('user');
         } catch (\Throwable $th) {
             return redirect('/');
         }
@@ -37,8 +30,8 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            $user = $this->userService->show($id);
-            return view('detail_user', ["user" => $user]);
+            // $user = $this->userService->show($id);
+            return view('detail_user');
         } catch (\Throwable $th) {
             return redirect('/');
         }
@@ -47,7 +40,7 @@ class UserController extends Controller
     public function changePassword(Request $request, $id)
     {
         try {
-            return view('change_password', ["user_id" => $id]);
+            return view('change_password');
         } catch (\Throwable $th) {
             return redirect('/');
         }
