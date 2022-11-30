@@ -3,24 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\Services\UserService;
 
 class UserController extends Controller
 {
-    protected UserService $userService;
-
-    public function __construct()
-    {
-        $this->userService = new UserService();
-    }
 
     public function index(Request $request)
     {
         try {
-            // $option = new BasePaginateRequestDTO($request, 'users');
-            // $data = $this->userService->getList($option);
             return view('user');
         } catch (\Throwable $th) {
             return redirect('/');
@@ -30,7 +19,6 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            // $user = $this->userService->show($id);
             return view('detail_user');
         } catch (\Throwable $th) {
             return redirect('/');

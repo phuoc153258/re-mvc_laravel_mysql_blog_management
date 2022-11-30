@@ -3,7 +3,8 @@
 @section('content')
     <div class="d-flex justify-content-between">
         <h2>Detail User</h2>
-        <a class="d-flex" style="gap: 0 10px; cursor: pointer; text-decoration: none; color: black" href="">
+        <a class="d-flex" style="gap: 0 10px; cursor: pointer; text-decoration: none; color: black"
+            id="change-password-user-js">
             <p>Change password</p>
             <i class="fa-solid fa-pencil" style="line-height: 1.4"></i>
         </a>
@@ -15,7 +16,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-4 text-center">
-                                <img class="w-75 mb-2" style="border-radius: 10%;" src="/" alt=""
+                                <img class="w-75 mb-2" style="border-radius: 10%;" src="" alt=""
                                     id="show-avatar-user-js">
                                 <div class="file btn btn-primary" style="position: relative;overflow: hidden;">
                                     Upload

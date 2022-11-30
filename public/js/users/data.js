@@ -20,7 +20,7 @@ async function getList() {
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -42,8 +42,9 @@ async function getUser() {
         emptyInfoDetailsUser();
         renderDataDetailsUser(response.data);
         addEventUploadFile();
+        addHrefChangePassword(response.data.data.id);
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -65,7 +66,7 @@ async function updateInfoUser() {
             email == null ||
             email == ""
         ) {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -84,7 +85,7 @@ async function updateInfoUser() {
             },
         });
         if (!response.data.status) {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -95,7 +96,7 @@ async function updateInfoUser() {
         renderDataDetailsUser(response.data);
         swal("Update user success !!!", "", "success");
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -118,7 +119,7 @@ async function deleteUser(id) {
             renderDataToTable(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -126,7 +127,7 @@ async function deleteUser(id) {
             return;
         }
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -137,7 +138,7 @@ async function deleteUser(id) {
 
 async function changePassword() {
     try {
-        const id = document.getElementById("id-user-js").value;
+        const userId = window.location.pathname.split("/")[2];
         const old_password = document.getElementById(
             "old-password-user-js"
         ).value;
@@ -147,8 +148,9 @@ async function changePassword() {
         const re_password = document.getElementById(
             "re-password-user-js"
         ).value;
+
         if (new_password != re_password) {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -157,7 +159,7 @@ async function changePassword() {
         }
         const response = await axios({
             method: "patch",
-            url: URLUser + `/${id}/password`,
+            url: URLUser + `/${userId}/password`,
             data: {
                 old_password,
                 new_password,
@@ -168,9 +170,9 @@ async function changePassword() {
         });
         if (response.data.status) {
             await swal("Change password success !!!", "", "success");
-            location.replace(`/users/${id}`);
+            location.replace(`/users/${userId}`);
         } else {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -178,7 +180,7 @@ async function changePassword() {
             return;
         }
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",

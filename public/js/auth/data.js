@@ -10,13 +10,12 @@ async function loginUser() {
                 password,
             },
         });
-        console.log(response);
         if (response.data.status) {
             setCookie("access_token", "Bearer " + response.data.data.token, 1);
             await swal("Login success !!!", "", "success");
-            location.replace(`/`);
+            location.replace(`/users`);
         } else {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -24,7 +23,7 @@ async function loginUser() {
             return;
         }
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\DTO\request\BasePaginateRequestDTO;
 use App\DTO\request\UpdateUserRequestDTO;
@@ -47,15 +46,16 @@ class UserService
             $user->email = $request->getEmail();
 
         $user->save();
-
-        return $user;
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
     }
 
     public  function deleteUser($id)
     {
         $user = User::find($id);
         $user->delete();
-        return $user;
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
     }
 
     public  function changePassword(ChangePasswordUserRequestDTO $request)
@@ -68,7 +68,8 @@ class UserService
         $user->password = hashPassword($request->getNewPassword());
 
         $user->save();
-        return $user;
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
     }
 
     public function uploadAvatar(UploadFileRequestDTO $file, string $id)
@@ -81,6 +82,7 @@ class UserService
         $user->avatar = $fileResponse;
 
         $user->save();
-        return $user;
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
     }
 }

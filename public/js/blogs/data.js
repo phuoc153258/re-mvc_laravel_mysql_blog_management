@@ -14,7 +14,7 @@ async function getList() {
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -34,7 +34,7 @@ async function deleteBlog(id) {
             renderDataToTable(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -42,7 +42,7 @@ async function deleteBlog(id) {
             return;
         }
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -73,7 +73,7 @@ async function createBlog() {
             await swal("Create blog success !!!", "", "success");
             location.replace(`/blogs/${response.data.data.user_id}`);
         } else {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -82,7 +82,7 @@ async function createBlog() {
         }
     } catch (error) {
         console.log(error);
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
@@ -106,7 +106,7 @@ async function updateBlog() {
             await swal("Delete blog success !!!", "", "success");
             renderDataToUpdatePage(response.data.data);
         } else {
-            swal({
+            await swal({
                 title: "Some thing went wrong!!!",
                 icon: "error",
                 button: "OK",
@@ -114,7 +114,7 @@ async function updateBlog() {
             return;
         }
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",

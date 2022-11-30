@@ -12,9 +12,9 @@ async function uploadAvatar(event) {
         });
         document.getElementById("show-avatar-user-js").src =
             "/" + response.data.data.avatar;
-        swal("Upload image success !!!", "", "success");
+        await swal("Upload image success !!!", "", "success");
     } catch (error) {
-        swal({
+        await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
             button: "OK",
