@@ -32,7 +32,7 @@ class ChangePasswordUserRequestDTO
         return $this->new_password;
     }
 
-    public function getAll()
+    public function toArray()
     {
         return [
             'id' => $this->id,

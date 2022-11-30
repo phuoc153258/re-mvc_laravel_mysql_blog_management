@@ -33,7 +33,7 @@ class UpdateUserRequestDTO
         return $this->email;
     }
 
-    public function getAll()
+    public function toArray()
     {
         return [
             'id' => $this->id,

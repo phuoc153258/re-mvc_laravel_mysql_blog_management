@@ -16,7 +16,7 @@ class AuthService
 
     public function register(RegisterUserRequestDTO $userRequest)
     {
-        $user = User::create($userRequest->getAll());
+        $user = User::create($userRequest->toArray());
         $userDTO = new UserResponseDTO(User::find($user->id));
         $token = $user->createToken('API Token')->plainTextToken;
         return [
@@ -27,7 +27,7 @@ class AuthService
 
     public function login(LoginUserRequestDTO $userRequest)
     {
-        if (!Auth::attempt($userRequest->getAll())) return abort(401, MESSAGE_ERROR_LOGIN_USER);
+        if (!Auth::attempt($userRequest->toArray())) return abort(401, MESSAGE_ERROR_LOGIN_USER);
 
         $user = User::where('username', $userRequest->getUsername())->first();
         $userDTO = new UserResponseDTO($user);
@@ -36,5 +36,11 @@ class AuthService
             'user' => $userDTO->toJSON(),
             'token' => $token
         ];
+    }
+
+    public function logout($user)
+    {
+        $user->currentAccessToken()->delete();
+        return MESSAGE_SUCCESS_LOGOUT_USER;
     }
 }

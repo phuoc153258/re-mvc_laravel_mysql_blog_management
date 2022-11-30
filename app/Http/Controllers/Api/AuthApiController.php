@@ -9,6 +9,7 @@ use App\DTO\request\RegisterUserRequestDTO;
 use App\Services\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AuthApiController extends Controller
 {
@@ -41,6 +42,16 @@ class AuthApiController extends Controller
             $this->authValidate->validateInfoRegisterUser($userRequest);
             $userResponse = $this->authService->register($userRequest);
             return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            $response =  $this->authService->logout($request->user());
+            return $this->success($response, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }

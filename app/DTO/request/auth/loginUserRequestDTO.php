@@ -25,7 +25,7 @@ class LoginUserRequestDTO
         return $this->password;
     }
 
-    public function getAll()
+    public function toArray()
     {
         return [
             'username' => $this->username,

@@ -39,7 +39,7 @@ class UpdateBlogRequestDTO
         return $this->content;
     }
 
-    public function getAll()
+    public function toArray()
     {
         return [
             'id' => $this->id,

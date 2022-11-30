@@ -39,7 +39,7 @@ class CreateBlogRequestDTO
         return $this->user_id;
     }
 
-    public function getAll()
+    public function toArray()
     {
         return [
             'title' => $this->title,

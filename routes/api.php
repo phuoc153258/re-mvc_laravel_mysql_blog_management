@@ -37,6 +37,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 });
 
-Route::post('/login', [AuthApiController::class, 'login']);
+Route::prefix('auth')->group(function () {
+    Route::post('/login', [AuthApiController::class, 'login']);
 
-Route::post('/register', [AuthApiController::class, 'register']);
+    Route::post('/register', [AuthApiController::class, 'register']);
+
+    Route::post('/logout', [AuthApiController::class, 'logout'])->middleware('auth:sanctum');
+});

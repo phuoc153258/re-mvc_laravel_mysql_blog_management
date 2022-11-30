@@ -20,7 +20,7 @@ class BlogValidate
 
     public function validateInfoCreateBlog(CreateBlogRequestDTO $blogRequest)
     {
-        $validator = Validator::make($blogRequest->getAll(), [
+        $validator = Validator::make($blogRequest->toArray(), [
             'title' => VALIDATE_STR,
             'sub_title' => VALIDATE_STR,
             'content' => VALIDATE_STR,
@@ -33,7 +33,7 @@ class BlogValidate
 
     public function validateInfoUpdateBlog(UpdateBlogRequestDTO $blogRequest)
     {
-        $validator = Validator::make($blogRequest->getAll(), [
+        $validator = Validator::make($blogRequest->toArray(), [
             'title' => VALIDATE_STR,
             'sub_title' => VALIDATE_STR,
             'content' => VALIDATE_STR,

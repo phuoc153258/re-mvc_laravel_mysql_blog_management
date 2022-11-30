@@ -10,7 +10,7 @@ class UserValidate
 {
     public function validateInfoUserUpdate(UpdateUserRequestDTO $user)
     {
-        $validator = Validator::make($user->getAll(), [
+        $validator = Validator::make($user->toArray(), [
             'id' => VALIDATE_ID_MYSQL,
             'fullname' => VALIDATE_NAME,
             'email' => VALIDATE_EMAIL,
@@ -32,7 +32,7 @@ class UserValidate
 
     public function validateInfoUserChangePassword(ChangePasswordUserRequestDTO $user)
     {
-        $validator = Validator::make($user->getAll(), [
+        $validator = Validator::make($user->toArray(), [
             'id' => VALIDATE_ID_MYSQL,
             'old_password' => VALIDATE_PASSWORD,
             'new_password' => VALIDATE_PASSWORD
