@@ -4,7 +4,7 @@ function addHrefBackToDetailUser() {
         "/users/" + userId;
 }
 
-window.onload = function () {
-    getInfoUserLogin();
+window.onload = async function () {
+    await getInfoUserLogin();
     addHrefBackToDetailUser();
 };

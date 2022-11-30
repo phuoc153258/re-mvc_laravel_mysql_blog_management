@@ -7,7 +7,7 @@ function renderInfoUserToNavbar(data) {
                 ${data.username}
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item">Log out</a></div></li>`;
+                <a class="dropdown-item" onclick="logoutUser()">Log out</a></div></li>`;
     navbar.innerHTML = str;
     document.getElementById("user-id-navbar-hidden-js").value = data.id;
 }

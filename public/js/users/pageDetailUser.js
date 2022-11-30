@@ -9,7 +9,7 @@ function addHrefChangePassword(id) {
     ).href = `/users/${id}/password`;
 }
 
-window.onload = function () {
-    getInfoUserLogin();
-    getUser();
+window.onload = async function () {
+    await getInfoUserLogin();
+    await getUser();
 };
