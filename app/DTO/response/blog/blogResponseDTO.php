@@ -10,7 +10,7 @@ class BlogResponseDTO
     private string $content;
     private string $image;
     private int $user_id;
-    private string $username;
+    private ?string $username;
     private string $created_at;
     private string $updated_at;
 
@@ -22,7 +22,7 @@ class BlogResponseDTO
         $this->content = $blog->content;
         $this->image = $blog->image;
         $this->user_id = $blog->user_id;
-        $this->username = $blog->username;
+        $this->username = $blog->users[0]->username;
         $this->created_at = formatDate($blog->created_at);
         $this->updated_at = formatDate($blog->updated_at);
     }

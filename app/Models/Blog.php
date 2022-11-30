@@ -16,4 +16,9 @@ class Blog extends Model
         'image',
         'user_id'
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
 }

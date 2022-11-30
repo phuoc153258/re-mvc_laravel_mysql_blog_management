@@ -12,6 +12,8 @@ async function uploadAvatar(event) {
         });
         document.getElementById("show-avatar-user-js").src =
             "/" + response.data.data.avatar;
+        emptyInfoDetailsUser();
+        renderDataDetailsUser(response.data);
         await swal("Upload image success !!!", "", "success");
     } catch (error) {
         await swal({

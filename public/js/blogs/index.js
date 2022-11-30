@@ -60,3 +60,14 @@ function renderDataDetailsBlog(data) {
     document.getElementById("created_at-blog-js").value = data.created_at;
     document.getElementById("updated_at-blog-js").value = data.updated_at;
 }
+
+function emptyDataDetailsBlog() {
+    document.getElementById("show-image-blog-js").src = "";
+    document.getElementById("id-blog-js").value = "";
+    document.getElementById("title-blog-js").value = "";
+    document.getElementById("sub_title-blog-js").value = "";
+    document.getElementById("content-blog-js").value = "";
+    document.getElementById("username-blog-js").value = "";
+    document.getElementById("created_at-blog-js").value = "";
+    document.getElementById("updated_at-blog-js").value = "";
+}

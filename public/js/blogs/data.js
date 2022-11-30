@@ -40,7 +40,9 @@ async function getBlog() {
             },
         });
         if (response.data.status) {
+            emptyDataDetailsBlog();
             renderDataDetailsBlog(response.data.data);
+            addEventUploadFile();
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

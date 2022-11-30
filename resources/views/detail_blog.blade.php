@@ -15,8 +15,8 @@
                                 <div class="file btn btn-primary" style="position: relative;overflow: hidden;">
                                     Upload
                                     <input type="file" name="file"
-                                        style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;" onchange=""
-                                        value="" />
+                                        style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;"
+                                        id="upload-image-blog-js" value="" />
                                 </div>
                             </div>
                             <div class="col-8">
