@@ -32,3 +32,24 @@ async function loginUser() {
         return;
     }
 }
+
+async function getInfoUserLogin() {
+    try {
+        const response = await axios({
+            method: "get",
+            url: URLUser + "/me",
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        if (response.data.status)
+            renderInfoUserToNavbar(response.data.data.fullname);
+        else {
+            location.replace(`/`);
+        }
+    } catch (error) {
+        location.replace(`/`);
+        return;
+    }
+}

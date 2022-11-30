@@ -7,10 +7,16 @@ async function getList() {
         let searchItem = document.getElementById("input-search-user-js").value;
         let pageItem = document.getElementById("page-input-js").value;
         emptyTable();
-        const response = await axios.get(
-            URLUser +
-                `?search=${searchItem}&sort=${sortItem}&limit=${entriesItem}&page=${pageItem}`
-        );
+        const response = await axios({
+            method: "get",
+            url:
+                URLUser +
+                `?search=${searchItem}&sort=${sortItem}&limit=${entriesItem}&page=${pageItem}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
@@ -22,8 +28,6 @@ async function getList() {
         return;
     }
 }
-
-async function getInfoUserLogin() {}
 
 async function updateInfoUser() {
     try {
@@ -151,6 +155,6 @@ async function changePassword() {
 }
 
 window.onload = function () {
-    getList();
     getInfoUserLogin();
+    getList();
 };

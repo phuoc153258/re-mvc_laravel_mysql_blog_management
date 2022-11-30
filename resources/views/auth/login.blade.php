@@ -62,6 +62,4 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/auth/index.js') }}"></script>
-    <script src="{{ asset('js/auth/data.js') }}"></script>
 @endsection
