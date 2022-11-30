@@ -38,7 +38,7 @@ async function getInfoUserLogin() {
     try {
         const response = await axios({
             method: "get",
-            url: URLUser + "/me",
+            url: "api/users/me",
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),

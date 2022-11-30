@@ -7,10 +7,16 @@ async function getList() {
         let searchItem = document.getElementById("input-search-user-js").value;
         let pageItem = document.getElementById("page-input-js").value;
         emptyTable();
-        const response = await axios.get(
-            URLBlog +
-                `?search=${searchItem}&sort=${sortItem}&limit=${entriesItem}&page=${pageItem}`
-        );
+        const response = await axios({
+            method: "get",
+            url:
+                URLBlog +
+                `?search=${searchItem}&sort=${sortItem}&limit=${entriesItem}&page=${pageItem}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
