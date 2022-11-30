@@ -19,7 +19,14 @@ async function getList() {
         });
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
-    } catch (error) {}
+    } catch (error) {
+        await swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
 }
 
 async function getUser() {
@@ -32,11 +39,27 @@ async function getUser() {
                 Authorization: getCookie("access_token"),
             },
         });
-        emptyInfoDetailsUser();
-        renderDataDetailsUser(response.data);
-        addEventUploadFile();
-        addHrefChangePassword(response.data.data.id);
-    } catch (error) {}
+        if (response.data.status) {
+            emptyInfoDetailsUser();
+            renderDataDetailsUser(response.data);
+            addEventUploadFile();
+            addHrefChangePassword(response.data.data.id);
+        } else {
+            await swal({
+                title: "Some thing went wrong!!!",
+                icon: "error",
+                button: "OK",
+            });
+            return;
+        }
+    } catch (error) {
+        await swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
 }
 
 async function updateInfoUser() {

@@ -38,7 +38,7 @@ async function getInfoUserLogin() {
     try {
         const response = await axios({
             method: "get",
-            url: "api/users/me",
+            url: "/api/users/me",
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -46,20 +46,10 @@ async function getInfoUserLogin() {
         });
         if (response.data.status) renderInfoUserToNavbar(response.data.data);
         else {
-            await swal({
-                title: "Some thing went wrong !!!",
-                icon: "error",
-                button: "OK",
-            });
             location.replace(`/auth/login`);
             return;
         }
     } catch (error) {
-        await swal({
-            title: "You must login !!!",
-            icon: "error",
-            button: "OK",
-        });
         location.replace(`/auth/login`);
         return;
     }

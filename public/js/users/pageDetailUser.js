@@ -10,6 +10,6 @@ function addHrefChangePassword(id) {
 }
 
 window.onload = async function () {
-    await getInfoUserLogin();
     await getUser();
+    await getInfoUserLogin();
 };

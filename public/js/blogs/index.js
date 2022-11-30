@@ -50,17 +50,13 @@ function uploadImageBlog(event) {
     }
 }
 
-function renderDataToUpdatePage(data) {
-    const id = (document.getElementById("id-blog-js").value = data.id);
-    const title = (document.getElementById("title-blog-js").value = data.title);
-    const sub_title = (document.getElementById("sub_title-blog-js").value =
-        data.sub_title);
-    const content = (document.getElementById("content-blog-js").value =
-        data.content);
-    const username = (document.getElementById("username-blog-js").value =
-        data.username);
-    const created_at = (document.getElementById("created_at-blog-js").value =
-        data.created_at);
-    const updated_at = (document.getElementById("updated_at-blog-js").value =
-        data.updated_at);
+function renderDataDetailsBlog(data) {
+    document.getElementById("show-image-blog-js").src = "/" + data.image;
+    document.getElementById("id-blog-js").value = data.id;
+    document.getElementById("title-blog-js").value = data.title;
+    document.getElementById("sub_title-blog-js").value = data.sub_title;
+    document.getElementById("content-blog-js").value = data.content;
+    document.getElementById("username-blog-js").value = data.username;
+    document.getElementById("created_at-blog-js").value = data.created_at;
+    document.getElementById("updated_at-blog-js").value = data.updated_at;
 }

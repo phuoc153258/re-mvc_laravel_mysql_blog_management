@@ -9,7 +9,6 @@ use App\DTO\request\RegisterUserRequestDTO;
 use App\Services\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
-use Illuminate\Support\Facades\Auth;
 
 class AuthApiController extends Controller
 {

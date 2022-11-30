@@ -29,6 +29,36 @@ async function getList() {
     }
 }
 
+async function getBlog() {
+    try {
+        const response = await axios({
+            method: "get",
+            url: URLBlog + "/" + window.location.pathname.split("/")[2],
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        if (response.data.status) {
+            renderDataDetailsBlog(response.data.data);
+        } else {
+            await swal({
+                title: "Some thing went wrong!!!",
+                icon: "error",
+                button: "OK",
+            });
+            return;
+        }
+    } catch (error) {
+        await swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
+}
+
 async function deleteBlog(id) {
     try {
         const response = await axios({
@@ -110,7 +140,7 @@ async function updateBlog() {
         });
         if (response.data.status) {
             await swal("Delete blog success !!!", "", "success");
-            renderDataToUpdatePage(response.data.data);
+            renderDataDetailsBlog(response.data.data);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

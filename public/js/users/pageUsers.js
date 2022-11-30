@@ -1,4 +1,4 @@
 window.onload = async function () {
-    await getInfoUserLogin();
     await getList();
+    await getInfoUserLogin();
 };
