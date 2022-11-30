@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('fullname');
             $table->string('email')->unique();
-            $table->string('avatar')->default("/image/user_avatar_default.jpg");
+            $table->string('avatar')->default("image/user_avatar_default.jpg");
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

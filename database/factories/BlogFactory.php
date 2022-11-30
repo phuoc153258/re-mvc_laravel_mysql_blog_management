@@ -25,7 +25,7 @@ class BlogFactory extends Factory
             'sub_title' => $this->faker->text(100),
             'content' => $this->faker->text(),
             'image' => 'image/blog_image_default.png',
-            'user_id' => $this->faker->numberBetween(1, 49)
+            'user_id' => $this->faker->numberBetween(1, 20)
         ];
     }
 }
