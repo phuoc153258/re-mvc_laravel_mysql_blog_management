@@ -43,4 +43,5 @@
     <script src="{{ asset('js/users/data.js') }}"></script>
     <script src="{{ asset('js/users/file.js') }}"></script>
     <script src="{{ asset('js/users/index.js') }}"></script>
+    <script src="{{ asset('js/users/pageChangePassword.js') }}"></script>
 @endsection

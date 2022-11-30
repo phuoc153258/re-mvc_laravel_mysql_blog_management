@@ -43,8 +43,7 @@ async function getInfoUserLogin() {
                 Authorization: getCookie("access_token"),
             },
         });
-        if (response.data.status)
-            renderInfoUserToNavbar(response.data.data.fullname);
+        if (response.data.status) renderInfoUserToNavbar(response.data.data);
         else {
             location.replace(`/`);
         }

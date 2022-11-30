@@ -57,6 +57,7 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
+                    <input type="text" id="user-id-navbar-hidden-js" hidden>
                     <ul class="navbar-nav ms-auto" id="info-user-navbar-js">
                         <li class="nav-item">
                             <a class="nav-link" href="/auth/login">Login</a>

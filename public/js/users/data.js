@@ -29,6 +29,29 @@ async function getList() {
     }
 }
 
+async function getUser() {
+    try {
+        const response = await axios({
+            method: "get",
+            url: URLUser + "/" + window.location.pathname.split("/")[2],
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        emptyInfoDetailsUser();
+        renderDataDetailsUser(response.data);
+        addEventUploadFile();
+    } catch (error) {
+        swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
+}
+
 async function updateInfoUser() {
     try {
         let userId = document.getElementById("id-user-update-js").value;
@@ -56,6 +79,9 @@ async function updateInfoUser() {
                 fullname,
                 email,
             },
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
         });
         if (!response.data.status) {
             swal({
@@ -65,8 +91,9 @@ async function updateInfoUser() {
             });
             return;
         }
-        emptyInfoUpdateUser();
-        renderDataUserUpdate(response.data);
+        emptyInfoDetailsUser();
+        renderDataDetailsUser(response.data);
+        swal("Update user success !!!", "", "success");
     } catch (error) {
         swal({
             title: "Some thing went wrong!!!",
@@ -82,6 +109,9 @@ async function deleteUser(id) {
         const response = await axios({
             method: "delete",
             url: URLUser + `/${id}`,
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
         });
         if (response.data.status) {
             swal("Delete user success !!!", "", "success");
@@ -132,6 +162,9 @@ async function changePassword() {
                 old_password,
                 new_password,
             },
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
         });
         if (response.data.status) {
             await swal("Change password success !!!", "", "success");
@@ -153,8 +186,3 @@ async function changePassword() {
         return;
     }
 }
-
-window.onload = function () {
-    getInfoUserLogin();
-    getList();
-};

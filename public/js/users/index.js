@@ -32,19 +32,16 @@ function renderDataToTable(data) {
     document.getElementById("table-body-js").innerHTML = str;
 }
 
-function renderDataUserUpdate(data) {
-    let id = (document.getElementById("id-user-update-js").value =
-        data.data.id);
-    let username = (document.getElementById("username-user-update-js").value =
-        data.data.username);
-    let fullname = (document.getElementById("fullname-user-update-js").value =
-        data.data.fullname);
-    let email = (document.getElementById("email-user-update-js").value =
-        data.data.email);
-    let created_at = (document.getElementById(
-        "created_at-user-update-js"
-    ).value = data.data.created_at);
-    let updated_at = (document.getElementById(
-        "updated_at-user-update-js"
-    ).value = data.data.updated_at);
+function renderDataDetailsUser(data) {
+    document.getElementById("show-avatar-user-js").src = "/" + data.data.avatar;
+    document.getElementById("id-user-update-js").value = data.data.id;
+    document.getElementById("username-user-update-js").value =
+        data.data.username;
+    document.getElementById("fullname-user-update-js").value =
+        data.data.fullname;
+    document.getElementById("email-user-update-js").value = data.data.email;
+    document.getElementById("created_at-user-update-js").value =
+        data.data.created_at;
+    document.getElementById("updated_at-user-update-js").value =
+        data.data.updated_at;
 }

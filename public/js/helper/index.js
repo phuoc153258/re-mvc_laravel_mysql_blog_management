@@ -35,7 +35,7 @@ function renderNextPage(page, last_page) {
     return nextPage;
 }
 
-function emptyInfoUpdateUser() {
+function emptyInfoDetailsUser() {
     document.getElementById("id-user-update-js").value = "";
     document.getElementById("fullname-user-update-js").value = "";
     document.getElementById("email-user-update-js").value = "";

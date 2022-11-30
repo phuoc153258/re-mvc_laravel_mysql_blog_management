@@ -21,7 +21,7 @@
                                     Upload
                                     <input type="file" name="file"
                                         style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;" onchange=""
-                                        value="" />
+                                        value="" id="upload-avatar-user-js" />
                                 </div>
                             </div>
                             <div class="col-8">
@@ -74,4 +74,5 @@
     <script src="{{ asset('js/users/data.js') }}"></script>
     <script src="{{ asset('js/users/file.js') }}"></script>
     <script src="{{ asset('js/users/index.js') }}"></script>
+    <script src="{{ asset('js/users/pageDetailUser.js') }}"></script>
 @endsection
