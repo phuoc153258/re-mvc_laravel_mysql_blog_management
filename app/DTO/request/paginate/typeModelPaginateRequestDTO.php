@@ -13,17 +13,20 @@ class TypeModelPaginateRequestDTO
 
     public function __construct(string $type)
     {
-        if ($type == PAGINATE_TYPE['USER']['NAME']) {
-            $this->type = PAGINATE_TYPE['USER']['NAME'];
-            $this->search_by = PAGINATE_TYPE['USER']['SEARCH_BY'];
-            $this->sort_by = PAGINATE_TYPE['USER']['SORT_BY'];
-        }
+        $type_model = null;
 
-        if ($type == PAGINATE_TYPE['BLOG']['NAME']) {
-            $this->type = PAGINATE_TYPE['BLOG']['NAME'];
-            $this->search_by = PAGINATE_TYPE['BLOG']['SEARCH_BY'];
-            $this->sort_by = PAGINATE_TYPE['BLOG']['SORT_BY'];
-        }
+        if ($type == PAGINATE_TYPE['USER']['NAME'])
+            $type_model = 'USER';
+
+        if ($type == PAGINATE_TYPE['BLOG']['NAME'])
+            $type_model = 'BLOG';
+
+        if ($type == PAGINATE_TYPE['ROLE']['NAME'])
+            $type_model = 'ROLE';
+
+        $this->type = PAGINATE_TYPE[$type_model]['NAME'];
+        $this->search_by = PAGINATE_TYPE[$type_model]['SEARCH_BY'];
+        $this->sort_by = PAGINATE_TYPE[$type_model]['SORT_BY'];
     }
     public function getType()
     {

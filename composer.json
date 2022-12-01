@@ -60,6 +60,7 @@
             "app/DTO/response/user",
             "app/DTO/response/auth",
             "app/DTO/response/blog",
+            "app/DTO/response/role",
 
             "app/Services",
             

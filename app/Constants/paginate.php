@@ -25,4 +25,15 @@ define('BLOG_PAGINATE_TYPE', [
     ]
 ]);
 
-define('PAGINATE_TYPE', ['USER' => USER_PAGINATE_TYPE, 'BLOG' => BLOG_PAGINATE_TYPE]);
+define('ROLE_PAGINATE_TYPE', [
+    'NAME' => 'roles',
+    'SEARCH_BY' => 'name',
+    'SORT_BY' => 'name',
+    'SELECT_ITEM' => []
+]);
+
+define('PAGINATE_TYPE', [
+    'USER' => USER_PAGINATE_TYPE,
+    'BLOG' => BLOG_PAGINATE_TYPE,
+    'ROLE' => ROLE_PAGINATE_TYPE
+]);

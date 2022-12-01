@@ -24,7 +24,7 @@ class UserService
 
     public  function getList(BasePaginateRequestDTO $option)
     {
-        $data = (new PaginateService())->paginate($option);
+        $data = $this->paginateService->paginate($option);
         return $data;
     }
 

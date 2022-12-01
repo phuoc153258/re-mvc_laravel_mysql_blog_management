@@ -14,11 +14,11 @@ class RoleResponseDTO
 
     public function __construct($role)
     {
-        $this->id = $role->id;
-        $this->name = $role->name;
-        $this->guard_name = $role->guard_name;
-        $this->created_at = formatDate($role->created_at);
-        $this->updated_at = formatDate($role->updated_at);
+        $this->id = $role['id'];
+        $this->name = $role['name'];
+        $this->guard_name = $role['guard_name'];
+        $this->created_at = formatDate($role['created_at']);
+        $this->updated_at = formatDate($role['updated_at']);
     }
 
     public function toJSON()
