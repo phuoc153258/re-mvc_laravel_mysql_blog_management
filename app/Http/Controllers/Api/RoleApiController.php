@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\request\BasePaginateRequestDTO;
+use App\DTO\request\UpdateRoleRequestDTO;
 use App\Validate\RoleValidate;
 use App\Traits\HttpResponse;
 use App\Services\RoleService;
@@ -48,6 +49,18 @@ class RoleApiController extends Controller
         try {
             $validate = $this->roleValidate->validateInfoNameRole($request->input('name'));
             $roleResponse = $this->roleService->create($request->input('name'));
+            return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $roleRequest = new UpdateRoleRequestDTO($request, $id);
+            $validate = $this->roleValidate->validateInfoUpdateRole($roleRequest);
+            $roleResponse = $this->roleService->update($roleRequest);
             return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);

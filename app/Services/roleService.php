@@ -5,6 +5,7 @@ namespace App\Services;
 use Spatie\Permission\Models\Role;
 use App\DTO\response\RoleResponseDTO;
 use App\DTO\request\BasePaginateRequestDTO;
+use App\DTO\request\UpdateRoleRequestDTO;
 use App\Services\PaginateService;
 
 class RoleService
@@ -38,6 +39,18 @@ class RoleService
         $role->name = $name;
 
         $role->save();
+        $roleDTO = new RoleResponseDTO($role);
+        return $roleDTO->toJSON();
+    }
+
+    public function update(UpdateRoleRequestDTO $roleRequest)
+    {
+        $role = Role::find($roleRequest->getID());
+        if ($roleRequest->getName() == '' || $roleRequest->getName() == null) return abort(400, MESSAGE_ERROR_UPDATE_ROLE);
+
+        $role->name = $roleRequest->getName();
+        $role->save();
+
         $roleDTO = new RoleResponseDTO($role);
         return $roleDTO->toJSON();
     }

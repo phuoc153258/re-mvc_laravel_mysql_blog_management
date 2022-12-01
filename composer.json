@@ -55,6 +55,7 @@
             "app/DTO/request/file",
             "app/DTO/request/blog",
             "app/DTO/request/auth",
+            "app/DTO/request/role",
 
             "app/DTO/response/paginate",
             "app/DTO/response/user",
