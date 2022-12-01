@@ -2,8 +2,8 @@
 
 namespace App\Validate;
 
-use App\DTO\request\CreateBlogRequestDTO;
-use App\DTO\request\UpdateBlogRequestDTO;
+use App\DTO\Request\Blog\CreateBlogRequestDTO;
+use App\DTO\Request\Blog\UpdateBlogRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 

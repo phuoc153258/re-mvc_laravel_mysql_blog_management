@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\response;
+namespace App\DTO\Response\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\response;
+namespace App\DTO\Response\Blog;
 
 class BlogResponseDTO
 {

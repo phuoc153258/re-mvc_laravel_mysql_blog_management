@@ -4,8 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\response\PaginateResponeDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 
 class PaginateService
 {

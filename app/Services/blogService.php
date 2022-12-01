@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\request\UploadFileRequestDTO;
-use App\DTO\request\CreateBlogRequestDTO;
-use App\DTO\request\UpdateBlogRequestDTO;
-use App\DTO\response\BlogResponseDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\File\UploadFileRequestDTO;
+use App\DTO\Request\Blog\CreateBlogRequestDTO;
+use App\DTO\Request\Blog\UpdateBlogRequestDTO;
+use App\DTO\response\Blog\BlogResponseDTO;
 use App\Models\Blog;
 use App\Services\PaginateService;
 use App\Services\FileService;

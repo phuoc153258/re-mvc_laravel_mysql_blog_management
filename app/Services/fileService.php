@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
-use App\DTO\request\UploadFileRequestDTO;
+use App\DTO\Request\File\UploadFileRequestDTO;
 
 
 class FileService

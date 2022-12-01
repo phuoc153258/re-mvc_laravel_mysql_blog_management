@@ -3,8 +3,8 @@
 namespace App\Validate;
 
 use Illuminate\Support\Facades\Validator;
-use App\DTO\request\UpdateUserRequestDTO;
-use App\DTO\request\ChangePasswordUserRequestDTO;
+use App\DTO\Request\User\UpdateUserRequestDTO;
+use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\Traits\BaseValidate;
 
 class UserValidate

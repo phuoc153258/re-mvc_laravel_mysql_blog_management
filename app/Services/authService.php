@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\DTO\request\LoginUserRequestDTO;
+use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\Models\User;
-use App\DTO\request\RegisterUserRequestDTO;
-use App\DTO\response\UserResponseDTO;
+use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\response\User\UserResponseDTO;
 use Illuminate\Support\Facades\Auth;
 
 class AuthService

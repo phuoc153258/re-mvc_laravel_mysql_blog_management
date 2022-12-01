@@ -2,9 +2,9 @@
 
 namespace App\Validate;
 
-use App\DTO\request\LoginUserRequestDTO;
+use App\DTO\Request\Auth\LoginUserRequestDTO;
 use Illuminate\Support\Facades\Validator;
-use App\DTO\request\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\RegisterUserRequestDTO;
 use App\Traits\BaseValidate;
 
 class AuthValidate

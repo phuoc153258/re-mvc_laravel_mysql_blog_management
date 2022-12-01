@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DTO\request\LoginUserRequestDTO;
-use App\DTO\request\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\LoginUserRequestDTO;
+use App\DTO\Request\Auth\RegisterUserRequestDTO;
 use App\Services\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\DTO\request;
+namespace App\DTO\Request\Paginate;
 
 use Illuminate\Http\Request;
-use App\DTO\request\PaginateRequestDTO;
-use App\DTO\request\TypeModelPaginateRequestDTO;
+use App\DTO\Request\Paginate\PaginateRequestDTO;
+use App\DTO\Request\Paginate\TypeModelPaginateRequestDTO;
 
 class BasePaginateRequestDTO
 {

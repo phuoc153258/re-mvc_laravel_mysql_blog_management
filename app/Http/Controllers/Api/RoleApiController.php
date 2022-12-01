@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\request\UpdateRoleRequestDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\Validate\RoleValidate;
 use App\Traits\HttpResponse;
 use App\Services\RoleService;

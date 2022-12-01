@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DTO\request\UploadFileRequestDTO;
+use App\DTO\Request\File\UploadFileRequestDTO;
 use App\Services\FileService;
 use App\Traits\HttpResponse;
 

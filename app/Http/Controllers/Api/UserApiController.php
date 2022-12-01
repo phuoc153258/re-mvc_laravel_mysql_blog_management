@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\request\UpdateUserRequestDTO;
-use App\DTO\request\ChangePasswordUserRequestDTO;
-use App\DTO\request\UploadFileRequestDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\User\UpdateUserRequestDTO;
+use App\DTO\Request\User\ChangePasswordUserRequestDTO;
+use App\DTO\Request\File\UploadFileRequestDTO;
 use App\Services\UserService;
 use App\Validate\UserValidate;
 use App\Traits\HttpResponse;

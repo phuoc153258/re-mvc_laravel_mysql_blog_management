@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use Spatie\Permission\Models\Role;
-use App\DTO\response\RoleResponseDTO;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\request\UpdateRoleRequestDTO;
+use App\DTO\Response\Role\RoleResponseDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\Services\PaginateService;
 
 class RoleService

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\DTO\response;
+namespace App\DTO\Response\Paginate;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class PaginateResponeDTO
 {

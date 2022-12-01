@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\request\UploadFileRequestDTO;
-use App\DTO\request\CreateBlogRequestDTO;
-use App\DTO\request\UpdateBlogRequestDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\File\UploadFileRequestDTO;
+use App\DTO\Request\Blog\CreateBlogRequestDTO;
+use App\DTO\Request\Blog\UpdateBlogRequestDTO;
 use App\Services\BlogService;
 use App\Validate\BlogValidate;
 use App\Traits\HttpResponse;

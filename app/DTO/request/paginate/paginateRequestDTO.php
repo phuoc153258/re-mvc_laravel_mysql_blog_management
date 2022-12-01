@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\request;
+namespace App\DTO\Request\Paginate;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;

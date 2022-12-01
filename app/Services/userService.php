@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\DTO\request\BasePaginateRequestDTO;
-use App\DTO\request\UpdateUserRequestDTO;
-use App\DTO\request\ChangePasswordUserRequestDTO;
-use App\DTO\request\UploadFileRequestDTO;
-use App\DTO\response\UserResponseDTO;
+use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\User\UpdateUserRequestDTO;
+use App\DTO\Request\User\ChangePasswordUserRequestDTO;
+use App\DTO\Request\File\UploadFileRequestDTO;
+use App\DTO\Response\User\UserResponseDTO;
 use App\Services\PaginateService;
 use App\Services\FileService;
 

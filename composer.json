@@ -51,18 +51,18 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "classmap": [
-            "app/DTO/request/paginate",
-            "app/DTO/request/user",
-            "app/DTO/request/file",
-            "app/DTO/request/blog",
-            "app/DTO/request/auth",
-            "app/DTO/request/role",
+            "app/DTO/Request/Paginate",
+            "app/DTO/Request/User",
+            "app/DTO/Request/File",
+            "app/DTO/Request/Blog",
+            "app/DTO/Request/Auth",
+            "app/DTO/Request/Role",
 
-            "app/DTO/response/paginate",
-            "app/DTO/response/user",
-            "app/DTO/response/auth",
-            "app/DTO/response/blog",
-            "app/DTO/response/role",
+            "app/DTO/Response/Paginate",
+            "app/DTO/Response/User",
+            "app/DTO/Response/Auth",
+            "app/DTO/Response/Blog",
+            "app/DTO/Response/Role",
 
             "app/Services",
             

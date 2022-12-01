@@ -2,7 +2,7 @@
 
 namespace App\Validate;
 
-use App\DTO\request\UpdateRoleRequestDTO;
+use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 
