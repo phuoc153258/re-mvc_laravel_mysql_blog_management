@@ -16,9 +16,16 @@ class RoleService
         $this->paginateService = new PaginateService();
     }
 
-    public  function getList(BasePaginateRequestDTO $option)
+    public function getList(BasePaginateRequestDTO $option)
     {
         $data = $this->paginateService->paginate($option);
         return $data;
+    }
+
+    public function show($id)
+    {
+        $role = Role::find($id);
+        $roleDTO = new RoleResponseDTO($role);
+        return $roleDTO->toJSON();
     }
 }
