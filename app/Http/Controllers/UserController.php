@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            return view('user');
+            return view('users.user');
         } catch (\Throwable $th) {
             return redirect('/');
         }
@@ -19,7 +19,7 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            return view('detail_user');
+            return view('users.detail_user');
         } catch (\Throwable $th) {
             return redirect('/');
         }
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function changePassword(Request $request, $id)
     {
         try {
-            return view('change_password');
+            return view('users.change_password');
         } catch (\Throwable $th) {
             return redirect('/');
         }

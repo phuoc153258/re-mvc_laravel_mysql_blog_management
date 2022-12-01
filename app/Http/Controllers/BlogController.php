@@ -10,7 +10,7 @@ class BlogController extends Controller
     function index(Request $request)
     {
         try {
-            return view('blog');
+            return view('blogs.blog');
         } catch (\Throwable $th) {
             return redirect('/');
         }
@@ -19,7 +19,7 @@ class BlogController extends Controller
     function show($id)
     {
         try {
-            return view('detail_blog');
+            return view('blogs.detail_blog');
         } catch (\Throwable $th) {
             return redirect('/');
         }
@@ -28,7 +28,7 @@ class BlogController extends Controller
     function create()
     {
         try {
-            return view('create_blog');
+            return view('blogs.create_blog');
         } catch (\Throwable $th) {
             return redirect('/');
         }

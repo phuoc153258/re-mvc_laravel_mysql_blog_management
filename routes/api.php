@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\BlogApiController;
 use App\Http\Controllers\Api\FileApiController;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\PermissionApiController;
+use App\Http\Controllers\Api\RoleApiController;
 
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::prefix('users')->group(function () {
@@ -39,6 +41,14 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::prefix('files')->group(function () {
         Route::post('/', [FileApiController::class, 'upload']);
+    });
+
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [RoleApiController::class, 'index']);
+    });
+
+    Route::prefix('permissions')->group(function () {
+        Route::get('/', [PermissionApiController::class, 'index']);
     });
 });
 

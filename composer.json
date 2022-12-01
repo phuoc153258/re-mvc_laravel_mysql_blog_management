@@ -28,10 +28,12 @@
             "app/Helpers/uuid.php",
             "app/Helpers/file.php",
             "app/Helpers/date.php",
+
             "app/Constants/file.php",
             "app/Constants/hash.php",
             "app/Constants/paginate.php",
             "app/Constants/validate.php",
+
             "app/Message/base.php",
             "app/Message/error/file.php",
             "app/Message/error/user.php",
@@ -53,11 +55,14 @@
             "app/DTO/request/file",
             "app/DTO/request/blog",
             "app/DTO/request/auth",
+
             "app/DTO/response/paginate",
             "app/DTO/response/user",
             "app/DTO/response/auth",
             "app/DTO/response/blog",
+
             "app/Services",
+            
             "app/Validate"
         ]
     },
