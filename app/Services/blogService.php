@@ -31,11 +31,6 @@ class BlogService
 
     public function show($id)
     {
-        // $blog = DB::table('blogs')
-        //     ->join('users', 'blogs.user_id', '=', 'users.id')
-        //     ->where('blogs.id', '=', $id)
-        //     ->select('blogs.*', 'users.username')
-        //     ->first();
         $blog = Blog::with('users')->where('id', $id)->get()->first();
         $blogDTO = new BlogResponseDTO($blog);
         return $blogDTO->toJSON();
