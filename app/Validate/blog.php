@@ -4,18 +4,19 @@ namespace App\Validate;
 
 use App\DTO\request\CreateBlogRequestDTO;
 use App\DTO\request\UpdateBlogRequestDTO;
+use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 
 class BlogValidate
 {
+    use BaseValidate;
+
     public function validateInfoIdBlog($id)
     {
         $validator = Validator::make(['id' => $id], [
             'id' => VALIDATE_ID_MYSQL,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 
     public function validateInfoCreateBlog(CreateBlogRequestDTO $blogRequest)
@@ -26,9 +27,7 @@ class BlogValidate
             'content' => VALIDATE_STR,
             'user_id' => VALIDATE_ID_MYSQL,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 
     public function validateInfoUpdateBlog(UpdateBlogRequestDTO $blogRequest)
@@ -38,8 +37,6 @@ class BlogValidate
             'sub_title' => VALIDATE_STR,
             'content' => VALIDATE_STR,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 }

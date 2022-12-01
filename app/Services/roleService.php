@@ -28,4 +28,17 @@ class RoleService
         $roleDTO = new RoleResponseDTO($role);
         return $roleDTO->toJSON();
     }
+
+    public function create(string $name)
+    {
+        $role = new Role();
+
+        if ($name == '' || $name == null) return abort(400, MESSAGE_ERROR_CREATE_ROLE);
+
+        $role->name = $name;
+
+        $role->save();
+        $roleDTO = new RoleResponseDTO($role);
+        return $roleDTO->toJSON();
+    }
 }

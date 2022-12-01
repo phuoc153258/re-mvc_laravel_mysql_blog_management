@@ -5,9 +5,12 @@ namespace App\Validate;
 use App\DTO\request\LoginUserRequestDTO;
 use Illuminate\Support\Facades\Validator;
 use App\DTO\request\RegisterUserRequestDTO;
+use App\Traits\BaseValidate;
 
 class AuthValidate
 {
+    use BaseValidate;
+
     public function validateInfoRegisterUser(RegisterUserRequestDTO $user)
     {
         $validator = Validator::make($user->toArray(), [
@@ -16,9 +19,7 @@ class AuthValidate
             'email' => VALIDATE_EMAIL,
             'password' => VALIDATE_PASSWORD,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 
     public function validateInfoLoginUser(LoginUserRequestDTO $user)
@@ -27,8 +28,6 @@ class AuthValidate
             'username' => VALIDATE_NAME,
             'password' => VALIDATE_PASSWORD,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 }

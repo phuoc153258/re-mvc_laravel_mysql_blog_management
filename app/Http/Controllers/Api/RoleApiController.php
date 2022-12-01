@@ -42,4 +42,15 @@ class RoleApiController extends Controller
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
+
+    public function create(Request $request)
+    {
+        try {
+            $validate = $this->roleValidate->validateInfoNameRole($request->input('name'));
+            $roleResponse = $this->roleService->create($request->input('name'));
+            return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
 }

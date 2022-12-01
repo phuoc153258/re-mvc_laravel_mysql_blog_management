@@ -46,6 +46,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::prefix('roles')->group(function () {
         Route::get('/{id}', [RoleApiController::class, 'show']);
 
+        Route::post('/', [RoleApiController::class, 'create']);
+
         Route::get('/', [RoleApiController::class, 'index']);
     });
 

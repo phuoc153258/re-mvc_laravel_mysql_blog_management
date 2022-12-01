@@ -5,9 +5,12 @@ namespace App\Validate;
 use Illuminate\Support\Facades\Validator;
 use App\DTO\request\UpdateUserRequestDTO;
 use App\DTO\request\ChangePasswordUserRequestDTO;
+use App\Traits\BaseValidate;
 
 class UserValidate
 {
+    use BaseValidate;
+
     public function validateInfoUserUpdate(UpdateUserRequestDTO $user)
     {
         $validator = Validator::make($user->toArray(), [
@@ -15,9 +18,7 @@ class UserValidate
             'fullname' => VALIDATE_NAME,
             'email' => VALIDATE_EMAIL,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 
     public function validateInfoUserID($id)
@@ -25,9 +26,7 @@ class UserValidate
         $validator = Validator::make(["id" => $id], [
             'id' => VALIDATE_ID_MYSQL,
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 
     public function validateInfoUserChangePassword(ChangePasswordUserRequestDTO $user)
@@ -37,8 +36,6 @@ class UserValidate
             'old_password' => VALIDATE_PASSWORD,
             'new_password' => VALIDATE_PASSWORD
         ]);
-        if ($validator->fails()) {
-            return abort(400, MESSAGE_ERROR_INVALID_INFORMATION);
-        }
+        return $this->baseRunCondition($validator);
     }
 }
