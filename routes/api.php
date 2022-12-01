@@ -44,6 +44,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     });
 
     Route::prefix('roles')->group(function () {
+        Route::delete('/{id}', [RoleApiController::class, 'delete']);
+
         Route::put('/{id}', [RoleApiController::class, 'update']);
 
         Route::get('/{id}', [RoleApiController::class, 'show']);

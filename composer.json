@@ -42,7 +42,8 @@
             "app/Message/error/auth.php",
             "app/Message/success/file.php",
             "app/Message/success/auth.php",
-            "app/Message/success/user.php"
+            "app/Message/success/user.php",
+            "app/Message/success/role.php"
         ],
         "psr-4": {
             "App\\": "app/",

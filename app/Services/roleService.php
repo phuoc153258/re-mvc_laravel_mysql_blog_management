@@ -54,4 +54,13 @@ class RoleService
         $roleDTO = new RoleResponseDTO($role);
         return $roleDTO->toJSON();
     }
+
+    public function delete($id)
+    {
+        $role = Role::find($id);
+        $role->delete();
+
+        $roleDTO = new RoleResponseDTO($role);
+        return $roleDTO->toJSON();
+    }
 }
