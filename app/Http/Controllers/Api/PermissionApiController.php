@@ -35,9 +35,9 @@ class PermissionApiController extends Controller
     public function show($id)
     {
         try {
-            $validate = $this->roleValidate->validateInfoIdRole($id);
-            $roleResponse = $this->roleService->show($id);
-            return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
+            $validate = $this->permissionValidate->validateInfoIdPermission($id);
+            $permissionResponse = $this->permissionService->show($id);
+            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }

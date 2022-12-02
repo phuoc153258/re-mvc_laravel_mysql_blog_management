@@ -9,7 +9,7 @@ class PermissionValidate
 {
     use BaseValidate;
 
-    public function validateInfoIdRole($id)
+    public function validateInfoIdPermission($id)
     {
         $validator = Validator::make(['id' => $id], [...VALIDATE_ID_MYSQL]);
         return $this->baseRunCondition($validator);
