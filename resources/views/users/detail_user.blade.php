@@ -59,7 +59,7 @@
                                         Role
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="role-user-update-js"
-                                        style="overflow: auto !important; height: 150px !important;">
+                                        style="overflow: auto !important; height: 150px !important;" id="list-role-js">
                                         <a class="dropdown-item">Admin</a>
                                         <a class="dropdown-item">User</a>
                                     </div>
@@ -76,12 +76,12 @@
 
                                 <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
                                     <p class="mt-3">List permission:</p>
-                                    <button class="btn btn-primary dropdown-toggle " type="button" id="role-user-update-js"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        style="width: 45% !important;">
+                                    <button class="btn btn-primary dropdown-toggle " type="button"
+                                        id="permission-user-update-js" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" style="width: 45% !important;">
                                         Permission
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="role-user-update-js"
+                                    <div class="dropdown-menu" aria-labelledby="permission-user-update-js"
                                         style="overflow: auto !important; height: 150px !important;">
                                         <a class="dropdown-item">Get list user</a>
                                         <a class="dropdown-item">Get user</a>
@@ -101,10 +101,8 @@
                                         style="flex-direction: row !important;gap: 0 10px;overflow-x: auto;
                                         scroll-snap-type: x mandatory;"
                                         id="list-permission-user-js">
-
                                     </ul>
                                 </div>
-
                                 <div class="form-group mb-3">
                                     <label for="">Created At:</label>
                                     <input type="text" class="form-control" placeholder="Created At..."
@@ -129,5 +127,7 @@
     <script src="{{ asset('js/users/data.js') }}"></script>
     <script src="{{ asset('js/users/file.js') }}"></script>
     <script src="{{ asset('js/users/index.js') }}"></script>
+    <script src="{{ asset('js/role/index.js') }}"></script>
+    <script src="{{ asset('js/role/data.js') }}"></script>
     <script src="{{ asset('js/users/pageDetailUser.js') }}"></script>
 @endsection

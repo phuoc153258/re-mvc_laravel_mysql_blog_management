@@ -12,4 +12,5 @@ function addHrefChangePassword(id) {
 window.onload = async function () {
     await getUser();
     await getInfoUserLogin();
+    await getListRole();
 };
