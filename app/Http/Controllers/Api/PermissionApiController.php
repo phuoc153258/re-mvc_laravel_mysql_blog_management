@@ -35,7 +35,7 @@ class PermissionApiController extends Controller
     public function show($id)
     {
         try {
-            $validate = $this->permissionValidate->validateInfoIdPermission($id);
+            $this->permissionValidate->validateInfoIdPermission($id);
             $permissionResponse = $this->permissionService->show($id);
             return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -43,16 +43,16 @@ class PermissionApiController extends Controller
         }
     }
 
-    // public function create(Request $request)
-    // {
-    //     try {
-    //         $validate = $this->roleValidate->validateInfoNameRole($request->input('name'));
-    //         $roleResponse = $this->roleService->create($request->input('name'));
-    //         return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
-    //     } catch (\Throwable $th) {
-    //         return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-    //     }
-    // }
+    public function create(Request $request)
+    {
+        try {
+            $this->permissionValidate->validateInfoNamePermission($request->input('name'));
+            $permissionResponse = $this->permissionService->create($request->input('name'));
+            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
 
     // public function update(Request $request, $id)
     // {

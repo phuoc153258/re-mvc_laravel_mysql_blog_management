@@ -36,7 +36,7 @@ class RoleApiController extends Controller
     public function show($id)
     {
         try {
-            $validate = $this->roleValidate->validateInfoIdRole($id);
+            $this->roleValidate->validateInfoIdRole($id);
             $roleResponse = $this->roleService->show($id);
             return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -47,7 +47,7 @@ class RoleApiController extends Controller
     public function create(Request $request)
     {
         try {
-            $validate = $this->roleValidate->validateInfoNameRole($request->input('name'));
+            $this->roleValidate->validateInfoNameRole($request->input('name'));
             $roleResponse = $this->roleService->create($request->input('name'));
             return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -59,7 +59,7 @@ class RoleApiController extends Controller
     {
         try {
             $roleRequest = new UpdateRoleRequestDTO($request, $id);
-            $validate = $this->roleValidate->validateInfoUpdateRole($roleRequest);
+            $this->roleValidate->validateInfoUpdateRole($roleRequest);
             $roleResponse = $this->roleService->update($roleRequest);
             return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -70,7 +70,7 @@ class RoleApiController extends Controller
     public function delete($id)
     {
         try {
-            $validate = $this->roleValidate->validateInfoIdRole($id);
+            $this->roleValidate->validateInfoIdRole($id);
             $roleResponse = $this->roleService->delete($id);
             return $this->success(MESSAGE_SUCCESS_DELETE_ROLE, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {

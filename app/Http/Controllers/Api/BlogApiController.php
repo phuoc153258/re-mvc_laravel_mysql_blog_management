@@ -38,7 +38,7 @@ class BlogApiController extends Controller
     public function show($id)
     {
         try {
-            $validate = $this->blogValidate->validateInfoIdBlog($id);
+            $this->blogValidate->validateInfoIdBlog($id);
             $blogResponse = $this->blogService->show($id);
             return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -49,7 +49,7 @@ class BlogApiController extends Controller
     public function uploadImage(Request $request, $id)
     {
         try {
-            $validate = $this->blogValidate->validateInfoIdBlog($id);
+            $this->blogValidate->validateInfoIdBlog($id);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $blogResponse = $this->blogService->uploadImage($fileRequest, $id);
             return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
@@ -61,7 +61,7 @@ class BlogApiController extends Controller
     public function destroy(Request $request, $id)
     {
         try {
-            $validate = $this->blogValidate->validateInfoIdBlog($id);
+            $this->blogValidate->validateInfoIdBlog($id);
             $this->blogService->deleteBlog($id);
             $option = new BasePaginateRequestDTO($request, 'blogs');
             $data = $this->blogService->getList($option);
@@ -76,7 +76,7 @@ class BlogApiController extends Controller
         try {
             $blogRequest = new CreateBlogRequestDTO($request);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
-            $validate = $this->blogValidate->validateInfoCreateBlog($blogRequest);
+            $this->blogValidate->validateInfoCreateBlog($blogRequest);
             $blogResponse = $this->blogService->createBlog($blogRequest, $fileRequest);
             return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -88,7 +88,7 @@ class BlogApiController extends Controller
     {
         try {
             $blogRequest = new UpdateBlogRequestDTO($request, $id);
-            $validate = $this->blogValidate->validateInfoUpdateBlog($blogRequest);
+            $this->blogValidate->validateInfoUpdateBlog($blogRequest);
             $blogResponse = $this->blogService->updateBlog($blogRequest);
             return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {

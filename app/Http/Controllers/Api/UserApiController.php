@@ -59,7 +59,7 @@ class UserApiController extends Controller
     {
         try {
             $userRequest = new UpdateUserRequestDTO($request, $id);
-            $validate = $this->userValidate->validateInfoUserUpdate($userRequest);
+            $this->userValidate->validateInfoUserUpdate($userRequest);
             $data = $this->userService->update($userRequest);
             return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -70,7 +70,7 @@ class UserApiController extends Controller
     public function destroy(Request $request, $id)
     {
         try {
-            $validate = $this->userValidate->validateInfoUserID($id);
+            $this->userValidate->validateInfoUserID($id);
             $this->userService->deleteUser($id);
             $option = new BasePaginateRequestDTO($request, 'users');
             $data = $this->userService->getList($option);
@@ -84,7 +84,7 @@ class UserApiController extends Controller
     {
         try {
             $request = new ChangePasswordUserRequestDTO($request, $id);
-            $validate = $this->userValidate->validateInfoUserChangePassword($request);
+            $this->userValidate->validateInfoUserChangePassword($request);
             $data = $this->userService->changePassword($request);
             return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -95,7 +95,7 @@ class UserApiController extends Controller
     public function uploadAvatar(Request $request, $id)
     {
         try {
-            $validate = $this->userValidate->validateInfoUserID($id);
+            $this->userValidate->validateInfoUserID($id);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $userResponse = $this->userService->uploadAvatar($fileRequest, $id);
             return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
