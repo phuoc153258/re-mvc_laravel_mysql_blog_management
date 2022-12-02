@@ -54,7 +54,12 @@ class PermissionService
         return $permissionDTO->toJSON();
     }
 
-    public function delete()
+    public function delete($id)
     {
+        $permission = Permission::find($id);
+        $permission->delete();
+
+        $permissionDTO = new PermissionResponseDTO($permission);
+        return $permissionDTO->toJSON();
     }
 }

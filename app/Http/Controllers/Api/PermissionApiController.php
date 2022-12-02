@@ -67,14 +67,14 @@ class PermissionApiController extends Controller
         }
     }
 
-    // public function delete($id)
-    // {
-    //     try {
-    //         $validate = $this->roleValidate->validateInfoIdRole($id);
-    //         $roleResponse = $this->roleService->delete($id);
-    //         return $this->success(MESSAGE_SUCCESS_DELETE_ROLE, MESSAGE_BASE_SUCCESS, 200);
-    //     } catch (\Throwable $th) {
-    //         return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-    //     }
-    // }
+    public function delete($id)
+    {
+        try {
+            $this->permissionValidate->validateInfoIdPermission($id);
+            $permissionResponse = $this->permissionService->delete($id);
+            return $this->success(MESSAGE_SUCCESS_DELETE_PERMISSION, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
 }

@@ -38,15 +38,19 @@
             "app/Constants/permission.php",
 
             "app/Message/base.php",
+
             "app/Message/error/file.php",
             "app/Message/error/user.php",
             "app/Message/error/validate.php",
             "app/Message/error/blog.php",
             "app/Message/error/auth.php",
+            "app/Message/error/permission.php",
+
             "app/Message/success/file.php",
             "app/Message/success/auth.php",
             "app/Message/success/user.php",
-            "app/Message/success/role.php"
+            "app/Message/success/role.php",
+            "app/Message/success/permission.php"
         ],
         "psr-4": {
             "App\\": "app/",
@@ -60,12 +64,14 @@
             "app/DTO/Request/Blog",
             "app/DTO/Request/Auth",
             "app/DTO/Request/Role",
+            "app/DTO/Request/Permission",
 
             "app/DTO/Response/Paginate",
             "app/DTO/Response/User",
             "app/DTO/Response/Auth",
             "app/DTO/Response/Blog",
             "app/DTO/Response/Role",
+            "app/DTO/Response/Permission",
 
             "app/Services",
             
