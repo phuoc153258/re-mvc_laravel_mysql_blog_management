@@ -1,5 +1,4 @@
 function renderListRole(roles) {
-    console.log(roles);
     emptyListRole();
     let roleItem = document.getElementById("list-role-js");
 

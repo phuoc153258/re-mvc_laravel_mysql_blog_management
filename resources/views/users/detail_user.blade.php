@@ -60,8 +60,6 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="role-user-update-js"
                                         style="overflow: auto !important; height: 150px !important;" id="list-role-js">
-                                        <a class="dropdown-item">Admin</a>
-                                        <a class="dropdown-item">User</a>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center pt-2 pb-2" style="gap: 0 10px;">
@@ -82,17 +80,8 @@
                                         Permission
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="permission-user-update-js"
-                                        style="overflow: auto !important; height: 150px !important;">
-                                        <a class="dropdown-item">Get list user</a>
-                                        <a class="dropdown-item">Get user</a>
-                                        <a class="dropdown-item">Get list user</a>
-                                        <a class="dropdown-item">Get user</a>
-                                        <a class="dropdown-item">Get list user</a>
-                                        <a class="dropdown-item">Get user</a>
-                                        <a class="dropdown-item">Get list user</a>
-                                        <a class="dropdown-item">Get user</a>
-                                        <a class="dropdown-item">Get list user</a>
-                                        <a class="dropdown-item">Get user</a>
+                                        style="overflow: auto !important; height: 150px !important;"
+                                        id="list-permission-js">
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center pt-2 pb-2" style="gap: 0 10px;">
@@ -105,8 +94,8 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">Created At:</label>
-                                    <input type="text" class="form-control" placeholder="Created At..."
-                                        value="" readonly id="created_at-user-update-js">
+                                    <input type="text" class="form-control" placeholder="Created At..." value=""
+                                        readonly id="created_at-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">Updated At:</label>
@@ -129,5 +118,7 @@
     <script src="{{ asset('js/users/index.js') }}"></script>
     <script src="{{ asset('js/role/index.js') }}"></script>
     <script src="{{ asset('js/role/data.js') }}"></script>
+    <script src="{{ asset('js/permission/index.js') }}"></script>
+    <script src="{{ asset('js/permission/data.js') }}"></script>
     <script src="{{ asset('js/users/pageDetailUser.js') }}"></script>
 @endsection

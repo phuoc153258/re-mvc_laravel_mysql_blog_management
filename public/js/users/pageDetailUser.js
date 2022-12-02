@@ -13,4 +13,5 @@ window.onload = async function () {
     await getUser();
     await getInfoUserLogin();
     await getListRole();
+    await getListPermission();
 };
