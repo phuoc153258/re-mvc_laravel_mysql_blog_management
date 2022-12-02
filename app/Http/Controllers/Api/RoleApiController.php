@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\Role\UpdateRoleRequestDTO;
-use App\DTO\Request\user\AssignRoleUserRequestDTO;
+use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use App\Validate\RoleValidate;
 use App\Traits\HttpResponse;
 use App\Services\RoleService;

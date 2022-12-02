@@ -8,6 +8,7 @@ use App\Traits\HttpResponse;
 use App\Services\PermissionService;
 use App\Validate\PermissionValidate;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\Permission\GivePermissionUserRequestDTO;
 use App\DTO\Request\Permission\UpdatePermissionRequestDTO;
 
 class PermissionApiController extends Controller
@@ -76,5 +77,21 @@ class PermissionApiController extends Controller
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
+    }
+
+    public function givePermission($user_id, $permission_id)
+    {
+        try {
+            $permissionRequest = new GivePermissionUserRequestDTO($user_id, $permission_id);
+            $this->permissionValidate->validateInfoGivePermission($permissionRequest);
+            $permissionResponse = $this->permissionService->givePermission($permissionRequest);
+            return $this->success($permissionResponse, MESSAGE_SUCCESS_GIVE_PERMISSION, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function revokePermission($user_id, $permission_id)
+    {
     }
 }

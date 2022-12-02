@@ -3,7 +3,7 @@
 namespace App\Validate;
 
 use App\DTO\Request\Role\UpdateRoleRequestDTO;
-use App\DTO\Request\User\AssignRoleUserRequestDTO;
+use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 

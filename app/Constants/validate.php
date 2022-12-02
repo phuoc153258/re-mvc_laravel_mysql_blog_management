@@ -34,3 +34,5 @@ define('VALIDATE_OLD_PASSWORD', ['old_password' => VALIDATE_PASSWORD_BASE]);
 define('VALIDATE_NEW_PASSWORD', ['new_password' => VALIDATE_PASSWORD_BASE]);
 
 define('VALIDATE_ROLE_ID_MYSQL', ['role_id' => VALIDATE_ID_MYSQL_BASE]);
+
+define('VALIDATE_PERMISSION_ID_MYSQL', ['permission_id' => VALIDATE_ID_MYSQL_BASE]);

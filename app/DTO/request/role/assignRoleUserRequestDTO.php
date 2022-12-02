@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\Request\User;
+namespace App\DTO\Request\Role;
 
 use Illuminate\Http\Request;
 

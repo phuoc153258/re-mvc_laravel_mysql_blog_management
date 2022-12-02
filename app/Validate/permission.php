@@ -2,6 +2,7 @@
 
 namespace App\Validate;
 
+use App\DTO\Request\Permission\GivePermissionUserRequestDTO;
 use App\DTO\Request\Permission\UpdatePermissionRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
@@ -25,6 +26,12 @@ class PermissionValidate
     public function validateInfoUpdatePermission(UpdatePermissionRequestDTO $permissionRequest)
     {
         $validator = Validator::make($permissionRequest->toArray(), [...VALIDATE_ID_MYSQL, ...VALIDATE_NAME]);
+        return $this->baseRunCondition($validator);
+    }
+
+    public function validateInfoGivePermission(GivePermissionUserRequestDTO $permissionRequest)
+    {
+        $validator = Validator::make($permissionRequest->toArray(), [...VALIDATE_USER_ID_MYSQL, ...VALIDATE_PERMISSION_ID_MYSQL]);
         return $this->baseRunCondition($validator);
     }
 }

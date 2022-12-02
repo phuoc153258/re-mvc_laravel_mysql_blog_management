@@ -15,6 +15,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         Route::delete('/{user_id}/roles/{role_id}', [RoleApiController::class, 'removeRole'])->middleware('role:admin');
 
+        Route::post('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'givePermission'])->middleware('role:admin');
+
+        Route::delete('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'revokePermission'])->middleware('role:admin');
+
         Route::patch('/{id}/password', [UserApiController::class, 'changePassword'])->middleware('permission:change-password-user');
 
         Route::post('/{id}/avatar', [UserApiController::class, 'uploadAvatar'])->middleware('permission:update-user');

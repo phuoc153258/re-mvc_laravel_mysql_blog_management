@@ -8,7 +8,7 @@ use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
-use App\DTO\Request\User\AssignRoleUserRequestDTO;
+use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use App\Services\UserService;
 use App\Validate\UserValidate;
 use App\Traits\HttpResponse;

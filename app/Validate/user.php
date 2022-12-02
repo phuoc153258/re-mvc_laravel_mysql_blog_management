@@ -2,7 +2,7 @@
 
 namespace App\Validate;
 
-use App\DTO\Request\User\AssignRoleUserRequestDTO;
+use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use Illuminate\Support\Facades\Validator;
 use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
