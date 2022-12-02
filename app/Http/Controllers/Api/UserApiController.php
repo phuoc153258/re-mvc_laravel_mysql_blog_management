@@ -105,16 +105,4 @@ class UserApiController extends Controller
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
-
-    public function assignRole($user_id, $role_id)
-    {
-        try {
-            $userRequest = new AssignRoleUserRequestDTO($user_id, $role_id);
-            $this->userValidate->validateInfoAssignRoleUser($userRequest);
-            $userResponse = $this->userService->assignRole($userRequest);
-            return $this->success($userResponse, MESSAGE_SUCCESS_ASSIGN_ROLE, 200);
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-        }
-    }
 }

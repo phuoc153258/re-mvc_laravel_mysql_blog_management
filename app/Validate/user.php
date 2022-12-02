@@ -35,12 +35,4 @@ class UserValidate
         ]);
         return $this->baseRunCondition($validator);
     }
-
-    public function validateInfoAssignRoleUser(AssignRoleUserRequestDTO $userRequest)
-    {
-        $validator = Validator::make($userRequest->toArray(), [
-            ...VALIDATE_USER_ID_MYSQL, ...VALIDATE_ROLE_ID_MYSQL,
-        ]);
-        return $this->baseRunCondition($validator);
-    }
 }

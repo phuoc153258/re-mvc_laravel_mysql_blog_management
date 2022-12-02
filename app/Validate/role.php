@@ -3,6 +3,7 @@
 namespace App\Validate;
 
 use App\DTO\Request\Role\UpdateRoleRequestDTO;
+use App\DTO\Request\User\AssignRoleUserRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,6 +26,14 @@ class RoleValidate
     public function validateInfoUpdateRole(UpdateRoleRequestDTO $roleRequest)
     {
         $validator = Validator::make($roleRequest->toArray(), [...VALIDATE_ID_MYSQL, ...VALIDATE_NAME]);
+        return $this->baseRunCondition($validator);
+    }
+
+    public function validateInfoAssignRoleUser(AssignRoleUserRequestDTO $userRequest)
+    {
+        $validator = Validator::make($userRequest->toArray(), [
+            ...VALIDATE_USER_ID_MYSQL, ...VALIDATE_ROLE_ID_MYSQL,
+        ]);
         return $this->baseRunCondition($validator);
     }
 }

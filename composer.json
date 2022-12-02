@@ -45,6 +45,7 @@
             "app/Message/error/blog.php",
             "app/Message/error/auth.php",
             "app/Message/error/permission.php",
+            "app/Message/error/role.php",
 
             "app/Message/success/file.php",
             "app/Message/success/auth.php",

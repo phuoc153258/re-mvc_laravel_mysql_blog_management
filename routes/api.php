@@ -11,7 +11,9 @@ use App\Http\Controllers\Api\RoleApiController;
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('users')->group(function () {
 
-        Route::post('/{user_id}/roles/{role_id}', [UserApiController::class, 'assignRole']);
+        Route::post('/{user_id}/roles/{role_id}', [RoleApiController::class, 'assignRole']);
+
+        Route::delete('/{user_id}/roles/{role_id}', [RoleApiController::class, 'removeRole']);
 
         Route::patch('/{id}/password', [UserApiController::class, 'changePassword']);
 

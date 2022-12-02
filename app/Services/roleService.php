@@ -3,9 +3,12 @@
 namespace App\Services;
 
 use Spatie\Permission\Models\Role;
-use App\DTO\Response\Role\RoleResponseDTO;
+use App\Models\User;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\Role\UpdateRoleRequestDTO;
+use App\DTO\Request\User\AssignRoleUserRequestDTO;
+use App\DTO\Response\Role\RoleResponseDTO;
+use App\DTO\Response\User\UserResponseDTO;
 use App\Services\PaginateService;
 
 class RoleService
@@ -62,5 +65,35 @@ class RoleService
 
         $roleDTO = new RoleResponseDTO($role);
         return $roleDTO->toJSON();
+    }
+
+    public function assignRole(AssignRoleUserRequestDTO $userRequest)
+    {
+        $user = User::find($userRequest->getUserID());
+
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+
+        if ($user->hasRole([$userRequest->getRoleID()])) return abort(400, MESSAGE_ERROR_ASSIGN_ROLE_EXIST);
+
+        $user->assignRole([$userRequest->getRoleID()]);
+
+        $user->save();
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
+    }
+
+    public function removeRole(AssignRoleUserRequestDTO $userRequest)
+    {
+        $user = User::find($userRequest->getUserID());
+
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+
+        if (!$user->hasRole([$userRequest->getRoleID()])) return abort(400, MESSAGE_ERROR_REMOVE_ROLE_NOT_EXIST);
+
+        $user->removeRole($userRequest->getRoleID());
+
+        $user->save();
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
     }
 }
