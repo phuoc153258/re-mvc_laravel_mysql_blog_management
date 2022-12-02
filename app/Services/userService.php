@@ -7,6 +7,7 @@ use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
+use App\DTO\Request\User\AssignRoleUserRequestDTO;
 use App\DTO\Response\User\UserResponseDTO;
 use App\Services\PaginateService;
 use App\Services\FileService;
@@ -31,6 +32,9 @@ class UserService
     public  function show($id)
     {
         $user = User::find($id);
+
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+
         $userDTO = new UserResponseDTO($user);
         return $userDTO->toJSON();
     }
@@ -80,6 +84,19 @@ class UserService
 
         $fileResponse = $this->fileService->upload($file);
         $user->avatar = $fileResponse;
+
+        $user->save();
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
+    }
+
+    public function assignRole(AssignRoleUserRequestDTO $userRequest)
+    {
+        $user = User::find($userRequest->getUserID());
+
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+
+        $user->assignRole([$userRequest->getRoleID()]);
 
         $user->save();
         $userDTO = new UserResponseDTO($user);

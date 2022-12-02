@@ -10,6 +10,9 @@ use App\Http\Controllers\Api\RoleApiController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('users')->group(function () {
+
+        Route::post('/{user_id}/roles/{role_id}', [UserApiController::class, 'assignRole']);
+
         Route::patch('/{id}/password', [UserApiController::class, 'changePassword']);
 
         Route::post('/{id}/avatar', [UserApiController::class, 'uploadAvatar']);

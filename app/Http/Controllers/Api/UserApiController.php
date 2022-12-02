@@ -8,6 +8,7 @@ use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
+use App\DTO\Request\User\AssignRoleUserRequestDTO;
 use App\Services\UserService;
 use App\Validate\UserValidate;
 use App\Traits\HttpResponse;
@@ -48,6 +49,7 @@ class UserApiController extends Controller
     public function show($id)
     {
         try {
+            error_log($id);
             $userResponse = $this->userService->show($id);
             return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
@@ -99,6 +101,18 @@ class UserApiController extends Controller
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $userResponse = $this->userService->uploadAvatar($fileRequest, $id);
             return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function assignRole($user_id, $role_id)
+    {
+        try {
+            $userRequest = new AssignRoleUserRequestDTO($user_id, $role_id);
+            $this->userValidate->validateInfoAssignRoleUser($userRequest);
+            $userResponse = $this->userService->assignRole($userRequest);
+            return $this->success($userResponse, MESSAGE_SUCCESS_ASSIGN_ROLE, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }

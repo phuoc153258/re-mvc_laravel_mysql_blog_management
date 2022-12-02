@@ -2,6 +2,7 @@
 
 namespace App\Validate;
 
+use App\DTO\Request\User\AssignRoleUserRequestDTO;
 use Illuminate\Support\Facades\Validator;
 use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
@@ -31,6 +32,14 @@ class UserValidate
     {
         $validator = Validator::make($user->toArray(), [
             ...VALIDATE_ID_MYSQL, ...VALIDATE_OLD_PASSWORD, ...VALIDATE_NEW_PASSWORD
+        ]);
+        return $this->baseRunCondition($validator);
+    }
+
+    public function validateInfoAssignRoleUser(AssignRoleUserRequestDTO $userRequest)
+    {
+        $validator = Validator::make($userRequest->toArray(), [
+            ...VALIDATE_USER_ID_MYSQL, ...VALIDATE_ROLE_ID_MYSQL,
         ]);
         return $this->baseRunCondition($validator);
     }
