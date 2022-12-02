@@ -3,10 +3,10 @@
 namespace App\Services;
 
 use App\DTO\Request\Auth\LoginUserRequestDTO;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
-use App\DTO\response\User\UserResponseDTO;
-use Illuminate\Support\Facades\Auth;
+use App\DTO\Response\User\UserResponseDTO;
 
 class AuthService
 {
@@ -17,8 +17,9 @@ class AuthService
     public function register(RegisterUserRequestDTO $userRequest)
     {
         $user = User::create($userRequest->toArray());
-        $userDTO = new UserResponseDTO(User::find($user->id));
         $token = $user->createToken('API Token')->plainTextToken;
+        $user->assignRole([ROLE_USER_ID])->givePermissionTo([PERMISSION_GET_LIST_BLOG_ID]);
+        $userDTO = new UserResponseDTO(User::find($user->id));
         return [
             'user' => $userDTO->toJSON(),
             'token' => $token

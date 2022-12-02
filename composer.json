@@ -33,6 +33,8 @@
             "app/Constants/hash.php",
             "app/Constants/paginate.php",
             "app/Constants/validate.php",
+            "app/Constants/role.php",
+            "app/Constants/permission.php",
 
             "app/Message/base.php",
             "app/Message/error/file.php",

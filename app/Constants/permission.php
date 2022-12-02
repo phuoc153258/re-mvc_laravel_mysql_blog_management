@@ -1,0 +1,11 @@
+<?php
+
+define('PERMISSION_GET_LIST_BLOG_ID', 1);
+
+define('PERMISSION_GET_BLOG_ID', 1);
+
+define('PERMISSION_CREATE_BLOG_ID', 1);
+
+define('PERMISSION_UPDATE_BLOG_ID', 1);
+
+define('PERMISSION_DELETE_BLOG_ID', 1);
