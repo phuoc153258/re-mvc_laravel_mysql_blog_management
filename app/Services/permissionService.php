@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\Permission\UpdatePermissionRequestDTO;
 use App\DTO\Response\Permission\PermissionResponseDTO;
 use Spatie\Permission\Models\Permission;
 
@@ -39,5 +40,21 @@ class PermissionService
         $permission->save();
         $permissionDTO = new PermissionResponseDTO($permission);
         return $permissionDTO->toJSON();
+    }
+
+    public function update(UpdatePermissionRequestDTO $permissionRequest)
+    {
+        $permission = Permission::find($permissionRequest->getID());
+        if ($permissionRequest->getName() == '' || $permissionRequest->getName() == null) return abort(400, MESSAGE_ERROR_UPDATE_PERMISSION);
+
+        $permission->name = $permissionRequest->getName();
+        $permission->save();
+
+        $permissionDTO = new PermissionResponseDTO($permission);
+        return $permissionDTO->toJSON();
+    }
+
+    public function delete()
+    {
     }
 }

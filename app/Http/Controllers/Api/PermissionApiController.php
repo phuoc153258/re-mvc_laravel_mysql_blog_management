@@ -8,6 +8,7 @@ use App\Traits\HttpResponse;
 use App\Services\PermissionService;
 use App\Validate\PermissionValidate;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Request\Permission\UpdatePermissionRequestDTO;
 
 class PermissionApiController extends Controller
 {
@@ -54,17 +55,17 @@ class PermissionApiController extends Controller
         }
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     try {
-    //         $roleRequest = new UpdateRoleRequestDTO($request, $id);
-    //         $validate = $this->roleValidate->validateInfoUpdateRole($roleRequest);
-    //         $roleResponse = $this->roleService->update($roleRequest);
-    //         return $this->success($roleResponse, MESSAGE_BASE_SUCCESS, 200);
-    //     } catch (\Throwable $th) {
-    //         return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-    //     }
-    // }
+    public function update(Request $request, $id)
+    {
+        try {
+            $permissionRequest = new UpdatePermissionRequestDTO($request, $id);
+            $this->permissionValidate->validateInfoUpdatePermission($permissionRequest);
+            $permissionResponse = $this->permissionService->update($permissionRequest);
+            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
 
     // public function delete($id)
     // {
