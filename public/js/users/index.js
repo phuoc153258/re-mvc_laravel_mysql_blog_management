@@ -45,3 +45,39 @@ function renderDataDetailsUser(data) {
     document.getElementById("updated_at-user-update-js").value =
         data.data.updated_at;
 }
+
+function renderListRoleUser(roles) {
+    emptyListRoleUser();
+    let listRoleUser = document.getElementById("list-role-user-js");
+    let str = "";
+    for (const role of roles) {
+        str += `<li class="border rounded d-flex"
+                style="padding: 8px 12px !important; gap: 0 10px;scroll-snap-align: start;max-height: 40px !important;">
+                <p style="margin: 0px !important;display: block !important; width: 80px !important;"class="">
+                ${role.name}
+                </p><a href=""><i class="fa-regular fa-circle-xmark"></i></a></li>`;
+    }
+    listRoleUser.innerHTML = str;
+}
+
+function emptyListRoleUser() {
+    document.getElementById("list-role-user-js").innerHTML = "";
+}
+
+function renderListPermissionUser(permissions) {
+    emptyListPermissionUser();
+    let listPermissionUser = document.getElementById("list-permission-user-js");
+    let str = "";
+    for (const permission of permissions) {
+        str += `<li class="border rounded d-flex"
+                style="padding: 8px 12px !important; gap: 0 10px;scroll-snap-align: start;max-height: 40px !important;">
+                <p style="margin: 0px !important;display: block !important; width: 100px !important;"class="">
+                ${permission.name}
+                </p><a href=""><i class="fa-regular fa-circle-xmark"></i></a></li>`;
+    }
+    listPermissionUser.innerHTML = str;
+}
+
+function emptyListPermissionUser() {
+    document.getElementById("list-permission-user-js").innerHTML = "";
+}

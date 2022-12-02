@@ -15,7 +15,7 @@ async function loginUser() {
         if (response.data.status) {
             setCookie("access_token", "Bearer " + response.data.data.token, 1);
             await swal("Login success !!!", "", "success");
-            location.replace(`/users`);
+            location.replace(`/`);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",
@@ -46,11 +46,11 @@ async function getInfoUserLogin() {
         });
         if (response.data.status) renderInfoUserToNavbar(response.data.data);
         else {
-            location.replace(`/auth/login`);
+            location.replace(`/`);
             return;
         }
     } catch (error) {
-        location.replace(`/auth/login`);
+        location.replace(`/`);
         return;
     }
 }
@@ -67,7 +67,7 @@ async function logoutUser() {
         if (response.data.status) {
             deleteCookie("access_token");
             await swal("Logout success !!!", "", "success");
-            location.replace(`/auth/login`);
+            location.replace(`/`);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

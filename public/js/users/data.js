@@ -44,6 +44,8 @@ async function getUser() {
             renderDataDetailsUser(response.data);
             addEventUploadFile();
             addHrefChangePassword(response.data.data.id);
+            renderListRoleUser(response.data.data.roles);
+            renderListPermissionUser(response.data.data.permissions);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

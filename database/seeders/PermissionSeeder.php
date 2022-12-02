@@ -20,5 +20,11 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'Add blog']);
         Permission::create(['name' => 'Update blog']);
         Permission::create(['name' => 'Delete blog']);
+
+        Permission::create(['name' => 'Get list users']);
+        Permission::create(['name' => 'Get user']);
+        Permission::create(['name' => 'Update user']);
+        Permission::create(['name' => 'Delete user']);
+        Permission::create(['name' => 'Change password user']);
     }
 }

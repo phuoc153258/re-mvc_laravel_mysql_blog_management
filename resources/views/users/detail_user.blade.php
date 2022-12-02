@@ -51,15 +51,69 @@
                                     <input type="email" class="form-control" placeholder="Email..." value=""
                                         id="email-user-update-js">
                                 </div>
+                                <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
+                                    <p class="mt-3">List role:</p>
+                                    <button class="btn btn-primary dropdown-toggle " type="button" id="role-user-update-js"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="width: 45% !important;">
+                                        Role
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="role-user-update-js"
+                                        style="overflow: auto !important; height: 150px !important;">
+                                        <a class="dropdown-item">Admin</a>
+                                        <a class="dropdown-item">User</a>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center pt-2 pb-2" style="gap: 0 10px;">
+                                    <p class="align-items-center">Roles:</p>
+                                    <ul class="list-group d-flex align-items-center"
+                                        style="flex-direction: row !important;gap: 0 10px;overflow-x: auto;
+                                        scroll-snap-type: x mandatory;"
+                                        id="list-role-user-js">
+
+                                    </ul>
+                                </div>
+
+                                <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
+                                    <p class="mt-3">List permission:</p>
+                                    <button class="btn btn-primary dropdown-toggle " type="button" id="role-user-update-js"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        style="width: 45% !important;">
+                                        Permission
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="role-user-update-js"
+                                        style="overflow: auto !important; height: 150px !important;">
+                                        <a class="dropdown-item">Get list user</a>
+                                        <a class="dropdown-item">Get user</a>
+                                        <a class="dropdown-item">Get list user</a>
+                                        <a class="dropdown-item">Get user</a>
+                                        <a class="dropdown-item">Get list user</a>
+                                        <a class="dropdown-item">Get user</a>
+                                        <a class="dropdown-item">Get list user</a>
+                                        <a class="dropdown-item">Get user</a>
+                                        <a class="dropdown-item">Get list user</a>
+                                        <a class="dropdown-item">Get user</a>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center pt-2 pb-2" style="gap: 0 10px;">
+                                    <p class="align-items-center">Permissions:</p>
+                                    <ul class="list-group d-flex align-items-center"
+                                        style="flex-direction: row !important;gap: 0 10px;overflow-x: auto;
+                                        scroll-snap-type: x mandatory;"
+                                        id="list-permission-user-js">
+
+                                    </ul>
+                                </div>
+
                                 <div class="form-group mb-3">
                                     <label for="">Created At:</label>
-                                    <input type="text" class="form-control" placeholder="Created At..." value=""
-                                        readonly id="created_at-user-update-js">
+                                    <input type="text" class="form-control" placeholder="Created At..."
+                                        value="" readonly id="created_at-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">Updated At:</label>
-                                    <input type="text" class="form-control" placeholder="Updated At..." value=""
-                                        readonly id="updated_at-user-update-js">
+                                    <input type="text" class="form-control" placeholder="Updated At..."
+                                        value="" readonly id="updated_at-user-update-js">
                                 </div>
                                 <div class="d-flex flex-row-reverse" style="gap: 0 15px;">
                                     <a class="btn btn-primary" onclick="updateInfoUser()">Submit</a>
