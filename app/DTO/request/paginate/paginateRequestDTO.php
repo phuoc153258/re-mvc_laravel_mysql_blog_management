@@ -3,20 +3,19 @@
 namespace App\DTO\Request\Paginate;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class PaginateRequestDTO
 {
-    private string $search;
-    private string $sort;
-    private int $limit;
-    private int $page;
+    private string $search = PAGINATE['SEARCH'];
+    private string $sort = PAGINATE['SORT'];
+    private int $limit = PAGINATE['LIMIT'];
+    private int $page = PAGINATE['PAGE'];
+    private bool $is_paginate = PAGINATE['IS_PAGINATE'];
 
     public function __construct(Request $request)
     {
-        $this->search = $request->input('search') ? $request->input('search') : PAGINATE['SEARCH'];
-
-        $this->sort = PAGINATE['SORT'];
+        if ($request->input('search'))
+            $this->search = $request->input('search');
 
         if (strtolower($request->input('sort')) == PAGINATE['ASC'])
             $this->sort = PAGINATE['ASC'];
@@ -24,8 +23,14 @@ class PaginateRequestDTO
         if (strtolower($request->input('sort')) == PAGINATE['DESC'])
             $this->sort = PAGINATE['DESC'];
 
-        $this->limit = $request->input('limit') ? $request->input('limit') : PAGINATE['LIMIT'];
-        $this->page = $request->input('page') ? $request->input('page') : PAGINATE['PAGE'];
+        if ($request->input('limit'))
+            $this->limit =   $request->input('limit');
+
+        if ($request->input('page'))
+            $this->page = $request->input('page');
+
+        if ($request->input('is_paginate'))
+            $this->is_paginate = stringToBool($request->input('is_paginate'));
     }
 
     public function getSearch()
@@ -46,5 +51,10 @@ class PaginateRequestDTO
     public function getPage()
     {
         return $this->page;
+    }
+
+    public function getIsPaginate()
+    {
+        return $this->is_paginate;
     }
 }

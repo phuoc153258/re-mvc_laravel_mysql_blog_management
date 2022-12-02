@@ -24,6 +24,9 @@ class TypeModelPaginateRequestDTO
         if ($type == PAGINATE_TYPE['ROLE']['NAME'])
             $type_model = 'ROLE';
 
+        if ($type == PAGINATE_TYPE['PERMISSION']['NAME'])
+            $type_model = 'PERMISSION';
+
         $this->type = PAGINATE_TYPE[$type_model]['NAME'];
         $this->search_by = PAGINATE_TYPE[$type_model]['SEARCH_BY'];
         $this->sort_by = PAGINATE_TYPE[$type_model]['SORT_BY'];

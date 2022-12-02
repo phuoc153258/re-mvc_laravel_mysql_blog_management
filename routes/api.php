@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\AuthApiController;
 use App\Http\Controllers\Api\PermissionApiController;
 use App\Http\Controllers\Api\RoleApiController;
 
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('users')->group(function () {
         Route::patch('/{id}/password', [UserApiController::class, 'changePassword']);
 
@@ -56,6 +56,14 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     });
 
     Route::prefix('permissions')->group(function () {
+        Route::delete('/{id}', [PermissionApiController::class, 'delete']);
+
+        Route::put('/{id}', [PermissionApiController::class, 'update']);
+
+        Route::get('/{id}', [PermissionApiController::class, 'show']);
+
+        Route::post('/', [PermissionApiController::class, 'create']);
+
         Route::get('/', [PermissionApiController::class, 'index']);
     });
 });

@@ -12,46 +12,44 @@ class PaginateService
     {
     }
 
-    public static function paginate(BasePaginateRequestDTO $paginateOption)
+    public function paginate(BasePaginateRequestDTO $paginateOption)
     {
-        $limit = $paginateOption->option->getLimit();
-        $page = $paginateOption->option->getPage();
-        $sort = $paginateOption->option->getSort();
-        $search = $paginateOption->option->getSearch();
         $query =  DB::table($paginateOption->type_model->getType());
 
         if ($paginateOption->type_model->getType() == 'blogs')
             $query->join('users', 'blogs.user_id', '=', 'users.id');
 
-        if ($search)
-            $query
-                ->whereRaw($paginateOption->type_model->getSeachBy() . " like '%" . $search . "%'");
+        if (!$paginateOption->option->getIsPaginate()) return $query->get();
 
-        if ($sort)
+        if ($paginateOption->option->getSearch())
             $query
-                ->orderBy($paginateOption->type_model->getSortBy(), $sort);
+                ->whereRaw($paginateOption->type_model->getSeachBy() . " like '%" .  $paginateOption->option->getSearch() . "%'");
+
+        if ($paginateOption->option->getSort())
+            $query
+                ->orderBy($paginateOption->type_model->getSortBy(), $paginateOption->option->getSort());
 
         $total = $query->count();
 
         $data = null;
         if ($paginateOption->type_model->getType() == 'blogs') {
-            $data = $query->offset(($page - 1) * $limit)
-                ->limit($limit)
+            $data = $query->offset(($paginateOption->option->getPage() - 1) *  $paginateOption->option->getLimit())
+                ->limit($paginateOption->option->getLimit())
                 ->select('blogs.*', 'users.username')
                 ->get();
         } else
-            $data = $query->offset(($page - 1) * $limit)
-                ->limit($limit)
+            $data = $query->offset(($paginateOption->option->getPage() - 1) *  $paginateOption->option->getLimit())
+                ->limit($paginateOption->option->getLimit())
                 ->select()
                 ->get();
 
         return [
             'data' => $data,
             'total' => $total,
-            'limit' => $limit,
-            'page' => $page,
-            'sort' => $sort,
-            'last_page' => ceil($total / $limit)
+            'limit' =>  $paginateOption->option->getLimit(),
+            'page' => $paginateOption->option->getPage(),
+            'sort' => $paginateOption->option->getSort(),
+            'last_page' => ceil($total /  $paginateOption->option->getLimit())
         ];
     }
 }
