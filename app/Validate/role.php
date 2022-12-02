@@ -6,29 +6,25 @@ use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 
-const validateId = ['id' => VALIDATE_ID_MYSQL];
-
-const validateName = ['name' => VALIDATE_ROLE_NAME];
-
 class RoleValidate
 {
     use BaseValidate;
 
     public function validateInfoIdRole($id)
     {
-        $validator = Validator::make(['id' => $id], validateId);
+        $validator = Validator::make(['id' => $id], [...VALIDATE_ID_MYSQL]);
         return $this->baseRunCondition($validator);
     }
 
     public function validateInfoNameRole(string $name)
     {
-        $validator = Validator::make(['name' => $name], validateName);
+        $validator = Validator::make(['name' => $name], [...VALIDATE_NAME]);
         return $this->baseRunCondition($validator);
     }
 
     public function validateInfoUpdateRole(UpdateRoleRequestDTO $roleRequest)
     {
-        $validator = Validator::make($roleRequest->toArray(), [...validateId, ...validateName]);
+        $validator = Validator::make($roleRequest->toArray(), [...VALIDATE_ID_MYSQL, ...VALIDATE_NAME]);
         return $this->baseRunCondition($validator);
     }
 }

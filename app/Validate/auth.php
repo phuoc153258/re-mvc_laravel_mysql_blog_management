@@ -14,10 +14,7 @@ class AuthValidate
     public function validateInfoRegisterUser(RegisterUserRequestDTO $user)
     {
         $validator = Validator::make($user->toArray(), [
-            'username' => VALIDATE_NAME,
-            'fullname' => VALIDATE_NAME,
-            'email' => VALIDATE_EMAIL,
-            'password' => VALIDATE_PASSWORD,
+            ...VALIDATE_USERNAME, ...VALIDATE_FULLNAME, ...VALIDATE_EMAIL, ...VALIDATE_PASSWORD
         ]);
         return $this->baseRunCondition($validator);
     }
@@ -25,8 +22,7 @@ class AuthValidate
     public function validateInfoLoginUser(LoginUserRequestDTO $user)
     {
         $validator = Validator::make($user->toArray(), [
-            'username' => VALIDATE_NAME,
-            'password' => VALIDATE_PASSWORD,
+            ...VALIDATE_USERNAME, ...VALIDATE_PASSWORD
         ]);
         return $this->baseRunCondition($validator);
     }

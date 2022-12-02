@@ -14,7 +14,7 @@ class BlogValidate
     public function validateInfoIdBlog($id)
     {
         $validator = Validator::make(['id' => $id], [
-            'id' => VALIDATE_ID_MYSQL,
+            ...VALIDATE_ID_MYSQL
         ]);
         return $this->baseRunCondition($validator);
     }
@@ -22,10 +22,7 @@ class BlogValidate
     public function validateInfoCreateBlog(CreateBlogRequestDTO $blogRequest)
     {
         $validator = Validator::make($blogRequest->toArray(), [
-            'title' => VALIDATE_STR,
-            'sub_title' => VALIDATE_STR,
-            'content' => VALIDATE_STR,
-            'user_id' => VALIDATE_ID_MYSQL,
+            ...VALIDATE_TITLE, ...VALIDATE_SUB_TITLE, ...VALIDATE_CONTENT, ...VALIDATE_USER_ID_MYSQL
         ]);
         return $this->baseRunCondition($validator);
     }
@@ -33,9 +30,7 @@ class BlogValidate
     public function validateInfoUpdateBlog(UpdateBlogRequestDTO $blogRequest)
     {
         $validator = Validator::make($blogRequest->toArray(), [
-            'title' => VALIDATE_STR,
-            'sub_title' => VALIDATE_STR,
-            'content' => VALIDATE_STR,
+            ...VALIDATE_TITLE, ...VALIDATE_SUB_TITLE, ...VALIDATE_CONTENT
         ]);
         return $this->baseRunCondition($validator);
     }

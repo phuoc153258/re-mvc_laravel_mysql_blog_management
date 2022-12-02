@@ -14,9 +14,7 @@ class UserValidate
     public function validateInfoUserUpdate(UpdateUserRequestDTO $user)
     {
         $validator = Validator::make($user->toArray(), [
-            'id' => VALIDATE_ID_MYSQL,
-            'fullname' => VALIDATE_NAME,
-            'email' => VALIDATE_EMAIL,
+            ...VALIDATE_ID_MYSQL, ...VALIDATE_FULLNAME, ...VALIDATE_EMAIL
         ]);
         return $this->baseRunCondition($validator);
     }
@@ -24,7 +22,7 @@ class UserValidate
     public function validateInfoUserID($id)
     {
         $validator = Validator::make(["id" => $id], [
-            'id' => VALIDATE_ID_MYSQL,
+            ...VALIDATE_ID_MYSQL
         ]);
         return $this->baseRunCondition($validator);
     }
@@ -32,9 +30,7 @@ class UserValidate
     public function validateInfoUserChangePassword(ChangePasswordUserRequestDTO $user)
     {
         $validator = Validator::make($user->toArray(), [
-            'id' => VALIDATE_ID_MYSQL,
-            'old_password' => VALIDATE_PASSWORD,
-            'new_password' => VALIDATE_PASSWORD
+            ...VALIDATE_ID_MYSQL, ...VALIDATE_OLD_PASSWORD, ...VALIDATE_NEW_PASSWORD
         ]);
         return $this->baseRunCondition($validator);
     }
