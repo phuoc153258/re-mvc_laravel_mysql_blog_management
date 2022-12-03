@@ -1,7 +1,6 @@
 async function uploadImage(event) {
     try {
         const selectedFile = event.target.files[0];
-        console.log(selectedFile);
 
         let formData = new FormData();
         let id = document.getElementById("id-blog-js").value;

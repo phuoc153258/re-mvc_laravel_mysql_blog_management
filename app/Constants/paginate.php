@@ -20,7 +20,7 @@ define('USER_PAGINATE_TYPE', [
 define('BLOG_PAGINATE_TYPE', [
     'NAME' => 'blogs',
     'SEARCH_BY' => 'title',
-    'SORT_BY' => 'title',
+    'SORT_BY' => 'id',
     'SELECT_ITEM' => [
         'blogs.*', 'users.username'
     ]

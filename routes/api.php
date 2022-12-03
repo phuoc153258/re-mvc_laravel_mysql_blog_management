@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\Api\BlogApiController;
 use App\Http\Controllers\Api\FileApiController;
 use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\MailApiController;
 use App\Http\Controllers\Api\PermissionApiController;
 use App\Http\Controllers\Api\RoleApiController;
 
@@ -79,6 +80,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
             Route::get('/', [PermissionApiController::class, 'index']);
         });
+    });
+
+    Route::prefix('/mails')->group(function () {
+        Route::post('/', [MailApiController::class, 'index']);
     });
 });
 
