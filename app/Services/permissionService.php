@@ -72,7 +72,7 @@ class PermissionService
 
         if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
 
-        if ($user->hasAnyPermission([$permissionRequest->getPermissionID()])) return abort(400, MESSAGE_ERROR_GIVE_PERMISSION_EXIST);
+        if ($user->hasAnyPermission($permissionRequest->getPermissionID())) return abort(400, MESSAGE_ERROR_GIVE_PERMISSION_EXIST);
 
         $user->givePermissionTo([$permissionRequest->getPermissionID()]);
 
@@ -87,7 +87,7 @@ class PermissionService
 
         if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
 
-        if (!$user->hasPermissionTo([$permissionRequest->getPermissionID()])) return abort(400, MESSAGE_ERROR_REVOKE_PERMISSION_NOT_EXIST);
+        if (!$user->hasPermissionTo($permissionRequest->getPermissionID())) return abort(400, MESSAGE_ERROR_REVOKE_PERMISSION_NOT_EXIST);
 
         $user->revokePermissionTo($permissionRequest->getPermissionID());
 

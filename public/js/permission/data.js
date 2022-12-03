@@ -20,3 +20,31 @@ async function getListPermission() {
         return;
     }
 }
+
+async function givePermissionUser(user_id, permission_id) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `/api/users/${user_id}/permissions/${permission_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListPermissionUser(response.data.data.permissions);
+    } catch (error) {}
+}
+
+async function revokePermissionUser(user_id, permission_id) {
+    try {
+        const response = await axios({
+            method: "delete",
+            url: `/api/users/${user_id}/permissions/${permission_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListPermissionUser(response.data.data.permissions);
+    } catch (error) {}
+}
