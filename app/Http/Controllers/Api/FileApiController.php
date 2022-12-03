@@ -33,8 +33,7 @@ class FileApiController extends Controller
     public function delete(Request $request)
     {
         try {
-
-            $fileRequest = new DeleteFileRequestDTO($request);
+            $fileRequest = new DeleteFileRequestDTO($request->input('file'));
             $fileResponse = $this->file_service->delete($fileRequest);
             return $this->success($fileResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {

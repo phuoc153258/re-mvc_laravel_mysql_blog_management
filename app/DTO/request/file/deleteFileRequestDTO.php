@@ -8,10 +8,10 @@ class DeleteFileRequestDTO
 {
     private string $file_name;
 
-    public function __construct(Request $request)
+    public function __construct($file_name)
     {
-        if (!$request->input('file'))  return abort(400, MESSAGE_ERROR_SELECT_FILE);
-        $this->file_name = $request->input('file');
+        if (!$file_name)  return abort(400, MESSAGE_ERROR_SELECT_FILE);
+        $this->file_name = $file_name;
     }
 
     public function getFileName()

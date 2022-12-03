@@ -7,6 +7,7 @@ use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\DTO\Request\Blog\CreateBlogRequestDTO;
 use App\DTO\Request\Blog\UpdateBlogRequestDTO;
+use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\response\Blog\BlogResponseDTO;
 use App\Models\Blog;
 use App\Services\PaginateService;
@@ -43,6 +44,13 @@ class BlogService
         if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
 
         $fileResponse = $this->fileService->upload($file);
+
+        try {
+            $fileDelete = new DeleteFileRequestDTO($blog->image);
+            $fileDeleteResponse = $this->fileService->delete($fileDelete);
+        } catch (\Throwable $th) {
+        }
+
         $blog->image = $fileResponse;
 
         $blog->save();

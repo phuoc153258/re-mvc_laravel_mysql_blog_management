@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\Models\User;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\User\UpdateUserRequestDTO;
@@ -82,9 +83,16 @@ class UserService
         if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
 
         $fileResponse = $this->fileService->upload($file);
+        try {
+            $fileDelete = new DeleteFileRequestDTO($user->avatar);
+            $fileDeleteResponse = $this->fileService->delete($fileDelete);
+        } catch (\Throwable $th) {
+        }
+
         $user->avatar = $fileResponse;
 
         $user->save();
+
         $userDTO = new UserResponseDTO($user);
         return $userDTO->toJSON();
     }
