@@ -10,7 +10,7 @@ use App\Http\Controllers\Api\RoleApiController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::prefix('users')->group(function () {
+    Route::prefix('users')->middleware('role:admin|user')->group(function () {
         Route::post('/{user_id}/roles/{role_id}', [RoleApiController::class, 'assignRole'])->middleware('role:admin');
 
         Route::delete('/{user_id}/roles/{role_id}', [RoleApiController::class, 'removeRole'])->middleware('role:admin');
@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', [UserApiController::class, 'index'])->middleware('permission:get-list-user');
     });
 
-    Route::prefix('blogs')->middleware('role:writer')->group(function () {
+    Route::prefix('blogs')->middleware('role:admin|user')->group(function () {
         Route::post('/{id}/image', [BlogApiController::class, 'uploadImage'])->middleware('permission:upload-image-blog');
 
         Route::delete('/{id}', [BlogApiController::class, 'destroy'])->middleware('permission:delete-blog');

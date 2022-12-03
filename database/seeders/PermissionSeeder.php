@@ -15,16 +15,17 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+
+
         Permission::create(['name' => 'get-list-blog']);
         Permission::create(['name' => 'get-blog']);
         Permission::create(['name' => 'add-blog']);
         Permission::create(['name' => 'update-blog']);
         Permission::create(['name' => 'delete-blog']);
-        Permission::create(['name' => 'upload-image-blog']);
 
+        Permission::create(['name' => 'get-me']);
         Permission::create(['name' => 'get-list-user']);
         Permission::create(['name' => 'get-user']);
-        Permission::create(['name' => 'get-me']);
         Permission::create(['name' => 'update-user']);
         Permission::create(['name' => 'delete-user']);
         Permission::create(['name' => 'change-password-user']);

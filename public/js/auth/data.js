@@ -55,6 +55,33 @@ async function getInfoUserLogin() {
     }
 }
 
+async function getInfoUserLoginHome() {
+    let homeNavbar = document.getElementById("home-login-nav-js");
+    let str = "";
+    try {
+        const response = await axios({
+            method: "get",
+            url: "/api/users/me",
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+
+        if (response.data.status) {
+            str += `<a href="/blogs" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                        <a class="text-sm text-gray-700 dark:text-gray-500 underline" style="cursor: pointer;" onclick="logoutUser()">Log out</a>`;
+        } else {
+            str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>`;
+        }
+    } catch (error) {
+        str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+        <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>`;
+    }
+    homeNavbar.innerHTML = str;
+}
+
 async function logoutUser() {
     try {
         const response = await axios({

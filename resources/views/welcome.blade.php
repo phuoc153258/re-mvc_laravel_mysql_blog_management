@@ -394,17 +394,8 @@
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         @if (Route::has('login'))
-            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                @auth
-                    <a href="/users" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                @else
-                    <a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block" id="home-login-nav-js">
 
-                    @if (Route::has('register'))
-                        <a href="/auth/register"
-                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                    @endif
-                @endauth
             </div>
         @endif
 
@@ -551,6 +542,16 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"
+        integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('js/helper/index.js') }}"></script>
+    <script src="{{ asset('js/auth/data.js') }}"></script>
+    <script src="{{ asset('js/auth/index.js') }}"></script>
+    <script src="{{ asset('js/home/pageHome.js') }}"></script>
 </body>
 
 </html>
