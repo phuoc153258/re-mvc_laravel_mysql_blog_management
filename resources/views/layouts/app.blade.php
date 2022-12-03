@@ -75,11 +75,17 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="card">
+                            <a href="/blogs" class="card-body border-bottom">
+                                Blog Management
+                            </a>
                             <a href="/users" class="card-body border-bottom">
                                 User Management
                             </a>
-                            <a href="/blogs" class="card-body">
-                                Blog Management
+                            <a href="/roles" class="card-body border-bottom">
+                                Role Management
+                            </a>
+                            <a href="/permissions" class="card-body border-bottom">
+                                Permission Management
                             </a>
                         </div>
                     </div>

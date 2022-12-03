@@ -52,6 +52,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::prefix('files')->group(function () {
             Route::post('/', [FileApiController::class, 'upload']);
+
+            Route::delete('/', [FileApiController::class, 'delete']);
         });
 
         Route::prefix('roles')->group(function () {

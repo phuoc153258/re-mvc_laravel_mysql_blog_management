@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\File\UploadFileRequestDTO;
@@ -23,6 +24,18 @@ class FileApiController extends Controller
         try {
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $fileResponse = $this->file_service->upload($fileRequest);
+            return $this->success($fileResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+
+            $fileRequest = new DeleteFileRequestDTO($request);
+            $fileResponse = $this->file_service->delete($fileRequest);
             return $this->success($fileResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
