@@ -89,6 +89,7 @@ class RoleService
         if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
 
         if (!$user->hasRole([$userRequest->getRoleID()])) return abort(400, MESSAGE_ERROR_REMOVE_ROLE_NOT_EXIST);
+        if ($userRequest->getRoleID() == ROLE_USER_ID) return abort(400, MESSAGE_ERROR_CAN_NOT_DELETE_ROLE);
 
         $user->removeRole($userRequest->getRoleID());
 

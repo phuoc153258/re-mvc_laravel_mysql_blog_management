@@ -29,6 +29,6 @@ class AdminSeeder extends Seeder
             'email' => 'phuoc1@gmail.com',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
-        ])->assignRole([1])->givePermissionTo([1, 2, 3]);
+        ])->assignRole([1, 2])->givePermissionTo([1, 2, 3]);
     }
 }

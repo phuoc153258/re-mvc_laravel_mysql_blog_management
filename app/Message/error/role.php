@@ -7,3 +7,5 @@ define('MESSAGE_ERROR_UPDATE_ROLE', 'Invalid information to update role !!!');
 define('MESSAGE_ERROR_ASSIGN_ROLE_EXIST', 'This user already has this role !!!');
 
 define('MESSAGE_ERROR_REMOVE_ROLE_NOT_EXIST', 'This user does not have this role yet !!!');
+
+define('MESSAGE_ERROR_CAN_NOT_DELETE_ROLE', 'Can not delete this role !!!');

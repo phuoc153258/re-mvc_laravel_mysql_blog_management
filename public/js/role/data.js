@@ -34,3 +34,17 @@ async function assignRoleUser(user_id, role_id) {
         renderListRoleUser(response.data.data.roles);
     } catch (error) {}
 }
+
+async function removeRoleUser(user_id, role_id) {
+    try {
+        const response = await axios({
+            method: "delete",
+            url: `/api/users/${user_id}/roles/${role_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListRoleUser(response.data.data.roles);
+    } catch (error) {}
+}
