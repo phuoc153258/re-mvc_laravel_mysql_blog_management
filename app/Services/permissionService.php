@@ -80,4 +80,19 @@ class PermissionService
         $userDTO = new UserResponseDTO($user);
         return $userDTO->toJSON();
     }
+
+    public function revokePermission(GivePermissionUserRequestDTO $permissionRequest)
+    {
+        $user = User::find($permissionRequest->getUserID());
+
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+
+        if (!$user->hasRole([$permissionRequest->getPermissionID()])) return abort(400, MESSAGE_ERROR_REVOKE_PERMISSION_NOT_EXIST);
+
+        $user->revokePermissionTo($permissionRequest->getPermissionID());
+
+        $user->save();
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
+    }
 }

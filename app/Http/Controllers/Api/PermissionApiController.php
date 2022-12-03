@@ -93,5 +93,13 @@ class PermissionApiController extends Controller
 
     public function revokePermission($user_id, $permission_id)
     {
+        try {
+            $permissionRequest = new GivePermissionUserRequestDTO($user_id, $permission_id);
+            $this->permissionValidate->validateInfoGivePermission($permissionRequest);
+            $permissionResponse = $this->permissionService->revokePermission($permissionRequest);
+            return $this->success($permissionResponse, MESSAGE_SUCCESS_REMOVE_ROLE, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
     }
 }
