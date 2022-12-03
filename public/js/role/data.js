@@ -20,3 +20,17 @@ async function getListRole() {
         return;
     }
 }
+
+async function assignRoleUser(user_id, role_id) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `/api/users/${user_id}/roles/${role_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListRoleUser(response.data.data.roles);
+    } catch (error) {}
+}

@@ -49,7 +49,6 @@ class UserApiController extends Controller
     public function show($id)
     {
         try {
-            error_log($id);
             $userResponse = $this->userService->show($id);
             return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
