@@ -58,6 +58,7 @@ async function getInfoUserLogin() {
 async function getInfoUserLoginHome() {
     let homeNavbar = document.getElementById("home-login-nav-js");
     let str = "";
+    console.log(getCookie("access_token"));
     try {
         const response = await axios({
             method: "get",
@@ -104,6 +105,49 @@ async function logoutUser() {
             return;
         }
     } catch (error) {
+        await swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
+}
+
+async function registerUser() {
+    try {
+        const username = document.getElementById("username-register-js").value;
+        const fullname = document.getElementById("fullname-register-js").value;
+        const email = document.getElementById("email-register-js").value;
+        const password = document.getElementById("password-register-js").value;
+        const confirmPassword = document.getElementById(
+            "password-confirm-register-js"
+        ).value;
+        if (password == confirmPassword) {
+            const response = await axios({
+                method: "post",
+                url: URLAuth + "/register",
+                headers: {},
+                data: {
+                    username,
+                    fullname,
+                    email,
+                    password,
+                },
+            });
+            setCookie("access_token", "Bearer " + response.data.data.token, 1);
+            await swal("Register success !!!", "", "success");
+            location.replace(`/`);
+        } else {
+            await swal({
+                title: "Some thing went wrong!!!",
+                icon: "error",
+                button: "OK",
+            });
+            return;
+        }
+    } catch (error) {
+        console.log(error);
         await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
