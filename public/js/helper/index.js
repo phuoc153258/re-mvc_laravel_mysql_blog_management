@@ -97,3 +97,23 @@ function getCookie(cname) {
 var deleteCookie = function (name) {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
+
+function uploadImageBlog(event) {
+    let preview = document.querySelector("#show-image-blog-create-js");
+    var file = document.querySelector("#image-blog-create-js").files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+        preview.src = reader.result;
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        preview.src = "";
+    }
+}
+
+function getUserIdHidden() {
+    return document.getElementById("user-id-navbar-hidden-js").value;
+}

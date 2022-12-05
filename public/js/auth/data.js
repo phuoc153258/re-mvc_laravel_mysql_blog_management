@@ -58,7 +58,6 @@ async function getInfoUserLogin() {
 async function getInfoUserLoginHome() {
     let homeNavbar = document.getElementById("home-login-nav-js");
     let str = "";
-    console.log(getCookie("access_token"));
     try {
         const response = await axios({
             method: "get",

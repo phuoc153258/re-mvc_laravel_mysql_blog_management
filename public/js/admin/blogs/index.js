@@ -34,22 +34,6 @@ function renderDataToTable(data) {
     document.getElementById("table-body-js").innerHTML = str;
 }
 
-function uploadImageBlog(event) {
-    let preview = document.querySelector("#show-image-blog-create-js");
-    var file = document.querySelector("#image-blog-create-js").files[0];
-    var reader = new FileReader();
-
-    reader.onloadend = function () {
-        preview.src = reader.result;
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    } else {
-        preview.src = "";
-    }
-}
-
 function renderDataDetailsBlog(data) {
     document.getElementById("show-image-blog-js").src = "/" + data.image;
     document.getElementById("id-blog-js").value = data.id;

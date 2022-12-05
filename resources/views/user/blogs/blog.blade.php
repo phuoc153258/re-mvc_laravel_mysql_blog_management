@@ -58,7 +58,6 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Image</th>
-                                <th scope="col">Username</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Updated At</th>
                                 <th scope="col">Action</th>
@@ -80,8 +79,9 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/blogs/data.js') }}"></script>
-    <script src="{{ asset('js/blogs/file.js') }}"></script>
-    <script src="{{ asset('js/blogs/index.js') }}"></script>
-    <script src="{{ asset('js/blogs/pageBlogs.js') }}"></script>
+    <script src="{{ asset('js/helper/paginate/index.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/data.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/file.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/index.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/pageBlogs.js') }}"></script>
 @endsection
