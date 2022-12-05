@@ -146,7 +146,6 @@ async function registerUser() {
             return;
         }
     } catch (error) {
-        console.log(error);
         await swal({
             title: "Some thing went wrong!!!",
             icon: "error",

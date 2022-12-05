@@ -16,16 +16,7 @@ class UserController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        try {
-            return view('user.users.detail_user');
-        } catch (\Throwable $th) {
-            return redirect('/');
-        }
-    }
-
-    public function changePassword(Request $request, $id)
+    public function changePassword(Request $request)
     {
         try {
             return view('user.users.change_password');

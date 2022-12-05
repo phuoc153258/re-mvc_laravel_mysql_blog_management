@@ -66,8 +66,8 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/helper/blogs/file.js') }}"></script>
+    <script src="{{ asset('js/helper/blogs/index.js') }}"></script>
     <script src="{{ asset('js/user/blogs/data.js') }}"></script>
-    <script src="{{ asset('js/user/blogs/file.js') }}"></script>
-    <script src="{{ asset('js/user/blogs/index.js') }}"></script>
     <script src="{{ asset('js/user/blogs/pageDetailBlog.js') }}"></script>
 @endsection

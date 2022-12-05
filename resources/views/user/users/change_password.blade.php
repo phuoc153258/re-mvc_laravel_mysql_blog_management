@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 @section('content')
-    <div class="d-flex justify-content-between">
-        <h2>Change password</h2>
-    </div>
-
     <div class="container">
+        <div class="d-flex justify-content-between">
+            <h2>Change password</h2>
+        </div>
         <div class="row justify-content-center">
             <div class="card">
                 <div class="card-body">
@@ -32,15 +31,14 @@
                         </div>
                         <div class="d-flex flex-row-reverse" style="gap: 0 15px;">
                             <a type="submit" class="btn btn-primary" onclick="changePassword()">Submit</a>
-                            <a id="back-to-details-user-js" class="btn btn-secondary">Back</a>
+                            <a href="/users" class="btn btn-secondary">Back</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/users/data.js') }}"></script>
-    <script src="{{ asset('js/users/file.js') }}"></script>
-    <script src="{{ asset('js/users/index.js') }}"></script>
-    <script src="{{ asset('js/users/pageChangePassword.js') }}"></script>
+    <script src="{{ asset('js/helper/users/index.js') }}"></script>
+    <script src="{{ asset('js/user/users/data.js') }}"></script>
+    <script src="{{ asset('js/user/users/pageChangePassword.js') }}"></script>
 @endsection

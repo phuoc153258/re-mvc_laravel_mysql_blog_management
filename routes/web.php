@@ -49,6 +49,12 @@ Route::prefix('blogs')->group(function () {
     Route::get('', [\App\Http\Controllers\User\BlogController::class, 'index']);
 });
 
+Route::prefix('users')->group(function () {
+    Route::get('/password', [\App\Http\Controllers\User\UserController::class, 'changePassword']);
+
+    Route::get('/', [\App\Http\Controllers\User\UserController::class, 'index']);
+});
+
 
 Route::prefix('auth')->group(function () {
 

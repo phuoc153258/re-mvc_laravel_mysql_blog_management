@@ -18,7 +18,7 @@ async function getList() {
                 Authorization: getCookie("access_token"),
             },
         });
-        renderDataToTable(response.data.data);
+        renderDataToTableUser(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
         return location.replace(`/`);
@@ -36,8 +36,8 @@ async function getBlog() {
             },
         });
         if (response.data.status) {
-            emptyDataDetailsBlog();
-            renderDataDetailsBlog(response.data.data);
+            emptyDataDetailsBlogUser();
+            renderDataDetailsBlogUser(response.data.data);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",
@@ -47,7 +47,6 @@ async function getBlog() {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }
@@ -64,7 +63,7 @@ async function deleteBlog(id) {
         });
         if (response.data.status) {
             swal("Delete blog success !!!", "", "success");
-            renderDataToTable(response.data.data);
+            renderDataToTableUser(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
             await swal({
@@ -108,7 +107,6 @@ async function createBlog() {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }
@@ -129,8 +127,8 @@ async function updateBlog() {
         });
         if (response.data.status) {
             await swal("Update blog success !!!", "", "success");
-            emptyDataDetailsBlog();
-            renderDataDetailsBlog(response.data.data);
+            emptyDataDetailsBlogUser();
+            renderDataDetailsBlogUser(response.data.data);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",
