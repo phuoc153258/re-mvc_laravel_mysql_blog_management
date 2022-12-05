@@ -10,6 +10,7 @@ class PaginateRequestDTO
     private string $sort = PAGINATE['SORT'];
     private int $limit = PAGINATE['LIMIT'];
     private int $page = PAGINATE['PAGE'];
+    private ?string $condition = null;
     private bool $is_paginate = PAGINATE['IS_PAGINATE'];
 
     public function __construct(Request $request)
@@ -28,6 +29,9 @@ class PaginateRequestDTO
 
         if ($request->input('page'))
             $this->page = $request->input('page');
+
+        if ($request->input('condition') != '' || $request->input('condition'))
+            $this->condition = $request->input('condition');
 
         if ($request->input('is_paginate'))
             $this->is_paginate = stringToBool($request->input('is_paginate'));
@@ -51,6 +55,11 @@ class PaginateRequestDTO
     public function getPage()
     {
         return $this->page;
+    }
+
+    public function getCondition()
+    {
+        return $this->condition;
     }
 
     public function getIsPaginate()

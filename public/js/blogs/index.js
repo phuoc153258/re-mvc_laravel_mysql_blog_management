@@ -19,7 +19,7 @@ function renderDataToTable(data) {
             <th scope="row">${i + 1}</th>
             <td>${value.id}</td>
             <td>${value.title}</td>
-            <td class="w-25"><img src="${
+            <td class="w-25"><img src="/${
                 value.image
             }" class="w-50" alt="Avatar..."></td>
             <td>${value.username}</td>

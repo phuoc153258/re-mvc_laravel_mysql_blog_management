@@ -33,7 +33,7 @@ async function getUser() {
     try {
         const response = await axios({
             method: "get",
-            url: URLUser + "/" + window.location.pathname.split("/")[2],
+            url: URLUser + "/" + window.location.pathname.split("/")[3],
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::middleware([])->group(function () {
+Route::prefix('admin')->group(function () {
     Route::prefix('users')->group(function () {
         Route::get('/{id}/password', [UserController::class, 'changePassword']);
 
@@ -27,17 +27,36 @@ Route::middleware([])->group(function () {
     });
 
     Route::prefix('blogs')->group(function () {
-        Route::get('/create', [BlogController::class, 'create']);
+        Route::get('/create', [BlogController::class, 'createAdmin']);
 
-        Route::get('/{id}', [BlogController::class, 'show']);
+        Route::get('/{id}', [BlogController::class, 'showAdmin']);
 
-        Route::get('', [BlogController::class, 'index']);
+        Route::get('', [BlogController::class, 'indexAdmin']);
     });
 });
 
-Route::get('/auth/login', [AuthController::class, 'login']);
+Route::prefix('users')->group(function () {
+    Route::get('/{id}/password', [UserController::class, 'changePassword']);
 
-Route::get('/auth/register', [AuthController::class, 'register']);
+    Route::get('/{id}', [UserController::class, 'show']);
+});
+
+Route::prefix('blogs')->group(function () {
+    Route::get('/create', [BlogController::class, 'createUser']);
+
+    Route::get('/{id}', [BlogController::class, 'showUser']);
+
+    Route::get('', [BlogController::class, 'indexUser']);
+});
+
+
+Route::prefix('auth')->group(function () {
+
+    Route::get('/login', [AuthController::class, 'login']);
+
+    Route::get('/register', [AuthController::class, 'register']);
+});
+
 
 Route::get('/', function () {
     return view('welcome');

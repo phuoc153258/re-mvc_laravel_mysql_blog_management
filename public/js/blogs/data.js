@@ -20,12 +20,7 @@ async function getList() {
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
-        return;
+        return location.replace(`/`);
     }
 }
 
@@ -33,7 +28,7 @@ async function getBlog() {
     try {
         const response = await axios({
             method: "get",
-            url: URLBlog + "/" + window.location.pathname.split("/")[2],
+            url: URLBlog + "/" + window.location.pathname.split("/")[3],
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -51,12 +46,7 @@ async function getBlog() {
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
-        return;
+        return history.go(-1);
     }
 }
 
@@ -82,12 +72,7 @@ async function deleteBlog(id) {
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
-        return;
+        return history.go(-1);
     }
 }
 
@@ -124,13 +109,7 @@ async function createBlog() {
             return;
         }
     } catch (error) {
-        console.log(error);
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
-        return;
+        return history.go(-1);
     }
 }
 
@@ -161,11 +140,6 @@ async function updateBlog() {
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
-        return;
+        return history.go(-1);
     }
 }

@@ -7,6 +7,7 @@ define('PAGINATE', [
     'SORT' => '',
     'ASC' => 'asc',
     'DESC' => 'desc',
+    'CONDITION' => 0,
     'IS_PAGINATE' => true
 ]);
 
@@ -23,7 +24,7 @@ define('BLOG_PAGINATE_TYPE', [
     'SORT_BY' => 'id',
     'SELECT_ITEM' => [
         'blogs.*', 'users.username'
-    ]
+    ],
 ]);
 
 define('ROLE_PAGINATE_TYPE', [

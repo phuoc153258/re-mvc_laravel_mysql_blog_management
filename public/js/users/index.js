@@ -19,7 +19,7 @@ function renderDataToTable(data) {
             <th scope="row">${i + 1}</th>
             <td>${value.id}</td>
             <td>${value.username}</td>
-            <td><img src="${value.avatar}" class="w-50" alt="Avatar..."></td>
+            <td><img src="/${value.avatar}" class="w-50" alt="Avatar..."></td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
             <td><a href="/users/${value.id}" style="margin-right: 10px;"><i

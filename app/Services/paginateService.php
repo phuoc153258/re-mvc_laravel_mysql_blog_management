@@ -16,8 +16,12 @@ class PaginateService
     {
         $query =  DB::table($paginateOption->type_model->getType());
 
-        if ($paginateOption->type_model->getType() == 'blogs')
+        if ($paginateOption->type_model->getType() == 'blogs') {
             $query->join('users', 'blogs.user_id', '=', 'users.id');
+            if ($paginateOption->option->getCondition() != null)
+                $query->where('blogs.user_id', '=', $paginateOption->option->getCondition());
+        }
+
 
         if (!$paginateOption->option->getIsPaginate()) return $query->get();
 
