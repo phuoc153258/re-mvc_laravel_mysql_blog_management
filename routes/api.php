@@ -89,8 +89,14 @@ use App\Http\Controllers\Base\Api\AuthApiController;
 Route::prefix('/admin')->middleware([])->group(function () {
 });
 
-Route::prefix('/user')->middleware(['auth:sanctum'])->group(function () {
-    Route::get('/me', [\App\Http\Controllers\User\Api\UserApiController::class, 'me'])->middleware('permission:get-me');
+Route::prefix('users/me')->middleware(['auth:sanctum'])->group(function () {
+    Route::patch('/password', [\App\Http\Controllers\User\Api\UserApiController::class, 'changePassword'])->middleware('permission:user-change-password');
+
+    Route::post('/avatar', [\App\Http\Controllers\User\Api\UserApiController::class, 'uploadAvatar'])->middleware('permission:user-update-profile');
+
+    Route::put('/', [\App\Http\Controllers\User\Api\UserApiController::class, 'update'])->middleware('permission:user-update-profile');
+
+    Route::get('/', [\App\Http\Controllers\User\Api\UserApiController::class, 'me'])->middleware('permission:user-get-me');
 });
 
 Route::prefix('auth')->group(function () {

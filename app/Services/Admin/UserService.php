@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\Models\User;

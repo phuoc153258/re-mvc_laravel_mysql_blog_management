@@ -76,7 +76,9 @@
             "app/DTO/Response/Role",
             "app/DTO/Response/Permission",
 
-            "app/Services",
+            "app/Services/Admin",
+            "app/Services/Base",
+            "app/Services/User",
             
             "app/Validate"
         ]
