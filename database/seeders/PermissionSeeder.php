@@ -21,6 +21,7 @@ class PermissionSeeder extends Seeder
 
         Permission::create(['name' => 'user-get-my-blog-list']);
         Permission::create(['name' => 'user-get-my-blog']);
+        Permission::create(['name' => 'user-create-my-blog']);
         Permission::create(['name' => 'user-update-my-blog']);
         Permission::create(['name' => 'user-delete-my-blog']);
 

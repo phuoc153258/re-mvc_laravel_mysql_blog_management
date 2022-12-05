@@ -11,12 +11,12 @@ class CreateBlogRequestDTO
     private string $content;
     private int $user_id;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, $user_id)
     {
         $this->title = $request->input('title');
         $this->sub_title = $request->input('sub_title');
         $this->content = $request->input('content');
-        $this->user_id = $request->input('user_id');
+        $this->user_id = $user_id;
     }
 
     public function getTitle()

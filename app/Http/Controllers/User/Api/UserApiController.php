@@ -32,6 +32,7 @@ class UserApiController extends Controller
             $userResponse = $this->userService->me($user_id);
             return $this->success($userResponse, MESSAGE_SUCCESS_GET_ME, 200);
         } catch (\Throwable $th) {
+            error_log($th->getMessage());
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }

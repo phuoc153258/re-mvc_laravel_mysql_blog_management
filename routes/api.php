@@ -89,15 +89,33 @@ use App\Http\Controllers\Base\Api\AuthApiController;
 Route::prefix('/admin')->middleware([])->group(function () {
 });
 
-Route::prefix('users/me')->middleware(['auth:sanctum'])->group(function () {
-    Route::patch('/password', [\App\Http\Controllers\User\Api\UserApiController::class, 'changePassword'])->middleware('permission:user-change-password');
+Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+    Route::prefix('users/me')->group(function () {
+        Route::patch('/password', [\App\Http\Controllers\User\Api\UserApiController::class, 'changePassword'])->middleware('permission:user-change-password');
 
-    Route::post('/avatar', [\App\Http\Controllers\User\Api\UserApiController::class, 'uploadAvatar'])->middleware('permission:user-update-profile');
+        Route::post('/avatar', [\App\Http\Controllers\User\Api\UserApiController::class, 'uploadAvatar'])->middleware('permission:user-update-profile');
 
-    Route::put('/', [\App\Http\Controllers\User\Api\UserApiController::class, 'update'])->middleware('permission:user-update-profile');
+        Route::put('/', [\App\Http\Controllers\User\Api\UserApiController::class, 'update'])->middleware('permission:user-update-profile');
 
-    Route::get('/', [\App\Http\Controllers\User\Api\UserApiController::class, 'me'])->middleware('permission:user-get-me');
+        Route::get('/', [\App\Http\Controllers\User\Api\UserApiController::class, 'me'])->middleware('permission:user-get-me');
+    });
+
+    Route::prefix('blogs')->group(function () {
+        Route::post('/{id}/image', [\App\Http\Controllers\User\Api\BlogApiController::class, 'uploadImage'])->middleware('permission:user-update-my-blog');
+
+        Route::delete('/{id}', [\App\Http\Controllers\User\Api\BlogApiController::class, 'destroy'])->middleware('permission:user-delete-my-blog');
+
+        Route::put('/{id}', [\App\Http\Controllers\User\Api\BlogApiController::class, 'update'])->middleware('permission:user-update-my-blog');
+
+        Route::get('/{id}', [\App\Http\Controllers\User\Api\BlogApiController::class, 'show'])->middleware('permission:user-get-my-blog');
+
+        Route::post('/', [\App\Http\Controllers\User\Api\BlogApiController::class, 'create'])->middleware('permission:user-create-my-blog');
+
+        Route::get('/', [\App\Http\Controllers\User\Api\BlogApiController::class, 'index'])->middleware('permission:user-get-my-blog-list');
+    });
 });
+
+
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthApiController::class, 'login']);

@@ -23,44 +23,21 @@ class BlogService
         $this->fileService = new FileService();
     }
 
-    public function getList(BasePaginateRequestDTO $option)
+    public function getList(BasePaginateRequestDTO $option, $user_id = null)
     {
-        $data = (new PaginateService())->paginate($option);
+        $data = $this->paginateService->paginate($option, $user_id);
         return $data;
     }
 
-    public function show($id)
+    public function show($id, $user_id)
     {
-        $blog = Blog::with('users')->where('id', $id)->get()->first();
-        $blogDTO = new BlogResponseDTO($blog);
-        return $blogDTO->toJSON();
-    }
-
-    public function uploadImage(UploadFileRequestDTO $file, int $id)
-    {
-        $blog = Blog::with('users')->where('id', $id)->get()->first();
-
-        if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
-
-        $fileResponse = $this->fileService->upload($file);
-
-        try {
-            $fileDelete = new DeleteFileRequestDTO($blog->image);
-            $fileDeleteResponse = $this->fileService->delete($fileDelete);
-        } catch (\Throwable $th) {
-        }
-
-        $blog->image = $fileResponse;
-
-        $blog->save();
-        $blogDTO = new BlogResponseDTO($blog);
-        return $blogDTO->toJSON();
-    }
-
-    public function deleteBlog($id)
-    {
-        $blog = Blog::find($id);
-        $blog->delete();
+        $blog = Blog::with('users')
+            ->where([
+                'id' => $id,
+                'user_id' => $user_id
+            ])
+            ->get()
+            ->first();
         $blogDTO = new BlogResponseDTO($blog);
         return $blogDTO->toJSON();
     }
@@ -83,9 +60,12 @@ class BlogService
         return $blogDTO->toJSON();
     }
 
-    public function updateBlog(UpdateBlogRequestDTO $blogRequest)
+    public function updateBlog(UpdateBlogRequestDTO $blogRequest, $user_id)
     {
-        $blog = Blog::find($blogRequest->getID());
+        $blog = Blog::where([
+            'id' => $blogRequest->getID(),
+            'user_id' => $user_id
+        ])->get()->first();
 
         if ($blogRequest->getTitle() != $blog->title && $blogRequest->getTitle() != '') $blog->title = $blogRequest->getTitle();
         if ($blogRequest->getSubTitle() != $blog->sub_title && $blogRequest->getSubTitle() != '') $blog->sub_title = $blogRequest->getSubTitle();
@@ -94,5 +74,39 @@ class BlogService
         $blog->save();
         $blogDTO = new BlogResponseDTO($blog);
         return $blogDTO->toJSON();
+    }
+
+    public function uploadImage(UploadFileRequestDTO $file, int $id, $user_id)
+    {
+        $blog = Blog::with('users')->where([
+            'id' => $id,
+            'user_id' => $user_id
+        ])->get()->first();
+
+        if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
+
+        $fileResponse = $this->fileService->upload($file);
+
+        try {
+            $fileDelete = new DeleteFileRequestDTO($blog->image);
+            $fileDeleteResponse = $this->fileService->delete($fileDelete);
+        } catch (\Throwable $th) {
+        }
+
+        $blog->image = $fileResponse;
+
+        $blog->save();
+        $blogDTO = new BlogResponseDTO($blog);
+        return $blogDTO->toJSON();
+    }
+
+    public function deleteBlog($id, $user_id)
+    {
+        $blog = Blog::with('users')->where([
+            'id' => $id,
+            'user_id' => $user_id
+        ])->get()->first();
+        if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
+        $blog->delete();
     }
 }

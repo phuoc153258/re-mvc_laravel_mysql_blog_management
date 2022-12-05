@@ -28,7 +28,7 @@ class AuthApiController extends Controller
             $userRequest = new LoginUserRequestDTO($request);
             $this->authValidate->validateInfoLoginUser($userRequest);
             $userResponse = $this->authService->login($userRequest);
-            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($userResponse, MESSAGE_SUCCESS_LOGIN_USER, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
@@ -40,7 +40,7 @@ class AuthApiController extends Controller
             $userRequest = new RegisterUserRequestDTO($request);
             $this->authValidate->validateInfoRegisterUser($userRequest);
             $userResponse = $this->authService->register($userRequest);
-            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($userResponse, MESSAGE_SUCCESS_REGISTER_USER, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
@@ -50,7 +50,7 @@ class AuthApiController extends Controller
     {
         try {
             $response =  $this->authService->logout($request->user());
-            return $this->success($response, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($response, MESSAGE_SUCCESS_LOGOUT_USER, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }

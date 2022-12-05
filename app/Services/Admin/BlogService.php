@@ -26,11 +26,11 @@ class BlogService
 
     public function getList(BasePaginateRequestDTO $option)
     {
-        $data = (new PaginateService())->paginate($option);
+        $data = $this->paginateService->paginate($option);
         return $data;
     }
 
-    public function show($id)
+    public function show($id, $user_id)
     {
         $blog = Blog::with('users')->where('id', $id)->get()->first();
         $blogDTO = new BlogResponseDTO($blog);

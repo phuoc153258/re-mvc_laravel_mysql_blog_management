@@ -8,7 +8,7 @@ use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\DTO\Request\Blog\CreateBlogRequestDTO;
 use App\DTO\Request\Blog\UpdateBlogRequestDTO;
-use App\Services\BlogService;
+use App\Services\Admin\BlogService;
 use App\Validate\BlogValidate;
 use App\Traits\HttpResponse;
 
@@ -74,7 +74,7 @@ class BlogApiController extends Controller
     function create(Request $request)
     {
         try {
-            $blogRequest = new CreateBlogRequestDTO($request);
+            $blogRequest = new CreateBlogRequestDTO($request, $request->input('user_id'));
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $this->blogValidate->validateInfoCreateBlog($blogRequest);
             $blogResponse = $this->blogService->createBlog($blogRequest, $fileRequest);

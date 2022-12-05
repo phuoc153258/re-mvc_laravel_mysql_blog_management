@@ -7,7 +7,6 @@ define('PAGINATE', [
     'SORT' => '',
     'ASC' => 'asc',
     'DESC' => 'desc',
-    'CONDITION' => 0,
     'IS_PAGINATE' => true
 ]);
 
