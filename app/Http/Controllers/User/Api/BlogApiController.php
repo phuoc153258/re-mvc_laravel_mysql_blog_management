@@ -97,7 +97,7 @@ class BlogApiController extends Controller
             $this->blogValidate->validateInfoIdBlog($id);
             $this->blogService->deleteBlog($id, $user_id);
             $option = new BasePaginateRequestDTO($request, 'blogs');
-            $data = $this->blogService->getList($option);
+            $data = $this->blogService->getList($option, $user_id);
             return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);

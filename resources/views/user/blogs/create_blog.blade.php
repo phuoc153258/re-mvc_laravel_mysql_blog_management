@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 @section('content')
-    <div class="d-flex justify-content-between">
-        <h2>Create Blog</h2>
-    </div>
     <div class="container">
+        <div class="d-flex justify-content-between">
+            <h2>Create Blog</h2>
+        </div>
         <div class="row justify-content-center">
             <div class="card">
                 <div class="card-body">
@@ -14,7 +14,6 @@
                                 <img class="w-75 mb-2"
                                     style="border-radius: 10%;display: block;border-radius: 10%;margin-left: auto;margin-right: auto;"
                                     src="/image/image_default.png    " alt="" id="show-image-blog-create-js">
-
                                 <div class="file btn btn-primary" style="position: relative;overflow: hidden;">
                                     Upload
                                     <input type="file" name="file"
@@ -48,8 +47,8 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/blogs/data.js') }}"></script>
-    <script src="{{ asset('js/blogs/file.js') }}"></script>
-    <script src="{{ asset('js/blogs/index.js') }}"></script>
-    <script src="{{ asset('js/blogs/pageCreateBlog.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/data.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/file.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/index.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/pageCreateBlog.js') }}"></script>
 @endsection

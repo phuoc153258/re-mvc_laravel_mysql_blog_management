@@ -16,8 +16,9 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-4 text-center">
-                                <img class="w-75 mb-2" style="border-radius: 10%;" src="" alt=""
-                                    id="show-avatar-user-js">
+                                <img class="w-75 mb-2"
+                                    style="border-radius: 10%;display: block;border-radius: 10%;margin-left: auto;margin-right: auto;"
+                                    src="" alt="" id="show-avatar-user-js">
                                 <div class="file btn btn-primary" style="position: relative;overflow: hidden;">
                                     Upload
                                     <input type="file" name="file"

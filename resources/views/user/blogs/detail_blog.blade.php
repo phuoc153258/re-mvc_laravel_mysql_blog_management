@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.home')
 
 @section('content')
-    <div class="d-flex justify-content-between">
-        <h2>Detail Blog</h2>
-    </div>
     <div class="container">
+        <div class="d-flex justify-content-between">
+            <h2>Detail Blog</h2>
+        </div>
         <div class="row justify-content-center">
             <div class="card">
                 <div class="card-body">
@@ -66,8 +66,8 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/blogs/data.js') }}"></script>
-    <script src="{{ asset('js/blogs/file.js') }}"></script>
-    <script src="{{ asset('js/blogs/index.js') }}"></script>
-    <script src="{{ asset('js/blogs/pageDetailBlog.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/data.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/file.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/index.js') }}"></script>
+    <script src="{{ asset('js/user/blogs/pageDetailBlog.js') }}"></script>
 @endsection

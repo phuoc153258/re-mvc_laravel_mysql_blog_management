@@ -12,7 +12,7 @@ async function getList() {
             method: "get",
             url:
                 URLBlog +
-                `?search=${searchItem.value}&sort=${sortItem.value}&limit=${entriesItem.textContent}&page=${pageItem.value}&condition=${userId}`,
+                `?search=${searchItem.value}&sort=${sortItem.value}&limit=${entriesItem.textContent}&page=${pageItem.value}`,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -29,7 +29,7 @@ async function getBlog() {
     try {
         const response = await axios({
             method: "get",
-            url: URLBlog + "/" + window.location.pathname.split("/")[3],
+            url: URLBlog + "/" + window.location.pathname.split("/")[2],
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -47,6 +47,7 @@ async function getBlog() {
             return;
         }
     } catch (error) {
+        console.log(error);
         return history.go(-1);
     }
 }
@@ -84,15 +85,11 @@ async function createBlog() {
         const sub_title = document.getElementById("sub_title-create-js").value;
         const content = document.getElementById("content-create-js").value;
         const image = document.getElementById("image-blog-create-js").files[0];
-        const user_id = document.getElementById(
-            "user-id-navbar-hidden-js"
-        ).value;
         let formData = new FormData();
         formData.append("title", title);
         formData.append("file", image);
         formData.append("sub_title", sub_title);
         formData.append("content", content);
-        formData.append("user_id", user_id);
         let response = await axios.post(URLBlog, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -111,6 +108,7 @@ async function createBlog() {
             return;
         }
     } catch (error) {
+        console.log(error);
         return history.go(-1);
     }
 }
