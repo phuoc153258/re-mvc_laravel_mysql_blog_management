@@ -1,4 +1,4 @@
-const URLBlog = `/api/blogs`;
+const URLBlog = `/api/admin/blogs`;
 
 async function getList() {
     try {
@@ -99,7 +99,7 @@ async function createBlog() {
         });
         if (response.data.status) {
             await swal("Create blog success !!!", "", "success");
-            location.replace(`/blogs/${response.data.data.id}`);
+            location.replace(`/admin/blogs/${response.data.data.id}`);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

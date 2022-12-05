@@ -4,7 +4,7 @@ function addEventUploadFile() {
 }
 
 window.onload = async function () {
+    await getInfoUserLoginAdmin();
     await getBlog();
     addEventUploadFile();
-    await getInfoUserLogin();
 };

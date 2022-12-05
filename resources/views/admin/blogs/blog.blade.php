@@ -3,7 +3,7 @@
 @section('content')
     <div class="d-flex justify-content-between">
         <h2>Blog Management</h2>
-        <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" href="/blogs/create">
+        <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" href="/admin/blogs/create">
             <p>Add blog</p>
             <i class="fa-solid fa-plus" style="line-height: 1.5"></i>
         </a>
