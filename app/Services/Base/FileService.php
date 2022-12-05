@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Base;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;

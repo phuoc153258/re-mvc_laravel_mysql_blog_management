@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -31,16 +31,6 @@ class UserApiController extends Controller
             $option = new BasePaginateRequestDTO($request, 'users');
             $data = $this->userService->getList($option);
             return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-        }
-    }
-
-    public function me(Request $request)
-    {
-        try {
-            $userResponse = $this->userService->show($request->user()->id);
-            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }

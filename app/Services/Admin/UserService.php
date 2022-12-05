@@ -9,8 +9,8 @@ use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\DTO\Response\User\UserResponseDTO;
-use App\Services\PaginateService;
-use App\Services\FileService;
+use App\Services\Base\PaginateService;
+use App\Services\Base\FileService;
 
 class UserService
 {

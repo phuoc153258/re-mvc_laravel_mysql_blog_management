@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Base\AuthController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -17,36 +17,36 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::prefix('admin')->group(function () {
-    Route::prefix('users')->group(function () {
-        Route::get('/{id}/password', [UserController::class, 'changePassword']);
+// Route::prefix('admin')->group(function () {
+//     Route::prefix('users')->group(function () {
+//         Route::get('/{id}/password', [UserController::class, 'changePassword']);
 
-        Route::get('/{id}', [UserController::class, 'show']);
+//         Route::get('/{id}', [UserController::class, 'show']);
 
-        Route::get('', [UserController::class, 'index']);
-    });
+//         Route::get('', [UserController::class, 'index']);
+//     });
 
-    Route::prefix('blogs')->group(function () {
-        Route::get('/create', [BlogController::class, 'createAdmin']);
+//     Route::prefix('blogs')->group(function () {
+//         Route::get('/create', [BlogController::class, 'createAdmin']);
 
-        Route::get('/{id}', [BlogController::class, 'showAdmin']);
+//         Route::get('/{id}', [BlogController::class, 'showAdmin']);
 
-        Route::get('', [BlogController::class, 'indexAdmin']);
-    });
-});
+//         Route::get('', [BlogController::class, 'indexAdmin']);
+//     });
+// });
 
-Route::prefix('users')->group(function () {
-    Route::get('/{id}/password', [UserController::class, 'changePassword']);
+// Route::prefix('users')->group(function () {
+//     Route::get('/{id}/password', [UserController::class, 'changePassword']);
 
-    Route::get('/{id}', [UserController::class, 'show']);
-});
+//     Route::get('/{id}', [UserController::class, 'show']);
+// });
 
 Route::prefix('blogs')->group(function () {
-    Route::get('/create', [BlogController::class, 'createUser']);
+    Route::get('/create', [\App\Http\Controllers\User\BlogController::class, 'create']);
 
-    Route::get('/{id}', [BlogController::class, 'showUser']);
+    Route::get('/{id}', [\App\Http\Controllers\User\BlogController::class, 'show']);
 
-    Route::get('', [BlogController::class, 'indexUser']);
+    Route::get('', [\App\Http\Controllers\User\BlogController::class, 'index']);
 });
 
 

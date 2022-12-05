@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use Spatie\Permission\Models\Role;
 use App\Models\User;
@@ -9,7 +9,7 @@ use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use App\DTO\Response\Role\RoleResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
-use App\Services\PaginateService;
+use App\Services\Base\PaginateService;
 
 class RoleService
 {

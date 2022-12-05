@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Base\Api;
 
-use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\Services\FileService;
 use App\Traits\HttpResponse;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use Illuminate\Support\Facades\DB;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
@@ -10,8 +10,8 @@ use App\DTO\Request\Blog\UpdateBlogRequestDTO;
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\response\Blog\BlogResponseDTO;
 use App\Models\Blog;
-use App\Services\PaginateService;
-use App\Services\FileService;
+use App\Services\Base\PaginateService;
+use App\Services\Base\FileService;
 
 class BlogService
 {

@@ -53,9 +53,10 @@ async function getBlog() {
 
 async function deleteBlog(id) {
     try {
+        const userId = getUserIdHidden();
         const response = await axios({
             method: "delete",
-            url: URLBlog + `/${id}`,
+            url: URLBlog + `/${id}?condition=${userId}`,
             headers: {
                 Authorization: getCookie("access_token"),
             },
