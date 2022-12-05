@@ -34,54 +34,6 @@ async function loginUser() {
     }
 }
 
-async function getInfoUserLogin() {
-    try {
-        const response = await axios({
-            method: "get",
-            url: "/api/users/me",
-            data: {},
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
-        });
-        if (response.data.status) renderInfoUserToNavbar(response.data.data);
-        else {
-            location.replace(`/`);
-            return;
-        }
-    } catch (error) {
-        location.replace(`/`);
-        return;
-    }
-}
-
-async function getInfoUserLoginHome() {
-    let homeNavbar = document.getElementById("home-login-nav-js");
-    let str = "";
-    try {
-        const response = await axios({
-            method: "get",
-            url: "/api/users/me",
-            data: {},
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
-        });
-
-        if (response.data.status) {
-            str += `<a href="/blogs" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                        <a class="text-sm text-gray-700 dark:text-gray-500 underline" style="cursor: pointer;" onclick="logoutUser()">Log out</a>`;
-        } else {
-            str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                    <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>`;
-        }
-    } catch (error) {
-        str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-        <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>`;
-    }
-    homeNavbar.innerHTML = str;
-}
-
 async function logoutUser() {
     try {
         const response = await axios({
@@ -151,6 +103,73 @@ async function registerUser() {
             icon: "error",
             button: "OK",
         });
+        return;
+    }
+}
+
+async function getInfoUser() {
+    try {
+        const response = await axios({
+            method: "get",
+            url: "/api/users/me",
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+async function getInfoUserLogin() {
+    try {
+        const response = await getInfoUser();
+        if (response.data.status) renderInfoUserToNavbar(response.data.data);
+        else {
+            location.replace(`/`);
+            return;
+        }
+    } catch (error) {
+        location.replace(`/`);
+        return;
+    }
+}
+
+async function getInfoUserLoginHome() {
+    let homeNavbar = document.getElementById("home-login-nav-js");
+    let str = "";
+    try {
+        const response = await getInfoUser();
+
+        if (response.data.status) {
+            str += `<a href="/blogs" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                        <a class="text-sm text-gray-700 dark:text-gray-500 underline" style="cursor: pointer;" onclick="logoutUser()">Log out</a>`;
+        } else {
+            str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>`;
+        }
+    } catch (error) {
+        str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+        <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>`;
+    }
+    homeNavbar.innerHTML = str;
+}
+
+async function getInfoUserLoginAdmin() {
+    try {
+        const response = await getInfoUser();
+        console.log(checkRoleUser(response.data.data, "admin"));
+        if (!checkRoleUser(response.data.data, "admin")) {
+            location.replace(`/`);
+            return;
+        }
+        renderInfoUserToNavbar(response.data.data);
+    } catch (error) {
+        console.log(error);
+        location.replace(`/`);
         return;
     }
 }

@@ -80,8 +80,8 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/blogs/data.js') }}"></script>
-    <script src="{{ asset('js/blogs/file.js') }}"></script>
-    <script src="{{ asset('js/blogs/index.js') }}"></script>
-    <script src="{{ asset('js/blogs/pageBlogs.js') }}"></script>
+    <script src="{{ asset('js/helper/blogs/file.js') }}"></script>
+    <script src="{{ asset('js/helper/blogs/index.js') }}"></script>
+    <script src="{{ asset('js/admin/blogs/data.js') }}"></script>
+    <script src="{{ asset('js/admin/blogs/pageBlogs.js') }}"></script>
 @endsection

@@ -2,7 +2,6 @@
 
 namespace App\Services\Admin;
 
-use Illuminate\Support\Facades\DB;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\DTO\Request\Blog\CreateBlogRequestDTO;
@@ -30,7 +29,7 @@ class BlogService
         return $data;
     }
 
-    public function show($id, $user_id)
+    public function show($id)
     {
         $blog = Blog::with('users')->where('id', $id)->get()->first();
         $blogDTO = new BlogResponseDTO($blog);

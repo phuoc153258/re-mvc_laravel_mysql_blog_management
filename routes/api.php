@@ -34,21 +34,6 @@ use App\Http\Controllers\Base\Api\AuthApiController;
 //         Route::get('/', [UserApiController::class, 'index'])->middleware('permission:get-list-user');
 //     });
 
-//     Route::prefix('blogs')->middleware('role:admin|user')->group(function () {
-//         Route::post('/{id}/image', [BlogApiController::class, 'uploadImage'])->middleware('permission:upload-image-blog');
-
-//         Route::delete('/{id}', [BlogApiController::class, 'destroy'])->middleware('permission:delete-blog');
-
-//         Route::put('/{id}', [BlogApiController::class, 'update'])->middleware('permission:update-blog');
-
-//         Route::get('/{id}', [BlogApiController::class, 'show'])->middleware('permission:get-blog');
-
-//         Route::post('/', [BlogApiController::class, 'create'])->middleware('permission:add-blog');
-
-//         Route::get('/', [BlogApiController::class, 'index'])->middleware('permission:get-list-blog');
-//     });
-
-
 //     Route::middleware('role:admin')->group(function () {
 //         Route::prefix('files')->group(function () {
 //             Route::post('/', [FileApiController::class, 'upload']);
@@ -81,15 +66,30 @@ use App\Http\Controllers\Base\Api\AuthApiController;
 //         });
 //     });
 
-//     Route::prefix('/mails')->group(function () {
-//         Route::post('/', [MailApiController::class, 'index']);
-//     });
 // });
 
-Route::prefix('/admin')->middleware([])->group(function () {
-});
 
-Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::prefix('/admin')->middleware('role:admin')->group(function () {
+
+        Route::prefix('blogs')->group(function () {
+            Route::post('/{id}/image', [BlogApiController::class, 'uploadImage'])->middleware('permission:admin-update-blog');
+
+            Route::delete('/{id}', [BlogApiController::class, 'destroy'])->middleware('permission:admin-delete-blog');
+
+            Route::put('/{id}', [BlogApiController::class, 'update'])->middleware('permission:admin-update-blog');
+
+            Route::get('/{id}', [BlogApiController::class, 'show'])->middleware('permission:admin-get-blog');
+
+            Route::post('/', [BlogApiController::class, 'create'])->middleware('permission:admin-create-blog');
+
+            Route::get('/', [BlogApiController::class, 'index'])->middleware('permission:admin-get-blog-list');
+        });
+    });
+
+
     Route::prefix('users/me')->group(function () {
         Route::patch('/password', [\App\Http\Controllers\User\Api\UserApiController::class, 'changePassword'])->middleware('permission:user-change-password');
 

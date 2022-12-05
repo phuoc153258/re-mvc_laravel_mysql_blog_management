@@ -46,31 +46,6 @@ class BlogApiController extends Controller
         }
     }
 
-    public function uploadImage(Request $request, $id)
-    {
-        try {
-            $this->blogValidate->validateInfoIdBlog($id);
-            $fileRequest = new UploadFileRequestDTO($request, 'file');
-            $blogResponse = $this->blogService->uploadImage($fileRequest, $id);
-            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-        }
-    }
-
-    public function destroy(Request $request, $id)
-    {
-        try {
-            $this->blogValidate->validateInfoIdBlog($id);
-            $this->blogService->deleteBlog($id);
-            $option = new BasePaginateRequestDTO($request, 'blogs');
-            $data = $this->blogService->getList($option);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
-        } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
-        }
-    }
-
     function create(Request $request)
     {
         try {
@@ -91,6 +66,31 @@ class BlogApiController extends Controller
             $this->blogValidate->validateInfoUpdateBlog($blogRequest);
             $blogResponse = $this->blogService->updateBlog($blogRequest);
             return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function uploadImage(Request $request, $id)
+    {
+        try {
+            $this->blogValidate->validateInfoIdBlog($id);
+            $fileRequest = new UploadFileRequestDTO($request, 'file');
+            $blogResponse = $this->blogService->uploadImage($fileRequest, $id);
+            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $this->blogValidate->validateInfoIdBlog($id);
+            $this->blogService->deleteBlog($id);
+            $option = new BasePaginateRequestDTO($request, 'blogs');
+            $data = $this->blogService->getList($option);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
