@@ -31,7 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [RoleController::class, 'index']);
     });
 
-    Route::prefix('permission')->group(function () {
+    Route::prefix('permissions')->group(function () {
         Route::get('/create', [PermissionController::class, 'create']);
 
         Route::get('/{id}', [PermissionController::class, 'show']);

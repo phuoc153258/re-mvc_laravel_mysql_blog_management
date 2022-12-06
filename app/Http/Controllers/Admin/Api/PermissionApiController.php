@@ -68,12 +68,14 @@ class PermissionApiController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         try {
             $this->permissionValidate->validateInfoIdPermission($id);
-            $permissionResponse = $this->permissionService->delete($id);
-            return $this->success(MESSAGE_SUCCESS_DELETE_PERMISSION, MESSAGE_BASE_SUCCESS, 200);
+            $this->permissionService->delete($id);
+            $option = new BasePaginateRequestDTO($request, 'permissions');
+            $data = $this->permissionService->getList($option);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
