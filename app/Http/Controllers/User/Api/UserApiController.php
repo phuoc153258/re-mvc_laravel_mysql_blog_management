@@ -29,7 +29,7 @@ class UserApiController extends Controller
     {
         try {
             $user_id = $this->getInfoUser($request)->id;
-            $userResponse = $this->userService->me($user_id);
+            $userResponse = $this->userService->show($user_id);
             return $this->success($userResponse, MESSAGE_SUCCESS_GET_ME, 200);
         } catch (\Throwable $th) {
             error_log($th->getMessage());

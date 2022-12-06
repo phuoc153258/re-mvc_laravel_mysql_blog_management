@@ -1,14 +1,27 @@
 <?php
-define('PERMISSION_GET_ME', 'get-me');
+define('PERMISSION_GET_ME', 'user-get-me');
 
-define('PERMISSION_GET_LIST_BLOG_ID', 'get-list-blog');
+define('PERMISSION_UPDATE_MY_PROFILE', 'user-update-profile');
 
-define('PERMISSION_GET_BLOG_ID', 'get-blog');
+define('PERMISSION_CHANGE_MY_PASSWORD', 'user-change-password');
 
-define('PERMISSION_CREATE_BLOG_ID', 'add-blog');
+define('PERMISSION_GET_MY_BLOG_LIST', 'user-get-my-blog-list');
 
-define('PERMISSION_UPDATE_BLOG_ID', 'update-blog');
+define('PERMISSION_GET_MY_BLOG', 'user-get-my-blog');
 
-define('PERMISSION_DELETE_BLOG_ID', 'delete-blog');
+define('PERMISSION_CREATE_MY_BLOG', 'user-create-my-blog');
 
-define('PERMISSION_UPLOAD_IMAGE_BLOG_ID', 'update-blog');
+define('PERMISSION_UPDATE_MY_BLOG', 'user-update-my-blog');
+
+define('PERMISSION_DELETE_MY_BLOG', 'user-delete-my-blog');
+
+define('PERMISSION_REGISTER_USER_DEFAULT', [
+    PERMISSION_GET_ME,
+    PERMISSION_UPDATE_MY_PROFILE,
+    PERMISSION_CHANGE_MY_PASSWORD,
+    PERMISSION_GET_MY_BLOG_LIST,
+    PERMISSION_GET_MY_BLOG,
+    PERMISSION_CREATE_MY_BLOG,
+    PERMISSION_UPDATE_MY_BLOG,
+    PERMISSION_DELETE_MY_BLOG,
+]);

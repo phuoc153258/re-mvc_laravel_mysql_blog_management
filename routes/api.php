@@ -11,28 +11,7 @@ use App\Http\Controllers\Base\Api\AuthApiController;
 
 // Route::middleware(['auth:sanctum'])->group(function () {
 
-//     Route::prefix('users')->middleware('role:admin|user')->group(function () {
-//         Route::post('/{user_id}/roles/{role_id}', [RoleApiController::class, 'assignRole'])->middleware('role:admin');
 
-//         Route::delete('/{user_id}/roles/{role_id}', [RoleApiController::class, 'removeRole'])->middleware('role:admin');
-
-//         Route::post('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'givePermission'])->middleware('role:admin');
-
-//         Route::delete('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'revokePermission'])->middleware('role:admin');
-
-//         Route::patch('/{id}/password', [UserApiController::class, 'changePassword'])->middleware('permission:change-password-user');
-
-//         Route::post('/{id}/avatar', [UserApiController::class, 'uploadAvatar'])->middleware('permission:update-user');
-
-//         Route::delete('/{id}', [UserApiController::class, 'destroy'])->middleware('permission:delete-user');
-
-//         Route::put('/{id}', [UserApiController::class, 'update'])->middleware('permission:update-user');
-
-
-//         Route::get('/{id}', [UserApiController::class, 'show'])->middleware('permission:get-user');
-
-//         Route::get('/', [UserApiController::class, 'index'])->middleware('permission:get-list-user');
-//     });
 
 //     Route::middleware('role:admin')->group(function () {
 //         Route::prefix('files')->group(function () {
@@ -41,29 +20,6 @@ use App\Http\Controllers\Base\Api\AuthApiController;
 //             Route::delete('/', [FileApiController::class, 'delete']);
 //         });
 
-//         Route::prefix('roles')->group(function () {
-//             Route::delete('/{id}', [RoleApiController::class, 'delete']);
-
-//             Route::put('/{id}', [RoleApiController::class, 'update']);
-
-//             Route::get('/{id}', [RoleApiController::class, 'show']);
-
-//             Route::post('/', [RoleApiController::class, 'create']);
-
-//             Route::get('/', [RoleApiController::class, 'index']);
-//         });
-
-//         Route::prefix('permissions')->group(function () {
-//             Route::delete('/{id}', [PermissionApiController::class, 'delete']);
-
-//             Route::put('/{id}', [PermissionApiController::class, 'update']);
-
-//             Route::get('/{id}', [PermissionApiController::class, 'show']);
-
-//             Route::post('/', [PermissionApiController::class, 'create']);
-
-//             Route::get('/', [PermissionApiController::class, 'index']);
-//         });
 //     });
 
 // });
@@ -86,6 +42,52 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::post('/', [BlogApiController::class, 'create'])->middleware('permission:admin-create-blog');
 
             Route::get('/', [BlogApiController::class, 'index'])->middleware('permission:admin-get-blog-list');
+        });
+
+        Route::prefix('users')->middleware('role:admin')->group(function () {
+            Route::post('/{user_id}/roles/{role_id}', [RoleApiController::class, 'assignRole'])->middleware('permission:admin-assign-role');
+
+            Route::delete('/{user_id}/roles/{role_id}', [RoleApiController::class, 'removeRole'])->middleware('permission:admin-remove-role');
+
+            Route::post('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'givePermission'])->middleware('permission:admin-give-permission');
+
+            Route::delete('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'revokePermission'])->middleware('permission:admin-revoke-permission');
+
+            Route::patch('/{id}/password', [UserApiController::class, 'changePassword'])->middleware('permission:admin-reset-password');
+
+            Route::post('/{id}/avatar', [UserApiController::class, 'uploadAvatar'])->middleware('permission:admin-update-user');
+
+            Route::delete('/{id}', [UserApiController::class, 'destroy'])->middleware('permission:admin-delete-user');
+
+            Route::put('/{id}', [UserApiController::class, 'update'])->middleware('permission:admin-update-user');
+
+            Route::get('/{id}', [UserApiController::class, 'show'])->middleware('permission:admin-get-user');
+
+            Route::get('/', [UserApiController::class, 'index'])->middleware('permission:admin-get-user-list');
+        });
+
+        Route::prefix('roles')->group(function () {
+            Route::delete('/{id}', [RoleApiController::class, 'delete']);
+
+            Route::put('/{id}', [RoleApiController::class, 'update']);
+
+            Route::get('/{id}', [RoleApiController::class, 'show']);
+
+            Route::post('/', [RoleApiController::class, 'create']);
+
+            Route::get('/', [RoleApiController::class, 'index']);
+        });
+
+        Route::prefix('permissions')->group(function () {
+            Route::delete('/{id}', [PermissionApiController::class, 'delete']);
+
+            Route::put('/{id}', [PermissionApiController::class, 'update']);
+
+            Route::get('/{id}', [PermissionApiController::class, 'show']);
+
+            Route::post('/', [PermissionApiController::class, 'create']);
+
+            Route::get('/', [PermissionApiController::class, 'index']);
         });
     });
 

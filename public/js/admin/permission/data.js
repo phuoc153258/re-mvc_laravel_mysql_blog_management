@@ -1,4 +1,4 @@
-const URLPermission = `/api/permissions`;
+const URLPermission = `/api/admin/permissions`;
 
 async function getListPermission() {
     try {
@@ -25,7 +25,7 @@ async function givePermissionUser(user_id, permission_id) {
     try {
         const response = await axios({
             method: "post",
-            url: `/api/users/${user_id}/permissions/${permission_id}`,
+            url: `/api/admin/users/${user_id}/permissions/${permission_id}`,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -39,7 +39,7 @@ async function revokePermissionUser(user_id, permission_id) {
     try {
         const response = await axios({
             method: "delete",
-            url: `/api/users/${user_id}/permissions/${permission_id}`,
+            url: `/api/admin/users/${user_id}/permissions/${permission_id}`,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),

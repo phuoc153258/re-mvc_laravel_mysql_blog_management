@@ -1,4 +1,4 @@
-const URLRole = `/api/roles`;
+const URLRole = `/api/admin/roles`;
 
 async function getListRole() {
     try {
@@ -25,7 +25,7 @@ async function assignRoleUser(user_id, role_id) {
     try {
         const response = await axios({
             method: "post",
-            url: `/api/users/${user_id}/roles/${role_id}`,
+            url: `/api/admin/users/${user_id}/roles/${role_id}`,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -39,7 +39,7 @@ async function removeRoleUser(user_id, role_id) {
     try {
         const response = await axios({
             method: "delete",
-            url: `/api/users/${user_id}/roles/${role_id}`,
+            url: `/api/admin/users/${user_id}/roles/${role_id}`,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),

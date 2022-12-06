@@ -1,4 +1,4 @@
-const URLUser = `/api/users`;
+const URLUser = `/api/admin/users`;
 
 async function getList() {
     try {
@@ -43,7 +43,6 @@ async function getUser() {
             emptyInfoDetailsUser();
             renderDataDetailsUser(response.data);
             addEventUploadFile();
-            addHrefChangePassword(response.data.data.id);
             renderListRoleUser(response.data.data.roles);
             renderListPermissionUser(response.data.data.permissions);
         } else {

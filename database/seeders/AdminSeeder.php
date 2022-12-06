@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
-        ])->assignRole([1, 2])->givePermissionTo([1, 2, 3, 4, 5, 6, 7]);
+        ])->assignRole([1, 2])->givePermissionTo([1, 2, 3, 4, 5, 6, 7, 8]);
 
         User::create([
             'username' => 'phuoc1',
@@ -29,7 +29,7 @@ class AdminSeeder extends Seeder
             'email' => 'phuoc1@gmail.com',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
-        ])->assignRole([1, 2])->givePermissionTo([1, 2, 3, 4, 5, 6, 7]);
+        ])->assignRole([1, 2])->givePermissionTo([1, 2, 3, 4, 5, 6, 7, 8]);
 
         User::create([
             'username' => 'phuoc2',
@@ -37,6 +37,6 @@ class AdminSeeder extends Seeder
             'email' => 'phuoc2@gmail.com',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
-        ])->assignRole([2])->givePermissionTo([1, 2, 3, 4, 5, 6, 7]);
+        ])->assignRole([2])->givePermissionTo([1, 2, 3, 4, 5, 6, 7, 8]);
     }
 }

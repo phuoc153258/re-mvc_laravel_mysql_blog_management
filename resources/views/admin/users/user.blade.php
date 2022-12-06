@@ -74,8 +74,8 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/users/data.js') }}"></script>
-    <script src="{{ asset('js/users/file.js') }}"></script>
-    <script src="{{ asset('js/users/index.js') }}"></script>
-    <script src="{{ asset('js/users/pageUsers.js') }}"></script>
+    <script src="{{ asset('js/helper/users/file.js') }}"></script>
+    <script src="{{ asset('js/helper/users/index.js') }}"></script>
+    <script src="{{ asset('js/admin/users/data.js') }}"></script>
+    <script src="{{ asset('js/admin/users/pageUsers.js') }}"></script>
 @endsection

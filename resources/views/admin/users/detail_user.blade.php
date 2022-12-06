@@ -5,8 +5,8 @@
         <h2>Detail User</h2>
         <a class="d-flex" style="gap: 0 10px; cursor: pointer; text-decoration: none; color: black"
             id="change-password-user-js">
-            <p>Change password</p>
-            <i class="fa-solid fa-pencil" style="line-height: 1.4"></i>
+            <p>Reset password</p>
+            <i class="fa-solid fa-rotate-right" style="line-height: 1.4"></i>
         </a>
     </div>
     <div class="container">
@@ -114,12 +114,12 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/users/data.js') }}"></script>
-    <script src="{{ asset('js/users/file.js') }}"></script>
-    <script src="{{ asset('js/users/index.js') }}"></script>
-    <script src="{{ asset('js/role/index.js') }}"></script>
-    <script src="{{ asset('js/role/data.js') }}"></script>
-    <script src="{{ asset('js/permission/index.js') }}"></script>
-    <script src="{{ asset('js/permission/data.js') }}"></script>
-    <script src="{{ asset('js/users/pageDetailUser.js') }}"></script>
+    <script src="{{ asset('js/helper/users/file.js') }}"></script>
+    <script src="{{ asset('js/helper/users/index.js') }}"></script>
+    <script src="{{ asset('js/admin/users/data.js') }}"></script>
+    <script src="{{ asset('js/admin/role/index.js') }}"></script>
+    <script src="{{ asset('js/admin/role/data.js') }}"></script>
+    <script src="{{ asset('js/admin/permission/data.js') }}"></script>
+    <script src="{{ asset('js/admin/permission/index.js') }}"></script>
+    <script src="{{ asset('js/admin/users/pageDetailUser.js') }}"></script>
 @endsection

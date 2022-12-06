@@ -3,15 +3,9 @@ function addEventUploadFile() {
     fileBtn.addEventListener("change", uploadAvatar);
 }
 
-function addHrefChangePassword(id) {
-    document.getElementById(
-        "change-password-user-js"
-    ).href = `/users/${id}/password`;
-}
-
 window.onload = async function () {
+    await getInfoUserLoginAdmin();
     await getUser();
-    await getInfoUserLogin();
     await getListRole();
     await getListPermission();
 };

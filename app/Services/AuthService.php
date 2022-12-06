@@ -18,7 +18,7 @@ class AuthService
     {
         $user = User::create($userRequest->toArray());
         $token = $user->createToken('API Token')->plainTextToken;
-        $user->assignRole([ROLE_USER_ID])->givePermissionTo([PERMISSION_GET_ME, PERMISSION_GET_LIST_BLOG_ID]);
+        $user->assignRole([ROLE_USER_ID])->givePermissionTo(PERMISSION_REGISTER_USER_DEFAULT);
         $user->save();
         $userDTO = new UserResponseDTO(User::find($user->id));
         return [

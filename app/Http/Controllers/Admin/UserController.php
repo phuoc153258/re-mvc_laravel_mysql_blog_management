@@ -24,13 +24,4 @@ class UserController extends Controller
             return redirect('/');
         }
     }
-
-    public function changePassword(Request $request, $id)
-    {
-        try {
-            return view('admin.users.change_password');
-        } catch (\Throwable $th) {
-            return redirect('/');
-        }
-    }
 }

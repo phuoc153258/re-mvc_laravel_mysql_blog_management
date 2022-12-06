@@ -39,31 +39,8 @@ class UserService
         return $userDTO->toJSON();
     }
 
-    public function me($id)
-    {
-        $user = User::find($id);
-
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
-
-        $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
-    }
-
     public  function update(UpdateUserRequestDTO $request)
     {
-
-        // $user = User::find($request->getID());
-
-        // if ($user->fullname != $request->getFullname() && $request->getFullname() != '')
-        //     $user->fullname = $request->getFullname();
-
-        // if ($user->email != $request->getEmail() && $request->getEmail() != '')
-        //     $user->email = $request->getEmail();
-
-        // $user->save();
-        // $userDTO = new UserResponseDTO($user);
-        // return $userDTO->toJSON();
-
         $user = User::find($request->getID());
 
         if ($user->fullname != $request->getFullname() && $request->getFullname() != '')
@@ -79,18 +56,6 @@ class UserService
 
     public  function changePassword(ChangePasswordUserRequestDTO $request)
     {
-
-        // $user = User::find($request->getID());
-
-        // if (!checkPasswordHash($request->getOldPassword(), $user->password))
-        //     abort(400, 'Old password is not correct !!!');
-
-        // $user->password = hashPassword($request->getNewPassword());
-
-        // $user->save();
-        // $userDTO = new UserResponseDTO($user);
-        // return $userDTO->toJSON();
-
         $user = User::find($request->getID());
 
         if (!checkPasswordHash($request->getOldPassword(), $user->password))
@@ -105,25 +70,6 @@ class UserService
 
     public function uploadAvatar(UploadFileRequestDTO $file, string $id)
     {
-
-        // $user = User::find($id);
-
-        // if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
-
-        // $fileResponse = $this->fileService->upload($file);
-        // try {
-        //     $fileDelete = new DeleteFileRequestDTO($user->avatar);
-        //     $fileDeleteResponse = $this->fileService->delete($fileDelete);
-        // } catch (\Throwable $th) {
-        // }
-
-        // $user->avatar = $fileResponse;
-
-        // $user->save();
-
-        // $userDTO = new UserResponseDTO($user);
-        // return $userDTO->toJSON();
-
         $user = User::find($id);
 
         if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
@@ -146,6 +92,7 @@ class UserService
     public  function deleteUser($id)
     {
         $user = User::find($id);
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
         $user->delete();
         $userDTO = new UserResponseDTO($user);
         return $userDTO->toJSON();

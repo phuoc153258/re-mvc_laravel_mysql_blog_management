@@ -7,13 +7,11 @@ use App\Http\Controllers\Base\AuthController;
 use Illuminate\Support\Facades\Auth;
 
 Route::prefix('admin')->group(function () {
-    // Route::prefix('users')->group(function () {
-    //     Route::get('/{id}/password', [UserController::class, 'changePassword']);
+    Route::prefix('users')->group(function () {
+        Route::get('/{id}', [UserController::class, 'show']);
 
-    //     Route::get('/{id}', [UserController::class, 'show']);
-
-    //     Route::get('', [UserController::class, 'index']);
-    // });
+        Route::get('', [UserController::class, 'index']);
+    });
 
     Route::prefix('blogs')->group(function () {
         Route::get('/create', [BlogController::class, 'create']);
