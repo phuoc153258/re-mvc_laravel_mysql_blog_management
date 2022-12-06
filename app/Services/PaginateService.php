@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\Base;
+namespace App\Services;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 
 class PaginateService

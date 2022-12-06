@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
-use App\Services\Base\FileService;
+use App\Services\FileService;
 use App\Traits\HttpResponse;
 
 class FileApiController extends Controller

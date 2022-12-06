@@ -7,7 +7,7 @@ use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\User\UpdateUserRequestDTO;
-use App\Services\User\UserService;
+use App\Services\UserService;
 use App\Validate\UserValidate;
 use App\Traits\HttpResponse;
 use App\Traits\Authenticate;

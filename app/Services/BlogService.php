@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\User;
+namespace App\Services;
 
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
@@ -9,8 +9,8 @@ use App\DTO\Request\Blog\UpdateBlogRequestDTO;
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\response\Blog\BlogResponseDTO;
 use App\Models\Blog;
-use App\Services\Base\PaginateService;
-use App\Services\Base\FileService;
+use App\Services\PaginateService;
+use App\Services\FileService;
 
 class BlogService
 {
@@ -29,16 +29,14 @@ class BlogService
         return $data;
     }
 
-    public function show($id, $user_id)
+    public function show($id, $user_id = null)
     {
         $blog = Blog::with('users')
-            ->where([
-                'id' => $id,
-                'user_id' => $user_id
-            ])
-            ->get()
-            ->first();
-        $blogDTO = new BlogResponseDTO($blog);
+            ->where('id', $id);
+        if ($user_id != null || $user_id != '') {
+            $blog->where('blogs.user_id', $user_id);
+        }
+        $blogDTO = new BlogResponseDTO($blog->get()->first());
         return $blogDTO->toJSON();
     }
 
@@ -60,13 +58,15 @@ class BlogService
         return $blogDTO->toJSON();
     }
 
-    public function updateBlog(UpdateBlogRequestDTO $blogRequest, $user_id)
+    public function updateBlog(UpdateBlogRequestDTO $blogRequest, $user_id = null)
     {
-        $blog = Blog::where([
-            'id' => $blogRequest->getID(),
-            'user_id' => $user_id
-        ])->get()->first();
+        $blogQuery = Blog::with('users')
+            ->where('id', $blogRequest->getID());
+        if ($user_id != null || $user_id != '') {
+            $blogQuery->where('blogs.user_id', $user_id);
+        }
 
+        $blog = $blogQuery->get()->first();
         if ($blogRequest->getTitle() != $blog->title && $blogRequest->getTitle() != '') $blog->title = $blogRequest->getTitle();
         if ($blogRequest->getSubTitle() != $blog->sub_title && $blogRequest->getSubTitle() != '') $blog->sub_title = $blogRequest->getSubTitle();
         if ($blogRequest->getContent() != $blog->content && $blogRequest->getContent() != '') $blog->content = $blogRequest->getContent();
@@ -76,12 +76,15 @@ class BlogService
         return $blogDTO->toJSON();
     }
 
-    public function uploadImage(UploadFileRequestDTO $file, int $id, $user_id)
+    public function uploadImage(UploadFileRequestDTO $file, int $id, $user_id = null)
     {
-        $blog = Blog::with('users')->where([
-            'id' => $id,
-            'user_id' => $user_id
-        ])->get()->first();
+        $blogQuery = Blog::with('users')
+            ->where('id', $id);
+        if ($user_id != null || $user_id != '') {
+            $blogQuery->where('blogs.user_id', $user_id);
+        }
+
+        $blog = $blogQuery->get()->first();
 
         if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
 
@@ -100,12 +103,16 @@ class BlogService
         return $blogDTO->toJSON();
     }
 
-    public function deleteBlog($id, $user_id)
+    public function deleteBlog($id, $user_id = null)
     {
-        $blog = Blog::with('users')->where([
-            'id' => $id,
-            'user_id' => $user_id
-        ])->get()->first();
+        $blogQuery = Blog::with('users')
+            ->where('id', $id);
+        if ($user_id != null || $user_id != '') {
+            $blogQuery->where('blogs.user_id', $user_id);
+        }
+
+        $blog = $blogQuery->get()->first();
+
         if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
         $blog->delete();
     }

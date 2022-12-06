@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
-use App\Services\Base\AuthService;
+use App\Services\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
 

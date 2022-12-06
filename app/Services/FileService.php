@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services\Base;
+namespace App\Services;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 

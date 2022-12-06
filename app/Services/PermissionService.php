@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Admin;
+namespace App\Services;
 
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
@@ -9,7 +9,7 @@ use App\DTO\Request\Permission\GivePermissionUserRequestDTO;
 use App\DTO\Request\Permission\UpdatePermissionRequestDTO;
 use App\DTO\Response\Permission\PermissionResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
-use App\Services\Base\PaginateService;
+use App\Services\PaginateService;
 
 class PermissionService
 {

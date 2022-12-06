@@ -8,7 +8,7 @@ use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\DTO\Request\Blog\CreateBlogRequestDTO;
 use App\DTO\Request\Blog\UpdateBlogRequestDTO;
-use App\Services\Admin\BlogService;
+use App\Services\BlogService;
 use App\Validate\BlogValidate;
 use App\Traits\HttpResponse;
 

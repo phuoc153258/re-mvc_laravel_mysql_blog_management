@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Base;
+namespace App\Services;
 
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use Illuminate\Support\Facades\Auth;
