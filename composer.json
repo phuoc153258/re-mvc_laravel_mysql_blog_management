@@ -38,6 +38,7 @@
             "app/Constants/validate.php",
             "app/Constants/role.php",
             "app/Constants/permission.php",
+            "app/Constants/user.php",
 
             "app/Message/base.php",
 

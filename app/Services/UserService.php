@@ -68,6 +68,18 @@ class UserService
         return $userDTO->toJSON();
     }
 
+    public function resetPassword($id)
+    {
+        $user = User::find($id);
+        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+
+        $user->password = USER_DEFAULT_PASSWORD;
+
+        $user->save();
+        $userDTO = new UserResponseDTO($user);
+        return $userDTO->toJSON();
+    }
+
     public function uploadAvatar(UploadFileRequestDTO $file, string $id)
     {
         $user = User::find($id);

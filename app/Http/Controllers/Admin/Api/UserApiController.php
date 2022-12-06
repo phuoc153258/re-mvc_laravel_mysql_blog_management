@@ -70,12 +70,11 @@ class UserApiController extends Controller
         }
     }
 
-    public function changePassword(Request $request, $id)
+    public function resetPassword($id)
     {
         try {
-            $request = new ChangePasswordUserRequestDTO($request, $id);
-            $this->userValidate->validateInfoUserChangePassword($request);
-            $data = $this->userService->changePassword($request);
+            $this->userValidate->validateInfoUserID($id);
+            $data = $this->userService->resetPassword($id);
             return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);

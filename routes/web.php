@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Base\AuthController;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +21,22 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}', [BlogController::class, 'show']);
 
         Route::get('/', [BlogController::class, 'index']);
+    });
+
+    Route::prefix('roles')->group(function () {
+        Route::get('/create', [RoleController::class, 'create']);
+
+        Route::get('/{id}', [RoleController::class, 'show']);
+
+        Route::get('/', [RoleController::class, 'index']);
+    });
+
+    Route::prefix('permission')->group(function () {
+        Route::get('/create', [PermissionController::class, 'create']);
+
+        Route::get('/{id}', [PermissionController::class, 'show']);
+
+        Route::get('/', [PermissionController::class, 'index']);
     });
 });
 

@@ -8,24 +8,6 @@ use App\Http\Controllers\Admin\Api\RoleApiController;
 use App\Http\Controllers\Base\Api\FileApiController;
 use App\Http\Controllers\Base\Api\AuthApiController;
 
-
-// Route::middleware(['auth:sanctum'])->group(function () {
-
-
-
-//     Route::middleware('role:admin')->group(function () {
-//         Route::prefix('files')->group(function () {
-//             Route::post('/', [FileApiController::class, 'upload']);
-
-//             Route::delete('/', [FileApiController::class, 'delete']);
-//         });
-
-//     });
-
-// });
-
-
-
 Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('/admin')->middleware('role:admin')->group(function () {
@@ -53,7 +35,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
             Route::delete('/{user_id}/permissions/{permission_id}', [PermissionApiController::class, 'revokePermission'])->middleware('permission:admin-revoke-permission');
 
-            Route::patch('/{id}/password', [UserApiController::class, 'changePassword'])->middleware('permission:admin-reset-password');
+            Route::patch('/{id}/password', [UserApiController::class, 'resetPassword'])->middleware('permission:admin-reset-password');
 
             Route::post('/{id}/avatar', [UserApiController::class, 'uploadAvatar'])->middleware('permission:admin-update-user');
 
@@ -89,6 +71,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
             Route::get('/', [PermissionApiController::class, 'index']);
         });
+
+        //         Route::prefix('files')->group(function () {
+        //             Route::post('/', [FileApiController::class, 'upload']);
+
+        //             Route::delete('/', [FileApiController::class, 'delete']);
+        //         });
     });
 
 
