@@ -119,7 +119,6 @@ async function getInfoUser() {
         });
         return response;
     } catch (error) {
-        console.log(error);
         return null;
     }
 }
@@ -161,14 +160,12 @@ async function getInfoUserLoginHome() {
 async function getInfoUserLoginAdmin() {
     try {
         const response = await getInfoUser();
-        console.log(checkRoleUser(response.data.data, "admin"));
         if (!checkRoleUser(response.data.data, "admin")) {
             location.replace(`/`);
             return;
         }
         renderInfoUserToNavbar(response.data.data);
     } catch (error) {
-        console.log(error);
         location.replace(`/`);
         return;
     }

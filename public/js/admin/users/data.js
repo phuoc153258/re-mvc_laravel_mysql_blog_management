@@ -146,41 +146,23 @@ async function deleteUser(id) {
     }
 }
 
-async function changePassword() {
+async function resetPassword() {
     try {
-        const userId = window.location.pathname.split("/")[2];
-        const old_password = document.getElementById(
-            "old-password-user-js"
-        ).value;
-        const new_password = document.getElementById(
-            "new-password-user-js"
-        ).value;
-        const re_password = document.getElementById(
-            "re-password-user-js"
-        ).value;
-
-        if (new_password != re_password) {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
-            return;
-        }
+        const userId = window.location.pathname.split("/")[3];
         const response = await axios({
             method: "patch",
             url: URLUser + `/${userId}/password`,
-            data: {
-                old_password,
-                new_password,
-            },
+            data: {},
             headers: {
                 Authorization: getCookie("access_token"),
             },
         });
         if (response.data.status) {
-            await swal("Change password success !!!", "", "success");
-            location.replace(`/users/${userId}`);
+            await swal("Reset password success !!!", "", "success");
+            emptyInfoDetailsUser();
+            renderDataDetailsUser(response.data);
+            renderListRoleUser(response.data.data.roles);
+            renderListPermissionUser(response.data.data.permissions);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

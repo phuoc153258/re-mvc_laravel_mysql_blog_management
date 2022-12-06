@@ -68,12 +68,14 @@ class RoleApiController extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         try {
             $this->roleValidate->validateInfoIdRole($id);
-            $roleResponse = $this->roleService->delete($id);
-            return $this->success(MESSAGE_SUCCESS_DELETE_ROLE, MESSAGE_BASE_SUCCESS, 200);
+            $this->roleService->delete($id);
+            $option = new BasePaginateRequestDTO($request, 'roles');
+            $data = $this->roleService->getList($option);
+            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }

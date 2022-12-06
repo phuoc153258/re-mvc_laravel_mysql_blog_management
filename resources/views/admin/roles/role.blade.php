@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="d-flex justify-content-between">
-        <h2>Blog Management</h2>
-        <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" href="/admin/blogs/create">
-            <p>Add blog</p>
+        <h2>Role Management</h2>
+        <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" href="/admin/roles/create">
+            <p>Add role</p>
             <i class="fa-solid fa-plus" style="line-height: 1.5"></i>
         </a>
     </div>
@@ -56,9 +56,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">ID</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Username</th>
+                                <th scope="col">Name</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Updated At</th>
                                 <th scope="col">Action</th>
@@ -80,8 +78,7 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/helper/blogs/file.js') }}"></script>
-    <script src="{{ asset('js/helper/blogs/index.js') }}"></script>
-    <script src="{{ asset('js/admin/blogs/data.js') }}"></script>
-    <script src="{{ asset('js/admin/blogs/pageBlogs.js') }}"></script>
+    <script src="{{ asset('js/admin/role/index.js') }}"></script>
+    <script src="{{ asset('js/admin/role/data.js') }}"></script>
+    <script src="{{ asset('js/admin/role/pageRole.js') }}"></script>
 @endsection

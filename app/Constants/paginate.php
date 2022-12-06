@@ -29,14 +29,14 @@ define('BLOG_PAGINATE_TYPE', [
 define('ROLE_PAGINATE_TYPE', [
     'NAME' => 'roles',
     'SEARCH_BY' => 'name',
-    'SORT_BY' => 'name',
+    'SORT_BY' => 'id',
     'SELECT_ITEM' => []
 ]);
 
 define('PERMISSION_PAGINATE_TYPE', [
     'NAME' => 'permissions',
     'SEARCH_BY' => 'name',
-    'SORT_BY' => 'name',
+    'SORT_BY' => 'id',
     'SELECT_ITEM' => []
 ]);
 

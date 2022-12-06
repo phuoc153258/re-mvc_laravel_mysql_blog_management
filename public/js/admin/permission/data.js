@@ -1,10 +1,10 @@
 const URLPermission = `/api/admin/permissions`;
 
-async function getListPermission() {
+async function getListPermission(is_paginate = true) {
     try {
         const response = await axios({
             method: "get",
-            url: URLPermission + `?is_paginate=false`,
+            url: URLPermission + `?is_paginate=${is_paginate}`,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),

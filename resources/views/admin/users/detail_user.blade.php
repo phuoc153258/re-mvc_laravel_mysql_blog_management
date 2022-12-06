@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between">
         <h2>Detail User</h2>
         <a class="d-flex" style="gap: 0 10px; cursor: pointer; text-decoration: none; color: black"
-            id="change-password-user-js">
+            onclick="resetPasswordNotice()">
             <p>Reset password</p>
             <i class="fa-solid fa-rotate-right" style="line-height: 1.4"></i>
         </a>
@@ -27,11 +27,6 @@
                                 </div>
                             </div>
                             <div class="col-8">
-                                @if (session('status'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
                                 <div class="form-group mb-3">
                                     <label for="">ID:</label>
                                     <input type="text" class="form-control" placeholder="ID.." value="" readonly
@@ -53,7 +48,7 @@
                                         id="email-user-update-js">
                                 </div>
                                 <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
-                                    <p class="mt-3">List role:</p>
+                                    <p class="mt-auto mb-auto">List role:</p>
                                     <button class="btn btn-primary dropdown-toggle " type="button" id="role-user-update-js"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                         style="width: 45% !important;">
@@ -64,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center pt-2 pb-2" style="gap: 0 10px;">
-                                    <p class="align-items-center">Roles:</p>
+                                    <p class="align-items-center mt-auto mb-auto">Roles:</p>
                                     <ul class="list-group d-flex align-items-center"
                                         style="flex-direction: row !important;gap: 0 10px;overflow-x: auto;
                                         scroll-snap-type: x mandatory;"
@@ -74,7 +69,7 @@
                                 </div>
 
                                 <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
-                                    <p class="mt-3">List permission:</p>
+                                    <p class="mt-auto mb-auto">List permission:</p>
                                     <button class="btn btn-primary dropdown-toggle " type="button"
                                         id="permission-user-update-js" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false" style="width: 45% !important;">
@@ -86,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center pt-2 pb-2" style="gap: 0 10px;">
-                                    <p class="align-items-center">Permissions:</p>
+                                    <p class="align-items-center mt-auto mb-auto">Permissions:</p>
                                     <ul class="list-group d-flex align-items-center"
                                         style="flex-direction: row !important;gap: 0 10px;overflow-x: auto;
                                         scroll-snap-type: x mandatory;"
