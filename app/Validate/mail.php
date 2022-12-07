@@ -12,7 +12,7 @@ class MailValidate
 
     public function validateEmail(WelcomeMailRequestDTO $mailRequest)
     {
-        $validator = Validator::make(['email' => $mailRequest->getEmail()], [
+        $validator = Validator::make($mailRequest->toArray(), [
             ...VALIDATE_EMAIL
         ]);
         return $this->baseRunCondition($validator);

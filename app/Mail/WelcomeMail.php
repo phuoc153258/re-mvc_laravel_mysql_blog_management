@@ -13,27 +13,14 @@ class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data = [];
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->from('ndphuoc.2504.dev@gmail.com', 'Admin')
-            ->subject($this->data["subject"])
-            ->view('mail.welcome')->with("data", $this->data);
+        return $this->from(MAIL_ADMIN, MAIL_ADMIN_NAME)
+            ->subject(MAIL_WELCOME_USER["subject"])
+            ->view('mail.welcome')->with("data", MAIL_WELCOME_USER);
     }
 }
