@@ -7,3 +7,10 @@ if (!function_exists('formatDate')) {
         return date_format($date, "d/m/Y");
     }
 }
+
+if (!function_exists('getDateNow')) {
+    function getDateNow()
+    {
+        return new DateTime();
+    }
+}

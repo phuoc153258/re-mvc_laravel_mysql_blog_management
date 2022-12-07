@@ -81,7 +81,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('users/me')->group(function () {
-        Route::get('/verify-mail', [MailApiController::class, 'verifyMail'])->middleware('permission:user-update-profile');
+        Route::post('/verify-mail/handle', [MailApiController::class, 'handleVerifyMail'])->middleware('permission:user-update-profile');
+
+        Route::post('/verify-mail', [MailApiController::class, 'verifyMail'])->middleware('permission:user-update-profile');
 
         Route::patch('/password', [\App\Http\Controllers\User\Api\UserApiController::class, 'changePassword'])->middleware('permission:user-change-password');
 
@@ -110,8 +112,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/{email}', [MailApiController::class, 'welcome']);
     });
 });
-
-
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthApiController::class, 'login']);

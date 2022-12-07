@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         User::create([
             'username' => 'admin',
             'fullname' => 'admin',
-            'email' => 'admin@gmail.com',
+            'email' => '19T1021186@husc.edu.vn',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
             'is_email_verified' => false,
@@ -28,7 +28,7 @@ class AdminSeeder extends Seeder
         User::create([
             'username' => 'phuoc1',
             'fullname' => 'phuoc1',
-            'email' => 'phuoc1@gmail.com',
+            'email' => 'nguyendonphuochusc@gmail.com',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
             'is_email_verified' => false,
@@ -38,7 +38,7 @@ class AdminSeeder extends Seeder
         User::create([
             'username' => 'phuoc2',
             'fullname' => 'phuoc2',
-            'email' => 'phuoc2@gmail.com',
+            'email' => 'hamburger153258@gmail.com',
             'avatar' => 'image/user_avatar_default.jpg',
             'password' => '$2y$10$Gii.ZY8LlkdIN6mUEw5ojOaawUKgfLP5wZxcjocF1BIgv0egyzIOq',
             'is_email_verified' => false,

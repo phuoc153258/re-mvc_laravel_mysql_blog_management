@@ -16,6 +16,15 @@ class UserController extends Controller
         }
     }
 
+    public function verifyEmail()
+    {
+        try {
+            return view('mail.handle_verify_mail');
+        } catch (\Throwable $th) {
+            return redirect('/');
+        }
+    }
+
     public function changePassword(Request $request)
     {
         try {

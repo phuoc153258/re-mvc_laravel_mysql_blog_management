@@ -2,8 +2,7 @@
 
 namespace App\Jobs;
 
-use App\DTO\Request\Mail\WelcomeMailRequestDTO;
-use App\Mail\WelcomeMail;
+use App\Mail\VerifyMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,19 +11,18 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 
-class WelcomeMailJob implements ShouldQueue
+class VerifyMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    protected $user;
 
-    protected WelcomeMailRequestDTO $mailRequest;
-
-    public function __construct(WelcomeMailRequestDTO $mailRequest)
+    public function __construct($user)
     {
-        $this->mailRequest = $mailRequest;
+        $this->user = $user;
     }
 
     public function handle()
     {
-        Mail::to($this->mailRequest->getEmail())->queue(new WelcomeMail());
+        Mail::to($this->user->email)->queue(new VerifyMail($this->user));
     }
 }

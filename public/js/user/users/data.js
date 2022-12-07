@@ -160,3 +160,33 @@ async function changePassword() {
         return;
     }
 }
+
+async function sendMailVerify() {
+    try {
+        const response = await axios({
+            method: "post",
+            url: URLUser + `/verify-mail`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        if (response.data.status) {
+            await swal("Please check your email !!!", "", "info");
+        } else {
+            await swal({
+                title: "Some thing went wrong!!!",
+                icon: "error",
+                button: "OK",
+            });
+            return;
+        }
+    } catch (error) {
+        await swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
+}

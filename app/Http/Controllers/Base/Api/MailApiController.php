@@ -37,12 +37,25 @@ class MailApiController extends Controller
         }
     }
 
-    public function verifyMail()
+    public function verifyMail(Request $request)
     {
         try {
-            //code...
+            $user = $this->getInfoUser($request);
+            $mailResponse = $this->mailService->verifyMail($user);
+            return $this->success($mailResponse, MESSAGE_SUCCESS_MAIL_BASE, 200);
         } catch (\Throwable $th) {
-            //throw $th;
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+        }
+    }
+
+    public function handleVerifyMail(Request $request)
+    {
+        try {
+            $user_id = $this->getInfoUser($request)->id;
+            $userResposne = $this->mailService->handleVerifyMail($user_id);
+            return $this->success($userResposne, MESSAGE_SUCCESS_VERIFY_MAIL, 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
         }
     }
 }
