@@ -32,7 +32,6 @@ class UserService
     public  function show($id)
     {
         $user = User::find($id);
-
         if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
 
         $userDTO = new UserResponseDTO($user);

@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Base\AuthController;
-use App\Http\Controllers\MailController;
 use Illuminate\Support\Facades\Auth;
 
 Route::prefix('admin')->group(function () {
@@ -62,9 +61,6 @@ Route::prefix('auth')->group(function () {
 
     Route::get('/register', [AuthController::class, 'register']);
 });
-
-
-Route::get('/sendmail', [MailController::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');

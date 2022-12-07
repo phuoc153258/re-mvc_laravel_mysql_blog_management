@@ -3,10 +3,13 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MailNotify extends Mailable
+class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,8 +32,8 @@ class MailNotify extends Mailable
      */
     public function build()
     {
-        return $this->from('ndphuoc.2504.dev@gmail.com', 'Cambo Tutorial')
+        return $this->from('ndphuoc.2504.dev@gmail.com', 'Admin')
             ->subject($this->data["subject"])
-            ->view('emails.subscribe')->with("data", $this->data);
+            ->view('mail.welcome')->with("data", $this->data);
     }
 }

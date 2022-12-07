@@ -97,3 +97,17 @@ function renderListPermissionUser(permissions) {
 function emptyListPermissionUser() {
     document.getElementById("list-permission-user-js").innerHTML = "";
 }
+
+function renderEmailVerify(data) {
+    emptyEmailVerify();
+    let emailVerify = document.getElementById("email-verify-js");
+    if (data.is_email_verified == 0)
+        emailVerify.innerHTML = `<label for="">Your email is not verify! <a class="btn-link" style="cursor: pointer;">Verify</a></label>`;
+    else
+        emailVerify.innerHTML = `<label for="">Email verified at:</a> </label><input type="email"
+        class="form-control" placeholder="Email..." value="" id="email-user-update-js">`;
+}
+
+function emptyEmailVerify() {
+    document.getElementById("email-verify-js").innerHTML = "";
+}

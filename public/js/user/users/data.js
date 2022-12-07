@@ -14,6 +14,7 @@ async function getUser() {
             emptyInfoDetailsUser();
             renderDataDetailsUser(response.data);
             addEventUploadFile();
+            renderEmailVerify(response.data.data);
         } else {
             await swal({
                 title: "Some thing went wrong!!!",

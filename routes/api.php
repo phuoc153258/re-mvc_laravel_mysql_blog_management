@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Api\PermissionApiController;
 use App\Http\Controllers\Admin\Api\RoleApiController;
 use App\Http\Controllers\Base\Api\FileApiController;
 use App\Http\Controllers\Base\Api\AuthApiController;
+use App\Http\Controllers\Base\Api\MailApiController;
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
@@ -72,15 +73,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/', [PermissionApiController::class, 'index']);
         });
 
-        //         Route::prefix('files')->group(function () {
-        //             Route::post('/', [FileApiController::class, 'upload']);
+        Route::prefix('files')->group(function () {
+            Route::post('/', [FileApiController::class, 'upload']);
 
-        //             Route::delete('/', [FileApiController::class, 'delete']);
-        //         });
+            Route::delete('/', [FileApiController::class, 'delete']);
+        });
     });
 
-
     Route::prefix('users/me')->group(function () {
+        Route::get('/verify-mail', [MailApiController::class, 'verifyMail'])->middleware('permission:user-update-profile');
+
         Route::patch('/password', [\App\Http\Controllers\User\Api\UserApiController::class, 'changePassword'])->middleware('permission:user-change-password');
 
         Route::post('/avatar', [\App\Http\Controllers\User\Api\UserApiController::class, 'uploadAvatar'])->middleware('permission:user-update-profile');
@@ -102,6 +104,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/', [\App\Http\Controllers\User\Api\BlogApiController::class, 'create'])->middleware('permission:user-create-my-blog');
 
         Route::get('/', [\App\Http\Controllers\User\Api\BlogApiController::class, 'index'])->middleware('permission:user-get-my-blog-list');
+    });
+
+    Route::prefix('mails')->group(function () {
+        Route::get('/{email}', [MailApiController::class, 'welcome']);
     });
 });
 

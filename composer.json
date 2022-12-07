@@ -39,6 +39,7 @@
             "app/Constants/role.php",
             "app/Constants/permission.php",
             "app/Constants/user.php",
+            "app/Constants/mail.php",
 
             "app/Message/base.php",
 
@@ -49,11 +50,13 @@
             "app/Message/error/auth.php",
             "app/Message/error/permission.php",
             "app/Message/error/role.php",
+            "app/Message/error/mail.php",
 
             "app/Message/success/file.php",
             "app/Message/success/auth.php",
             "app/Message/success/user.php",
             "app/Message/success/role.php",
+            "app/Message/success/mail.php",
             "app/Message/success/permission.php"
         ],
         "psr-4": {
@@ -69,6 +72,7 @@
             "app/DTO/Request/Auth",
             "app/DTO/Request/Role",
             "app/DTO/Request/Permission",
+            "app/DTO/Request/Mail",
 
             "app/DTO/Response/Paginate",
             "app/DTO/Response/User",

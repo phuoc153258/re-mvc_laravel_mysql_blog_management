@@ -52,6 +52,8 @@
                                     <input type="email" class="form-control" placeholder="Email..." value=""
                                         id="email-user-update-js">
                                 </div>
+                                <div class="form-group mb-3" id="email-verify-js">
+                                </div>
                                 <div class="form-group mb-3">
                                     <label for="">Created At:</label>
                                     <input type="text" class="form-control" placeholder="Created At..." value=""

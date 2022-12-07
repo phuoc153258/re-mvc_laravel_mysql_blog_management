@@ -14,6 +14,8 @@ class UserResponseDTO
     private string $fullname;
     private string $email;
     private string $avatar;
+    private int $is_email_verified;
+    private string $email_verified_at;
     private string $created_at;
     private string $updated_at;
     private array $roles = array();
@@ -26,6 +28,9 @@ class UserResponseDTO
         $this->fullname = $user->fullname;
         $this->email = $user->email;
         $this->avatar = $user->avatar;
+        $this->is_email_verified = $user->is_email_verified;
+        if ($user->email_verified_at == null) $this->email_verified_at = '';
+        else $this->email_verified_at = formatDate($user->email_verified_at);
         $this->created_at = formatDate($user->created_at);
         $this->updated_at = formatDate($user->updated_at);
         foreach ($user->roles->toArray() as $role) {
@@ -44,6 +49,8 @@ class UserResponseDTO
             'fullname' => $this->fullname,
             'email' => $this->email,
             'avatar' => $this->avatar,
+            'is_email_verified' => $this->is_email_verified,
+            'email_verified_at' => $this->email_verified_at,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'roles' => $this->roles,
