@@ -6,7 +6,14 @@ return [
         'register-user' => 'Register success !!!',
         'logout-user' => 'You have succesfully been logged out and your token has been removed !!!'
     ],
-    'blog' => [],
+    'blog' => [
+        'get-list' => 'Get list blog success !!!',
+        'get' => 'Get blog success !!!',
+        'create' => 'Create blog success !!!',
+        'update' => 'Update blog success !!!',
+        'upload' => 'Upload image success !!!',
+        'delete' => 'Delete blog success !!!'
+    ],
     'file' => [
         'upload-file' => 'Upload file success !!!',
         'delete-file' => 'Delete file success !!!'

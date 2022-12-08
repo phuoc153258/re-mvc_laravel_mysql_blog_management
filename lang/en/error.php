@@ -7,7 +7,13 @@ return [
         'register-failed' => 'Register failed !!!',
     ],
     'blog' => [
-        'blog-not-found' => 'Blog not found !!!'
+        'blog-not-found' => 'Blog not found !!!',
+        'get-list' => 'Get list blog failed !!!',
+        'get' => 'Get blog failed !!!',
+        'create' => 'Create blog failed !!!',
+        'update' => 'Update blog failed !!!',
+        'upload' => 'Upload image failed !!!',
+        'delete' => 'Delete blog failed !!!'
     ],
     'file' => [
         'select-file' => 'Please select file !!!',

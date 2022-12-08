@@ -44,7 +44,7 @@ class BlogService
     {
         $blog = new Blog();
 
-        if ($blogRequest->getUserID() == '' || $blogRequest->getUserID() == null) abort(400, MESSAGE_ERROR_USER_ID_NOT_FOUND);
+        if ($blogRequest->getUserID() == '' || $blogRequest->getUserID() == null) abort(400, trans('error.user.user-id-not-found'));
         $blog->user_id = $blogRequest->getUserID();
 
         if ($blogRequest->getTitle() != '') $blog->title = $blogRequest->getTitle();
@@ -86,7 +86,7 @@ class BlogService
 
         $blog = $blogQuery->get()->first();
 
-        if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
+        if (!$blog) return abort(400, trans('error.blog.blog-not-found'));
 
         $fileResponse = $this->fileService->upload($file);
 
@@ -113,7 +113,7 @@ class BlogService
 
         $blog = $blogQuery->get()->first();
 
-        if (!$blog) return abort(400, MESSAGE_ERROR_BLOG_NOT_FOUND);
+        if (!$blog) return abort(400, trans('error.blog.blog-not-found'));
         $blog->delete();
     }
 }

@@ -6,7 +6,14 @@ return [
         'register-user' => 'Đăng ký thành công !!!',
         'logout-user' => 'Bạn đã đăng xuất thành công !!!'
     ],
-    'blog' => [],
+    'blog' => [
+        'get-list' => 'Lấy danh sách thông tin blog thành công !!!',
+        'get' => 'Lấy thông tin blog thành công !!!',
+        'create' => 'Tạo mới blog thành công !!!',
+        'update' => 'Cập nhật blog thành công !!!',
+        'upload' => 'Tải ảnh cho blog thành công !!!',
+        'delete' => 'Xóa blog thành công !!!'
+    ],
     'file' => [
         'upload-file' => 'Tải file thành công !!!',
         'delete-file' => 'Xóa file thành công !!!'

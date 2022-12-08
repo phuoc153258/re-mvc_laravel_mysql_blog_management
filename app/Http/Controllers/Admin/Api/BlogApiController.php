@@ -29,9 +29,9 @@ class BlogApiController extends Controller
         try {
             $option = new BasePaginateRequestDTO($request, 'blogs');
             $data = $this->blogService->getList($option);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('success.blog.get-list'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.blog.get-list'), 400);
         }
     }
 
@@ -40,9 +40,9 @@ class BlogApiController extends Controller
         try {
             $this->blogValidate->validateInfoIdBlog($id);
             $blogResponse = $this->blogService->show($id);
-            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($blogResponse, trans('success.blog.get'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.blog.get'), 400);
         }
     }
 
@@ -53,9 +53,9 @@ class BlogApiController extends Controller
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $this->blogValidate->validateInfoCreateBlog($blogRequest);
             $blogResponse = $this->blogService->createBlog($blogRequest, $fileRequest);
-            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($blogResponse, trans('success.blog.create'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.blog.create'), 400);
         }
     }
 
@@ -65,9 +65,9 @@ class BlogApiController extends Controller
             $blogRequest = new UpdateBlogRequestDTO($request, $id);
             $this->blogValidate->validateInfoUpdateBlog($blogRequest);
             $blogResponse = $this->blogService->updateBlog($blogRequest);
-            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($blogResponse, trans('success.blog.update'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.blog.update'), 400);
         }
     }
 
@@ -77,9 +77,9 @@ class BlogApiController extends Controller
             $this->blogValidate->validateInfoIdBlog($id);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $blogResponse = $this->blogService->uploadImage($fileRequest, $id);
-            return $this->success($blogResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($blogResponse, trans('success.blog.upload'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.blog.upload'), 400);
         }
     }
 
@@ -90,9 +90,9 @@ class BlogApiController extends Controller
             $this->blogService->deleteBlog($id);
             $option = new BasePaginateRequestDTO($request, 'blogs');
             $data = $this->blogService->getList($option);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('success.blog.delete'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.blog.delete'), 400);
         }
     }
 }

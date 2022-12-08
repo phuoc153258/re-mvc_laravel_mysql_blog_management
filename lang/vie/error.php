@@ -7,7 +7,13 @@ return [
         'register-failed' => 'Đăng ký thất bại !!!',
     ],
     'blog' => [
-        'blog-not-found' => 'Không tìm thấy blog !!!'
+        'blog-not-found' => 'Không tìm thấy blog !!!',
+        'get-list' => 'Lấy danh sách thông tin blog thất bại !!!',
+        'get' => 'Lấy thông tin blog thất bại !!!',
+        'create' => 'Tạo mới blog thất bại !!!',
+        'update' => 'Cập nhật blog thất bại !!!',
+        'upload' => 'Tải ảnh cho blog thất bại !!!',
+        'delete' => 'Xóa blog thất bại !!!'
     ],
     'file' => [
         'select-file' => 'Hãy chọn file !!!',
