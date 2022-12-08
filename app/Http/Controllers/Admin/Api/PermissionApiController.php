@@ -28,9 +28,9 @@ class PermissionApiController extends Controller
         try {
             $option = new BasePaginateRequestDTO($request, 'permissions');
             $permissionResponse = $this->permissionService->getList($option);
-            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($permissionResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -39,9 +39,9 @@ class PermissionApiController extends Controller
         try {
             $this->permissionValidate->validateInfoIdPermission($id);
             $permissionResponse = $this->permissionService->show($id);
-            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($permissionResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -50,9 +50,9 @@ class PermissionApiController extends Controller
         try {
             $this->permissionValidate->validateInfoNamePermission($request->input('name'));
             $permissionResponse = $this->permissionService->create($request->input('name'));
-            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($permissionResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -62,9 +62,9 @@ class PermissionApiController extends Controller
             $permissionRequest = new UpdatePermissionRequestDTO($request, $id);
             $this->permissionValidate->validateInfoUpdatePermission($permissionRequest);
             $permissionResponse = $this->permissionService->update($permissionRequest);
-            return $this->success($permissionResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($permissionResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -75,9 +75,9 @@ class PermissionApiController extends Controller
             $this->permissionService->delete($id);
             $option = new BasePaginateRequestDTO($request, 'permissions');
             $data = $this->permissionService->getList($option);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -87,9 +87,9 @@ class PermissionApiController extends Controller
             $permissionRequest = new GivePermissionUserRequestDTO($user_id, $permission_id);
             $this->permissionValidate->validateInfoGivePermission($permissionRequest);
             $permissionResponse = $this->permissionService->givePermission($permissionRequest);
-            return $this->success($permissionResponse, MESSAGE_SUCCESS_GIVE_PERMISSION, 200);
+            return $this->success($permissionResponse, trans('success.permission.give-permission'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -99,9 +99,9 @@ class PermissionApiController extends Controller
             $permissionRequest = new GivePermissionUserRequestDTO($user_id, $permission_id);
             $this->permissionValidate->validateInfoGivePermission($permissionRequest);
             $permissionResponse = $this->permissionService->revokePermission($permissionRequest);
-            return $this->success($permissionResponse, MESSAGE_SUCCESS_REMOVE_ROLE, 200);
+            return $this->success($permissionResponse, trans('success.role.remove-role'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 }

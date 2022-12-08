@@ -40,7 +40,8 @@ return [
     ],
     'user' => [
         'user-not-found' => 'Không tìm thấy người dùng !!!',
-        'user-id-not-found' => 'Id của người dùng không tồn tại !!!'
+        'user-id-not-found' => 'Id của người dùng không tồn tại !!!',
+        'old-password-not-correct' => 'Mật khẩu cũ không chính xác !!!'
     ],
     'validate' => [
         'invalid-information' => 'Thông tin không hợp lệ !!!'

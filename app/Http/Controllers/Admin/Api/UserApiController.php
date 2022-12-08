@@ -29,9 +29,9 @@ class UserApiController extends Controller
         try {
             $option = new BasePaginateRequestDTO($request, 'users');
             $data = $this->userService->getList($option);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -39,9 +39,9 @@ class UserApiController extends Controller
     {
         try {
             $userResponse = $this->userService->show($id);
-            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($userResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -51,9 +51,9 @@ class UserApiController extends Controller
             $userRequest = new UpdateUserRequestDTO($request, $id);
             $this->userValidate->validateInfoUserUpdate($userRequest);
             $data = $this->userService->update($userRequest);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -64,9 +64,9 @@ class UserApiController extends Controller
             $this->userService->deleteUser($id);
             $option = new BasePaginateRequestDTO($request, 'users');
             $data = $this->userService->getList($option);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -75,9 +75,9 @@ class UserApiController extends Controller
         try {
             $this->userValidate->validateInfoUserID($id);
             $data = $this->userService->resetPassword($id);
-            return $this->success($data, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($data, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -87,9 +87,9 @@ class UserApiController extends Controller
             $this->userValidate->validateInfoUserID($id);
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $userResponse = $this->userService->uploadAvatar($fileRequest, $id);
-            return $this->success($userResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($userResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 }

@@ -32,7 +32,7 @@ class UserService
     public  function show($id)
     {
         $user = User::find($id);
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
         $userDTO = new UserResponseDTO($user);
         return $userDTO->toJSON();
@@ -70,7 +70,7 @@ class UserService
     public function resetPassword($id)
     {
         $user = User::find($id);
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
         $user->password = USER_DEFAULT_PASSWORD;
 
@@ -83,7 +83,7 @@ class UserService
     {
         $user = User::find($id);
 
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
         $fileResponse = $this->fileService->upload($file);
         try {
@@ -103,7 +103,7 @@ class UserService
     public  function deleteUser($id)
     {
         $user = User::find($id);
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
         $user->delete();
         $userDTO = new UserResponseDTO($user);
         return $userDTO->toJSON();

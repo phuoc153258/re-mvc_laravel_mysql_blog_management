@@ -31,9 +31,9 @@ class MailApiController extends Controller
             $mailRequest = new WelcomeMailRequestDTO($email);
             $this->mailValidate->validateEmail($mailRequest);
             $mailResponse = $this->mailService->welcome($mailRequest);
-            return $this->success($mailResponse, MESSAGE_SUCCESS_MAIL_BASE, 200);
+            return $this->success($mailResponse, trans('success.mail.mail-base'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_ERROR_MAIL_BASE, 400);
+            return $this->error($th->getMessage(), trans('error.mail.mail-base'), 400);
         }
     }
 
@@ -42,9 +42,9 @@ class MailApiController extends Controller
         try {
             $user = $this->getInfoUser($request);
             $mailResponse = $this->mailService->verifyMail($user);
-            return $this->success($mailResponse, MESSAGE_SUCCESS_MAIL_BASE, 200);
+            return $this->success($mailResponse, trans('success.mail.mail-base'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.mail.mail-base'), 400);
         }
     }
 
@@ -53,9 +53,9 @@ class MailApiController extends Controller
         try {
             $user_id = $this->getInfoUser($request)->id;
             $userResposne = $this->mailService->handleVerifyMail($user_id);
-            return $this->success($userResposne, MESSAGE_SUCCESS_VERIFY_MAIL, 200);
+            return $this->success($userResposne, trans('success.mail.verify-mail'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.mail.mail-base'), 400);
         }
     }
 }

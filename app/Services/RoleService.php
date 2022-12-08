@@ -37,7 +37,7 @@ class RoleService
     {
         $role = new Role();
 
-        if ($name == '' || $name == null) return abort(400, MESSAGE_ERROR_CREATE_ROLE);
+        if ($name == '' || $name == null) return abort(400, trans('error.role.create-role'));
 
         $role->name = $name;
 
@@ -49,7 +49,7 @@ class RoleService
     public function update(UpdateRoleRequestDTO $roleRequest)
     {
         $role = Role::find($roleRequest->getID());
-        if ($roleRequest->getName() == '' || $roleRequest->getName() == null) return abort(400, MESSAGE_ERROR_UPDATE_ROLE);
+        if ($roleRequest->getName() == '' || $roleRequest->getName() == null) return abort(400, trans('error.role.update-role'));
 
         $role->name = $roleRequest->getName();
         $role->save();
@@ -71,9 +71,9 @@ class RoleService
     {
         $user = User::find($userRequest->getUserID());
 
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
-        if ($user->hasRole([$userRequest->getRoleID()])) return abort(400, MESSAGE_ERROR_ASSIGN_ROLE_EXIST);
+        if ($user->hasRole([$userRequest->getRoleID()])) return abort(400, trans('error.role.assign-role-exists'));
 
         $user->assignRole([$userRequest->getRoleID()]);
 
@@ -86,10 +86,10 @@ class RoleService
     {
         $user = User::find($userRequest->getUserID());
 
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
-        if (!$user->hasRole([$userRequest->getRoleID()])) return abort(400, MESSAGE_ERROR_REMOVE_ROLE_NOT_EXIST);
-        if ($userRequest->getRoleID() == ROLE_USER_ID) return abort(400, MESSAGE_ERROR_CAN_NOT_DELETE_ROLE);
+        if (!$user->hasRole([$userRequest->getRoleID()])) return abort(400, trans('error.role.remove-role-exists'));
+        if ($userRequest->getRoleID() == ROLE_USER_ID) return abort(400, trans('error.role.can-not-delete-role'));
 
         $user->removeRole($userRequest->getRoleID());
 

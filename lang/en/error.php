@@ -40,7 +40,8 @@ return [
     ],
     'user' => [
         'user-not-found' => 'User not found !!!',
-        'user-id-not-found' => 'User id not found !!!'
+        'user-id-not-found' => 'User id not found !!!',
+        'old-password-not-correct' => 'Old password is not correct !!!'
     ],
     'validate' => [
         'invalid-information' => 'Invalid information !!!'

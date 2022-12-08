@@ -16,7 +16,7 @@ class LocalizationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
+        $lang = ($request->cookie('X-localization')) ?  $request->cookie('X-localization') : 'en';
 
         app()->setLocale($lang);
 

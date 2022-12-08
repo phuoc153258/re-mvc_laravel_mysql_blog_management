@@ -37,7 +37,7 @@ class PermissionService
     {
         $permission = new Permission();
 
-        if ($name == '' || $name == null) return abort(400, MESSAGE_ERROR_CREATE_PERMISSION);
+        if ($name == '' || $name == null) return abort(400, trans('error.permission.create-permission'));
 
         $permission->name = $name;
 
@@ -49,7 +49,7 @@ class PermissionService
     public function update(UpdatePermissionRequestDTO $permissionRequest)
     {
         $permission = Permission::find($permissionRequest->getID());
-        if ($permissionRequest->getName() == '' || $permissionRequest->getName() == null) return abort(400, MESSAGE_ERROR_UPDATE_PERMISSION);
+        if ($permissionRequest->getName() == '' || $permissionRequest->getName() == null) return abort(400, trans('error.permission.update-permission'));
 
         $permission->name = $permissionRequest->getName();
         $permission->save();
@@ -71,9 +71,9 @@ class PermissionService
     {
         $user = User::find($permissionRequest->getUserID());
 
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
-        if ($user->hasAnyPermission($permissionRequest->getPermissionID())) return abort(400, MESSAGE_ERROR_GIVE_PERMISSION_EXIST);
+        if ($user->hasAnyPermission($permissionRequest->getPermissionID())) return abort(400, trans('error.permission.give-permission-exists'));
 
         $user->givePermissionTo([$permissionRequest->getPermissionID()]);
 
@@ -86,9 +86,9 @@ class PermissionService
     {
         $user = User::find($permissionRequest->getUserID());
 
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
-        if (!$user->hasPermissionTo($permissionRequest->getPermissionID())) return abort(400, MESSAGE_ERROR_REVOKE_PERMISSION_NOT_EXIST);
+        if (!$user->hasPermissionTo($permissionRequest->getPermissionID())) return abort(400, trans('error.permission.revoke-permission-not-exists'));
 
         $user->revokePermissionTo($permissionRequest->getPermissionID());
 

@@ -20,21 +20,21 @@ class MailService
     {
         $sendEmailJob = new WelcomeMailJob($mailRequest);
         dispatch($sendEmailJob);
-        return MESSAGE_SUCCESS_PLEASE_CHECK_MAIL;
+        return trans('success.mail.please-check-mail');
     }
 
     public function verifyMail($user)
     {
         $verifyMailJob = new VerifyMailJob($user);
         dispatch($verifyMailJob);
-        return MESSAGE_SUCCESS_PLEASE_CHECK_MAIL;
+        return trans('success.mail.please-check-mail');
     }
 
     public function handleVerifyMail($user_id)
     {
         $user = User::find($user_id);
 
-        if (!$user) return abort(400, MESSAGE_ERROR_USER_NOT_FOUND);
+        if (!$user) return abort(400, trans('error.user.user-not-found'));
 
         $user->is_email_verified = MAIL_VERIFY_TRUE;
         $user->email_verified_at = getDateNow();

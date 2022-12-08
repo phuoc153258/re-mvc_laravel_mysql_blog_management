@@ -24,9 +24,9 @@ class FileApiController extends Controller
         try {
             $fileRequest = new UploadFileRequestDTO($request, 'file');
             $fileResponse = $this->file_service->upload($fileRequest);
-            return $this->success($fileResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($fileResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 
@@ -35,9 +35,9 @@ class FileApiController extends Controller
         try {
             $fileRequest = new DeleteFileRequestDTO($request->input('file'));
             $fileResponse = $this->file_service->delete($fileRequest);
-            return $this->success($fileResponse, MESSAGE_BASE_SUCCESS, 200);
+            return $this->success($fileResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 }
