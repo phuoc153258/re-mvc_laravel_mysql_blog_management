@@ -29,7 +29,7 @@ class AuthService
 
     public function login(LoginUserRequestDTO $userRequest)
     {
-        if (!Auth::attempt($userRequest->toArray())) return abort(401, MESSAGE_ERROR_LOGIN_USER);
+        if (!Auth::attempt($userRequest->toArray())) return abort(401, trans('error.auth.login-user'));
 
         $user = User::where('username', $userRequest->getUsername())->first();
         $userDTO = new UserResponseDTO($user);
@@ -43,6 +43,6 @@ class AuthService
     public function logout($user)
     {
         $user->currentAccessToken()->delete();
-        return MESSAGE_SUCCESS_LOGOUT_USER;
+        return trans('success.auth.logout-user');
     }
 }

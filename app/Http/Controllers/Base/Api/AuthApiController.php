@@ -28,9 +28,9 @@ class AuthApiController extends Controller
             $userRequest = new LoginUserRequestDTO($request);
             $this->authValidate->validateInfoLoginUser($userRequest);
             $userResponse = $this->authService->login($userRequest);
-            return $this->success($userResponse, MESSAGE_SUCCESS_LOGIN_USER, 200);
+            return $this->success($userResponse, trans('success.auth.login-user'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.auth.login-failed'), 400);
         }
     }
 
@@ -40,9 +40,9 @@ class AuthApiController extends Controller
             $userRequest = new RegisterUserRequestDTO($request);
             $this->authValidate->validateInfoRegisterUser($userRequest);
             $userResponse = $this->authService->register($userRequest);
-            return $this->success($userResponse, MESSAGE_SUCCESS_REGISTER_USER, 200);
+            return $this->success($userResponse, trans('success.auth.register-user'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('error.auth.register-failed'), 400);
         }
     }
 
@@ -50,9 +50,9 @@ class AuthApiController extends Controller
     {
         try {
             $response =  $this->authService->logout($request->user());
-            return $this->success($response, MESSAGE_SUCCESS_LOGOUT_USER, 200);
+            return $this->success($response, trans('success.auth.logout-user'), 200);
         } catch (\Throwable $th) {
-            return $this->error($th->getMessage(), MESSAGE_BASE_FAILED, 400);
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
 }

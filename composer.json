@@ -39,25 +39,8 @@
             "app/Constants/role.php",
             "app/Constants/permission.php",
             "app/Constants/user.php",
-            "app/Constants/mail.php",
+            "app/Constants/mail.php"
 
-            "app/Message/base.php",
-
-            "app/Message/error/file.php",
-            "app/Message/error/user.php",
-            "app/Message/error/validate.php",
-            "app/Message/error/blog.php",
-            "app/Message/error/auth.php",
-            "app/Message/error/permission.php",
-            "app/Message/error/role.php",
-            "app/Message/error/mail.php",
-
-            "app/Message/success/file.php",
-            "app/Message/success/auth.php",
-            "app/Message/success/user.php",
-            "app/Message/success/role.php",
-            "app/Message/success/mail.php",
-            "app/Message/success/permission.php"
         ],
         "psr-4": {
             "App\\": "app/",
