@@ -10,7 +10,6 @@ async function handleVerifyEmail() {
         });
         swal("Verify email success !!!", "", "success");
     } catch (error) {
-        console.log(error);
         await swal({
             title: "Some thing went wrong!!!",
             icon: "error",

@@ -72,7 +72,6 @@ async function getRole() {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }
@@ -129,7 +128,6 @@ async function updateRole() {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }
@@ -156,7 +154,6 @@ async function deleteRole(id) {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }

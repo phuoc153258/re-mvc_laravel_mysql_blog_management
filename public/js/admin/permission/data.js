@@ -51,7 +51,6 @@ async function getPermission() {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }
