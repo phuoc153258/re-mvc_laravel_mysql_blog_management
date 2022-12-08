@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class LocalizationMiddleware
 {
@@ -16,8 +17,7 @@ class LocalizationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $lang = ($request->cookie('X-localization')) ?  $request->cookie('X-localization') : 'en';
-
+        $lang = ($_COOKIE['X-localization']) ?  $_COOKIE['X-localization'] : 'en';
         app()->setLocale($lang);
 
         return $next($request);

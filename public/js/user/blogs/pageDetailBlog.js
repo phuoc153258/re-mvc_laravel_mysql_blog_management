@@ -4,6 +4,7 @@ function addEventUploadFile() {
 }
 
 window.onload = async function () {
+    setCookieLanguage();
     await getBlog();
     addEventUploadFile();
     await getInfoUserLogin();

@@ -72,32 +72,6 @@ function renderDataToListPage(data) {
     document.getElementById("pagination-js").innerHTML = str;
 }
 
-function setCookie(cname, cvalue, exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == " ") {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-var deleteCookie = function (name) {
-    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-};
-
 function uploadImageBlog(event) {
     let preview = document.querySelector("#show-image-blog-create-js");
     var file = document.querySelector("#image-blog-create-js").files[0];

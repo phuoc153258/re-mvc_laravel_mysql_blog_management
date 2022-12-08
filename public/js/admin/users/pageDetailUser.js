@@ -16,6 +16,7 @@ function resetPasswordNotice() {
 }
 
 window.onload = async function () {
+    setCookieLanguage();
     await getInfoUserLoginAdmin();
     await getUser();
     await getListRole(false);

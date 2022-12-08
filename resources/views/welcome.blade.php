@@ -418,14 +418,13 @@
                                 </path>
                             </svg>
                             <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs"
-                                    class="underline text-gray-900 dark:text-white">Documentation</a></div>
+                                    class="underline text-gray-900 dark:text-white">{{ __('view.home.documentation.title') }}</a>
+                            </div>
                         </div>
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel has wonderful, thorough documentation covering every aspect of the framework.
-                                Whether you are new to the framework or have previous experience with Laravel, we
-                                recommend reading all of the documentation from beginning to end.
+                                {{ __('view.home.documentation.content') }}
                             </div>
                         </div>
                     </div>
@@ -440,14 +439,13 @@
                                 <path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                             </svg>
                             <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com"
-                                    class="underline text-gray-900 dark:text-white">Laracasts</a></div>
+                                    class="underline text-gray-900 dark:text-white">{{ __('view.home.laracasts.title') }}</a>
+                            </div>
                         </div>
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript
-                                development. Check them out, see for yourself, and massively level up your development
-                                skills in the process.
+                                {{ __('view.home.laracasts.content') }}
                             </div>
                         </div>
                     </div>
@@ -461,14 +459,13 @@
                                 </path>
                             </svg>
                             <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/"
-                                    class="underline text-gray-900 dark:text-white">Laravel News</a></div>
+                                    class="underline text-gray-900 dark:text-white">{{ __('view.home.laravel-news.title') }}</a>
+                            </div>
                         </div>
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel News is a community driven portal and newsletter aggregating all of the latest
-                                and most important news in the Laravel ecosystem, including new package releases and
-                                tutorials.
+                                {{ __('view.home.laravel-news.content') }}
                             </div>
                         </div>
                     </div>
@@ -481,25 +478,13 @@
                                     d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                                 </path>
                             </svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant
-                                Ecosystem</div>
+                            <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">
+                                {{ __('view.home.vibrant-ecosystem.title') }}</div>
                         </div>
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel's robust library of first-party tools and libraries, such as <a
-                                    href="https://forge.laravel.com" class="underline">Forge</a>, <a
-                                    href="https://vapor.laravel.com" class="underline">Vapor</a>, <a
-                                    href="https://nova.laravel.com" class="underline">Nova</a>, and <a
-                                    href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects
-                                to the next level. Pair them with powerful open source libraries like <a
-                                    href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a
-                                    href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a
-                                    href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a
-                                    href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a
-                                    href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a
-                                    href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and
-                                more.
+                                {{ __('view.home.vibrant-ecosystem.content') }}
                             </div>
                         </div>
                     </div>
@@ -517,7 +502,7 @@
                         </svg>
 
                         <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                            Shop
+                            {{ __('view.home.shop') }}
                         </a>
 
                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -528,7 +513,7 @@
                         </svg>
 
                         <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                            Sponsor
+                            {{ __('view.home.sponsor') }}
                         </a>
                     </div>
                 </div>
@@ -546,6 +531,7 @@
         integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/helper/index.js') }}"></script>
+    <script src="{{ asset('js/cookie/index.js') }}"></script>
     <script src="{{ asset('js/auth/data.js') }}"></script>
     <script src="{{ asset('js/auth/index.js') }}"></script>
     <script src="{{ asset('js/home/pageHome.js') }}"></script>
