@@ -2,11 +2,13 @@
 
 return [
     'language' => 'EN',
-    'home' => [
+    'auth' => [
         'login' => 'Login',
         'logout' => 'Logout',
         'register' => 'Register',
         'home' => 'Home',
+    ],
+    'home' => [
         'documentation' => [
             'title' => 'Documentation',
             'content' => 'Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.'
@@ -25,5 +27,19 @@ return [
         ],
         'shop' => 'Shop',
         'sponsor' => 'Sponsor'
+    ],
+    'login' => [
+        'login' => 'Login',
+        'username' => 'Username',
+        'password' => 'Password',
+        'remember-me' => 'Remember Me'
+    ],
+    'register' => [
+        'register' => 'Register',
+        'username' => 'Username',
+        'fullname' => 'Fullname',
+        'email' => 'Email',
+        'password' => 'Password',
+        'confirm-password' => 'Confirm Password'
     ]
 ];

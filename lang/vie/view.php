@@ -2,11 +2,13 @@
 
 return [
     'language' => 'VIE',
-    'home' => [
+    'auth' => [
         'login' => 'Đăng nhập',
         'logout' => 'Đăng xuất',
         'register' => 'Đăng ký',
         'home' => 'Home',
+    ],
+    'home' => [
         'documentation' => [
             'title' => 'Tài liệu',
             'content' => 'Laravel có tài liệu kỹ lưỡng, tuyệt vời về mọi khía cạnh của framework. Cho dù bạn là người mới sử dụng framework hay đã có kinh nghiệm trước đó với Laravel, chúng tôi khuyên bạn nên đọc tất cả tài liệu từ đầu đến cuối.'
@@ -25,5 +27,19 @@ return [
         ],
         'shop' => 'Cửa hàng',
         'sponsor' => 'Nhà tài trợ'
+    ],
+    'login' => [
+        'login' => 'Đăng nhập',
+        'username' => 'Tên người dùng',
+        'password' => 'Mật khẩu',
+        'remember-me' => 'Nhớ tôi'
+    ],
+    'register' => [
+        'register' => 'Đăng ký',
+        'username' => 'Tên người dùng',
+        'fullname' => 'Họ và tên',
+        'email' => 'Email',
+        'password' => 'Mật khẩu',
+        'confirm-password' => 'Xác nhận mật khẩu'
     ]
 ];

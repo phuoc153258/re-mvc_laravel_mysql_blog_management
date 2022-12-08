@@ -4,24 +4,27 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('view.auth.register') }}</div>
                 <div class="card-body">
                     <div class="row mb-3">
-                        <label for="username" class="col-md-4 col-form-label text-md-end">Username:</label>
+                        <label for="username"
+                            class="col-md-4 col-form-label text-md-end">{{ __('view.register.username') }}:</label>
                         <div class="col-md-6">
                             <input id="username-register-js" type="text" class="form-control" name="username"
                                 value="" required autocomplete="username">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="fullname" class="col-md-4 col-form-label text-md-end">Fullname:</label>
+                        <label for="fullname"
+                            class="col-md-4 col-form-label text-md-end">{{ __('view.register.fullname') }}:</label>
                         <div class="col-md-6">
                             <input id="fullname-register-js" type="text" class="form-control" name="fullname"
                                 value="" required autocomplete="fullname">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="email" class="col-md-4 col-form-label text-md-end">Email:</label>
+                        <label for="email"
+                            class="col-md-4 col-form-label text-md-end">{{ __('view.register.email') }}:</label>
 
                         <div class="col-md-6">
                             <input id="email-register-js" type="email" class="form-control" name="email" required
@@ -29,14 +32,16 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="password" class="col-md-4 col-form-label text-md-end">Password</label>
+                        <label for="password"
+                            class="col-md-4 col-form-label text-md-end">{{ __('view.register.password') }}:</label>
                         <div class="col-md-6">
                             <input id="password-register-js" type="password" class="form-control" name="password" required
                                 autocomplete="new-password">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirm Password:</label>
+                        <label for="password-confirm"
+                            class="col-md-4 col-form-label text-md-end">{{ __('view.register.confirm-password') }}:</label>
                         <div class="col-md-6">
                             <input id="password-confirm-register-js" type="password" class="form-control"
                                 name="password_confirmation" required autocomplete="new-password">
@@ -45,7 +50,7 @@
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <a class="btn btn-primary" onclick="registerUser()">
-                                Register
+                                {{ __('view.register.register') }}
                             </a>
                         </div>
                     </div>

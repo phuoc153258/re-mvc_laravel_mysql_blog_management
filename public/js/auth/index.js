@@ -3,8 +3,11 @@ function renderInfoUserToNavbar(data) {
     let navbar = document.getElementById("info-user-navbar-js");
 
     let strAdmin = "";
+    const cookie = getCookie("X-localization");
     if (checkRoleUser(data, "admin"))
-        strAdmin += `<a class="dropdown-item" href="/admin/blogs">Admin</a>`;
+        strAdmin += `<a class="dropdown-item" href="/admin/blogs">${
+            cookie == "vie" ? "Quản trị viên" : "Admin"
+        }</a>`;
 
     let str = `<li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -13,9 +16,15 @@ function renderInfoUserToNavbar(data) {
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 ${strAdmin}
-                <a class="dropdown-item" href="/users">My Information</a>
-                <a class="dropdown-item" href="/blogs">My Blogs</a>
-                <a class="dropdown-item" onclick="logoutUser()">Log Out</a></div></li>`;
+                <a class="dropdown-item" href="/users">${
+                    cookie == "vie" ? "Thông tin cá nhân" : "My information"
+                }</a>
+                <a class="dropdown-item" href="/blogs">${
+                    cookie == "vie" ? "Blog của tôi" : "My Blogs"
+                }</a>
+                <a class="dropdown-item" onclick="logoutUser()">${
+                    cookie == "vie" ? "Đăng xuất" : "Log out"
+                }</a></div></li>`;
     navbar.innerHTML = str;
     document.getElementById("user-id-navbar-hidden-js").value = data.id;
 }

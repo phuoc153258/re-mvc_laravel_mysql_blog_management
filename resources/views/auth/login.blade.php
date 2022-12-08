@@ -5,16 +5,17 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">{{ __('view.login.login') }}</div>
                     <div class="card-body">
                         <div class="row mb-3">
-                            <label for="username" class="col-md-4 col-form-label text-md-end">Username:</label>
+                            <label for="username"
+                                class="col-md-4 col-form-label text-md-end">{{ __('view.login.username') }}:</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" id="username-login-js">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label class="col-md-4 col-form-label text-md-end">Password</label>
+                            <label class="col-md-4 col-form-label text-md-end">{{ __('view.login.password') }}:</label>
 
                             <div class="col-md-6">
                                 <input type="password" value="" class="form-control" autocomplete="new-password"
@@ -27,7 +28,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember">
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('view.login.remember-me') }}
                                     </label>
                                 </div>
                             </div>
@@ -35,7 +36,7 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <a type="submit" class="btn btn-primary" onclick="loginUser()">
-                                    Login
+                                    {{ __('view.login.login') }}
                                 </a>
                             </div>
                         </div>

@@ -60,14 +60,26 @@
 
                     </ul>
                     <input type="text" id="user-id-navbar-hidden-js" hidden>
-                    <ul class="navbar-nav ms-auto" id="info-user-navbar-js">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/auth/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/auth/register">Register</a>
-                        </li>
-                    </ul>
+                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block d-flex" style="gap: 0 20px">
+                        <div class="dropdown mt-auto mb-auto">
+                            <button class="btn btn-info dropdown-toggle" type="button"
+                                data-toggle="dropdown">{{ __('view.language') }}
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" style="cursor: pointer;">
+                                <li onclick="changeLanguage('en')">EN</li>
+                                <li onclick="changeLanguage('vie')">VIE</li>
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav ms-auto" id="info-user-navbar-js">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/auth/login">{{ __('view.auth.login') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/auth/register">{{ __('view.auth.register') }}</a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </nav>
