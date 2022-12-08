@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'language' => 'VIE',
     'home' => [
         'login' => 'Đăng nhập',
         'logout' => 'Đăng xuất',

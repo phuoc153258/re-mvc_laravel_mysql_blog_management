@@ -39,11 +39,7 @@ async function getBlog() {
             emptyDataDetailsBlogUser();
             renderDataDetailsBlogUser(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -62,15 +58,11 @@ async function deleteBlog(id) {
             },
         });
         if (response.data.status) {
-            swal("Delete blog success !!!", "", "success");
+            await successNoti("delete");
             renderDataToTableUser(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -96,14 +88,10 @@ async function createBlog() {
             },
         });
         if (response.data.status) {
-            await swal("Create blog success !!!", "", "success");
+            await successNoti("create");
             location.replace(`/blogs/${response.data.data.id}`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -126,15 +114,11 @@ async function updateBlog() {
             },
         });
         if (response.data.status) {
-            await swal("Update blog success !!!", "", "success");
+            await successNoti("update");
             emptyDataDetailsBlogUser();
             renderDataDetailsBlogUser(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {

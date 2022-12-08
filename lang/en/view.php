@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'language' => 'EN',
     'home' => [
         'login' => 'Login',
         'logout' => 'Logout',

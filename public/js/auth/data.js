@@ -14,22 +14,14 @@ async function loginUser() {
         });
         if (response.data.status) {
             setCookie("access_token", "Bearer " + response.data.data.token, 1);
-            await swal("Login success !!!", "", "success");
+            await successNoti();
             location.replace(`/`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -45,22 +37,14 @@ async function logoutUser() {
         });
         if (response.data.status) {
             deleteCookie("access_token");
-            await swal("Logout success !!!", "", "success");
+            await successNoti();
             location.replace(`/`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -87,22 +71,14 @@ async function registerUser() {
                 },
             });
             setCookie("access_token", "Bearer " + response.data.data.token, 1);
-            await swal("Register success !!!", "", "success");
+            await successNoti();
             location.replace(`/`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }

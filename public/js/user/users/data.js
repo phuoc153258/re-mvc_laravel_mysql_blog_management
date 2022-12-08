@@ -16,19 +16,11 @@ async function getUser() {
             addEventUploadFile();
             renderEmailVerify(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -62,22 +54,14 @@ async function updateInfoUser() {
             },
         });
         if (!response.data.status) {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
         emptyInfoDetailsUser();
         renderDataDetailsUser(response.data);
         swal("Update user success !!!", "", "success");
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -98,13 +82,9 @@ async function uploadAvatar(event) {
             "/" + response.data.data.avatar;
         emptyInfoDetailsUser();
         renderDataDetailsUser(response.data);
-        await swal("Upload image success !!!", "", "success");
+        await successNoti("upload");
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -122,11 +102,7 @@ async function changePassword() {
         ).value;
 
         if (new_password != re_password) {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
         const response = await axios({
@@ -141,22 +117,14 @@ async function changePassword() {
             },
         });
         if (response.data.status) {
-            await swal("Change password success !!!", "", "success");
+            await successNoti("update");
             location.replace(`/users`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -172,21 +140,13 @@ async function sendMailVerify() {
             },
         });
         if (response.data.status) {
-            await swal("Please check your email !!!", "", "info");
+            await successNoti();
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }

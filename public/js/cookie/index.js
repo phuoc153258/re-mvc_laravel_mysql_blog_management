@@ -32,3 +32,8 @@ function setCookieLanguage(language = "vie") {
     )
         setCookie("X-localization", language, 1);
 }
+
+function changeLanguage(language = "en") {
+    setCookie("X-localization", language, 1);
+    location.reload();
+}
