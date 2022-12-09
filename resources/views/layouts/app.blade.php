@@ -90,16 +90,16 @@
                     <div class="col-3">
                         <div class="card">
                             <a href="/admin/blogs" class="card-body border-bottom">
-                                Blog Management
+                                {{ __('view.blog.blog-management') }}
                             </a>
                             <a href="/admin/users" class="card-body border-bottom">
-                                User Management
+                                {{ __('view.user.user-management') }}
                             </a>
                             <a href="/admin/roles" class="card-body border-bottom">
-                                Role Management
+                                {{ __('view.role.role-management') }}
                             </a>
                             <a href="/admin/permissions" class="card-body border-bottom">
-                                Permission Management
+                                {{ __('view.permission.permission-management') }}
                             </a>
                         </div>
                     </div>

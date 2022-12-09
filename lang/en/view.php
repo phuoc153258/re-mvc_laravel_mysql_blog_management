@@ -7,6 +7,7 @@ return [
         'submit' => 'Submit',
         'update' => 'Update',
         'upload' => 'Upload',
+        'add' => 'Add'
     ],
     'auth' => [
         'login' => 'Login',
@@ -63,6 +64,8 @@ return [
     'blog' => [
         'my-blogs' => "My Blogs",
         'blog-management' => "Blog Management",
+        'create-blog' => "Create Blog",
+        'detail-blog' => "Detail Blog",
         'add-blog' => 'Add Blog',
         'id' => 'ID',
         'title' => 'Title',
@@ -89,5 +92,25 @@ return [
         'old-password' => 'Old Password',
         'new-password' => 'New Password',
         'confirm-password' => 'Confirm Password'
+    ],
+    'role' => [
+        'role-management' => 'Role Management',
+        'create-role' => "Create Role",
+        'detail-role' => 'Detail Role',
+        'id' => 'ID',
+        'name' => 'Name',
+        'guard-name' => 'Guard Name',
+        'created-at' => 'Created At',
+        'updated-at' => 'Updated At'
+    ],
+    'permission' => [
+        'permission-management' => 'Permission Management',
+        'create-permission' => "Create Permission",
+        'detail-permission' => 'Detail Permission',
+        'id' => 'ID',
+        'name' => 'Name',
+        'guard-name' => 'Guard Name',
+        'created-at' => 'Created At',
+        'updated-at' => 'Updated At'
     ]
 ];

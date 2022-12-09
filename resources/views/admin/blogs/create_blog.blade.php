@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between">
-        <h2>Create Blog</h2>
+        <h2>{{ __('view.blog.create-blog') }}</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -16,7 +16,7 @@
                                     src="/image/image_default.png    " alt="" id="show-image-blog-create-js">
 
                                 <div class="file btn btn-primary" style="position: relative;overflow: hidden;">
-                                    Upload
+                                    {{ __('view.action.upload') }}
                                     <input type="file" name="file"
                                         style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;" value=""
                                         id="image-blog-create-js" onchange="uploadImageBlog(event)" />
@@ -24,21 +24,21 @@
                             </div>
                             <div class="col-8">
                                 <div class="form-group mb-3">
-                                    <label for="">Title:</label>
-                                    <input type="text" class="form-control" placeholder="Title..." value=""
-                                        id="title-create-js">
+                                    <label for="">{{ __('view.blog.title') }}:</label>
+                                    <input type="text" class="form-control" placeholder="{{ __('view.blog.title') }}..."
+                                        value="" id="title-create-js">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Sub Title:</label>
+                                    <label for="">{{ __('view.blog.sub-title') }}:</label>
                                     <textarea class="form-control" rows="3" id="sub_title-create-js"></textarea>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Content:</label>
+                                    <label for="">{{ __('view.blog.content') }}:</label>
                                     <textarea class="form-control" rows="3" id="content-create-js"></textarea>
                                 </div>
                                 <div class="d-flex flex-row-reverse mt-4" style="gap: 0 15px;">
-                                    <a class="btn btn-primary" onclick="createBlog()">Submit</a>
-                                    <a href="/blogs" class="btn btn-secondary">Back</a>
+                                    <a class="btn btn-primary" onclick="createBlog()">{{ __('view.action.add') }}</a>
+                                    <a href="/blogs" class="btn btn-secondary">{{ __('view.action.back') }}</a>
                                 </div>
                             </div>
                         </div>

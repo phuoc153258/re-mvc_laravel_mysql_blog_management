@@ -7,6 +7,7 @@ return [
         'submit' => 'Gửi đi',
         'update' => 'Cập nhật',
         'upload' => 'Tải file',
+        'add' => 'Thêm'
     ],
     'auth' => [
         'login' => 'Đăng nhập',
@@ -63,6 +64,8 @@ return [
     'blog' => [
         'my-blogs' => "Blog của tôi",
         'blog-management' => "Quản lý Blog",
+        'create-blog' => 'Tạo blog',
+        'detail-blog' => 'Chi tiết blog',
         'add-blog' => 'Thêm blog',
         'id' => 'Định danh',
         'title' => 'Tiêu đề',
@@ -89,5 +92,25 @@ return [
         'old-password' => 'Mật khẩu cũ',
         'new-password' => 'Mật khẩu mới',
         'confirm-password' => 'Xác nhận mật khẩu'
+    ],
+    'role' => [
+        'role-management' => 'Quản lý Role',
+        'detail-role' => 'Chi tiết Role',
+        'create-role' => "Tạo Role",
+        'id' => 'Định danh',
+        'name' => 'Tên',
+        'guard-name' => 'Tên bảo vệ',
+        'created-at' => 'Ngày tạo',
+        'updated-at' => 'Ngày cập nhật'
+    ],
+    'permission' => [
+        'permission-management' => 'Quản lý Permission',
+        'detail-permission' => 'Chi tiết Permission',
+        'create-permission' => "Tạo Permission",
+        'id' => 'Định danh',
+        'name' => 'Tên',
+        'guard-name' => 'Tên bảo vệ',
+        'created-at' => 'Ngày tạo',
+        'updated-at' => 'Ngày cập nhật'
     ]
 ];

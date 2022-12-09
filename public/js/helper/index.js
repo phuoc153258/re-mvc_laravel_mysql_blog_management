@@ -70,8 +70,8 @@ function renderDataToListPage(data) {
     const cookie = getCookie("X-localization");
     let str = `<h5 id="total-entries-js">${
         cookie == "vie"
-            ? `Tổng cộng: ${data.total} blog`
-            : `Total: ${data.total} blog`
+            ? `Tổng cộng: ${data.total} mục`
+            : `Total: ${data.total} entries`
     } </h5>
         <nav aria-label="Page navigation example">
             <ul class="pagination">`;

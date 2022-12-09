@@ -25,7 +25,9 @@ function renderDataToTable(data) {
             <td>${value.username}</td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
-            <td><a href="/blogs/${value.id}" style="margin-right: 10px;"><i
+            <td><a href="/admin/blogs/${
+                value.id
+            }" style="margin-right: 10px;"><i
             class="fa-solid fa-pencil"></i></a><a href="#"
             onclick="deleteBlogNotice('${value.id}','${value.title}')"><i
             class="fa-solid fa-trash"></i></a></td>
