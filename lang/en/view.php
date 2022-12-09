@@ -2,6 +2,12 @@
 
 return [
     'language' => 'EN',
+    'action' => [
+        'back' =>  'Back',
+        'submit' => 'Submit',
+        'update' => 'Update',
+        'upload' => 'Upload',
+    ],
     'auth' => [
         'login' => 'Login',
         'logout' => 'Logout',
@@ -66,5 +72,22 @@ return [
         'username' => 'Username',
         'created-at' => 'Created At',
         'updated-at' => 'Updated At'
+    ],
+    'user' => [
+        'detail-user' => 'Detail User',
+        'user-management' => 'User Management',
+        'change-password' => 'Change password',
+        'id' => 'ID',
+        'username' => 'Username',
+        'fullname' => 'Fullname',
+        'email' => 'Email',
+        'email-not-verify' => 'Your email is not verify!',
+        'verify' => 'Verify',
+        'email-verified-at' => 'Email Verified At',
+        'created-at' => 'Created At',
+        'updated-at' => 'Updated At',
+        'old-password' => 'Old Password',
+        'new-password' => 'New Password',
+        'confirm-password' => 'Confirm Password'
     ]
 ];

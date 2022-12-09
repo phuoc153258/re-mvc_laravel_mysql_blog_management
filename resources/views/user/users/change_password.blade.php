@@ -3,35 +3,31 @@
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-between">
-            <h2>Change password</h2>
+            <h2>{{ __('view.user.change-password') }}</h2>
         </div>
         <div class="row justify-content-center">
             <div class="card">
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
                     <div>
                         <div class="form-group mb-3">
-                            <label for="">Old password:</label>
+                            <label for="">{{ __('view.user.old-password') }}:</label>
                             <input type="password" class="form-control" id="old-password-user-js"
-                                placeholder="Old password..." autocomplete="new-password">
+                                placeholder="{{ __('view.user.old-password') }}..." autocomplete="new-password">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="">New password:</label>
+                            <label for="">{{ __('view.user.new-password') }}:</label>
                             <input type="password" class="form-control" id="new-password-user-js"
-                                placeholder="New password...">
+                                placeholder="{{ __('view.user.new-password') }}...">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="">Confirm password:</label>
+                            <label for="">{{ __('view.user.confirm-password') }}:</label>
                             <input type="password" class="form-control" id="re-password-user-js"
-                                placeholder="Confirm password...">
+                                placeholder="{{ __('view.user.confirm-password') }}...">
                         </div>
                         <div class="d-flex flex-row-reverse" style="gap: 0 15px;">
-                            <a type="submit" class="btn btn-primary" onclick="changePassword()">Submit</a>
-                            <a href="/users" class="btn btn-secondary">Back</a>
+                            <a type="submit" class="btn btn-primary"
+                                onclick="changePassword()">{{ __('view.action.update') }}</a>
+                            <a href="/users" class="btn btn-secondary">{{ __('view.action.back') }}</a>
                         </div>
                     </div>
                 </div>

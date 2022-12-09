@@ -2,6 +2,12 @@
 
 return [
     'language' => 'VIE',
+    'action' => [
+        'back' =>  'Quay lại',
+        'submit' => 'Gửi đi',
+        'update' => 'Cập nhật',
+        'upload' => 'Tải file',
+    ],
     'auth' => [
         'login' => 'Đăng nhập',
         'logout' => 'Đăng xuất',
@@ -66,5 +72,22 @@ return [
         'username' => 'Tên người dùng',
         'created-at' => 'Ngày tạo',
         'updated-at' => 'Ngày cập nhật'
+    ],
+    'user' => [
+        'detail-user' => 'Chi tiết người dùng',
+        'user-management' => 'Quản lý người dùng',
+        'change-password' => 'Đổi mật khẩu',
+        'id' => 'Định danh',
+        'username' => 'Tên người dùng',
+        'fullname' => 'Họ và tên',
+        'email' => 'Email',
+        'email-not-verify' => 'Email của bạn chưa được xác thực!',
+        'verify' => 'Xác thực',
+        'email-verified-at' => 'Ngày Xác Thực Email',
+        'created-at' => 'Ngày tạo',
+        'updated-at' => 'Ngày cập nhật',
+        'old-password' => 'Mật khẩu cũ',
+        'new-password' => 'Mật khẩu mới',
+        'confirm-password' => 'Xác nhận mật khẩu'
     ]
 ];

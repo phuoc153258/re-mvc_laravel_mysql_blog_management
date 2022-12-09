@@ -99,10 +99,18 @@ function emptyListPermissionUser() {
 }
 
 function renderEmailVerify(data) {
+    const cookie = getCookie("X-localization");
+
     emptyEmailVerify();
     let emailVerify = document.getElementById("email-verify-js");
     if (data.is_email_verified == 0)
-        emailVerify.innerHTML = `<label for="">Your email is not verify! <a class="btn-link" style="cursor: pointer;" onclick="sendMailVerify()">Verify</a></label>`;
+        emailVerify.innerHTML = `<label for="">${
+            cookie == "vie"
+                ? "Email của bạn chưa được xác thực!"
+                : "Your email is not verify!"
+        } <a class="btn-link" style="cursor: pointer;" onclick="sendMailVerify()">${
+            cookie == "vie" ? "Xác thực" : "Verify"
+        }</a></label>`;
     else
         emailVerify.innerHTML = `<label for="">Email verified at:</a> </label><input type="email"
         class="form-control" placeholder="Email..." value="${data.email_verified_at}" id="email-user-update-js">`;
