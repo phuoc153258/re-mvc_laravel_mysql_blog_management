@@ -45,4 +45,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/auth/pageLogin.js') }}"></script>
 @endsection

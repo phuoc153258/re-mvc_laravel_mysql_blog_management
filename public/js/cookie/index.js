@@ -24,7 +24,7 @@ var deleteCookie = function (name) {
     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
 
-function setCookieLanguage(language = "vie") {
+function setCookieLanguage(language = "en") {
     if (
         !getCookie("X-localization") ||
         getCookie("X-localization") == "" ||

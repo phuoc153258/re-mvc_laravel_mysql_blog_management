@@ -17,21 +17,25 @@ function renderListPage(page, last_page) {
     return listPage;
 }
 
-function renderPrePage(page, last_page) {
+function renderPrePage(page, last_page, cookie) {
     let prePage = ``;
     if (page > 1 && last_page > 1)
         prePage += `<li class="page-item" onclick="setDataPageItem(${
             page - 1
-        })"><a class="page-link">Previous</a></li>`;
+        })"><a class="page-link">${
+            cookie == "vie" ? "Trước" : "Previous"
+        }</a></li>`;
     return prePage;
 }
 
-function renderNextPage(page, last_page) {
+function renderNextPage(page, last_page, cookie) {
     let nextPage = ``;
     if (page < last_page)
         nextPage += `<li class="page-item" onclick="setDataPageItem(${
             page + 1
-        })"><a class="page-link">Next</a></li></ul></nav>`;
+        })"><a class="page-link">${
+            cookie == "vie" ? "Tiếp theo" : "Next"
+        }</a></li></ul></nav>`;
     return nextPage;
 }
 
@@ -63,12 +67,17 @@ function setDataPageItem(data) {
 }
 
 function renderDataToListPage(data) {
-    let str = `<h5 id="total-entries-js">Total: ${data.total} entries</h5>
+    const cookie = getCookie("X-localization");
+    let str = `<h5 id="total-entries-js">${
+        cookie == "vie"
+            ? `Tổng cộng: ${data.total} blog`
+            : `Total: ${data.total} blog`
+    } </h5>
         <nav aria-label="Page navigation example">
             <ul class="pagination">`;
-    str += renderPrePage(data.page, data.last_page);
+    str += renderPrePage(data.page, data.last_page, cookie);
     str += renderListPage(data.page, data.last_page);
-    str += renderNextPage(data.page, data.last_page);
+    str += renderNextPage(data.page, data.last_page, cookie);
     document.getElementById("pagination-js").innerHTML = str;
 }
 

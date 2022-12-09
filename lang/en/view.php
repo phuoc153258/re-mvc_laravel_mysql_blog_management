@@ -41,5 +41,30 @@ return [
         'email' => 'Email',
         'password' => 'Password',
         'confirm-password' => 'Confirm Password'
+    ],
+    'paginate' => [
+        'sort' => 'Sort',
+        'defaut' => 'Default',
+        'descending' => 'Descending',
+        'ascending' => 'Ascending',
+        'entries' => 'Entries',
+        'search' => 'Search',
+        'total' => 'Total',
+        'next' => 'Next',
+        'pre' => 'Pre',
+        'action' => 'Action'
+    ],
+    'blog' => [
+        'my-blogs' => "My Blogs",
+        'blog-management' => "Blog Management",
+        'add-blog' => 'Add Blog',
+        'id' => 'ID',
+        'title' => 'Title',
+        'sub-title' => 'Sub Title',
+        'image' => 'Image',
+        'content' => 'Content',
+        'username' => 'Username',
+        'created-at' => 'Created At',
+        'updated-at' => 'Updated At'
     ]
 ];

@@ -60,7 +60,7 @@
 
                     </ul>
                     <input type="text" id="user-id-navbar-hidden-js" hidden>
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block d-flex" style="gap: 0 20px">
+                    <div class="hidden fixed top-0 right-0 px-4 py-2 sm:block d-flex" style="gap: 0 20px">
                         <div class="dropdown mt-auto mb-auto">
                             <button class="btn btn-info dropdown-toggle" type="button"
                                 data-toggle="dropdown">{{ __('view.language') }}

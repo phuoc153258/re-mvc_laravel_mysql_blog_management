@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="d-flex justify-content-between">
-            <h2>My Blog</h2>
+            <h2>{{ __('view.blog.my-blogs') }}</h2>
             <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" href="/blogs/create">
-                <p>Add blog</p>
+                <p>{{ __('view.blog.add-blog') }}</p>
                 <i class="fa-solid fa-plus" style="line-height: 1.5"></i>
             </a>
         </div>
@@ -14,19 +14,22 @@
                 <div class="card-header d-flex justify-content-between">
                     <div class="d-flex" style="gap: 0 10px;">
                         <div class="dropdown d-flex align-items-center" style="gap: 0 10px;">
-                            <p class="mt-3">Sort:</p>
+                            <p class="mt-3">{{ __('view.paginate.sort') }}:</p>
                             <a class="btn btn-primary dropdown-toggle w-75 " type="button" id="sort-js"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="">
-                                Default
+                                {{ __('view.paginate.defaut') }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="sort-js">
-                                <a class="dropdown-item" onclick="setDataSortItem('Default', '')">Default</a>
-                                <a class="dropdown-item" onclick="setDataSortItem('Descending', 'desc')">Descending</a>
-                                <a class="dropdown-item" onclick="setDataSortItem('Ascending', 'asc')">Ascending</a>
+                                <a class="dropdown-item"
+                                    onclick="setDataSortItem('Default', '')">{{ __('view.paginate.defaut') }}</a>
+                                <a class="dropdown-item"
+                                    onclick="setDataSortItem('Descending', 'desc')">{{ __('view.paginate.descending') }}</a>
+                                <a class="dropdown-item"
+                                    onclick="setDataSortItem('Ascending', 'asc')">{{ __('view.paginate.ascending') }}</a>
                             </div>
                         </div>
                         <div class="dropdown d-flex align-items-center" style="gap: 0 10px;">
-                            <p class="mt-3">Entries:</p>
+                            <p class="mt-3">{{ __('view.paginate.entries') }}:</p>
                             <button class="btn btn-primary dropdown-toggle w-75" type="button" id="entries-js"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 5
@@ -43,10 +46,10 @@
 
                     <form class="form-inline d-flex align-items-center" style="gap: 0 10px;" method="GET" action="/blogs">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="input-search-user-js" placeholder="Search..."
-                                name="search">
+                            <input type="text" class="form-control" id="input-search-user-js"
+                                placeholder="{{ __('view.paginate.search') }}..." name="search">
                         </div>
-                        <a type="submit" class="btn btn-primary" onclick="getList()">Search<i
+                        <a type="submit" class="btn btn-primary" onclick="getList()">{{ __('view.paginate.search') }}<i
                                 class="fa-solid fa-magnifying-glass"></i></a>
                     </form>
                 </div>
@@ -55,12 +58,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Created At</th>
-                                <th scope="col">Updated At</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">{{ __('view.blog.id') }}</th>
+                                <th scope="col">{{ __('view.blog.title') }}</th>
+                                <th scope="col">{{ __('view.blog.image') }}</th>
+                                <th scope="col">{{ __('view.blog.created-at') }}</th>
+                                <th scope="col">{{ __('view.blog.updated-at') }}</th>
+                                <th scope="col">{{ __('view.paginate.action') }}</th>
                             </tr>
                         </thead>
                         <tbody id="table-body-js">

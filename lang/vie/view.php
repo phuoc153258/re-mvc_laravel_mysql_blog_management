@@ -41,5 +41,30 @@ return [
         'email' => 'Email',
         'password' => 'Mật khẩu',
         'confirm-password' => 'Xác nhận mật khẩu'
+    ],
+    'paginate' => [
+        'sort' => 'Sắp xếp',
+        'defaut' => 'Mặc định',
+        'descending' => 'Giảm dần',
+        'ascending' => 'Tăng dần',
+        'entries' => 'Số lượng',
+        'search' => 'Tìm kiếm',
+        'total' => 'Tổng cộng',
+        'next' => 'Tiếp theo',
+        'pre' => 'Trước',
+        'action' => 'Hành động'
+    ],
+    'blog' => [
+        'my-blogs' => "Blog của tôi",
+        'blog-management' => "Quản lý Blog",
+        'add-blog' => 'Thêm blog',
+        'id' => 'Định danh',
+        'title' => 'Tiêu đề',
+        'sub-title' => 'Phụ đề',
+        'image' => 'Ảnh',
+        'content' => 'Nội dung',
+        'username' => 'Tên người dùng',
+        'created-at' => 'Ngày tạo',
+        'updated-at' => 'Ngày cập nhật'
     ]
 ];

@@ -17,9 +17,11 @@ class LocalizationMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $lang = ($_COOKIE['X-localization']) ?  $_COOKIE['X-localization'] : 'en';
-        app()->setLocale($lang);
+        $lang = 'en';
+        if (isset($_COOKIE["X-localization"]))
+            $lang = $_COOKIE['X-localization'];
 
+        app()->setLocale($lang);
         return $next($request);
     }
 }
