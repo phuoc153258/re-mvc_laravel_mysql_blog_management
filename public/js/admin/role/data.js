@@ -64,11 +64,7 @@ async function getRole() {
             emptyDataDetailsRole();
             renderDataDetailsRole(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -88,14 +84,10 @@ async function createRole() {
             },
         });
         if (response.data.status) {
-            await swal("Create role success !!!", "", "success");
+            await successNoti();
             location.replace(`/admin/roles/${response.data.data.id}`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -116,15 +108,11 @@ async function updateRole() {
             },
         });
         if (response.data.status) {
-            await swal("Update Role success !!!", "", "success");
+            await successNoti();
             emptyDataDetailsRole();
             renderDataDetailsRole(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -142,15 +130,11 @@ async function deleteRole(id) {
             },
         });
         if (response.data.status) {
-            swal("Delete role success !!!", "", "success");
+            await successNoti();
             renderDataToTableRole(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {

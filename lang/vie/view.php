@@ -83,6 +83,7 @@ return [
         'id' => 'Định danh',
         'username' => 'Tên người dùng',
         'fullname' => 'Họ và tên',
+        'avatar' => 'Ảnh đại diện',
         'email' => 'Email',
         'email-not-verify' => 'Email của bạn chưa được xác thực!',
         'verify' => 'Xác thực',
@@ -91,7 +92,10 @@ return [
         'updated-at' => 'Ngày cập nhật',
         'old-password' => 'Mật khẩu cũ',
         'new-password' => 'Mật khẩu mới',
-        'confirm-password' => 'Xác nhận mật khẩu'
+        'confirm-password' => 'Xác nhận mật khẩu',
+        'reset-password' => 'Khôi phục mật khẩu',
+        'list-role' => 'Danh sách Role',
+        'list-permission' => 'Danh sách permission'
     ],
     'role' => [
         'role-management' => 'Quản lý Role',

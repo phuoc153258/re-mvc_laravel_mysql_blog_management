@@ -83,6 +83,7 @@ return [
         'id' => 'ID',
         'username' => 'Username',
         'fullname' => 'Fullname',
+        'avatar' => 'Avatar',
         'email' => 'Email',
         'email-not-verify' => 'Your email is not verify!',
         'verify' => 'Verify',
@@ -91,7 +92,10 @@ return [
         'updated-at' => 'Updated At',
         'old-password' => 'Old Password',
         'new-password' => 'New Password',
-        'confirm-password' => 'Confirm Password'
+        'confirm-password' => 'Confirm Password',
+        'reset-password' => 'Reset password',
+        'list-role' => 'List Role',
+        'list-permission' => 'List permission'
     ],
     'role' => [
         'role-management' => 'Role Management',

@@ -14,7 +14,7 @@ async function uploadAvatar(event) {
             "/" + response.data.data.avatar;
         emptyInfoDetailsUser();
         renderDataDetailsUser(response.data);
-        await swal("Upload image success !!!", "", "success");
+        await successNoti();
     } catch (error) {
         await swal({
             title: "Some thing went wrong!!!",

@@ -39,11 +39,7 @@ async function getPermission() {
             emptyDataDetailsPermission();
             renderDataDetailsPermission(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -96,6 +92,7 @@ async function updatePermission() {
             return;
         }
     } catch (error) {
+        await errorNoti();
         return history.go(-1);
     }
 }
@@ -118,6 +115,7 @@ async function deletePermission(id) {
             return;
         }
     } catch (error) {
+        await errorNoti();
         return history.go(-1);
     }
 }

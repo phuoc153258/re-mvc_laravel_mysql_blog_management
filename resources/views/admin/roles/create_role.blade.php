@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between">
-        <h2>Create Role</h2>
+        <h2>{{ __('view.role.create-role') }}</h2>
     </div>
     <div class="container">
         <div class="row justify-content-center">
@@ -10,13 +10,13 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="form-group mb-3">
-                            <label for="">Name:</label>
+                            <label for="">{{ __('view.role.name') }}:</label>
                             <input type="text" class="form-control" placeholder="Name..." value=""
                                 id="name-create-js">
                         </div>
                         <div class="d-flex flex-row-reverse mt-4" style="gap: 0 15px;">
-                            <a class="btn btn-primary" onclick="createRole()">Submit</a>
-                            <a href="/roles" class="btn btn-secondary">Back</a>
+                            <a class="btn btn-primary" onclick="createRole()">{{ __('view.action.add') }}</a>
+                            <a href="/roles" class="btn btn-secondary">{{ __('view.action.back') }}</a>
                         </div>
                     </div>
                 </div>

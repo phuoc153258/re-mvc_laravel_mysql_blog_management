@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="d-flex justify-content-between">
-        <h2>Detail User</h2>
+        <h2>{{ __('view.user.user-management') }}</h2>
         <a class="d-flex" style="gap: 0 10px; cursor: pointer; text-decoration: none; color: black"
             onclick="resetPasswordNotice()">
-            <p>Reset password</p>
+            <p>{{ __('view.user.reset-password') }}</p>
             <i class="fa-solid fa-rotate-right" style="line-height: 1.4"></i>
         </a>
     </div>
@@ -20,7 +20,7 @@
                                     style="border-radius: 10%;display: block;border-radius: 10%;margin-left: auto;margin-right: auto;"
                                     src="" alt="" id="show-avatar-user-js">
                                 <div class="file btn btn-primary" style="position: relative;overflow: hidden;">
-                                    Upload
+                                    {{ __('view.action.upload') }}
                                     <input type="file" name="file"
                                         style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;" onchange=""
                                         value="" id="upload-avatar-user-js" />
@@ -28,27 +28,29 @@
                             </div>
                             <div class="col-8">
                                 <div class="form-group mb-3">
-                                    <label for="">ID:</label>
+                                    <label for="">{{ __('view.user.id') }}:</label>
                                     <input type="text" class="form-control" placeholder="ID.." value="" readonly
                                         id="id-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Username:</label>
-                                    <input type="text" class="form-control" placeholder="Username..." value=""
-                                        readonly id="username-user-update-js">
+                                    <label for="">{{ __('view.user.username') }}:</label>
+                                    <input type="text" class="form-control"
+                                        placeholder="{{ __('view.user.username') }}..." value="" readonly
+                                        id="username-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Fullname:</label>
-                                    <input type="text" class="form-control" placeholder="Fullname..." value=""
+                                    <label for="">{{ __('view.user.fullname') }}:</label>
+                                    <input type="text" class="form-control"
+                                        placeholder="{{ __('view.user.fullname') }}..." value=""
                                         id="fullname-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Email:</label>
-                                    <input type="email" class="form-control" placeholder="Email..." value=""
-                                        id="email-user-update-js">
+                                    <label for="">{{ __('view.user.email') }}:</label>
+                                    <input type="email" class="form-control" placeholder="{{ __('view.user.email') }}..."
+                                        value="" id="email-user-update-js">
                                 </div>
                                 <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
-                                    <p class="mt-auto mb-auto">List role:</p>
+                                    <p class="mt-auto mb-auto">{{ __('view.user.list-role') }}:</p>
                                     <button class="btn btn-primary dropdown-toggle " type="button" id="role-user-update-js"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                         style="width: 45% !important;">
@@ -69,7 +71,7 @@
                                 </div>
 
                                 <div class="dropdown d-flex align-items-center w-50 pt-2 pb-2" style="gap: 0 10px;">
-                                    <p class="mt-auto mb-auto">List permission:</p>
+                                    <p class="mt-auto mb-auto">{{ __('view.user.list-permission') }}:</p>
                                     <button class="btn btn-primary dropdown-toggle " type="button"
                                         id="permission-user-update-js" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false" style="width: 45% !important;">
@@ -89,18 +91,19 @@
                                     </ul>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Created At:</label>
+                                    <label for="">{{ __('view.user.created-at') }}:</label>
                                     <input type="text" class="form-control" placeholder="Created At..." value=""
                                         readonly id="created_at-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label for="">Updated At:</label>
+                                    <label for="">{{ __('view.user.updated-at') }}:</label>
                                     <input type="text" class="form-control" placeholder="Updated At..."
                                         value="" readonly id="updated_at-user-update-js">
                                 </div>
                                 <div class="d-flex flex-row-reverse" style="gap: 0 15px;">
-                                    <a class="btn btn-primary" onclick="updateInfoUser()">Submit</a>
-                                    <a href="/users" class="btn btn-secondary">Back</a>
+                                    <a class="btn btn-primary"
+                                        onclick="updateInfoUser()">{{ __('view.action.update') }}</a>
+                                    <a href="/users" class="btn btn-secondary">{{ __('view.action.back') }}</a>
                                 </div>
                             </div>
                         </div>

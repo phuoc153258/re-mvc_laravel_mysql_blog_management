@@ -35,11 +35,7 @@ async function updateInfoUser() {
             email == null ||
             email == ""
         ) {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
         const response = await axios({
@@ -59,7 +55,7 @@ async function updateInfoUser() {
         }
         emptyInfoDetailsUser();
         renderDataDetailsUser(response.data);
-        swal("Update user success !!!", "", "success");
+        await successNoti();
     } catch (error) {
         await errorNoti();
         return;

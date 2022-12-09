@@ -8,7 +8,7 @@ async function handleVerifyEmail() {
                 Authorization: getCookie("access_token"),
             },
         });
-        swal("Verify email success !!!", "", "success");
+        await successNoti();
     } catch (error) {
         await swal({
             title: "Some thing went wrong!!!",

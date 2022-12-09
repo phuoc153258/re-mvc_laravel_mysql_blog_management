@@ -15,7 +15,7 @@ async function uploadImage(event) {
             "/" + response.data.data.image;
         emptyDataDetailsBlog();
         renderDataDetailsBlog(response.data.data);
-        await swal("Upload image success !!!", "", "success");
+        await successNoti();
     } catch (error) {
         await swal({
             title: "Some thing went wrong!!!",

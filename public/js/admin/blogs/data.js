@@ -38,11 +38,7 @@ async function getBlog() {
             emptyDataDetailsBlog();
             renderDataDetailsBlog(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -60,15 +56,11 @@ async function deleteBlog(id) {
             },
         });
         if (response.data.status) {
-            swal("Delete blog success !!!", "", "success");
+            await successNoti();
             renderDataToTable(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -98,14 +90,10 @@ async function createBlog() {
             },
         });
         if (response.data.status) {
-            await swal("Create blog success !!!", "", "success");
+            await successNoti();
             location.replace(`/admin/blogs/${response.data.data.id}`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -128,15 +116,11 @@ async function updateBlog() {
             },
         });
         if (response.data.status) {
-            await swal("Update blog success !!!", "", "success");
+            await successNoti();
             emptyDataDetailsBlog();
             renderDataDetailsBlog(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {

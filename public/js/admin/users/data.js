@@ -20,11 +20,7 @@ async function getList() {
         renderDataToTable(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -46,19 +42,11 @@ async function getUser() {
             renderListRoleUser(response.data.data.roles);
             renderListPermissionUser(response.data.data.permissions);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -76,11 +64,7 @@ async function updateInfoUser() {
             email == null ||
             email == ""
         ) {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
         const response = await axios({
@@ -95,22 +79,14 @@ async function updateInfoUser() {
             },
         });
         if (!response.data.status) {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
         emptyInfoDetailsUser();
         renderDataDetailsUser(response.data);
-        swal("Update user success !!!", "", "success");
+        await successNoti();
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -125,23 +101,15 @@ async function deleteUser(id) {
             },
         });
         if (response.data.status) {
-            swal("Delete user success !!!", "", "success");
+            await successNoti();
             renderDataToTable(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -158,25 +126,17 @@ async function resetPassword() {
             },
         });
         if (response.data.status) {
-            await swal("Reset password success !!!", "", "success");
+            await successNoti();
             emptyInfoDetailsUser();
             renderDataDetailsUser(response.data);
             renderListRoleUser(response.data.data.roles);
             renderListPermissionUser(response.data.data.permissions);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
