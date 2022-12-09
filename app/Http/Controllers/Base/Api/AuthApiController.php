@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
-use App\Services\AuthService;
+use App\Models\User;
+use App\Services\Auth\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
 
@@ -27,7 +28,7 @@ class AuthApiController extends Controller
         try {
             $userRequest = new LoginUserRequestDTO($request);
             $this->authValidate->validateInfoLoginUser($userRequest);
-            $userResponse = $this->authService->login($userRequest);
+            $userResponse = $this->authService->login($userRequest)->toJSON();
             return $this->success($userResponse, trans('success.auth.login-user'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('error.auth.login-failed'), 400);
@@ -39,7 +40,7 @@ class AuthApiController extends Controller
         try {
             $userRequest = new RegisterUserRequestDTO($request);
             $this->authValidate->validateInfoRegisterUser($userRequest);
-            $userResponse = $this->authService->register($userRequest);
+            $userResponse = $this->authService->register($userRequest)->toJSON();
             return $this->success($userResponse, trans('success.auth.register-user'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('error.auth.register-failed'), 400);
