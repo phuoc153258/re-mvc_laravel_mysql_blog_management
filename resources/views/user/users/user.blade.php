@@ -29,38 +29,43 @@
                             <div class="col-8">
                                 <div class="form-group mb-3">
                                     <label for="">{{ __('view.user.id') }}:</label>
-                                    <input type="text" class="form-control" placeholder="ID.." value="" readonly
-                                        id="id-user-update-js">
+                                    <input type="text" class="form-control" placeholder="{{ __('view.user.id') }}.."
+                                        value="" readonly id="id-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">{{ __('view.user.username') }}:</label>
-                                    <input type="text" class="form-control" placeholder="Username..." value=""
-                                        readonly id="username-user-update-js">
+                                    <input type="text" class="form-control"
+                                        placeholder="{{ __('view.user.username') }}..." value="" readonly
+                                        id="username-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">{{ __('view.user.fullname') }}:</label>
-                                    <input type="text" class="form-control" placeholder="Fullname..." value=""
+                                    <input type="text" class="form-control"
+                                        placeholder="{{ __('view.user.fullname') }}..." value=""
                                         id="fullname-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">{{ __('view.user.email') }}:</label>
-                                    <input type="email" class="form-control" placeholder="Email..." value=""
-                                        id="email-user-update-js">
+                                    <input type="email" class="form-control" placeholder="{{ __('view.user.email') }}..."
+                                        value="" id="email-user-update-js">
                                 </div>
                                 <div class="form-group mb-3" id="email-verify-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">{{ __('view.user.created-at') }}:</label>
-                                    <input type="text" class="form-control" placeholder="Created At..." value=""
-                                        readonly id="created_at-user-update-js">
+                                    <input type="text" class="form-control"
+                                        placeholder="{{ __('view.user.created-at') }}..." value="" readonly
+                                        id="created_at-user-update-js">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="">{{ __('view.user.updated-at') }}:</label>
-                                    <input type="text" class="form-control" placeholder="Updated At..." value=""
-                                        readonly id="updated_at-user-update-js">
+                                    <input type="text" class="form-control"
+                                        placeholder="{{ __('view.user.updated-at') }}..." value="" readonly
+                                        id="updated_at-user-update-js">
                                 </div>
                                 <div class="d-flex flex-row-reverse" style="gap: 0 15px;">
-                                    <a class="btn btn-primary" onclick="updateInfoUser()">{{ __('view.action.update') }}</a>
+                                    <a class="btn btn-primary"
+                                        onclick="updateInfoUser()">{{ __('view.action.update') }}</a>
                                     <a href="/users" class="btn btn-secondary">
                                         {{ __('view.action.back') }}</a>
                                 </div>
