@@ -13,10 +13,14 @@ function emptyListPermission() {
     document.getElementById("list-permission-js").innerHTML = "";
 }
 
-function deletePermissionNotice(id) {
+function deletePermissionNotice(id, name) {
+    const cookie = getCookie("X-localization");
     swal({
-        title: "Are you sure?",
-        text: `Delete this permission ?`,
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text:
+            cookie == "vie"
+                ? `Xóa permssion ${name}?`
+                : `Delete permission ${name} ?`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -40,7 +44,7 @@ function renderDataToTablePermission(data) {
                 value.id
             }" style="margin-right: 10px;"><i
             class="fa-solid fa-pencil"></i></a><a style="color: #0d6efd;"
-            onclick="deletePermissionNotice('${value.id}')"><i
+            onclick="deletePermissionNotice('${value.id}','${value.name}')"><i
             class="fa-solid fa-trash"></i></a></td>
     </tr>`;
     });

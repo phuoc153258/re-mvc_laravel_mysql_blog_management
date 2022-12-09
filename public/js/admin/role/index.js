@@ -1,7 +1,8 @@
-function deleteRoleNotice(id) {
+function deleteRoleNotice(id, name) {
+    const cookie = getCookie("X-localization");
     swal({
-        title: "Are you sure?",
-        text: `Delete this role ?`,
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text: cookie == "vie" ? `Xóa role ${name}?` : `Delete role ${name} ?`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -40,7 +41,7 @@ function renderDataToTableRole(data) {
                 value.id
             }" style="margin-right: 10px;"><i
             class="fa-solid fa-pencil"></i></a><a style="color: #0d6efd;"
-            onclick="deleteRoleNotice('${value.id}')"><i
+            onclick="deleteRoleNotice('${value.id}', '${value.name}')"><i
             class="fa-solid fa-trash"></i></a></td>
     </tr>`;
     });

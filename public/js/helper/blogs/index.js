@@ -1,7 +1,8 @@
 function deleteBlogNotice(id, name) {
+    const cookie = getCookie("X-localization");
     swal({
-        title: "Are you sure?",
-        text: `Delete this blog: ${name} ?`,
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text: cookie == "vie" ? `Xóa blog ${name}?` : `Delete blog ${name} ?`,
         icon: "warning",
         buttons: true,
         dangerMode: true,

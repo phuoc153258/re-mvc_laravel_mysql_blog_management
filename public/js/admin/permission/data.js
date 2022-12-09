@@ -20,11 +20,7 @@ async function getList(is_paginate = true) {
         renderDataToTablePermission(response.data.data);
         renderDataToListPage(response.data.data);
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
@@ -67,17 +63,14 @@ async function createPermission() {
             },
         });
         if (response.data.status) {
-            await swal("Create permission success !!!", "", "success");
+            await successNoti();
             location.replace(`/admin/permissions/${response.data.data.id}`);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
+        await errorNoti();
         return history.go(-1);
     }
 }
@@ -95,15 +88,11 @@ async function updatePermission() {
             },
         });
         if (response.data.status) {
-            await swal("Update permission success !!!", "", "success");
+            await successNoti();
             emptyDataDetailsPermission();
             renderDataDetailsPermission(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -121,15 +110,11 @@ async function deletePermission(id) {
             },
         });
         if (response.data.status) {
-            swal("Delete permission success !!!", "", "success");
+            await successNoti();
             renderDataToTablePermission(response.data.data);
             renderDataToListPage(response.data.data);
         } else {
-            await swal({
-                title: "Some thing went wrong!!!",
-                icon: "error",
-                button: "OK",
-            });
+            await errorNoti();
             return;
         }
     } catch (error) {
@@ -149,11 +134,7 @@ async function getListPermission(is_paginate = true) {
         });
         renderListPermission(response.data.data);
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }

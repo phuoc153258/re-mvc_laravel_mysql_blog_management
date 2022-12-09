@@ -1,7 +1,11 @@
 function deleteUserNotice(id, name) {
+    const cookie = getCookie("X-localization");
     swal({
-        title: "Are you sure?",
-        text: `Delete this user: ${name} ?`,
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text:
+            cookie == "vie"
+                ? `Xóa người dùng ${name}?`
+                : `Delete user ${name} ?`,
         icon: "warning",
         buttons: true,
         dangerMode: true,
