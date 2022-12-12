@@ -32,7 +32,6 @@ class UserApiController extends Controller
             $userResponse = $this->userService->show($user_id);
             return $this->success($userResponse->toJSON(), trans('success.user.get-me'), 200);
         } catch (\Throwable $th) {
-            error_log($th->getMessage());
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }

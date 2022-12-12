@@ -12,7 +12,8 @@
     <p>Hi {{ $user->fullname }}</p>
     <p>Your Account is not verify</p>
     <p>Click this button to verify your email</p>
-    <a href="http://localhost:8000/users/{{ $user->id }}/mails">Verify Email</a>
+    <p>{{ $token }}</p>
+    <a href="http://localhost:8000/users/{{ $user->id }}/mails/token/{{ $token }}">Verify Email</a>
 </body>
 
 </html>

@@ -1,20 +1,22 @@
 async function handleVerifyEmail() {
     try {
+        const token =
+            "Bearer " +
+            window.location.pathname
+                .split("/")[5]
+                .replace("%7C", "|")
+                .toString();
         const response = await axios({
             method: "post",
             url: "/api/users/me/verify-mail/handle",
             data: {},
             headers: {
-                Authorization: getCookie("access_token"),
+                Authorization: token || getCookie("access_token"),
             },
         });
         await successNoti();
     } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
+        await errorNoti();
         return;
     }
 }
