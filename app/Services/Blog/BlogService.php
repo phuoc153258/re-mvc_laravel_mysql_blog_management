@@ -87,7 +87,7 @@ class BlogService implements IBlogService
 
         $blog = $blogQuery->get()->first();
 
-        if (!$blog) return abort(400, trans('error.blog.blog-not-found'));
+        if (!$blog)  abort(400, trans('error.blog.blog-not-found'));
 
         $fileResponse = $this->fileService->upload($file);
 

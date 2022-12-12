@@ -38,7 +38,7 @@ class PermissionService implements IPermissionService
     {
         $permission = new Permission();
 
-        if ($name == '' || $name == null) return abort(400, trans('error.permission.create-permission'));
+        if ($name == '' || $name == null)  abort(400, trans('error.permission.create-permission'));
 
         $permission->name = $name;
 
@@ -50,7 +50,7 @@ class PermissionService implements IPermissionService
     public function update(UpdatePermissionRequestDTO $permissionRequest): PermissionResponseDTO
     {
         $permission = Permission::find($permissionRequest->getID());
-        if ($permissionRequest->getName() == '' || $permissionRequest->getName() == null) return abort(400, trans('error.permission.update-permission'));
+        if ($permissionRequest->getName() == '' || $permissionRequest->getName() == null)  abort(400, trans('error.permission.update-permission'));
 
         $permission->name = $permissionRequest->getName();
         $permission->save();
@@ -72,9 +72,9 @@ class PermissionService implements IPermissionService
     {
         $user = User::find($permissionRequest->getUserID());
 
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
-        if ($user->hasAnyPermission($permissionRequest->getPermissionID())) return abort(400, trans('error.permission.give-permission-exists'));
+        if ($user->hasAnyPermission($permissionRequest->getPermissionID()))  abort(400, trans('error.permission.give-permission-exists'));
 
         $user->givePermissionTo([$permissionRequest->getPermissionID()]);
 
@@ -87,9 +87,9 @@ class PermissionService implements IPermissionService
     {
         $user = User::find($permissionRequest->getUserID());
 
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
-        if (!$user->hasPermissionTo($permissionRequest->getPermissionID())) return abort(400, trans('error.permission.revoke-permission-not-exists'));
+        if (!$user->hasPermissionTo($permissionRequest->getPermissionID())) abort(400, trans('error.permission.revoke-permission-not-exists'));
 
         $user->revokePermissionTo($permissionRequest->getPermissionID());
 

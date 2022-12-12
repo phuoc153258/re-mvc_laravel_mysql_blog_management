@@ -33,7 +33,7 @@ class UserService implements IUserService
     public  function show(int $id): UserResponseDTO
     {
         $user = User::find($id);
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
         $userDTO = new UserResponseDTO($user);
         return $userDTO;
@@ -71,7 +71,7 @@ class UserService implements IUserService
     public function resetPassword(int $id): UserResponseDTO
     {
         $user = User::find($id);
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
         $user->password = USER_DEFAULT_PASSWORD;
 
@@ -84,7 +84,7 @@ class UserService implements IUserService
     {
         $user = User::find($id);
 
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
         $fileResponse = $this->fileService->upload($file);
         try {
@@ -104,7 +104,7 @@ class UserService implements IUserService
     public function deleteUser($id): UserResponseDTO
     {
         $user = User::find($id);
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
         $user->delete();
         $userDTO = new UserResponseDTO($user);
         return $userDTO;

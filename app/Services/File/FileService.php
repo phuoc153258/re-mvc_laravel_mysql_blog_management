@@ -15,8 +15,8 @@ class FileService implements IFileService
 
     public function upload(UploadFileRequestDTO $file): string
     {
-        if (!$file->getFileSize() > FILE_SIZE_LIMIT) return abort(400, trans('error.file.file-size'));
-        if (!in_array($file->getExtension(), FILE_EXTENSION)) return abort(400, trans('error.file.format-file'));
+        if (!$file->getFileSize() > FILE_SIZE_LIMIT)  abort(400, trans('error.file.file-size'));
+        if (!in_array($file->getExtension(), FILE_EXTENSION))  abort(400, trans('error.file.format-file'));
 
         $file_type = getFileType($file->getFileType());
         $file_name = genarateUUID() . "." . $file->getExtension();
@@ -27,9 +27,9 @@ class FileService implements IFileService
 
     public function delete(DeleteFileRequestDTO $file): string
     {
-        if (!File::exists($file->getFileName())) return abort(400, trans('error.file.file-not-exists '));
+        if (!File::exists($file->getFileName()))  abort(400, trans('error.file.file-not-exists '));
 
-        if (in_array($file->getFileName(), FILE_IMAGE_BASE)) return abort(400, trans('error.file.can-not-delete-file'));
+        if (in_array($file->getFileName(), FILE_IMAGE_BASE))  abort(400, trans('error.file.can-not-delete-file'));
 
         File::delete($file->getFileName());
 

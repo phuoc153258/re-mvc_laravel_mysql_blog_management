@@ -9,7 +9,7 @@ trait BaseValidate
     protected function baseRunCondition(Validator $validator)
     {
         if ($validator->fails()) {
-            return abort(400, trans('error.validate.invalid-information'));
+            abort(400, trans('error.validate.invalid-information'));
         }
     }
 }

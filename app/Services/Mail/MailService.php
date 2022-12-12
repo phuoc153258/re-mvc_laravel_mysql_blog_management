@@ -33,7 +33,7 @@ class MailService implements IMailService
     {
         $user = User::find($user_id);
 
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
         $user->is_email_verified = MAIL_VERIFY_TRUE;
         $user->email_verified_at = getDateNow();

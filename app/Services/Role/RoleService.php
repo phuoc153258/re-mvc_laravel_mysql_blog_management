@@ -38,7 +38,7 @@ class RoleService implements IRoleService
     {
         $role = new Role();
 
-        if ($name == '' || $name == null) return abort(400, trans('error.role.create-role'));
+        if ($name == '' || $name == null)  abort(400, trans('error.role.create-role'));
 
         $role->name = $name;
 
@@ -50,7 +50,7 @@ class RoleService implements IRoleService
     public function update(UpdateRoleRequestDTO $roleRequest): RoleResponseDTO
     {
         $role = Role::find($roleRequest->getID());
-        if ($roleRequest->getName() == '' || $roleRequest->getName() == null) return abort(400, trans('error.role.update-role'));
+        if ($roleRequest->getName() == '' || $roleRequest->getName() == null)  abort(400, trans('error.role.update-role'));
 
         $role->name = $roleRequest->getName();
         $role->save();
@@ -72,9 +72,9 @@ class RoleService implements IRoleService
     {
         $user = User::find($userRequest->getUserID());
 
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
-        if ($user->hasRole([$userRequest->getRoleID()])) return abort(400, trans('error.role.assign-role-exists'));
+        if ($user->hasRole([$userRequest->getRoleID()]))  abort(400, trans('error.role.assign-role-exists'));
 
         $user->assignRole([$userRequest->getRoleID()]);
 
@@ -87,10 +87,10 @@ class RoleService implements IRoleService
     {
         $user = User::find($userRequest->getUserID());
 
-        if (!$user) return abort(400, trans('error.user.user-not-found'));
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
 
-        if (!$user->hasRole([$userRequest->getRoleID()])) return abort(400, trans('error.role.remove-role-exists'));
-        if ($userRequest->getRoleID() == ROLE_USER_ID) return abort(400, trans('error.role.can-not-delete-role'));
+        if (!$user->hasRole([$userRequest->getRoleID()]))  abort(400, trans('error.role.remove-role-exists'));
+        if ($userRequest->getRoleID() == ROLE_USER_ID)  abort(400, trans('error.role.can-not-delete-role'));
 
         $user->removeRole($userRequest->getRoleID());
 
