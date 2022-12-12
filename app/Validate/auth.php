@@ -43,4 +43,12 @@ class AuthValidate
         ]);
         return $this->baseRunCondition($validator);
     }
+
+    public function validatePasswordReset($password)
+    {
+        $validator = Validator::make(['password' => $password], [
+            ...VALIDATE_PASSWORD
+        ]);
+        return $this->baseRunCondition($validator);
+    }
 }

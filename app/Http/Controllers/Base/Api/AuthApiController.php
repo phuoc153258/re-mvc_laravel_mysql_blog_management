@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\ResetPasswordUserRequestDTO;
 use App\DTO\Request\Auth\VerifyOTPRequestDTO;
 use App\Services\Auth\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
+use App\Traits\Authenticate;
 
 class AuthApiController extends Controller
 {
     use HttpResponse;
+    use Authenticate;
     protected AuthValidate $authValidate;
     protected AuthService $authService;
 
@@ -75,6 +78,19 @@ class AuthApiController extends Controller
             $this->authValidate->validateInfoVerifyOTP($userRequest);
             $response =  $this->authService->verifyOTP($userRequest);
             return $this->success($response, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        try {
+            $user = $this->getInfoUser($request);
+            $userRequest = new ResetPasswordUserRequestDTO($user, $request->input('password'));
+            $this->authValidate->validatePasswordReset($userRequest->getPassword());
+            $response =  $this->authService->resetPassword($userRequest);
+            return $this->success($response->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

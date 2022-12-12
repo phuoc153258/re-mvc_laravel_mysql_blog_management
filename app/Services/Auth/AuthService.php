@@ -6,6 +6,7 @@ use App\DTO\Request\Auth\LoginUserRequestDTO;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\ResetPasswordUserRequestDTO;
 use App\DTO\Request\Auth\VerifyOTPRequestDTO;
 use App\DTO\Response\Auth\AuthUserResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
@@ -82,7 +83,18 @@ class AuthService implements IAuthService
         if ($userRequest->getOTP() != $otp->otp) abort(400, trans('error.otp.otp-do-not-match'));
 
         $token = $user->createToken('API Token')->plainTextToken;
-
+        OTP::where('user_id', $user->id)->delete();
         return $token;
+    }
+
+    public function resetPassword(ResetPasswordUserRequestDTO $userRequest)
+    {
+        $user = User::find($userRequest->getUser()->id);
+
+        $user->password = hashPassword($userRequest->getPassword());
+        $user->save();
+        $userDTO = new UserResponseDTO($user);
+        $this->logout($userRequest->getUser());
+        return $userDTO;
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Base\Api\AuthApiController;
 
+Route::post('/reset-password', [AuthApiController::class, 'resetPassword'])->middleware('auth:sanctum');
+
 Route::post('/mails/{email}/verify', [AuthApiController::class, 'verifyOtp']);
 
 Route::post('/mails/{email}', [AuthApiController::class, 'sendMail']);
