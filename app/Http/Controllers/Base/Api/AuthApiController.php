@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\VerifyOTPRequestDTO;
 use App\Services\Auth\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
@@ -61,6 +62,18 @@ class AuthApiController extends Controller
         try {
             $this->authValidate->validateEmailForgotPassword($email);
             $response =  $this->authService->sendMail($email);
+            return $this->success($response, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function verifyOtp(Request $request, $email)
+    {
+        try {
+            $userRequest = new VerifyOTPRequestDTO($request, $email);
+            $this->authValidate->validateInfoVerifyOTP($userRequest);
+            $response =  $this->authService->verifyOTP($userRequest);
             return $this->success($response, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);

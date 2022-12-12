@@ -2,4 +2,4 @@
 
 define('OTP_EXPIRED_TIME_STR', '5 minutes');
 
-define('OTP_EXPIRED_TIME', 5 * 60);
+define('OTP_EXPIRED_TIME', 5);

@@ -5,6 +5,7 @@ namespace App\Validate;
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use Illuminate\Support\Facades\Validator;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\VerifyOTPRequestDTO;
 use App\Traits\BaseValidate;
 
 class AuthValidate
@@ -31,6 +32,14 @@ class AuthValidate
     {
         $validator = Validator::make(['email' => $email], [
             ...VALIDATE_EMAIL
+        ]);
+        return $this->baseRunCondition($validator);
+    }
+
+    public function validateInfoVerifyOTP(VerifyOTPRequestDTO $userRequest)
+    {
+        $validator = Validator::make($userRequest->toArray(), [
+            ...VALIDATE_EMAIL, ...VALIDATE_OTP
         ]);
         return $this->baseRunCondition($validator);
     }

@@ -46,5 +46,10 @@ return [
     ],
     'validate' => [
         'invalid-information' => 'Invalid information !!!'
+    ],
+    'otp' => [
+        'user-not-send-otp-mail' => 'You have not requested to send OTP mail !!!',
+        'otp-expired-time' => 'Your OTP expired !!!',
+        'otp-do-not-match' => 'Your OTP do not match !!!',
     ]
 ];

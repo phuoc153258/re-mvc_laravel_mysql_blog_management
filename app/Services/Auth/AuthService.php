@@ -6,11 +6,13 @@ use App\DTO\Request\Auth\LoginUserRequestDTO;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\VerifyOTPRequestDTO;
 use App\DTO\Response\Auth\AuthUserResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
 use App\Models\OTP;
 use App\Services\Auth\IAuthService;
 use App\Jobs\ForgotPasswordJob;
+use Illuminate\Support\Carbon;
 
 class AuthService implements IAuthService
 {
@@ -62,5 +64,25 @@ class AuthService implements IAuthService
         $forgotPasswordJob = new ForgotPasswordJob($user, $otp->otp, OTP_EXPIRED_TIME_STR);
         dispatch($forgotPasswordJob);
         return trans('success.mail.please-check-mail');
+    }
+
+    public function verifyOTP(VerifyOTPRequestDTO $userRequest)
+    {
+        $user = User::where([
+            'email' => $userRequest->getEmail(),
+            'is_email_verified' => MAIL_VERIFY_TRUE
+        ])->get()->first();
+        if (!$user || $user == null) abort(400, trans('error.user.email-not-found'));
+
+        $otp = OTP::where('user_id', $user->id)->get()->first();
+        if (!$otp || $otp == null) abort(400, trans('error.otp.user-not-send-otp-mail'));
+
+        if (Carbon::now()->gt(addMinutesToDate($otp->created_at, OTP_EXPIRED_TIME))) abort(400, trans('error.otp.otp-expired-time'));
+
+        if ($userRequest->getOTP() != $otp->otp) abort(400, trans('error.otp.otp-do-not-match'));
+
+        $token = $user->createToken('API Token')->plainTextToken;
+
+        return $token;
     }
 }

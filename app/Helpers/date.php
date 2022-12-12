@@ -16,3 +16,10 @@ if (!function_exists('getDateNow')) {
         return Carbon::now()->toDateTimeString();
     }
 }
+
+if (!function_exists('addMinutesToDate')) {
+    function addMinutesToDate($date, $minutes)
+    {
+        return Carbon::parse($date)->addMinutes(5);
+    }
+}

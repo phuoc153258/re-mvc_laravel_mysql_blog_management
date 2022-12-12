@@ -46,5 +46,10 @@ return [
     ],
     'validate' => [
         'invalid-information' => 'Thông tin không hợp lệ !!!'
+    ],
+    'otp' => [
+        'user-not-send-otp-mail' => 'Bạn chưa yêu cầu gửi thư OTP !!!',
+        'otp-expired-time' => 'OTP của bạn đã hết hạn !!!',
+        'otp-do-not-match' => 'OTP của bạn không trùng khớp !!!',
     ]
 ];
