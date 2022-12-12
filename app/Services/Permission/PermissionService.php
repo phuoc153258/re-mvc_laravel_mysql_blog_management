@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Permission;
 
 use App\Models\User;
 use Spatie\Permission\Models\Permission;
@@ -9,9 +9,10 @@ use App\DTO\Request\Permission\GivePermissionUserRequestDTO;
 use App\DTO\Request\Permission\UpdatePermissionRequestDTO;
 use App\DTO\Response\Permission\PermissionResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
-use App\Services\PaginateService;
+use App\Services\Paginate\PaginateService;
+use App\Services\Permission\IPermissionService;
 
-class PermissionService
+class PermissionService implements IPermissionService
 {
     protected PaginateService $paginateService;
 
@@ -20,20 +21,20 @@ class PermissionService
         $this->paginateService = new PaginateService();
     }
 
-    public function getList(BasePaginateRequestDTO $option)
+    public function getList(BasePaginateRequestDTO $option): mixed
     {
         $data = $this->paginateService->paginate($option);
         return $data;
     }
 
-    public function show($id)
+    public function show(int $id): PermissionResponseDTO
     {
         $permission = Permission::find($id);
         $permissionDTO = new PermissionResponseDTO($permission);
-        return $permissionDTO->toJSON();
+        return $permissionDTO;
     }
 
-    public function create(string $name)
+    public function create(string $name): PermissionResponseDTO
     {
         $permission = new Permission();
 
@@ -43,10 +44,10 @@ class PermissionService
 
         $permission->save();
         $permissionDTO = new PermissionResponseDTO($permission);
-        return $permissionDTO->toJSON();
+        return $permissionDTO;
     }
 
-    public function update(UpdatePermissionRequestDTO $permissionRequest)
+    public function update(UpdatePermissionRequestDTO $permissionRequest): PermissionResponseDTO
     {
         $permission = Permission::find($permissionRequest->getID());
         if ($permissionRequest->getName() == '' || $permissionRequest->getName() == null) return abort(400, trans('error.permission.update-permission'));
@@ -55,19 +56,19 @@ class PermissionService
         $permission->save();
 
         $permissionDTO = new PermissionResponseDTO($permission);
-        return $permissionDTO->toJSON();
+        return $permissionDTO;
     }
 
-    public function delete($id)
+    public function delete(int $id): PermissionResponseDTO
     {
         $permission = Permission::find($id);
         $permission->delete();
 
         $permissionDTO = new PermissionResponseDTO($permission);
-        return $permissionDTO->toJSON();
+        return $permissionDTO;
     }
 
-    public function givePermission(GivePermissionUserRequestDTO $permissionRequest)
+    public function givePermission(GivePermissionUserRequestDTO $permissionRequest): UserResponseDTO
     {
         $user = User::find($permissionRequest->getUserID());
 
@@ -79,10 +80,10 @@ class PermissionService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public function revokePermission(GivePermissionUserRequestDTO $permissionRequest)
+    public function revokePermission(GivePermissionUserRequestDTO $permissionRequest): UserResponseDTO
     {
         $user = User::find($permissionRequest->getUserID());
 
@@ -94,6 +95,6 @@ class PermissionService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 }

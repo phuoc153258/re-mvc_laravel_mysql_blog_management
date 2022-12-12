@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\File;
 
 use Illuminate\Support\Facades\File;
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
+use App\Services\File\IFileService;
 
-
-class FileService
+class FileService implements IFileService
 {
     public function __construct()
     {
     }
 
-    public function upload(UploadFileRequestDTO $file)
+    public function upload(UploadFileRequestDTO $file): string
     {
         if (!$file->getFileSize() > FILE_SIZE_LIMIT) return abort(400, trans('error.file.file-size'));
         if (!in_array($file->getExtension(), FILE_EXTENSION)) return abort(400, trans('error.file.format-file'));
@@ -25,7 +25,7 @@ class FileService
         return $file_type . "/" . $file_name;
     }
 
-    public function delete(DeleteFileRequestDTO $file)
+    public function delete(DeleteFileRequestDTO $file): string
     {
         if (!File::exists($file->getFileName())) return abort(400, trans('error.file.file-not-exists '));
 

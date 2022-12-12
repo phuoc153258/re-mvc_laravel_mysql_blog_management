@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Role;
 
 use Spatie\Permission\Models\Role;
 use App\Models\User;
@@ -9,9 +9,10 @@ use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use App\DTO\Response\Role\RoleResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
-use App\Services\PaginateService;
+use App\Services\Paginate\PaginateService;
+use App\Services\Role\IRoleService;
 
-class RoleService
+class RoleService implements IRoleService
 {
     protected PaginateService $paginateService;
 
@@ -20,20 +21,20 @@ class RoleService
         $this->paginateService = new PaginateService();
     }
 
-    public function getList(BasePaginateRequestDTO $option)
+    public function getList(BasePaginateRequestDTO $option): mixed
     {
         $data = $this->paginateService->paginate($option);
         return $data;
     }
 
-    public function show($id)
+    public function show(int $id): RoleResponseDTO
     {
         $role = Role::find($id);
         $roleDTO = new RoleResponseDTO($role);
-        return $roleDTO->toJSON();
+        return $roleDTO;
     }
 
-    public function create(string $name)
+    public function create(string $name): RoleResponseDTO
     {
         $role = new Role();
 
@@ -43,10 +44,10 @@ class RoleService
 
         $role->save();
         $roleDTO = new RoleResponseDTO($role);
-        return $roleDTO->toJSON();
+        return $roleDTO;
     }
 
-    public function update(UpdateRoleRequestDTO $roleRequest)
+    public function update(UpdateRoleRequestDTO $roleRequest): RoleResponseDTO
     {
         $role = Role::find($roleRequest->getID());
         if ($roleRequest->getName() == '' || $roleRequest->getName() == null) return abort(400, trans('error.role.update-role'));
@@ -55,19 +56,19 @@ class RoleService
         $role->save();
 
         $roleDTO = new RoleResponseDTO($role);
-        return $roleDTO->toJSON();
+        return $roleDTO;
     }
 
-    public function delete($id)
+    public function delete(int $id): RoleResponseDTO
     {
         $role = Role::find($id);
         $role->delete();
 
         $roleDTO = new RoleResponseDTO($role);
-        return $roleDTO->toJSON();
+        return $roleDTO;
     }
 
-    public function assignRole(AssignRoleUserRequestDTO $userRequest)
+    public function assignRole(AssignRoleUserRequestDTO $userRequest): UserResponseDTO
     {
         $user = User::find($userRequest->getUserID());
 
@@ -79,10 +80,10 @@ class RoleService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public function removeRole(AssignRoleUserRequestDTO $userRequest)
+    public function removeRole(AssignRoleUserRequestDTO $userRequest): UserResponseDTO
     {
         $user = User::find($userRequest->getUserID());
 
@@ -95,6 +96,6 @@ class RoleService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 }

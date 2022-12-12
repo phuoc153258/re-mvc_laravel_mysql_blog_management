@@ -9,7 +9,7 @@ use App\DTO\Request\Role\UpdateRoleRequestDTO;
 use App\DTO\Request\Role\AssignRoleUserRequestDTO;
 use App\Validate\RoleValidate;
 use App\Traits\HttpResponse;
-use App\Services\RoleService;
+use App\Services\Role\RoleService;
 
 class RoleApiController extends Controller
 {
@@ -39,7 +39,7 @@ class RoleApiController extends Controller
         try {
             $this->roleValidate->validateInfoIdRole($id);
             $roleResponse = $this->roleService->show($id);
-            return $this->success($roleResponse, trans('base.base-success'), 200);
+            return $this->success($roleResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -50,7 +50,7 @@ class RoleApiController extends Controller
         try {
             $this->roleValidate->validateInfoNameRole($request->input('name'));
             $roleResponse = $this->roleService->create($request->input('name'));
-            return $this->success($roleResponse, trans('base.base-success'), 200);
+            return $this->success($roleResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -62,7 +62,7 @@ class RoleApiController extends Controller
             $roleRequest = new UpdateRoleRequestDTO($request, $id);
             $this->roleValidate->validateInfoUpdateRole($roleRequest);
             $roleResponse = $this->roleService->update($roleRequest);
-            return $this->success($roleResponse, trans('base.base-success'), 200);
+            return $this->success($roleResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -87,7 +87,7 @@ class RoleApiController extends Controller
             $userRequest = new AssignRoleUserRequestDTO($user_id, $role_id);
             $this->roleValidate->validateInfoAssignRoleUser($userRequest);
             $roleResponse = $this->roleService->assignRole($userRequest);
-            return $this->success($roleResponse, trans('success.role.assign-role'), 200);
+            return $this->success($roleResponse->toJSON(), trans('success.role.assign-role'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -99,7 +99,7 @@ class RoleApiController extends Controller
             $userRequest = new AssignRoleUserRequestDTO($user_id, $role_id);
             $this->roleValidate->validateInfoAssignRoleUser($userRequest);
             $roleResponse = $this->roleService->removeRole($userRequest);
-            return $this->success($roleResponse, trans('success.role.remove-role'), 200);
+            return $this->success($roleResponse->toJSON(), trans('success.role.remove-role'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponse;
-use App\Services\PermissionService;
+use App\Services\Permission\PermissionService;
 use App\Validate\PermissionValidate;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\Permission\GivePermissionUserRequestDTO;
@@ -39,7 +39,7 @@ class PermissionApiController extends Controller
         try {
             $this->permissionValidate->validateInfoIdPermission($id);
             $permissionResponse = $this->permissionService->show($id);
-            return $this->success($permissionResponse, trans('base.base-success'), 200);
+            return $this->success($permissionResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -50,7 +50,7 @@ class PermissionApiController extends Controller
         try {
             $this->permissionValidate->validateInfoNamePermission($request->input('name'));
             $permissionResponse = $this->permissionService->create($request->input('name'));
-            return $this->success($permissionResponse, trans('base.base-success'), 200);
+            return $this->success($permissionResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -62,7 +62,7 @@ class PermissionApiController extends Controller
             $permissionRequest = new UpdatePermissionRequestDTO($request, $id);
             $this->permissionValidate->validateInfoUpdatePermission($permissionRequest);
             $permissionResponse = $this->permissionService->update($permissionRequest);
-            return $this->success($permissionResponse, trans('base.base-success'), 200);
+            return $this->success($permissionResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -87,7 +87,7 @@ class PermissionApiController extends Controller
             $permissionRequest = new GivePermissionUserRequestDTO($user_id, $permission_id);
             $this->permissionValidate->validateInfoGivePermission($permissionRequest);
             $permissionResponse = $this->permissionService->givePermission($permissionRequest);
-            return $this->success($permissionResponse, trans('success.permission.give-permission'), 200);
+            return $this->success($permissionResponse->toJSON(), trans('success.permission.give-permission'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
@@ -99,7 +99,7 @@ class PermissionApiController extends Controller
             $permissionRequest = new GivePermissionUserRequestDTO($user_id, $permission_id);
             $this->permissionValidate->validateInfoGivePermission($permissionRequest);
             $permissionResponse = $this->permissionService->revokePermission($permissionRequest);
-            return $this->success($permissionResponse, trans('success.role.remove-role'), 200);
+            return $this->success($permissionResponse->toJSON(), trans('success.role.remove-role'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

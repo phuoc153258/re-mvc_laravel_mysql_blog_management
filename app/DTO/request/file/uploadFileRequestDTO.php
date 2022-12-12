@@ -14,7 +14,7 @@ class UploadFileRequestDTO
 
     public function __construct(Request $request, string $type)
     {
-        if (!$request->hasFile($type))  return abort(400, MESSAGE_ERROR_SELECT_FILE);
+        if (!$request->hasFile($type))  return abort(400, trans('error.file.select-file'));
         $this->file = $request->file($type);
         $this->file_name = $this->file->getClientOriginalName($type);
         $this->extension = $this->file->getClientOriginalExtension($type);

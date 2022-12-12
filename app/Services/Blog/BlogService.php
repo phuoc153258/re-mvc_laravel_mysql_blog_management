@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Blog;
 
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
@@ -9,10 +9,11 @@ use App\DTO\Request\Blog\UpdateBlogRequestDTO;
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\DTO\response\Blog\BlogResponseDTO;
 use App\Models\Blog;
-use App\Services\PaginateService;
-use App\Services\FileService;
+use App\Services\Paginate\PaginateService;
+use App\Services\File\FileService;
+use App\Services\Blog\IBlogService;
 
-class BlogService
+class BlogService implements IBlogService
 {
     protected PaginateService $paginateService;
     protected FileService $fileService;
@@ -23,13 +24,13 @@ class BlogService
         $this->fileService = new FileService();
     }
 
-    public function getList(BasePaginateRequestDTO $option, $user_id = null)
+    public function getList(BasePaginateRequestDTO $option, $user_id = null): mixed
     {
         $data = $this->paginateService->paginate($option, $user_id);
         return $data;
     }
 
-    public function show($id, $user_id = null)
+    public function show($id, $user_id = null): BlogResponseDTO
     {
         $blog = Blog::with('users')
             ->where('id', $id);
@@ -37,10 +38,10 @@ class BlogService
             $blog->where('blogs.user_id', $user_id);
         }
         $blogDTO = new BlogResponseDTO($blog->get()->first());
-        return $blogDTO->toJSON();
+        return $blogDTO;
     }
 
-    public function createBlog(CreateBlogRequestDTO $blogRequest, UploadFileRequestDTO $fileRequest)
+    public function createBlog(CreateBlogRequestDTO $blogRequest, UploadFileRequestDTO $fileRequest): BlogResponseDTO
     {
         $blog = new Blog();
 
@@ -55,10 +56,10 @@ class BlogService
 
         $blog->save();
         $blogDTO = new BlogResponseDTO($blog);
-        return $blogDTO->toJSON();
+        return $blogDTO;
     }
 
-    public function updateBlog(UpdateBlogRequestDTO $blogRequest, $user_id = null)
+    public function updateBlog(UpdateBlogRequestDTO $blogRequest, $user_id = null): BlogResponseDTO
     {
         $blogQuery = Blog::with('users')
             ->where('id', $blogRequest->getID());
@@ -73,10 +74,10 @@ class BlogService
 
         $blog->save();
         $blogDTO = new BlogResponseDTO($blog);
-        return $blogDTO->toJSON();
+        return $blogDTO;
     }
 
-    public function uploadImage(UploadFileRequestDTO $file, int $id, $user_id = null)
+    public function uploadImage(UploadFileRequestDTO $file, int $id, $user_id = null): BlogResponseDTO
     {
         $blogQuery = Blog::with('users')
             ->where('id', $id);
@@ -100,10 +101,10 @@ class BlogService
 
         $blog->save();
         $blogDTO = new BlogResponseDTO($blog);
-        return $blogDTO->toJSON();
+        return $blogDTO;
     }
 
-    public function deleteBlog($id, $user_id = null)
+    public function deleteBlog($id, $user_id = null): void
     {
         $blogQuery = Blog::with('users')
             ->where('id', $id);
@@ -113,7 +114,7 @@ class BlogService
 
         $blog = $blogQuery->get()->first();
 
-        if (!$blog) return abort(400, trans('error.blog.blog-not-found'));
+        if (!$blog)  abort(400, trans('error.blog.blog-not-found'));
         $blog->delete();
     }
 }

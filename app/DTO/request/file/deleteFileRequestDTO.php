@@ -10,7 +10,8 @@ class DeleteFileRequestDTO
 
     public function __construct($file_name)
     {
-        if (!$file_name)  return abort(400, MESSAGE_ERROR_SELECT_FILE);
+        if (!$file_name)
+            abort(400, trans('error.blog.delete'));
         $this->file_name = $file_name;
     }
 

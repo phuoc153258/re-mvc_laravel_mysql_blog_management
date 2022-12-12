@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Paginate;
 
 use Illuminate\Support\Facades\DB;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\Services\Paginate\IPaginateService;
 
-class PaginateService
+class PaginateService implements IPaginateService
 {
     public function __construct()
     {
     }
 
-    public function paginate(BasePaginateRequestDTO $paginateOption,  $user_id = null)
+    public function paginate(BasePaginateRequestDTO $paginateOption,  $user_id = null): mixed
     {
         $query =  DB::table($paginateOption->type_model->getType());
 

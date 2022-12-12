@@ -6,7 +6,7 @@ use App\DTO\Request\Mail\WelcomeMailRequestDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\WelcomeMail;
-use App\Services\MailService;
+use App\Services\Mail\MailService;
 use Illuminate\Support\Facades\Mail;
 use App\Traits\Authenticate;
 use App\Traits\HttpResponse;
@@ -53,7 +53,7 @@ class MailApiController extends Controller
         try {
             $user_id = $this->getInfoUser($request)->id;
             $userResposne = $this->mailService->handleVerifyMail($user_id);
-            return $this->success($userResposne, trans('success.mail.verify-mail'), 200);
+            return $this->success($userResposne->toJSON(), trans('success.mail.verify-mail'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('error.mail.mail-base'), 400);
         }

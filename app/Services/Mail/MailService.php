@@ -1,36 +1,35 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Mail;
 
 use App\DTO\Request\Mail\WelcomeMailRequestDTO;
 use App\DTO\Response\User\UserResponseDTO;
 use App\Jobs\VerifyMailJob;
 use App\Jobs\WelcomeMailJob;
-use App\Mail\WelcomeMail;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
+use App\Services\Mail\IMailService;
 
-class MailService
+class MailService implements IMailService
 {
     public function __construct()
     {
     }
 
-    public function welcome(WelcomeMailRequestDTO $mailRequest)
+    public function welcome(WelcomeMailRequestDTO $mailRequest): string
     {
         $sendEmailJob = new WelcomeMailJob($mailRequest);
         dispatch($sendEmailJob);
         return trans('success.mail.please-check-mail');
     }
 
-    public function verifyMail($user)
+    public function verifyMail($user): string
     {
         $verifyMailJob = new VerifyMailJob($user);
         dispatch($verifyMailJob);
         return trans('success.mail.please-check-mail');
     }
 
-    public function handleVerifyMail($user_id)
+    public function handleVerifyMail($user_id): UserResponseDTO
     {
         $user = User::find($user_id);
 
@@ -41,6 +40,6 @@ class MailService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 }

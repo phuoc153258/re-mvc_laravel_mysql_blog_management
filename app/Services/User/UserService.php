@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\User;
 
 use App\DTO\Request\File\DeleteFileRequestDTO;
 use App\Models\User;
@@ -9,10 +9,11 @@ use App\DTO\Request\User\UpdateUserRequestDTO;
 use App\DTO\Request\User\ChangePasswordUserRequestDTO;
 use App\DTO\Request\File\UploadFileRequestDTO;
 use App\DTO\Response\User\UserResponseDTO;
-use App\Services\PaginateService;
-use App\Services\FileService;
+use App\Services\Paginate\PaginateService;
+use App\Services\File\FileService;
+use App\Services\User\IUserService;
 
-class UserService
+class UserService implements IUserService
 {
     protected PaginateService $paginateService;
     protected FileService $fileService;
@@ -23,22 +24,22 @@ class UserService
         $this->fileService = new FileService();
     }
 
-    public  function getList(BasePaginateRequestDTO $option)
+    public  function getList(BasePaginateRequestDTO $option): mixed
     {
         $data = $this->paginateService->paginate($option);
         return $data;
     }
 
-    public  function show($id)
+    public  function show(int $id): UserResponseDTO
     {
         $user = User::find($id);
         if (!$user) return abort(400, trans('error.user.user-not-found'));
 
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public  function update(UpdateUserRequestDTO $request)
+    public function update(UpdateUserRequestDTO $request): UserResponseDTO
     {
         $user = User::find($request->getID());
 
@@ -50,10 +51,10 @@ class UserService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public  function changePassword(ChangePasswordUserRequestDTO $request)
+    public function changePassword(ChangePasswordUserRequestDTO $request): UserResponseDTO
     {
         $user = User::find($request->getID());
 
@@ -64,10 +65,10 @@ class UserService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public function resetPassword($id)
+    public function resetPassword(int $id): UserResponseDTO
     {
         $user = User::find($id);
         if (!$user) return abort(400, trans('error.user.user-not-found'));
@@ -76,10 +77,10 @@ class UserService
 
         $user->save();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public function uploadAvatar(UploadFileRequestDTO $file, string $id)
+    public function uploadAvatar(UploadFileRequestDTO $file, int $id): UserResponseDTO
     {
         $user = User::find($id);
 
@@ -88,7 +89,7 @@ class UserService
         $fileResponse = $this->fileService->upload($file);
         try {
             $fileDelete = new DeleteFileRequestDTO($user->avatar);
-            $fileDeleteResponse = $this->fileService->delete($fileDelete);
+            $this->fileService->delete($fileDelete);
         } catch (\Throwable $th) {
         }
 
@@ -97,15 +98,15 @@ class UserService
         $user->save();
 
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 
-    public  function deleteUser($id)
+    public function deleteUser($id): UserResponseDTO
     {
         $user = User::find($id);
         if (!$user) return abort(400, trans('error.user.user-not-found'));
         $user->delete();
         $userDTO = new UserResponseDTO($user);
-        return $userDTO->toJSON();
+        return $userDTO;
     }
 }
