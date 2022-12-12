@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Carbon;
+
 if (!function_exists('formatDate')) {
     function formatDate($str)
     {
@@ -11,6 +13,6 @@ if (!function_exists('formatDate')) {
 if (!function_exists('getDateNow')) {
     function getDateNow()
     {
-        return new DateTime();
+        return Carbon::now()->toDateTimeString();
     }
 }

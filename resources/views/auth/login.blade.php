@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-6 offset-md-4 d-flex" style="gap: 0 20px;">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember">
 
@@ -31,7 +31,9 @@
                                         {{ __('view.login.remember-me') }}
                                     </label>
                                 </div>
+                                <a href="/auth/forgot-password">Forgot password</a>
                             </div>
+
                         </div>
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">

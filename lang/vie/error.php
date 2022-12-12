@@ -41,7 +41,8 @@ return [
     'user' => [
         'user-not-found' => 'Không tìm thấy người dùng !!!',
         'user-id-not-found' => 'Id của người dùng không tồn tại !!!',
-        'old-password-not-correct' => 'Mật khẩu cũ không chính xác !!!'
+        'old-password-not-correct' => 'Mật khẩu cũ không chính xác !!!',
+        'email-not-found' => 'Không tìm thấy địa chỉ email !!!'
     ],
     'validate' => [
         'invalid-information' => 'Thông tin không hợp lệ !!!'

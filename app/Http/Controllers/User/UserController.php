@@ -33,13 +33,4 @@ class UserController extends Controller
             return redirect('/');
         }
     }
-
-    public function forgotPassword()
-    {
-        try {
-            return view('auth.passwords.email');
-        } catch (\Throwable $th) {
-            return redirect('/');
-        }
-    }
 }

@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog Management</title>
+    <title>Forgot Password</title>
 </head>
 
 <body>
-    <h1>{{ $data['subject'] }}</h1>
-    <p>{{ $data['body'] }}</p>
-    <a href="https://github.com/phuoc153258">{{ $data['my-information'] }}</a>
+    <h3>Hi {{ $user->fullname }}</h3>
+    <p>This is your OTP: {{ $otp }}</p>
+    <p>Expired time OTP: {{ $expired_time }}</p>
 </body>
 
 </html>

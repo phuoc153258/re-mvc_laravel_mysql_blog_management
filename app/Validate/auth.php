@@ -26,4 +26,12 @@ class AuthValidate
         ]);
         return $this->baseRunCondition($validator);
     }
+
+    public function validateEmailForgotPassword(string $email)
+    {
+        $validator = Validator::make(['email' => $email], [
+            ...VALIDATE_EMAIL
+        ]);
+        return $this->baseRunCondition($validator);
+    }
 }

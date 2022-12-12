@@ -14,4 +14,6 @@ interface IAuthService
     public function login(LoginUserRequestDTO $userRequest): AuthUserResponseDTO;
 
     public function logout(mixed $user): string;
+
+    public function sendMail(string $email): string;
 }

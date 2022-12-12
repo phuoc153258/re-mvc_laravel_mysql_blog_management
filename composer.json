@@ -31,7 +31,9 @@
             "app/Helpers/file.php",
             "app/Helpers/date.php",
             "app/Helpers/string.php",
+            "app/Helpers/otp.php",
             
+            "app/Constants/otp.php",
             "app/Constants/file.php",
             "app/Constants/hash.php",
             "app/Constants/paginate.php",

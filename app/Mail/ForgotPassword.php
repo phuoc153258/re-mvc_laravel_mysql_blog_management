@@ -9,24 +9,27 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class VerifyMail extends Mailable
+class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
     protected $user;
-    protected $token;
+    protected string $otp;
+    protected string $expired_time;
 
-    public function __construct($user)
+    public function __construct($user, $otp, $expired_time)
     {
         $this->user = $user;
-        $this->token = $user->createToken('API Token')->plainTextToken;
+        $this->otp = $otp;
+        $this->expired_time = $expired_time;
     }
 
     public function build()
     {
         return $this->from(MAIL_ADMIN, MAIL_ADMIN_NAME)
-            ->subject(trans('mail.mail-verify-subject'))
-            ->view('mail.verify_mail')
+            ->subject('OTP Forgot Password')
+            ->view('mail.forgot_password')
             ->with("user", $this->user)
-            ->with("token", $this->token);
+            ->with("otp", $this->otp)
+            ->with("expired_time", $this->expired_time);
     }
 }

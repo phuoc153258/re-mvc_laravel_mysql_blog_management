@@ -8,7 +8,9 @@ use App\Models\User;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
 use App\DTO\Response\Auth\AuthUserResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
+use App\Models\OTP;
 use App\Services\Auth\IAuthService;
+use App\Jobs\ForgotPasswordJob;
 
 class AuthService implements IAuthService
 {
@@ -40,5 +42,25 @@ class AuthService implements IAuthService
     {
         $user->currentAccessToken()->delete();
         return trans('success.auth.logout-user');
+    }
+
+    public function sendMail(string $email): string
+    {
+        $user = User::where([
+            'email' => $email,
+            'is_email_verified' => MAIL_VERIFY_TRUE
+        ])->get()->first();
+
+        if (!$user || $user == null) abort(400, trans('error.user.email-not-found'));
+
+        OTP::where('user_id', $user->id)->delete();
+
+        $otp = OTP::with('users')->create([
+            'otp' => genarateOtp(),
+            'user_id' => $user->id
+        ]);
+        $forgotPasswordJob = new ForgotPasswordJob($user, $otp->otp, OTP_EXPIRED_TIME_STR);
+        dispatch($forgotPasswordJob);
+        return trans('success.mail.please-check-mail');
     }
 }

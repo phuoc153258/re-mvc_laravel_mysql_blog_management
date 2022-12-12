@@ -20,7 +20,7 @@ class WelcomeMail extends Mailable
     public function build()
     {
         return $this->from(MAIL_ADMIN, MAIL_ADMIN_NAME)
-            ->subject(MAIL_WELCOME_USER["subject"])
-            ->view('mail.welcome')->with("data", MAIL_WELCOME_USER);
+            ->subject(trans('mail.mail-welcome-user.subject'))
+            ->view('mail.welcome')->with("data", trans('mail.mail-welcome-user'));
     }
 }

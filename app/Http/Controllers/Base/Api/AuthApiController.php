@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
-use App\Models\User;
 use App\Services\Auth\AuthService;
 use App\Validate\AuthValidate;
 use App\Traits\HttpResponse;
@@ -52,6 +51,17 @@ class AuthApiController extends Controller
         try {
             $response =  $this->authService->logout($request->user());
             return $this->success($response, trans('success.auth.logout-user'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function sendMail(Request $request, $email)
+    {
+        try {
+            $this->authValidate->validateEmailForgotPassword($email);
+            $response =  $this->authService->sendMail($email);
+            return $this->success($response, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

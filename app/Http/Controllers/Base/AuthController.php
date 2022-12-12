@@ -16,4 +16,13 @@ class AuthController extends Controller
     {
         return view('auth.register');
     }
+
+    public function forgotPassword()
+    {
+        try {
+            return view('auth.passwords.forgot_password');
+        } catch (\Throwable $th) {
+            return redirect('/');
+        }
+    }
 }
