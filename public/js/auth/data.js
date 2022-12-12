@@ -159,3 +159,91 @@ async function getInfoUserLoginAdmin() {
         return;
     }
 }
+
+async function sendMailForgotPassword() {
+    try {
+        const email = document.getElementById("email-forgot-password-js");
+        const response = await axios({
+            method: "post",
+            url: URLAuth + `/mails/${email.value}`,
+            headers: {},
+            data: {},
+        });
+        await swal(response.data.data, "", "success");
+        document.getElementById("check-email-send-js").value = 1;
+    } catch (error) {
+        errorNoti();
+        return;
+    }
+}
+
+async function verifyOTPForgotPassword() {
+    try {
+        const emailCheck = document.getElementById("check-email-send-js").value;
+        if (emailCheck == "0") {
+            errorNoti();
+            return;
+        }
+        const otp = document.getElementById("otp-forgot-password-js").value;
+        const email = document.getElementById("email-forgot-password-js");
+        const response = await axios({
+            method: "post",
+            url: URLAuth + `/mails/${email.value}/verify`,
+            headers: {},
+            data: {
+                otp,
+            },
+        });
+        await swal(response.data.message, "", "success");
+        document.getElementById("check-otp-verify-js").value = 1;
+        document.getElementById("token-reset-password-js").value =
+            response.data.data;
+
+        document.getElementById(
+            "new-password-forgot-password-js"
+        ).readOnly = false;
+        document.getElementById(
+            "confirm-password-forgot-password-js"
+        ).readOnly = false;
+    } catch (error) {
+        errorNoti();
+        return;
+    }
+}
+
+async function resetPassword() {
+    try {
+        const emailCheck = document.getElementById("check-email-send-js").value;
+        const otpCheck = document.getElementById("check-otp-verify-js").value;
+        const password = document.getElementById(
+            "new-password-forgot-password-js"
+        ).value;
+        const confirmPassword = document.getElementById(
+            "confirm-password-forgot-password-js"
+        ).value;
+        const token = document.getElementById("token-reset-password-js").value;
+        if (
+            emailCheck == "0" ||
+            otpCheck == "0" ||
+            password != confirmPassword
+        ) {
+            errorNoti();
+            return;
+        }
+        const response = await axios({
+            method: "post",
+            url: URLAuth + `/reset-password`,
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+            data: {
+                password,
+            },
+        });
+        await swal(response.data.message, "", "success");
+        location.replace(`/auth/login`);
+    } catch (error) {
+        errorNoti();
+        return;
+    }
+}
