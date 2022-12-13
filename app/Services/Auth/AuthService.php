@@ -57,17 +57,19 @@ class AuthService implements IAuthService
         if (!$user || $user == null) abort(400, trans('error.user.email-not-found'));
 
         OTP::where('user_id', $user->id)->delete();
-
+        $otpGenarate = genarateOtp();
         $otp = OTP::with('users')->create([
-            'otp' => genarateOtp(),
+            'otp' => hashPassword($otpGenarate),
             'user_id' => $user->id
         ]);
-        $forgotPasswordJob = new ForgotPasswordJob($user, $otp->otp, OTP_EXPIRED_TIME_STR);
+
+        $forgotPasswordJob = new ForgotPasswordJob($user, $otpGenarate, OTP_EXPIRED_TIME_STR);
         dispatch($forgotPasswordJob);
+
         return trans('success.mail.please-check-mail');
     }
 
-    public function verifyOTP(VerifyOTPRequestDTO $userRequest)
+    public function verifyOTP(VerifyOTPRequestDTO $userRequest): mixed
     {
         $user = User::where([
             'email' => $userRequest->getEmail(),
@@ -80,14 +82,14 @@ class AuthService implements IAuthService
 
         if (Carbon::now()->gt(addMinutesToDate($otp->created_at, OTP_EXPIRED_TIME))) abort(400, trans('error.otp.otp-expired-time'));
 
-        if ($userRequest->getOTP() != $otp->otp) abort(400, trans('error.otp.otp-do-not-match'));
+        if (!checkPasswordHash($userRequest->getOTP(), $otp->otp)) abort(400, trans('error.otp.otp-do-not-match'));
 
         $token = $user->createToken('API Token')->plainTextToken;
         OTP::where('user_id', $user->id)->delete();
         return $token;
     }
 
-    public function resetPassword(ResetPasswordUserRequestDTO $userRequest)
+    public function resetPassword(ResetPasswordUserRequestDTO $userRequest): UserResponseDTO
     {
         $user = User::find($userRequest->getUser()->id);
 

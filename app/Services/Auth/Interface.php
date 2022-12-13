@@ -4,8 +4,10 @@ namespace App\Services\Auth;
 
 use App\DTO\Request\Auth\LoginUserRequestDTO;
 use App\DTO\Request\Auth\RegisterUserRequestDTO;
+use App\DTO\Request\Auth\ResetPasswordUserRequestDTO;
+use App\DTO\Request\Auth\VerifyOTPRequestDTO;
 use App\DTO\Response\Auth\AuthUserResponseDTO;
-use App\Models\User;
+use App\DTO\Response\User\UserResponseDTO;
 
 interface IAuthService
 {
@@ -16,4 +18,8 @@ interface IAuthService
     public function logout(mixed $user): string;
 
     public function sendMail(string $email): string;
+
+    public function verifyOTP(VerifyOTPRequestDTO $userRequest): mixed;
+
+    public function resetPassword(ResetPasswordUserRequestDTO $userRequest): UserResponseDTO;
 }

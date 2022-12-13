@@ -206,6 +206,7 @@ async function verifyOTPForgotPassword() {
             "confirm-password-forgot-password-js"
         ).readOnly = false;
     } catch (error) {
+        console.log(error);
         errorNoti();
         return;
     }
