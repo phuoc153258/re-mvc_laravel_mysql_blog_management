@@ -25,11 +25,11 @@ async function getList(is_paginate = true) {
     }
 }
 
-async function getPermission() {
+async function getPermission(id) {
     try {
         const response = await axios({
             method: "get",
-            url: URLPermission + "/" + window.location.pathname.split("/")[3],
+            url: URLPermission + "/" + id,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -60,7 +60,8 @@ async function createPermission() {
         });
         if (response.data.status) {
             await successNoti();
-            location.replace(`/admin/permissions/${response.data.data.id}`);
+            hideModal();
+            getList();
         } else {
             await errorNoti();
             return;
@@ -87,6 +88,8 @@ async function updatePermission() {
             await successNoti();
             emptyDataDetailsPermission();
             renderDataDetailsPermission(response.data.data);
+            hideModal();
+            await getList();
         } else {
             await errorNoti();
             return;

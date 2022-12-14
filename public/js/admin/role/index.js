@@ -40,7 +40,7 @@ function renderDataToTableRole(data) {
             <td><a style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
             data-toggle="modal" data-target="#detail-role-modal-js" onclick="getRole('${
                 value.id
-            }')" style="margin-right: 10px;"><i
+            }')"><i
             class="fa-solid fa-pencil"></i></a><a style="color: #0d6efd;"
             onclick="deleteRoleNotice('${value.id}', '${value.name}')"><i
             class="fa-solid fa-trash"></i></a></td>
@@ -65,4 +65,6 @@ function emptyDataDetailsRole() {
     document.getElementById("updated_at-role-js").value = "";
 }
 
-function emptyInfoCreateRole() {}
+function emptyInfoCreateRole() {
+    document.getElementById("name-create-js").value = "";
+}

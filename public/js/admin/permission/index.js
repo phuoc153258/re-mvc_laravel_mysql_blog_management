@@ -40,9 +40,10 @@ function renderDataToTablePermission(data) {
             <td>${value.name}</td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
-            <td><a href="/admin/permissions/${
+            <td><a  style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
+            data-toggle="modal" data-target="#detail-permission-modal-js" onclick="getPermission('${
                 value.id
-            }" style="margin-right: 10px;"><i
+            }')"><i
             class="fa-solid fa-pencil"></i></a><a style="color: #0d6efd;"
             onclick="deletePermissionNotice('${value.id}','${value.name}')"><i
             class="fa-solid fa-trash"></i></a></td>
@@ -65,4 +66,8 @@ function emptyDataDetailsPermission() {
     document.getElementById("guard-name-role-js").value = "";
     document.getElementById("created_at-role-js").value = "";
     document.getElementById("updated_at-role-js").value = "";
+}
+
+function emptyInfoCreatePermission() {
+    document.getElementById("name-create-js").value = "";
 }
