@@ -29,7 +29,7 @@ function renderDataToTable(data) {
             <td><a style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
             data-toggle="modal" data-target="#detail-blog-modal-js" onclick="getBlog('${
                 value.id
-            }')" style="margin-right: 10px;"><i
+            }')" ><i
             class="fa-solid fa-pencil"></i></a><a href="#"
             onclick="deleteBlogNotice('${value.id}','${value.title}')"><i
             class="fa-solid fa-trash"></i></a></td>

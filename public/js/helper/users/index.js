@@ -26,9 +26,10 @@ function renderDataToTable(data) {
             <td><img src="/${value.avatar}" class="w-50" alt="Avatar..."></td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
-            <td><a href="/admin/users/${
+            <td><a style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
+            data-toggle="modal" data-target="#detail-user-modal-js" onclick="getUser('${
                 value.id
-            }" style="margin-right: 10px;"><i
+            }')" style="margin-right: 10px;"><i
             class="fa-solid fa-pencil"></i></a><a href="#"
             onclick="deleteUserNotice('${value.id}','${value.username}')"
             data-toggle="modal" data-target="#exampleModal"><i

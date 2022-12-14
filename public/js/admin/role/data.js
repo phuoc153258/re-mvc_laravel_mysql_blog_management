@@ -29,27 +29,6 @@ async function getList(is_paginate = true) {
     }
 }
 
-async function getListRole(is_paginate = true) {
-    try {
-        const response = await axios({
-            method: "get",
-            url: URLRole + `?is_paginate=${is_paginate}`,
-            data: {},
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
-        });
-        renderListRole(response.data.data);
-    } catch (error) {
-        await swal({
-            title: "Some thing went wrong!!!",
-            icon: "error",
-            button: "OK",
-        });
-        return;
-    }
-}
-
 async function getRole() {
     try {
         const response = await axios({
@@ -140,32 +119,4 @@ async function deleteRole(id) {
     } catch (error) {
         return history.go(-1);
     }
-}
-
-async function assignRoleUser(user_id, role_id) {
-    try {
-        const response = await axios({
-            method: "post",
-            url: `/api/admin/users/${user_id}/roles/${role_id}`,
-            data: {},
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
-        });
-        renderListRoleUser(response.data.data.roles);
-    } catch (error) {}
-}
-
-async function removeRoleUser(user_id, role_id) {
-    try {
-        const response = await axios({
-            method: "delete",
-            url: `/api/admin/users/${user_id}/roles/${role_id}`,
-            data: {},
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
-        });
-        renderListRoleUser(response.data.data.roles);
-    } catch (error) {}
 }

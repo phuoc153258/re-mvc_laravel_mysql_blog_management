@@ -25,11 +25,11 @@ async function getList() {
     }
 }
 
-async function getUser() {
+async function getUser(id) {
     try {
         const response = await axios({
             method: "get",
-            url: URLUser + "/" + window.location.pathname.split("/")[3],
+            url: URLUser + "/" + id,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -38,7 +38,8 @@ async function getUser() {
         if (response.data.status) {
             emptyInfoDetailsUser();
             renderDataDetailsUser(response.data);
-            addEventUploadFile();
+            await getListRole(false);
+            await getListPermission(false);
             renderListRoleUser(response.data.data.roles);
             renderListPermissionUser(response.data.data.permissions);
         } else {
@@ -46,6 +47,7 @@ async function getUser() {
             return;
         }
     } catch (error) {
+        console.log(error);
         await errorNoti();
         return;
     }
@@ -82,9 +84,9 @@ async function updateInfoUser() {
             await errorNoti();
             return;
         }
-        emptyInfoDetailsUser();
-        renderDataDetailsUser(response.data);
         await successNoti();
+        hideModal();
+        getList();
     } catch (error) {
         await errorNoti();
         return;
@@ -139,4 +141,99 @@ async function resetPassword() {
         await errorNoti();
         return;
     }
+}
+
+async function getListRole(is_paginate = true) {
+    try {
+        const response = await axios({
+            method: "get",
+            url: `/api/admin/roles` + `?is_paginate=${is_paginate}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListRole(response.data.data);
+    } catch (error) {
+        console.log(error);
+        await swal({
+            title: "Some thing went wrong!!!",
+            icon: "error",
+            button: "OK",
+        });
+        return;
+    }
+}
+
+async function getListPermission(is_paginate = true) {
+    try {
+        const response = await axios({
+            method: "get",
+            url: `/api/admin/permissions` + `?is_paginate=${is_paginate}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListPermission(response.data.data);
+    } catch (error) {
+        await errorNoti();
+        return;
+    }
+}
+
+async function assignRoleUser(user_id, role_id) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `/api/admin/users/${user_id}/roles/${role_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListRoleUser(response.data.data.roles);
+    } catch (error) {}
+}
+
+async function removeRoleUser(user_id, role_id) {
+    try {
+        const response = await axios({
+            method: "delete",
+            url: `/api/admin/users/${user_id}/roles/${role_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListRoleUser(response.data.data.roles);
+    } catch (error) {}
+}
+
+async function givePermissionUser(user_id, permission_id) {
+    try {
+        const response = await axios({
+            method: "post",
+            url: `/api/admin/users/${user_id}/permissions/${permission_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListPermissionUser(response.data.data.permissions);
+    } catch (error) {}
+}
+
+async function revokePermissionUser(user_id, permission_id) {
+    try {
+        const response = await axios({
+            method: "delete",
+            url: `/api/admin/users/${user_id}/permissions/${permission_id}`,
+            data: {},
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        renderListPermissionUser(response.data.data.permissions);
+    } catch (error) {}
 }
