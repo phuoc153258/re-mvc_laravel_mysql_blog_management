@@ -20,10 +20,12 @@ class BlogFactory extends Factory
 
     public function definition()
     {
+        $title = $this->faker->text(30);
         return [
-            'title' => $this->faker->text(30),
+            'title' => $title,
             'sub_title' => $this->faker->text(100),
             'content' => $this->faker->text(),
+            'slug' => genarateSlug($title),
             'image' => 'image/blog_image_default.png',
             'user_id' => $this->faker->numberBetween(1, 2)
         ];

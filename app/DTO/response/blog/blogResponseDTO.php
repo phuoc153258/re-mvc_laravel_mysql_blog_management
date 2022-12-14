@@ -8,6 +8,7 @@ class BlogResponseDTO
     private string $title;
     private string $sub_title;
     private string $content;
+    private string $slug;
     private string $image;
     private int $user_id;
     private ?string $username;
@@ -20,6 +21,7 @@ class BlogResponseDTO
         $this->title = $blog->title;
         $this->sub_title = $blog->sub_title;
         $this->content = $blog->content;
+        $this->slug = $blog->slug;
         $this->image = $blog->image;
         $this->user_id = $blog->user_id;
         $this->username = $blog->users->username;
@@ -34,6 +36,7 @@ class BlogResponseDTO
             'title' => $this->title,
             'sub_title' => $this->sub_title,
             'content' => $this->content,
+            'slug' => $this->slug,
             'image' => $this->image,
             'user_id' => $this->user_id,
             'username' => $this->username,

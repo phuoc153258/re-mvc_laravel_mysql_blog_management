@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('sub_title');
             $table->text('content');
+            $table->string('slug')->unique();
             $table->string('image')->default('image/blog_image_default.png');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

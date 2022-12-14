@@ -74,7 +74,8 @@ return [
         'content' => 'Content',
         'username' => 'Username',
         'created-at' => 'Created At',
-        'updated-at' => 'Updated At'
+        'updated-at' => 'Updated At',
+        'slug' => 'Slug'
     ],
     'user' => [
         'detail-user' => 'Detail User',

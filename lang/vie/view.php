@@ -74,7 +74,8 @@ return [
         'content' => 'Nội dung',
         'username' => 'Tên người dùng',
         'created-at' => 'Ngày tạo',
-        'updated-at' => 'Ngày cập nhật'
+        'updated-at' => 'Ngày cập nhật',
+        'slug' => 'Slug'
     ],
     'user' => [
         'detail-user' => 'Chi tiết người dùng',

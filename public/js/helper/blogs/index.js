@@ -39,10 +39,12 @@ function renderDataToTable(data) {
 }
 
 function renderDataDetailsBlog(data) {
+    console.log(data);
     document.getElementById("show-image-blog-js").src = "/" + data.image;
     document.getElementById("id-blog-js").value = data.id;
     document.getElementById("title-blog-js").value = data.title;
     document.getElementById("sub_title-blog-js").value = data.sub_title;
+    document.getElementById("slug-blog-js").value = data.slug;
     document.getElementById("content-blog-js").value = data.content;
     document.getElementById("username-blog-js").value = data.username;
     document.getElementById("created_at-blog-js").value = data.created_at;
@@ -54,6 +56,7 @@ function emptyDataDetailsBlog() {
     document.getElementById("id-blog-js").value = "";
     document.getElementById("title-blog-js").value = "";
     document.getElementById("sub_title-blog-js").value = "";
+    document.getElementById("slug-blog-js").value = "";
     document.getElementById("content-blog-js").value = "";
     document.getElementById("username-blog-js").value = "";
     document.getElementById("created_at-blog-js").value = "";
@@ -89,6 +92,7 @@ function renderDataDetailsBlogUser(data) {
     document.getElementById("id-blog-js").value = data.id;
     document.getElementById("title-blog-js").value = data.title;
     document.getElementById("sub_title-blog-js").value = data.sub_title;
+    document.getElementById("slug-blog-js").value = data.slug;
     document.getElementById("content-blog-js").value = data.content;
     document.getElementById("username-blog-js").value = data.username;
     document.getElementById("created_at-blog-js").value = data.created_at;
@@ -100,13 +104,13 @@ function emptyDataDetailsBlogUser() {
     document.getElementById("id-blog-js").value = "";
     document.getElementById("title-blog-js").value = "";
     document.getElementById("sub_title-blog-js").value = "";
+    document.getElementById("slug-blog-js").value = "";
     document.getElementById("content-blog-js").value = "";
     document.getElementById("created_at-blog-js").value = "";
     document.getElementById("updated_at-blog-js").value = "";
 }
 
 function emptyInfoCreateBlog() {
-    console.log("DSA");
     document.getElementById("show-image-blog-create-js").src =
         "/image/image_default.png";
     document.getElementById("image-blog-create-js").value = "";

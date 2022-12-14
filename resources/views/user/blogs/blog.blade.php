@@ -136,6 +136,12 @@
                                                 <textarea class="form-control" rows="3" id="content-blog-js"></textarea>
                                             </div>
                                             <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.slug') }}:</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="{{ __('view.blog.slug') }}..." value=""
+                                                    id="slug-blog-js" readonly>
+                                            </div>
+                                            <div class="form-group mb-3">
                                                 <label for="">{{ __('view.blog.username') }}:</label>
                                                 <input type="text" class="form-control" id="username-blog-js"
                                                     placeholder="{{ __('view.blog.username') }}..." value=""

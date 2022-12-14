@@ -48,9 +48,15 @@ class BlogService implements IBlogService
         if ($blogRequest->getUserID() == '' || $blogRequest->getUserID() == null) abort(400, trans('error.user.user-id-not-found'));
         $blog->user_id = $blogRequest->getUserID();
 
-        if ($blogRequest->getTitle() != '') $blog->title = $blogRequest->getTitle();
+        if ($blogRequest->getTitle() != '') {
+            $blog->title = $blogRequest->getTitle();
+            $blog->slug = genarateSlug($blogRequest->getTitle());
+        }
+
         if ($blogRequest->getSubTitle() != '') $blog->sub_title = $blogRequest->getSubTitle();
         if ($blogRequest->getContent() != '') $blog->content = $blogRequest->getContent();
+
+
 
         $blog->image = $this->fileService->upload($fileRequest);
 
@@ -68,7 +74,11 @@ class BlogService implements IBlogService
         }
 
         $blog = $blogQuery->get()->first();
-        if ($blogRequest->getTitle() != $blog->title && $blogRequest->getTitle() != '') $blog->title = $blogRequest->getTitle();
+
+        if ($blogRequest->getTitle() != $blog->title && $blogRequest->getTitle() != '') {
+            $blog->title = $blogRequest->getTitle();
+            $blog->slug = genarateSlug($blogRequest->getTitle());
+        }
         if ($blogRequest->getSubTitle() != $blog->sub_title && $blogRequest->getSubTitle() != '') $blog->sub_title = $blogRequest->getSubTitle();
         if ($blogRequest->getContent() != $blog->content && $blogRequest->getContent() != '') $blog->content = $blogRequest->getContent();
 
