@@ -26,9 +26,10 @@ function renderDataToTable(data) {
             <td>${value.username}</td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
-            <td><a href="/admin/blogs/${
+            <td><a style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
+            data-toggle="modal" data-target="#detail-blog-modal-js" onclick="getBlog('${
                 value.id
-            }" style="margin-right: 10px;"><i
+            }')" style="margin-right: 10px;"><i
             class="fa-solid fa-pencil"></i></a><a href="#"
             onclick="deleteBlogNotice('${value.id}','${value.title}')"><i
             class="fa-solid fa-trash"></i></a></td>
@@ -102,4 +103,14 @@ function emptyDataDetailsBlogUser() {
     document.getElementById("content-blog-js").value = "";
     document.getElementById("created_at-blog-js").value = "";
     document.getElementById("updated_at-blog-js").value = "";
+}
+
+function emptyInfoCreateBlog() {
+    console.log("DSA");
+    document.getElementById("show-image-blog-create-js").src =
+        "/image/image_default.png";
+    document.getElementById("image-blog-create-js").value = "";
+    document.getElementById("title-create-js").value = "";
+    document.getElementById("sub_title-create-js").value = "";
+    document.getElementById("content-create-js").value = "";
 }

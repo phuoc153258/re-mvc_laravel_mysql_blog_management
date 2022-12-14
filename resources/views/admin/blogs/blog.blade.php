@@ -3,7 +3,8 @@
 @section('content')
     <div class="d-flex justify-content-between">
         <h2>{{ __('view.blog.blog-management') }}</h2>
-        <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" href="/admin/blogs/create">
+        <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" data-toggle="modal"
+            data-target="#create-blog-modal-js" onclick="emptyInfoCreateBlog()">
             <p>{{ __('view.action.add') }}</p>
             <i class="fa-solid fa-plus" style="line-height: 1.5"></i>
         </a>
@@ -83,6 +84,155 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="detail-blog-modal-js" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="title-blog-detail-js">{{ __('view.blog.detail-blog') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        style="border: none;
+                background-color: white;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="card-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4 text-center">
+                                            <img class="w-75 mb-2"
+                                                style="border-radius: 10%;display: block;border-radius: 10%;margin-left: auto;margin-right: auto;"
+                                                alt="" id="show-image-blog-js">
+                                            <div class="file btn btn-primary"
+                                                style="position: relative;overflow: hidden;">
+                                                {{ __('view.action.upload') }}
+                                                <input type="file" name="file"
+                                                    style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;"
+                                                    id="upload-image-blog-js" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.id') }}:</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="{{ __('view.blog.id') }}..." value="" readonly
+                                                    id="id-blog-js">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.title') }}:</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="{{ __('view.blog.title') }}..." value=""
+                                                    id="title-blog-js">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.sub-title') }}:</label>
+                                                <textarea class="form-control" rows="3" id="sub_title-blog-js"></textarea>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.content') }}:</label>
+                                                <textarea class="form-control" rows="3" id="content-blog-js"></textarea>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.username') }}:</label>
+                                                <input type="text" class="form-control" id="username-blog-js"
+                                                    placeholder="{{ __('view.blog.username') }}..." value=""
+                                                    readonly name="username">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.created-at') }}:</label>
+                                                <input type="text" class="form-control" id="created_at-blog-js"
+                                                    placeholder="{{ __('view.blog.created-at') }}..." value=""
+                                                    readonly name="created_at">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.updated-at') }}:</label>
+                                                <input type="text" class="form-control" id="updated_at-blog-js"
+                                                    placeholder="{{ __('view.blog.updated-at') }}..." value=""
+                                                    readonly name="updated_at">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                        onclick="updateBlog()">{{ __('view.action.update') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create-blog-modal-js" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('view.blog.create-blog') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        style="border: none;
+                background-color: white;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="card-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4 text-center">
+                                            <img class="w-75 mb-2"
+                                                style="border-radius: 10%;display: block;border-radius: 10%;margin-left: auto;margin-right: auto;"
+                                                src="/image/image_default.png" alt=""
+                                                id="show-image-blog-create-js">
+                                            <div class="file btn btn-primary"
+                                                style="position: relative;overflow: hidden;">
+                                                {{ __('view.action.upload') }}
+                                                <input type="file" name="file"
+                                                    style="position: absolute;font-size: 30;opacity: 0; top: 0;right: 0;"
+                                                    value="" id="image-blog-create-js"
+                                                    onchange="uploadImageBlog(event)" />
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.title') }}:</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="{{ __('view.blog.title') }}..." value=""
+                                                    id="title-create-js">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.sub-title') }}:</label>
+                                                <textarea class="form-control" rows="3" id="sub_title-create-js"></textarea>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="">{{ __('view.blog.content') }}:</label>
+                                                <textarea class="form-control" rows="3" id="content-create-js"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                        onclick="createBlog()">{{ __('view.action.add') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('js/helper/blogs/file.js') }}"></script>
     <script src="{{ asset('js/helper/blogs/index.js') }}"></script>
     <script src="{{ asset('js/admin/blogs/data.js') }}"></script>

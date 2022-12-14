@@ -24,16 +24,17 @@ async function getList() {
     }
 }
 
-async function getBlog() {
+async function getBlog(id) {
     try {
         const response = await axios({
             method: "get",
-            url: URLBlog + "/" + window.location.pathname.split("/")[3],
+            url: URLBlog + "/" + id,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
             },
         });
+        console.log(response);
         if (response.data.status) {
             emptyDataDetailsBlog();
             renderDataDetailsBlog(response.data.data);
@@ -70,6 +71,7 @@ async function deleteBlog(id) {
 
 async function createBlog() {
     try {
+        emptyInfoCreateBlog();
         const title = document.getElementById("title-create-js").value;
         const sub_title = document.getElementById("sub_title-create-js").value;
         const content = document.getElementById("content-create-js").value;
@@ -90,8 +92,9 @@ async function createBlog() {
             },
         });
         if (response.data.status) {
-            await successNoti();
-            location.replace(`/admin/blogs/${response.data.data.id}`);
+            await successNoti("create");
+            hideModal();
+            getList();
         } else {
             await errorNoti();
             return;
@@ -116,9 +119,9 @@ async function updateBlog() {
             },
         });
         if (response.data.status) {
-            await successNoti();
-            emptyDataDetailsBlog();
-            renderDataDetailsBlog(response.data.data);
+            await successNoti("update");
+            hideModal();
+            getList();
         } else {
             await errorNoti();
             return;

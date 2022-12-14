@@ -5,7 +5,7 @@
         <div class="d-flex justify-content-between">
             <h2>{{ __('view.blog.my-blogs') }}</h2>
             <a class="d-flex" style="gap: 0 8px; cursor: pointer; text-decoration: none; color: black" data-toggle="modal"
-                data-target="#create-blog-modal-js">
+                data-target="#create-blog-modal-js" onclick="emptyInfoCreateBlog()">
                 <p>{{ __('view.blog.add-blog') }}</p>
                 <i class="fa-solid fa-plus" style="line-height: 1.5"></i>
             </a>
