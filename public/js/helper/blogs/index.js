@@ -71,7 +71,10 @@ function renderDataToTableUser(data) {
             }" class="w-50" alt="Avatar..."></td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
-            <td><a href="/blogs/${value.id}" style="margin-right: 10px;"><i
+            <td><a style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
+             data-toggle="modal" data-target="#detail-blog-modal-js" onclick="getBlog('${
+                 value.id
+             }')"><i
             class="fa-solid fa-pencil"></i></a><a href="#"
             onclick="deleteBlogNotice('${value.id}','${value.title}')"><i
             class="fa-solid fa-trash"></i></a></td>
@@ -86,6 +89,7 @@ function renderDataDetailsBlogUser(data) {
     document.getElementById("title-blog-js").value = data.title;
     document.getElementById("sub_title-blog-js").value = data.sub_title;
     document.getElementById("content-blog-js").value = data.content;
+    document.getElementById("username-blog-js").value = data.username;
     document.getElementById("created_at-blog-js").value = data.created_at;
     document.getElementById("updated_at-blog-js").value = data.updated_at;
 }

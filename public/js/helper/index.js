@@ -100,3 +100,7 @@ function uploadImageBlog(event) {
 function getUserIdHidden() {
     return document.getElementById("user-id-navbar-hidden-js").value;
 }
+
+function hideModal() {
+    $("[data-dismiss=modal]").trigger({ type: "click" });
+}

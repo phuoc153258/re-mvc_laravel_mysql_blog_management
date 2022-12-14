@@ -25,11 +25,11 @@ async function getList() {
     }
 }
 
-async function getBlog() {
+async function getBlog(id) {
     try {
         const response = await axios({
             method: "get",
-            url: URLBlog + "/" + window.location.pathname.split("/")[2],
+            url: URLBlog + "/" + id,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -89,7 +89,8 @@ async function createBlog() {
         });
         if (response.data.status) {
             await successNoti("create");
-            location.replace(`/blogs/${response.data.data.id}`);
+            hideModal();
+            getList();
         } else {
             await errorNoti();
             return;
@@ -115,13 +116,14 @@ async function updateBlog() {
         });
         if (response.data.status) {
             await successNoti("update");
-            emptyDataDetailsBlogUser();
-            renderDataDetailsBlogUser(response.data.data);
+            hideModal();
+            getList();
         } else {
             await errorNoti();
             return;
         }
     } catch (error) {
+        console.log(error);
         return history.go(-1);
     }
 }

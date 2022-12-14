@@ -16,6 +16,7 @@ async function uploadImage(event) {
         emptyDataDetailsBlog();
         renderDataDetailsBlog(response.data.data);
         await successNoti();
+        getList();
     } catch (error) {
         await swal({
             title: "Some thing went wrong!!!",
@@ -24,4 +25,9 @@ async function uploadImage(event) {
         });
         return;
     }
+}
+
+function addEventUploadFile() {
+    const fileBtn = document.getElementById("upload-image-blog-js");
+    fileBtn.addEventListener("change", uploadImage);
 }

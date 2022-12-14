@@ -7,4 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('language');
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Auth::routes();

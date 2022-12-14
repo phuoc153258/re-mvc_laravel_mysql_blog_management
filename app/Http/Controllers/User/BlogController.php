@@ -15,22 +15,4 @@ class BlogController extends Controller
             return redirect('/');
         }
     }
-
-    function show($id)
-    {
-        try {
-            return view('user.blogs.detail_blog');
-        } catch (\Throwable $th) {
-            return redirect('/');
-        }
-    }
-
-    function create()
-    {
-        try {
-            return view('user.blogs.create_blog');
-        } catch (\Throwable $th) {
-            return redirect('/');
-        }
-    }
 }
