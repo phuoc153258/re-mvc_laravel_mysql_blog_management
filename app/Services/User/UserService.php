@@ -46,8 +46,11 @@ class UserService implements IUserService
         if ($user->fullname != $request->getFullname() && $request->getFullname() != '')
             $user->fullname = $request->getFullname();
 
-        if ($user->email != $request->getEmail() && $request->getEmail() != '')
+        if ($user->email != $request->getEmail() && $request->getEmail() != '') {
             $user->email = $request->getEmail();
+            $user->is_email_verified = 0;
+            $user->email_verified_at = null;
+        }
 
         $user->save();
         $userDTO = new UserResponseDTO($user);

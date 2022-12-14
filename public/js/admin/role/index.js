@@ -37,9 +37,10 @@ function renderDataToTableRole(data) {
             <td>${value.name}</td>
             <td>${formatDate(value.created_at)}</td>
             <td>${formatDate(value.updated_at)}</td>
-            <td><a href="/admin/roles/${
+            <td><a style="margin-right: 10px;cursor: pointer;color: #0d6efd;"
+            data-toggle="modal" data-target="#detail-role-modal-js" onclick="getRole('${
                 value.id
-            }" style="margin-right: 10px;"><i
+            }')" style="margin-right: 10px;"><i
             class="fa-solid fa-pencil"></i></a><a style="color: #0d6efd;"
             onclick="deleteRoleNotice('${value.id}', '${value.name}')"><i
             class="fa-solid fa-trash"></i></a></td>
@@ -63,3 +64,5 @@ function emptyDataDetailsRole() {
     document.getElementById("created_at-role-js").value = "";
     document.getElementById("updated_at-role-js").value = "";
 }
+
+function emptyInfoCreateRole() {}

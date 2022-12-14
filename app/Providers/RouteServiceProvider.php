@@ -41,9 +41,9 @@ class RouteServiceProvider extends ServiceProvider
                     ->group(function () {
                         Route::prefix('blogs')->group(base_path('routes/web/admin/blog.php'));
 
-                        Route::prefix('permissions')->group(base_path('routes/web/admin/role.php'));
+                        Route::prefix('permissions')->group(base_path('routes/web/admin/permission.php'));
 
-                        Route::prefix('roles')->group(base_path('routes/web/admin/permission.php'));
+                        Route::prefix('roles')->group(base_path('routes/web/admin/role.php'));
 
                         Route::prefix('users')->group(base_path('routes/web/admin/user.php'));
                     });

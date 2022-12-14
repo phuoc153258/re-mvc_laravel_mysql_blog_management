@@ -29,11 +29,11 @@ async function getList(is_paginate = true) {
     }
 }
 
-async function getRole() {
+async function getRole(id) {
     try {
         const response = await axios({
             method: "get",
-            url: URLRole + "/" + window.location.pathname.split("/")[3],
+            url: URLRole + "/" + id,
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
@@ -64,7 +64,8 @@ async function createRole() {
         });
         if (response.data.status) {
             await successNoti();
-            location.replace(`/admin/roles/${response.data.data.id}`);
+            hideModal();
+            getList();
         } else {
             await errorNoti();
             return;
@@ -90,6 +91,8 @@ async function updateRole() {
             await successNoti();
             emptyDataDetailsRole();
             renderDataDetailsRole(response.data.data);
+            hideModal();
+            await getList();
         } else {
             await errorNoti();
             return;
