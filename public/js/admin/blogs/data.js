@@ -37,7 +37,9 @@ async function getBlog(id) {
         console.log(response);
         if (response.data.status) {
             emptyDataDetailsBlog();
+            emptyContentBlog();
             renderDataDetailsBlog(response.data.data);
+            renderContentBlog(response.data.data);
         } else {
             await errorNoti();
             return;
@@ -74,7 +76,7 @@ async function createBlog() {
         emptyInfoCreateBlog();
         const title = document.getElementById("title-create-js").value;
         const sub_title = document.getElementById("sub_title-create-js").value;
-        const content = document.getElementById("content-create-js").value;
+        const content = tinymce.get("content-create-js").getContent();
         const image = document.getElementById("image-blog-create-js").files[0];
         const user_id = document.getElementById(
             "user-id-navbar-hidden-js"
@@ -109,7 +111,7 @@ async function updateBlog() {
         const id = document.getElementById("id-blog-js").value;
         const title = document.getElementById("title-blog-js").value;
         const sub_title = document.getElementById("sub_title-blog-js").value;
-        const content = document.getElementById("content-blog-js").value;
+        const content = tinymce.get("content-blog-js").getContent();
         const response = await axios({
             method: "put",
             url: URLBlog + `/${id}`,
