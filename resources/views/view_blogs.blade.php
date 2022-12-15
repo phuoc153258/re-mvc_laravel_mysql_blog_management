@@ -67,24 +67,20 @@
     <!-- Main Content-->
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                        <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
-                    </a>
-                    <p class="post-meta">
-                        Posted by
-                        <a href="#!">Start Bootstrap</a>
-                        on September 24, 2022
-                    </p>
+            <div class="col-md-12 col-lg-8 col-xl-7" style="width: 100% !important;">
+                <div class="post-preview" id="post-preview-blog-js">
                 </div>
 
-                <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
-                        href="#!">Older Posts →</a></div>
             </div>
         </div>
+        <div class="d-flex justify-content-between mt-5" style="padding: 0px 16px;" id="pagination-js">
+            <h5 id="total-entries-js"></h5>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                </ul>
+            </nav>
+        </div>
+        <input type="number" hidden value="" id="page-input-js">
     </div>
     <!-- Footer-->
     <footer class="border-top">
@@ -140,13 +136,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-
+    <script src="{{ asset('js/helper/paginate/index.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/notification/index.js') }}"></script>
     <script src="{{ asset('js/helper/index.js') }}"></script>
     <script src="{{ asset('js/cookie/index.js') }}"></script>
     <script src="{{ asset('js/auth/data.js') }}"></script>
     <script src="{{ asset('js/auth/index.js') }}"></script>
+    <script src="{{ asset('js/home/index.js') }}"></script>
+    <script src="{{ asset('js/home/data.js') }}"></script>
     <script src="{{ asset('js/home/pageViewBlogs.js') }}"></script>
 </body>
 

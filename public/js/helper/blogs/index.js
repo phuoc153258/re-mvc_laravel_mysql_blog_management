@@ -39,7 +39,6 @@ function renderDataToTable(data) {
 }
 
 function renderDataDetailsBlog(data) {
-    console.log(data);
     document.getElementById("show-image-blog-js").src = "/" + data.image;
     document.getElementById("id-blog-js").value = data.id;
     document.getElementById("title-blog-js").value = data.title;

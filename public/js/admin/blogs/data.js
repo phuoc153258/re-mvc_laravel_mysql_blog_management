@@ -34,7 +34,6 @@ async function getBlog(id) {
                 Authorization: getCookie("access_token"),
             },
         });
-        console.log(response);
         if (response.data.status) {
             emptyDataDetailsBlog();
             emptyContentBlog();

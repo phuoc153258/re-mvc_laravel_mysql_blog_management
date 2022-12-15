@@ -402,7 +402,7 @@
                     <li onclick="changeLanguage('vie')">VIE</li>
                 </ul>
             </div>
-            <div id="home-login-nav-js" class="mb-auto mt-auto"></div>
+            <div id="home-login-nav-js" class="d-flex mb-auto mt-auto"></div>
         </div>
 
 

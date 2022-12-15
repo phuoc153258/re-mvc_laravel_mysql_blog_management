@@ -1,21 +1,16 @@
-async function getListViewBlog() {
+async function getList() {
     try {
+        const pageItem = getPageItem();
         const response = await axios({
-            method: "post",
-            url: "/api/blog" + "/logout",
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
+            method: "get",
+            url: "/api/blogs/views?page=" + pageItem.value,
         });
         if (response.data.status) {
-            deleteCookie("access_token");
-            await successNoti();
-            location.replace(`/`);
-        } else {
-            await errorNoti();
-            return;
+            renderListViewBlog(response.data.data);
+            renderDataToListPage(response.data.data);
         }
     } catch (error) {
+        console.log(error);
         await errorNoti();
         return;
     }

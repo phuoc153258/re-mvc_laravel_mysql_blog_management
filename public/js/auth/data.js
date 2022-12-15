@@ -93,7 +93,6 @@ async function getInfoUser() {
                 Authorization: getCookie("access_token"),
             },
         });
-        console.log(response);
         return response;
     } catch (error) {
         [];
@@ -122,28 +121,28 @@ async function getInfoUserLoginHome() {
     try {
         const response = await getInfoUser();
         if (response.data.status) {
-            str += `<li class="nav-item">
+            str += `
             <a href="/blogs" class="nav-link">${
                 cookie == "vie" ? "Trang chủ" : "Home"
-            }</a></li>
-            <li class="nav-item"> <a class="nav-link" style="cursor: pointer;" onclick="logoutUser()">${
-                cookie == "vie" ? "Đăng xuất" : "Logout"
-            }</a></li>`;
+            }</a>
+             <a class="nav-link" style="cursor: pointer;" onclick="logoutUser()">${
+                 cookie == "vie" ? "Đăng xuất" : "Logout"
+             }</a>`;
         } else {
-            str += `<li class="nav-item"><a href="/auth/login" class="nav-link">${
+            str += `<a href="/auth/login" class="nav-link">${
                 cookie == "vie" ? "Đăng nhập" : "Login"
-            }</a></li>
-            <li class="nav-item"><a href="/auth/register" class="ml-4 nav-link">${
+            }</a>
+            <a href="/auth/register" class="ml-4 nav-link">${
                 cookie == "vie" ? "Đăng ký" : "Register"
-            }</a></li>`;
+            }</a>`;
         }
     } catch (error) {
-        str += `<li class="nav-item"><a href="/auth/login" class="nav-link">${
+        str += `<a href="/auth/login" class="nav-link">${
             cookie == "vie" ? "Đăng nhập" : "Login"
-        }</a></li>
-        <li class="nav-item"> <a href="/auth/register" class="ml-4 nav-link">${
-            cookie == "vie" ? "Đăng ký" : "Register"
-        }</a></li>`;
+        }</a>
+         <a href="/auth/register" class="ml-4 nav-link">${
+             cookie == "vie" ? "Đăng ký" : "Register"
+         }</a>`;
     }
     homeNavbar.innerHTML = str;
 }
@@ -208,7 +207,6 @@ async function verifyOTPForgotPassword() {
             "confirm-password-forgot-password-js"
         ).readOnly = false;
     } catch (error) {
-        console.log(error);
         errorNoti();
         return;
     }

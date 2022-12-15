@@ -125,7 +125,6 @@ async function updateBlog() {
             return;
         }
     } catch (error) {
-        console.log(error);
         return history.go(-1);
     }
 }

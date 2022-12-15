@@ -47,7 +47,6 @@ async function getUser(id) {
             return;
         }
     } catch (error) {
-        console.log(error);
         await errorNoti();
         return;
     }
@@ -155,7 +154,6 @@ async function getListRole(is_paginate = true) {
         });
         renderListRole(response.data.data);
     } catch (error) {
-        console.log(error);
         await swal({
             title: "Some thing went wrong!!!",
             icon: "error",
