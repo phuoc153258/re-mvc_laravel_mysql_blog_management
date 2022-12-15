@@ -37,7 +37,9 @@ async function getBlog(id) {
         });
         if (response.data.status) {
             emptyDataDetailsBlogUser();
+            emptyContentBlog();
             renderDataDetailsBlogUser(response.data.data);
+            renderContentBlog(response.data.data);
         } else {
             await errorNoti();
             return;
@@ -74,7 +76,7 @@ async function createBlog() {
     try {
         const title = document.getElementById("title-create-js").value;
         const sub_title = document.getElementById("sub_title-create-js").value;
-        const content = document.getElementById("content-create-js").value;
+        const content = tinymce.get("content-create-js").getContent();
         const image = document.getElementById("image-blog-create-js").files[0];
         let formData = new FormData();
         formData.append("title", title);
@@ -105,7 +107,7 @@ async function updateBlog() {
         const id = document.getElementById("id-blog-js").value;
         const title = document.getElementById("title-blog-js").value;
         const sub_title = document.getElementById("sub_title-blog-js").value;
-        const content = document.getElementById("content-blog-js").value;
+        const content = tinymce.get("content-blog-js").getContent();
         const response = await axios({
             method: "put",
             url: URLBlog + `/${id}`,

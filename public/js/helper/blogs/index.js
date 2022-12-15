@@ -116,5 +116,13 @@ function emptyInfoCreateBlog() {
     document.getElementById("image-blog-create-js").value = "";
     document.getElementById("title-create-js").value = "";
     document.getElementById("sub_title-create-js").value = "";
-    document.getElementById("content-create-js").value = "";
+    tinymce.get("content-create-js").setContent("");
+}
+
+function renderContentBlog(data) {
+    tinymce.get("content-blog-js").setContent(data.content);
+}
+
+function emptyContentBlog() {
+    tinymce.get("content-blog-js").setContent("");
 }

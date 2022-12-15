@@ -24,7 +24,7 @@ class BlogFactory extends Factory
         return [
             'title' => $title,
             'sub_title' => $this->faker->text(100),
-            'content' => $this->faker->text(),
+            'content' => '<p>Test</p><p>Content</p>',
             'slug' => genarateSlug($title),
             'image' => 'image/blog_image_default.png',
             'user_id' => $this->faker->numberBetween(1, 2)

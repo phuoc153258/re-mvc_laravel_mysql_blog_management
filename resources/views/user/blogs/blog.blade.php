@@ -133,7 +133,8 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="">{{ __('view.blog.content') }}:</label>
-                                                <textarea class="form-control" rows="3" id="content-blog-js"></textarea>
+                                                <textarea class="form-control" rows="3" id="content-blog-js">
+                                                </textarea>
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="">{{ __('view.blog.slug') }}:</label>
@@ -220,7 +221,8 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="">{{ __('view.blog.content') }}:</label>
-                                                <textarea class="form-control" rows="3" id="content-create-js"></textarea>
+                                                <textarea class="form-control" rows="3" id="content-create-js">
+                                                </textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -237,10 +239,45 @@
             </div>
         </div>
     </div>
-
     <script src="{{ asset('js/helper/paginate/index.js') }}"></script>
     <script src="{{ asset('js/helper/blogs/file.js') }}"></script>
     <script src="{{ asset('js/helper/blogs/index.js') }}"></script>
     <script src="{{ asset('js/user/blogs/data.js') }}"></script>
     <script src="{{ asset('js/user/blogs/pageBlogs.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#content-blog-js',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ]
+        });
+    </script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#content-create-js',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ]
+        });
+    </script>
 @endsection
