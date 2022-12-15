@@ -103,13 +103,10 @@ async function getInfoUser() {
 async function getInfoUserLogin() {
     try {
         const response = await getInfoUser();
-        if (response.data.status) renderInfoUserToNavbar(response.data.data);
-        else {
-            location.replace(`/`);
-            return;
-        }
+        if (response != null) renderInfoUserToNavbar(response.data.data);
     } catch (error) {
-        location.replace(`/`);
+        console.log(error);
+        // location.replace(`/`);
         return;
     }
 }
