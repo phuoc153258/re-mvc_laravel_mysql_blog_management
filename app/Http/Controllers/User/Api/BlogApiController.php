@@ -103,4 +103,26 @@ class BlogApiController extends Controller
             return $this->error($th->getMessage(), trans('error.blog.delete'), 400);
         }
     }
+
+    public function viewBlogs(Request $request)
+    {
+        try {
+            $option = new BasePaginateRequestDTO($request, 'blogs');
+            $data = $this->blogService->getList($option);
+            return $this->success($data, trans('success.blog.get-list'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function viewDetailBlog(Request $request, $id)
+    {
+        try {
+            $this->blogValidate->validateInfoIdBlog($id);
+            $blogResponse = $this->blogService->show($id);
+            return $this->success($blogResponse->toJSON(), trans('success.blog.get'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('error.blog.get'), 400);
+        }
+    }
 }

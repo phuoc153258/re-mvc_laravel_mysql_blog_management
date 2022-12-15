@@ -74,12 +74,11 @@ class RouteServiceProvider extends ServiceProvider
 
                     Route::prefix('users/me')->group(base_path('routes/api/user/user.php'));
 
-                    Route::prefix('blogs')->group(base_path('routes/api/user/blog.php'));
-
                     Route::prefix('mails')->group(base_path('routes/api/base/mail.php'));
 
                     Route::prefix('files')->group(base_path('routes/api/base/file.php'));
                 });
+                Route::prefix('blogs')->group(base_path('routes/api/user/blog.php'));
 
                 Route::prefix('auth')->group(base_path('routes/api/base/auth.php'));
             });

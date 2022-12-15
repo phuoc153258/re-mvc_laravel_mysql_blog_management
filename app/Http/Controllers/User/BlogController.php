@@ -15,4 +15,22 @@ class BlogController extends Controller
             return redirect('/');
         }
     }
+
+    public function views()
+    {
+        try {
+            return view('view_blogs');
+        } catch (\Throwable $th) {
+            return redirect('/');
+        }
+    }
+
+    public function viewDetail()
+    {
+        try {
+            return view('view_detail_blog');
+        } catch (\Throwable $th) {
+            return redirect('/');
+        }
+    }
 }

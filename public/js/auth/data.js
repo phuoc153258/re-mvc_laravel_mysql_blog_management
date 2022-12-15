@@ -93,8 +93,10 @@ async function getInfoUser() {
                 Authorization: getCookie("access_token"),
             },
         });
+        console.log(response);
         return response;
     } catch (error) {
+        [];
         return null;
     }
 }
@@ -119,29 +121,29 @@ async function getInfoUserLoginHome() {
     let str = "";
     try {
         const response = await getInfoUser();
-
         if (response.data.status) {
-            str += `<a href="/blogs" class="text-sm text-gray-700 dark:text-gray-500 underline">${
+            str += `<li class="nav-item">
+            <a href="/blogs" class="nav-link">${
                 cookie == "vie" ? "Trang chủ" : "Home"
-            }</a>
-                        <a class="text-sm text-gray-700 dark:text-gray-500 underline" style="cursor: pointer;" onclick="logoutUser()">${
-                            cookie == "vie" ? "Đăng xuất" : "Logout"
-                        }</a>`;
+            }</a></li>
+            <li class="nav-item"> <a class="nav-link" style="cursor: pointer;" onclick="logoutUser()">${
+                cookie == "vie" ? "Đăng xuất" : "Logout"
+            }</a></li>`;
         } else {
-            str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">${
+            str += `<li class="nav-item"><a href="/auth/login" class="nav-link">${
                 cookie == "vie" ? "Đăng nhập" : "Login"
-            }</a>
-                    <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">${
-                        cookie == "vie" ? "Đăng ký" : "Register"
-                    }</a>`;
+            }</a></li>
+            <li class="nav-item"><a href="/auth/register" class="ml-4 nav-link">${
+                cookie == "vie" ? "Đăng ký" : "Register"
+            }</a></li>`;
         }
     } catch (error) {
-        str += `<a href="/auth/login" class="text-sm text-gray-700 dark:text-gray-500 underline">${
+        str += `<li class="nav-item"><a href="/auth/login" class="nav-link">${
             cookie == "vie" ? "Đăng nhập" : "Login"
-        }</a>
-        <a href="/auth/register" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">${
+        }</a></li>
+        <li class="nav-item"> <a href="/auth/register" class="ml-4 nav-link">${
             cookie == "vie" ? "Đăng ký" : "Register"
-        }</a>`;
+        }</a></li>`;
     }
     homeNavbar.innerHTML = str;
 }

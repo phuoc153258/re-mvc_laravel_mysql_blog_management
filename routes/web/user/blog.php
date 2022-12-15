@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\BlogController;
 
-Route::get('/create', [\App\Http\Controllers\User\BlogController::class, 'create']);
+Route::get('/views/{id}', [BlogController::class, 'viewDetail']);
 
-Route::get('/{id}', [\App\Http\Controllers\User\BlogController::class, 'show']);
+Route::get('/views', [BlogController::class, 'views']);
 
-Route::get('', [\App\Http\Controllers\User\BlogController::class, 'index']);
+Route::get('', [BlogController::class, 'index']);
