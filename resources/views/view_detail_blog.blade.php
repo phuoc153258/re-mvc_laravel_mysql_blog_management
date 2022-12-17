@@ -24,6 +24,19 @@
 
 </head>
 
+<style>
+    p {
+        margin: 0px !important;
+        padding: 0px !important;
+        font-size: 16px !important;
+    }
+
+    .content-blog p {
+        font-size: 24px !important;
+        padding: 18px 0px !important;
+    }
+</style>
+
 <body>
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
@@ -76,7 +89,7 @@
     <article class="mb-4">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7 p-0" style="width: 100% !important;"
+                <div class="col-md-10 col-lg-8 col-xl-7 p-0 content-blog" style="width: 100% !important;"
                     id="content-detail-blog-js">
                 </div>
             </div>
@@ -88,57 +101,29 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center mt-4 mb-4">
                 <h4 class="p-0 mb-4">Comments</h4>
-                <div id="comment-user-js" class="m-0 p-0">
-                    {{-- <div class="card mt-3 mb-3" style="padding: 0px;">
+                <div class="m-0 p-0">
+                    <div class="card mt-3 mb-3 d-none" style="padding: 0px;" id="comment-user-success-login-js">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-1">
                                     <img class="w-100 rounded-circle"
                                         src="http://127.0.0.1:8000/image/user_avatar_default.jpg" alt="">
                                 </div>
-                                <div class="col-11 mb-5" style="position: relative">
+                                <div class="col-11">
                                     <textarea style="width: 100%;" id="post-comment-js"></textarea>
-                                    <a href="" class="btn btn-primary"
-                                        style="position: absolute;right: 0; margin-top: 15px; margin-right: 15px;">Comment</a>
+                                    <a href="" class="btn btn-primary mt-4">Comment</a>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
-                    <div class="card mt-3 mb-3" style="padding: 0px;">
+                    </div>
+                    <div class="card mt-3 mb-3 d-none" style="padding: 0px;" id="comment-user-failed-login-js">
                         <div class="card-body text-center">
-                            <a href="">Login to comment !!!</a>
+                            <a href="/auth/login">Login to comment !!!</a>
                         </div>
                     </div>
                 </div>
                 <div id="list-comment-js" class="m-0 p-0">
-                    <div class="card mt-3 mb-3" style="padding: 0px;">
-                        <div class="card-body">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-1">
-                                        <img class="w-100 rounded-circle"
-                                            src="http://127.0.0.1:8000/image/user_avatar_default.jpg" alt="">
-                                    </div>
-                                    <div class="col-11 mt-auto mb-auto">
-                                        <h6 class="m-0">Admin</h6>
-                                        <p class="m-0" style="font-size: 14px;">2022-1-1</p>
-                                    </div>
-                                </div>
-                                <p class="m-2" style="font-size: 16px;">thanks, Mình có một vài comments: server
-                                    đang list một port (3000) trong khi file jquery thì là listen một port khác (3003)
-                                    ngoài ra khi include thư viện jquery như trong bài là
-                                </p>
-                            </div>
-                            <div class="footer d-flex" style="gap: 0 15px;align-items: center;">
-                                <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
-                                    <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                    <p style="font-size: 16px;" class="p-0 m-0">10</p>
-                                </div>
-                                <a href="#" style="font-size: 16px">Reply</a>
-                                <a href="#" style="font-size: 16px">Report</a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -222,7 +207,8 @@
                     value: 'Email',
                     title: 'Email'
                 },
-            ]
+            ],
+            height: "300"
         });
     </script>
 </body>

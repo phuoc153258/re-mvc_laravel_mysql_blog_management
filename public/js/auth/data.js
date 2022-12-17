@@ -104,10 +104,7 @@ async function getInfoUserLogin() {
     try {
         const response = await getInfoUser();
         if (response != null) renderInfoUserToNavbar(response.data.data);
-    } catch (error) {
-        // location.replace(`/`);
-        return;
-    }
+    } catch (error) {}
 }
 
 async function getInfoUserLoginHome() {

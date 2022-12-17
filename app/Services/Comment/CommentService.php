@@ -23,7 +23,8 @@ class CommentService implements ICommentService
     public function getList(BasePaginateRequestDTO $option, string $slug = null): mixed
     {
         $query =  DB::table($option->type_model->getType())
-            ->join('blogs', 'comments.blog_id', '=', 'blogs.id');
+            ->join('blogs', 'comments.blog_id', '=', 'blogs.id')
+            ->join('users', 'comments.user_id', '=', 'users.id');
 
         if ($slug != null) $query->where('blogs.slug', $slug);
 

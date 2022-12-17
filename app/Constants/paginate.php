@@ -54,7 +54,7 @@ define('COMMENT_PAGINATE_TYPE', [
     'NAME' => 'comments',
     'SEARCH_BY' => 'content',
     'SORT_BY' => 'id',
-    'SELECT_ITEM' => ['comments.*']
+    'SELECT_ITEM' => ['comments.*', 'users.fullname', 'users.avatar']
 ]);
 
 define('PAGINATE_TYPE', [

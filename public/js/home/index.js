@@ -37,3 +37,28 @@ function emptyDataDetailBlog() {
     document.getElementById("post-by-detail-blog-js").innerHTML = "";
     document.getElementById("content-detail-blog-js").innerHTML = "";
 }
+
+function renderCommentsBlog(data) {
+    let listComment = document.getElementById("list-comment-js");
+    let str = "";
+    data.data.forEach((x) => {
+        str += `<div class="card mt-3 mb-3" style="padding: 0px;">
+        <div class="card-body"><div class="content"><div class="row">
+        <div class="col-1"><img class="w-100 rounded-circle"
+        src="/${x.avatar}" alt="">
+        </div><div class="col-11 mt-auto mb-auto">
+        <h6 class="m-0">${x.fullname}</h6>
+        <p class="m-0" style="font-size: 14px;">${x.created_at}</p>
+        </div></div></div><div class="container" style="padding: 20px;">
+        ${x.content}
+        <div class="footer d-flex mt-2" style="gap: 0 15px;align-items: center;">
+        <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
+        <a href="#"><i class="fa-regular fa-heart"></i></a>
+        <p style="font-size: 16px;" class="p-0 m-0">10</p></div>
+        <a href="#" style="font-size: 16px">Reply</a>
+        <a href="#" style="font-size: 16px">Report</a></div></div></div></div>`;
+    });
+    if (str == "")
+        return (listComment.innerHTML = `<h5 class="mt-4">This blog has no comments !!!</h5>`);
+    listComment.innerHTML = str;
+}
