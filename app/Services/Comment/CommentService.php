@@ -2,7 +2,11 @@
 
 namespace App\Services\Comment;
 
+use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Response\Comment\CommentResponseDTO;
+use App\Models\Blog;
+use App\Models\Comment;
 use App\Services\Comment\ICommentService;
 use App\Services\Paginate\PaginateService;
 use Illuminate\Support\Facades\DB;
@@ -26,5 +30,17 @@ class CommentService implements ICommentService
         $data = $this->paginateService->paginate($option, $query);
         $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
         return $data;
+    }
+
+    public function create(PostCommentBlogRequestDTO $commentRequest): CommentResponseDTO
+    {
+        $blog  = Blog::where('slug', $commentRequest->getSlug())->get()->first();
+        $comment = Comment::create([
+            'content' => $commentRequest->getComment(),
+            'user_id' => $commentRequest->getUser()->id,
+            'blog_id' => $blog->id
+        ]);
+        $commentDTO = new CommentResponseDTO($comment);
+        return $commentDTO;
     }
 }

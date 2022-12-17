@@ -40,3 +40,5 @@ define('VALIDATE_PERMISSION_ID_MYSQL', ['permission_id' => VALIDATE_ID_MYSQL_BAS
 define('VALIDATE_OTP', ['otp' => VALIDATE_STR_BASE]);
 
 define('VALIDATE_SLUG', ['slug' => VALIDATE_STR_BASE]);
+
+define('VALIDATE_COMMENT', ['comment' => VALIDATE_STR_BASE]);

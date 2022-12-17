@@ -4,6 +4,7 @@ namespace App\Validate;
 
 use App\DTO\Request\Blog\CreateBlogRequestDTO;
 use App\DTO\Request\Blog\UpdateBlogRequestDTO;
+use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\Traits\BaseValidate;
 use Illuminate\Support\Facades\Validator;
 
@@ -39,6 +40,14 @@ class BlogValidate
     {
         $validator = Validator::make(['slug' => $slug], [
             ...VALIDATE_SLUG
+        ]);
+        return $this->baseRunCondition($validator);
+    }
+
+    public function validateInfoPostCommentBlog(PostCommentBlogRequestDTO $commentRequest)
+    {
+        $validator = Validator::make($commentRequest->toArray(), [
+            ...VALIDATE_SLUG, ...VALIDATE_COMMENT
         ]);
         return $this->baseRunCondition($validator);
     }

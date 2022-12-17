@@ -58,6 +58,7 @@
             "app/DTO/Request/Role",
             "app/DTO/Request/Permission",
             "app/DTO/Request/Mail",
+            "app/DTO/Request/Comment",
 
             "app/DTO/Response/Paginate",
             "app/DTO/Response/User",

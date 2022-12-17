@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Api;
 
+use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -30,6 +31,19 @@ class CommentApiController extends Controller
             $option = new BasePaginateRequestDTO($request, 'comments');
             $data = $this->commentService->getList($option, $slug);
             return $this->success($data, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function create(Request $request, $slug)
+    {
+        try {
+            $user = $this->getInfoUser($request);
+            $commentRequest = new PostCommentBlogRequestDTO($request, $slug, $user);
+            $this->blogValidate->validateInfoPostCommentBlog($commentRequest);
+            $data = $this->commentService->create($commentRequest);
+            return $this->success($data->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
