@@ -30,14 +30,15 @@ class BlogService implements IBlogService
         return $data;
     }
 
-    public function show($id, $user_id = null): BlogResponseDTO
+    public function show($id, $user_id = null, $filed = 'id'): BlogResponseDTO
     {
-        $blog = Blog::with('users')
-            ->where('id', $id);
+        $query = Blog::with('users')
+            ->where($filed, $id);
         if ($user_id != null || $user_id != '') {
-            $blog->where('blogs.user_id', $user_id);
+            $query->where('blogs.user_id', $user_id);
         }
-        $blogDTO = new BlogResponseDTO($blog->get()->first());
+        $blog = $query->get()->first();
+        $blogDTO = new BlogResponseDTO($blog);
         return $blogDTO;
     }
 
@@ -55,8 +56,6 @@ class BlogService implements IBlogService
 
         if ($blogRequest->getSubTitle() != '') $blog->sub_title = $blogRequest->getSubTitle();
         if ($blogRequest->getContent() != '') $blog->content = $blogRequest->getContent();
-
-
 
         $blog->image = $this->fileService->upload($fileRequest);
 

@@ -4,10 +4,10 @@ function renderListViewBlog(data) {
 
     data.data.forEach((element) => {
         str += `<div class="row mb-3">
-                <div class="col-4"><img src="/${element.image}" alt="">
+                <div class="col-4"><img src="/${element.image}" style="max-width: 300px;" alt="">
                 </div>
                 <div class="col-8">
-                <a href="/details/${element.id}">
+                <a href="/details/${element.slug}">
                 <h2 class="post-title">${element.title}
                 </h2>
                 <h6 class="post-subtitle">${element.sub_title}</h6>

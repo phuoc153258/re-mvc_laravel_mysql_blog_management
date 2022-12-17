@@ -34,4 +34,12 @@ class BlogValidate
         ]);
         return $this->baseRunCondition($validator);
     }
+
+    public function validateSlugBlog($slug)
+    {
+        $validator = Validator::make(['slug' => $slug], [
+            ...VALIDATE_SLUG
+        ]);
+        return $this->baseRunCondition($validator);
+    }
 }

@@ -5,7 +5,7 @@ use App\Http\Controllers\User\Api\BlogApiController;
 
 Route::get('/views', [BlogApiController::class, 'viewBlogs']);
 
-Route::get('/views/{id}', [BlogApiController::class, 'viewDetailBlog']);
+Route::get('/views/{slug}', [BlogApiController::class, 'viewDetailBlog']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/{id}/image', [BlogApiController::class, 'uploadImage'])->middleware('permission:user-update-my-blog');

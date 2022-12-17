@@ -115,11 +115,11 @@ class BlogApiController extends Controller
         }
     }
 
-    public function viewDetailBlog(Request $request, $id)
+    public function viewDetailBlog(Request $request, $slug)
     {
         try {
-            $this->blogValidate->validateInfoIdBlog($id);
-            $blogResponse = $this->blogService->show($id);
+            $this->blogValidate->validateSlugBlog($slug);
+            $blogResponse = $this->blogService->show($slug, null, 'slug');
             return $this->success($blogResponse->toJSON(), trans('success.blog.get'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('error.blog.get'), 400);
