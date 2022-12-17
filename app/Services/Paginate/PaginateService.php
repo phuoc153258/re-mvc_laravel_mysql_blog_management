@@ -5,6 +5,7 @@ namespace App\Services\Paginate;
 use Illuminate\Support\Facades\DB;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\Services\Paginate\IPaginateService;
+use Illuminate\Database\Query\Builder;
 
 class PaginateService implements IPaginateService
 {
@@ -12,16 +13,8 @@ class PaginateService implements IPaginateService
     {
     }
 
-    public function paginate(BasePaginateRequestDTO $paginateOption,  $user_id = null): mixed
+    public function paginate(BasePaginateRequestDTO $paginateOption, Builder $query): mixed
     {
-        $query =  DB::table($paginateOption->type_model->getType());
-
-        if ($paginateOption->type_model->getType() == 'blogs') {
-            $query->join('users', 'blogs.user_id', '=', 'users.id');
-            if ($user_id != null)
-                $query->where('blogs.user_id', '=', $user_id);
-        }
-
         if (!$paginateOption->option->getIsPaginate()) return $query->get();
 
         if ($paginateOption->option->getSearch())
@@ -33,18 +26,8 @@ class PaginateService implements IPaginateService
                 ->orderBy($paginateOption->type_model->getSortBy(), $paginateOption->option->getSort());
 
         $total = $query->count();
-
-        $data = null;
-        if ($paginateOption->type_model->getType() == 'blogs') {
-            $data = $query->offset(($paginateOption->option->getPage() - 1) *  $paginateOption->option->getLimit())
-                ->limit($paginateOption->option->getLimit())
-                ->select('blogs.*', 'users.username')
-                ->get();
-        } else
-            $data = $query->offset(($paginateOption->option->getPage() - 1) *  $paginateOption->option->getLimit())
-                ->limit($paginateOption->option->getLimit())
-                ->select()
-                ->get();
+        $data = $query->offset(($paginateOption->option->getPage() - 1) *  $paginateOption->option->getLimit())
+            ->limit($paginateOption->option->getLimit());
 
         return [
             'data' => $data,

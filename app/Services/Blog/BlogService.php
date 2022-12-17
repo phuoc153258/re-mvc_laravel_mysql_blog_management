@@ -12,6 +12,7 @@ use App\Models\Blog;
 use App\Services\Paginate\PaginateService;
 use App\Services\File\FileService;
 use App\Services\Blog\IBlogService;
+use Illuminate\Support\Facades\DB;
 
 class BlogService implements IBlogService
 {
@@ -26,7 +27,15 @@ class BlogService implements IBlogService
 
     public function getList(BasePaginateRequestDTO $option, $user_id = null): mixed
     {
-        $data = $this->paginateService->paginate($option, $user_id);
+        $query =  DB::table($option->type_model->getType())
+            ->join('users', 'blogs.user_id', '=', 'users.id');
+
+        if ($user_id != null)
+            $query->where('blogs.user_id', '=', $user_id);
+
+        $data = $this->paginateService->paginate($option, $query);
+
+        $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
         return $data;
     }
 

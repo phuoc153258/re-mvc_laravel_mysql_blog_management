@@ -14,7 +14,17 @@ define('USER_PAGINATE_TYPE', [
     'NAME' => 'users',
     'SEARCH_BY' => 'username',
     'SORT_BY' => 'id',
-    'SELECT_ITEM' => []
+    'SELECT_ITEM' => [
+        'users.id',
+        'users.username',
+        'users.fullname',
+        'users.email',
+        'users.avatar',
+        'users.is_email_verified',
+        'users.email_verified_at',
+        'users.created_at',
+        'users.updated_at'
+    ]
 ]);
 
 define('BLOG_PAGINATE_TYPE', [
@@ -30,21 +40,21 @@ define('ROLE_PAGINATE_TYPE', [
     'NAME' => 'roles',
     'SEARCH_BY' => 'name',
     'SORT_BY' => 'id',
-    'SELECT_ITEM' => []
+    'SELECT_ITEM' => ['roles.*']
 ]);
 
 define('PERMISSION_PAGINATE_TYPE', [
     'NAME' => 'permissions',
     'SEARCH_BY' => 'name',
     'SORT_BY' => 'id',
-    'SELECT_ITEM' => []
+    'SELECT_ITEM' => ['permissions.*']
 ]);
 
 define('COMMENT_PAGINATE_TYPE', [
     'NAME' => 'comments',
     'SEARCH_BY' => 'content',
     'SORT_BY' => 'id',
-    'SELECT_ITEM' => []
+    'SELECT_ITEM' => ['comments.*']
 ]);
 
 define('PAGINATE_TYPE', [

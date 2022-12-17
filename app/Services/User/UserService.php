@@ -12,6 +12,7 @@ use App\DTO\Response\User\UserResponseDTO;
 use App\Services\Paginate\PaginateService;
 use App\Services\File\FileService;
 use App\Services\User\IUserService;
+use Illuminate\Support\Facades\DB;
 
 class UserService implements IUserService
 {
@@ -26,7 +27,10 @@ class UserService implements IUserService
 
     public  function getList(BasePaginateRequestDTO $option): mixed
     {
-        $data = $this->paginateService->paginate($option);
+        $query =  DB::table($option->type_model->getType());
+
+        $data = $this->paginateService->paginate($option, $query);
+        $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
         return $data;
     }
 

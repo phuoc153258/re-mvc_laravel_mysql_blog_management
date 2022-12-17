@@ -11,6 +11,7 @@ use App\DTO\Response\Permission\PermissionResponseDTO;
 use App\DTO\Response\User\UserResponseDTO;
 use App\Services\Paginate\PaginateService;
 use App\Services\Permission\IPermissionService;
+use Illuminate\Support\Facades\DB;
 
 class PermissionService implements IPermissionService
 {
@@ -23,7 +24,10 @@ class PermissionService implements IPermissionService
 
     public function getList(BasePaginateRequestDTO $option): mixed
     {
-        $data = $this->paginateService->paginate($option);
+        $query =  DB::table($option->type_model->getType());
+
+        $data = $this->paginateService->paginate($option, $query);
+        $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
         return $data;
     }
 
