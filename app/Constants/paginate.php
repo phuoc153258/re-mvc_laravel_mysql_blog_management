@@ -40,9 +40,17 @@ define('PERMISSION_PAGINATE_TYPE', [
     'SELECT_ITEM' => []
 ]);
 
+define('COMMENT_PAGINATE_TYPE', [
+    'NAME' => 'comments',
+    'SEARCH_BY' => 'content',
+    'SORT_BY' => 'id',
+    'SELECT_ITEM' => []
+]);
+
 define('PAGINATE_TYPE', [
     'USER' => USER_PAGINATE_TYPE,
     'BLOG' => BLOG_PAGINATE_TYPE,
     'ROLE' => ROLE_PAGINATE_TYPE,
     'PERMISSION' => PERMISSION_PAGINATE_TYPE,
+    'COMMENT' => COMMENT_PAGINATE_TYPE,
 ]);

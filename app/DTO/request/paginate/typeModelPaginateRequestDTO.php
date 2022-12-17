@@ -5,6 +5,8 @@ namespace App\DTO\Request\Paginate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 
+use function PHPSTORM_META\type;
+
 class TypeModelPaginateRequestDTO
 {
     private string $type;
@@ -26,6 +28,9 @@ class TypeModelPaginateRequestDTO
 
         if ($type == PAGINATE_TYPE['PERMISSION']['NAME'])
             $type_model = 'PERMISSION';
+
+        if ($type == PAGINATE_TYPE['COMMENT']['NAME'])
+            $type_model = 'COMMENT';
 
         $this->type = PAGINATE_TYPE[$type_model]['NAME'];
         $this->search_by = PAGINATE_TYPE[$type_model]['SEARCH_BY'];

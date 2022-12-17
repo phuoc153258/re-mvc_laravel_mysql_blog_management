@@ -18,6 +18,10 @@
         rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+
+    <script src="https://cdn.tiny.cloud/1/47y6cglcm85ezq4xg1q3beejfoa63atjgju6yw1oc3wa1ic3/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
 </head>
 
 <body>
@@ -72,12 +76,73 @@
     <article class="mb-4">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7" style="width: 100% !important;" id="content-detail-blog-js">
+                <div class="col-md-10 col-lg-8 col-xl-7 p-0" style="width: 100% !important;"
+                    id="content-detail-blog-js">
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <div class="mb-4 border-top">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center mt-4 mb-4">
+                <h4 class="p-0 mb-4">Comments</h4>
+                <div id="comment-user-js" class="m-0 p-0">
+                    {{-- <div class="card mt-3 mb-3" style="padding: 0px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-1">
+                                    <img class="w-100 rounded-circle"
+                                        src="http://127.0.0.1:8000/image/user_avatar_default.jpg" alt="">
+                                </div>
+                                <div class="col-11 mb-5" style="position: relative">
+                                    <textarea style="width: 100%;" id="post-comment-js"></textarea>
+                                    <a href="" class="btn btn-primary"
+                                        style="position: absolute;right: 0; margin-top: 15px; margin-right: 15px;">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="card mt-3 mb-3" style="padding: 0px;">
+                        <div class="card-body text-center">
+                            <a href="">Login to comment !!!</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="list-comment-js" class="m-0 p-0">
+                    <div class="card mt-3 mb-3" style="padding: 0px;">
+                        <div class="card-body">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <img class="w-100 rounded-circle"
+                                            src="http://127.0.0.1:8000/image/user_avatar_default.jpg" alt="">
+                                    </div>
+                                    <div class="col-11 mt-auto mb-auto">
+                                        <h6 class="m-0">Admin</h6>
+                                        <p class="m-0" style="font-size: 14px;">2022-1-1</p>
+                                    </div>
+                                </div>
+                                <p class="m-2" style="font-size: 16px;">thanks, Mình có một vài comments: server
+                                    đang list một port (3000) trong khi file jquery thì là listen một port khác (3003)
+                                    ngoài ra khi include thư viện jquery như trong bài là
+                                </p>
+                            </div>
+                            <div class="footer d-flex" style="gap: 0 15px;align-items: center;">
+                                <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
+                                    <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                    <p style="font-size: 16px;" class="p-0 m-0">10</p>
+                                </div>
+                                <a href="#" style="font-size: 16px">Reply</a>
+                                <a href="#" style="font-size: 16px">Report</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </article>
-    <!-- Footer-->
+    </div>
     <footer class="border-top">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -141,6 +206,25 @@
     <script src="{{ asset('js/home/index.js') }}"></script>
     <script src="{{ asset('js/home/data.js') }}"></script>
     <script src="{{ asset('js/home/pageViewDetailBlog.js') }}"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea#post-comment-js',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [{
+                    value: 'First.Name',
+                    title: 'First Name'
+                },
+                {
+                    value: 'Email',
+                    title: 'Email'
+                },
+            ]
+        });
+    </script>
 </body>
 
 </html>

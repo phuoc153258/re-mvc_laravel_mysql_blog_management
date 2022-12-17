@@ -2,10 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Api\BlogApiController;
+use App\Http\Controllers\User\Api\CommentApiController;
 
-Route::get('/views', [BlogApiController::class, 'viewBlogs']);
+Route::post('/views/{slug}/comments', [CommentApiController::class, 'postCommentsInBlog']);
+
+Route::get('/views/{slug}/comments', [CommentApiController::class, 'index']);
 
 Route::get('/views/{slug}', [BlogApiController::class, 'viewDetailBlog']);
+
+Route::get('/views', [BlogApiController::class, 'viewBlogs']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/{id}/image', [BlogApiController::class, 'uploadImage'])->middleware('permission:user-update-my-blog');
