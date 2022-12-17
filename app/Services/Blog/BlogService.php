@@ -39,10 +39,10 @@ class BlogService implements IBlogService
         return $data;
     }
 
-    public function show($id, $user_id = null, $filed = 'id'): BlogResponseDTO
+    public function show($id, $user_id = null, $field = 'id'): BlogResponseDTO
     {
         $query = Blog::with('users')
-            ->where($filed, $id);
+            ->where($field, $id);
         if ($user_id != null || $user_id != '') {
             $query->where('blogs.user_id', $user_id);
         }
