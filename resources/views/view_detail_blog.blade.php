@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-11">
                                     <textarea style="width: 100%;" id="post-comment-js"></textarea>
-                                    <a href="" class="btn btn-primary mt-4">Comment</a>
+                                    <a class="btn btn-primary mt-4" onclick="postCommentBlog()">Comment</a>
                                 </div>
                             </div>
                         </div>

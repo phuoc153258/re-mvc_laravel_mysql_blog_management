@@ -38,6 +38,7 @@ async function checkLoginToComment() {
     const failedLogin = document.getElementById("comment-user-failed-login-js");
     try {
         const resposne = await getInfoUser();
+        console.log(resposne);
         if (resposne.data.status) successLogin.classList.remove("d-none");
     } catch (error) {
         failedLogin.classList.remove("d-none");
@@ -52,6 +53,29 @@ async function getCommentBlog() {
                 window.location.pathname.split("/")[2]
             }/comments`,
         });
-        renderCommentsBlog(response.data.data);
+        renderCommentsBlog(response.data);
+    } catch (error) {}
+}
+
+async function postCommentBlog() {
+    try {
+        const comment = tinymce.get("post-comment-js").getContent();
+        const response = await axios({
+            method: "post",
+            url: `/api/blogs/views/${
+                window.location.pathname.split("/")[2]
+            }/comments`,
+            data: {
+                comment,
+            },
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        document.getElementById("list-comment-js").innerHTML += itemComment(
+            response.data.data
+        );
+        tinymce.get("post-comment-js").setContent("");
+        await successNoti();
     } catch (error) {}
 }

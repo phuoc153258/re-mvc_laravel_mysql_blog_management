@@ -8,7 +8,7 @@ use App\DTO\Response\Comment\CommentResponseDTO;
 
 interface ICommentService
 {
-    public function getList(BasePaginateRequestDTO $option, string $blog_id): mixed;
+    public function getList(BasePaginateRequestDTO $option, string $blog_id): array;
 
-    public function create(PostCommentBlogRequestDTO $commentRequest): CommentResponseDTO;
+    public function create(PostCommentBlogRequestDTO $commentRequest);
 }
