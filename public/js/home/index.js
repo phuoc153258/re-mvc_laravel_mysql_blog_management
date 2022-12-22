@@ -41,21 +41,23 @@ function emptyDataDetailBlog() {
 function renderCommentsBlog(data) {
     let listComment = document.getElementById("list-comment-js");
     let str = "";
-    data.data.forEach((value, index) => {
-        str += itemComment(value, index);
+    data.data.forEach((value) => {
+        str += itemComment(value);
     });
     if (str == "")
         return (listComment.innerHTML = `<h5 class="mt-4">This blog has no comments !!!</h5>`);
     listComment.innerHTML = str;
 }
 
-function itemComment(data, index) {
-    return `<div class="card mt-3 mb-3" style="padding: 0px;" id="comment-like-js-${index}">
-    ${itemDetailComment(data, index)}
+function itemComment(data) {
+    return `<div class="card mt-3 mb-3" style="padding: 0px;" id="comment-like-js-${
+        data.id
+    }">
+    ${itemDetailComment(data)}
     </div>`;
 }
 
-function itemDetailComment(data, index) {
+function itemDetailComment(data) {
     return `<div class="card-body"><div class="content"><div class="row">
     <div class="col-1"><img class="w-100 rounded-circle"
     src="/${data.avatar}" alt="">
@@ -66,7 +68,7 @@ function itemDetailComment(data, index) {
     ${data.content}
     <div class="footer d-flex mt-2" style="gap: 0 15px;align-items: center;">
     <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
-    <a onclick="likeComment(${data.id},${index})" style="cursor: pointer;" >${
+    <a onclick="likeComment(${data.id})" style="cursor: pointer;" >${
         isLikeComment(data)
             ? '<i class="fa-solid fa-heart"></i>'
             : '<i class="fa-regular fa-heart"></i>'

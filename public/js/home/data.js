@@ -55,48 +55,29 @@ async function getCommentBlog() {
             }/comments`,
         });
         renderCommentsBlog(response.data.data);
-    } catch (error) {
-        console.log(error);
-    }
+    } catch (error) {}
 }
 
 async function postCommentBlog() {
     try {
         const comment = tinymce.get("post-comment-js").getContent();
-        const response = await axios({
-            method: "post",
-            url: `/api/blogs/views/${
-                window.location.pathname.split("/")[2]
-            }/comments`,
-            data: {
-                comment,
-            },
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
+
+        socket.emit("post-comment", {
+            slug: window.location.pathname.split("/")[2],
+            comment,
+            token: getCookie("access_token"),
         });
-        document.getElementById("list-comment-js").innerHTML += itemComment(
-            response.data.data
-        );
         tinymce.get("post-comment-js").setContent("");
-        await successNoti();
     } catch (error) {}
 }
 
-async function likeComment(id, index) {
+async function likeComment(id) {
     try {
         const user_id = document.getElementById("user-id-login-js").value;
-        const response = await axios({
-            method: "post",
-            url: `/api/comments/${id}/users/${user_id}`,
-            headers: {
-                Authorization: getCookie("access_token"),
-            },
+        await socket.emit("like-comment", {
+            id,
+            user_id,
+            token: getCookie("access_token"),
         });
-        const commentLikeIdx = document.getElementById(
-            `comment-like-js-${index}`
-        );
-        commentLikeIdx.innerHTML = "";
-        commentLikeIdx.innerHTML = itemDetailComment(response.data.data, index);
     } catch (error) {}
 }

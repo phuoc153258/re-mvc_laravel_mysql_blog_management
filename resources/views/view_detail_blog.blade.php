@@ -210,6 +210,26 @@
             height: "300"
         });
     </script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+        integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous">
+    </script>
+    <script>
+        const socket = io.connect('http://localhost:3000/');
+
+        socket.on('like-comment-response', data => {
+            const commentLikeIdx = document.getElementById(
+                `comment-like-js-${data.data.id}`
+            );
+            commentLikeIdx.innerHTML = "";
+            commentLikeIdx.innerHTML = itemDetailComment(data.data);
+        })
+
+        socket.on('post-comment-response', data => {
+            document.getElementById("list-comment-js").innerHTML += itemComment(
+                data.data
+            );
+        })
+    </script>
 </body>
 
 </html>
