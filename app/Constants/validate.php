@@ -13,6 +13,8 @@ define('VALIDATE_ID_MYSQL', ['id' => VALIDATE_ID_MYSQL_BASE]);
 
 define('VALIDATE_USER_ID_MYSQL', ['user_id' => VALIDATE_ID_MYSQL_BASE]);
 
+define('VALIDATE_COMMENT_ID_MYSQL', ['comment_id' => VALIDATE_ID_MYSQL_BASE]);
+
 define('VALIDATE_USERNAME', ['username' => VALIDATE_STR_BASE]);
 
 define('VALIDATE_FULLNAME', ['fullname' => VALIDATE_STR_BASE]);

@@ -2,11 +2,13 @@
 
 namespace App\Services\Comment;
 
+use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Response\Comment\CommentResponseDTO;
 use App\Models\Blog;
 use App\Models\Comment;
+use App\Models\CommentLike;
 use App\Services\Comment\ICommentService;
 use App\Services\Paginate\PaginateService;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +22,7 @@ class CommentService implements ICommentService
         $this->paginateService = new PaginateService();
     }
 
-    public function getList(BasePaginateRequestDTO $option, string $slug = null): array
+    public function getListComment(BasePaginateRequestDTO $option, string $slug = null): array
     {
         $query =  DB::table($option->type_model->getType())
             ->join('blogs', 'comments.blog_id', '=', 'blogs.id')
@@ -34,10 +36,18 @@ class CommentService implements ICommentService
         foreach ($data['data'] as &$item) {
             array_push($comments, (new CommentResponseDTO($item))->toJSON());
         }
-        return $comments;
+        $data['data'] = $comments;
+        return $data;
     }
 
-    public function create(PostCommentBlogRequestDTO $commentRequest)
+    public function getComment(int $id)
+    {
+        $comment = Comment::with('users')->find($id);
+        $commentDTO = new CommentResponseDTO($comment);
+        return $commentDTO;
+    }
+
+    public function createComment(PostCommentBlogRequestDTO $commentRequest)
     {
         $blog  = Blog::where('slug', $commentRequest->getSlug())->get()->first();
         $query = Comment::create([
@@ -45,8 +55,17 @@ class CommentService implements ICommentService
             'user_id' => $commentRequest->getUser()->id,
             'blog_id' => $blog->id
         ]);
-        $comment = Comment::with('users')->find($query->id);
-        $commentDTO = new CommentResponseDTO($comment);
-        return $commentDTO;
+        return $this->getComment($query->id);
+    }
+
+    public function likeComment(LikeCommentBlogRequestDTO $commentRequest)
+    {
+        $like = CommentLike::where('user_id', $commentRequest->getUserId())
+            ->where('comment_id', $commentRequest->getCommentId())->get()->first();
+        if ($like != null) $like->delete();
+        else
+            $likeQuery = CommentLike::create($commentRequest->toArray());
+
+        return $this->getComment($commentRequest->getCommentId());
     }
 }

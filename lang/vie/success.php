@@ -38,5 +38,8 @@ return [
         'update-my-profile' => 'Cập nhật thông tin của bạn thành công !!!',
         'upload-my-avatar' => 'Cập nhật ảnh đại diện của bạn thành công !!!',
         'change-my-password' => 'Đổi mật khẩu của bạn thành công !!!'
+    ],
+    'comment' => [
+        'like-comment' => 'Thích bình luận thành công !!!'
     ]
 ];

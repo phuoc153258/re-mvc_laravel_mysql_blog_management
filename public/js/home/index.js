@@ -41,17 +41,22 @@ function emptyDataDetailBlog() {
 function renderCommentsBlog(data) {
     let listComment = document.getElementById("list-comment-js");
     let str = "";
-    data.data.forEach((x) => {
-        str += itemComment(x);
+    data.data.forEach((value, index) => {
+        str += itemComment(value, index);
     });
     if (str == "")
         return (listComment.innerHTML = `<h5 class="mt-4">This blog has no comments !!!</h5>`);
     listComment.innerHTML = str;
 }
 
-function itemComment(data) {
-    return `<div class="card mt-3 mb-3" style="padding: 0px;">
-    <div class="card-body"><div class="content"><div class="row">
+function itemComment(data, index) {
+    return `<div class="card mt-3 mb-3" style="padding: 0px;" id="comment-like-js-${index}">
+    ${itemDetailComment(data, index)}
+    </div>`;
+}
+
+function itemDetailComment(data, index) {
+    return `<div class="card-body"><div class="content"><div class="row">
     <div class="col-1"><img class="w-100 rounded-circle"
     src="/${data.avatar}" alt="">
     </div><div class="col-11 mt-auto mb-auto">
@@ -61,10 +66,20 @@ function itemComment(data) {
     ${data.content}
     <div class="footer d-flex mt-2" style="gap: 0 15px;align-items: center;">
     <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
-    <a href="#"><i class="fa-regular fa-heart"></i></a>
+    <a onclick="likeComment(${data.id},${index})" style="cursor: pointer;" >${
+        isLikeComment(data)
+            ? '<i class="fa-solid fa-heart"></i>'
+            : '<i class="fa-regular fa-heart"></i>'
+    }</a>
     <p style="font-size: 16px;" class="p-0 m-0">${data.likes.length}</p></div>
     <a href="#" style="font-size: 16px">Reply</a>
-    <a href="#" style="font-size: 16px">Report</a></div></div></div></div>`;
+    <a href="#" style="font-size: 16px">Report</a></div></div></div>`;
 }
 
-function isLikeComment(user_id) {}
+function isLikeComment(data) {
+    const user_id = document.getElementById("user-id-login-js").value;
+    for (const item of data.likes) {
+        if (item.user_id == user_id) return true;
+    }
+    return false;
+}

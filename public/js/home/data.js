@@ -38,7 +38,8 @@ async function checkLoginToComment() {
     const failedLogin = document.getElementById("comment-user-failed-login-js");
     try {
         const resposne = await getInfoUser();
-        console.log(resposne);
+        document.getElementById("user-id-login-js").value =
+            resposne.data.data.id;
         if (resposne.data.status) successLogin.classList.remove("d-none");
     } catch (error) {
         failedLogin.classList.remove("d-none");
@@ -53,8 +54,10 @@ async function getCommentBlog() {
                 window.location.pathname.split("/")[2]
             }/comments`,
         });
-        renderCommentsBlog(response.data);
-    } catch (error) {}
+        renderCommentsBlog(response.data.data);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function postCommentBlog() {
@@ -77,5 +80,23 @@ async function postCommentBlog() {
         );
         tinymce.get("post-comment-js").setContent("");
         await successNoti();
+    } catch (error) {}
+}
+
+async function likeComment(id, index) {
+    try {
+        const user_id = document.getElementById("user-id-login-js").value;
+        const response = await axios({
+            method: "post",
+            url: `/api/comments/${id}/users/${user_id}`,
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        const commentLikeIdx = document.getElementById(
+            `comment-like-js-${index}`
+        );
+        commentLikeIdx.innerHTML = "";
+        commentLikeIdx.innerHTML = itemDetailComment(response.data.data, index);
     } catch (error) {}
 }

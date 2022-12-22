@@ -15,9 +15,13 @@ class CommentLikeService implements ICommentLikeService
     {
         $this->paginateService = new PaginateService();
     }
-    public function getCountLikeInComment(int $comment_id): mixed
+    public function getLikesInComment(int $comment_id): mixed
     {
         $likes = CommentLike::where('comment_id', $comment_id)->select()->get();
         return $likes;
+    }
+
+    public function likeComment()
+    {
     }
 }

@@ -27,14 +27,13 @@ class CommentResponseDTO
         $this->created_at = $comment->created_at;
         $this->updated_at = $comment->updated_at;
         if (isset($comment->users)) {
-            dd($comment->users);
             $this->avatar = $comment->users->avatar;
             $this->fullname = $comment->users->fullname;
         } else {
             $this->avatar = $comment->avatar;
             $this->fullname = $comment->fullname;
         }
-        $this->likes = (new CommentLikeService())->getCountLikeInComment($comment->id);
+        $this->likes = (new CommentLikeService())->getLikesInComment($comment->id);
     }
 
     public function toJSON()

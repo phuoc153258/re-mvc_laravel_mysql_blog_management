@@ -38,5 +38,8 @@ return [
         'update-my-profile' => 'Update your infomation success !!!',
         'upload-my-avatar' => 'Update your avatar success !!!',
         'change-my-password' => 'Change your password success !!!'
+    ],
+    'comment' => [
+        'like-comment' => 'Like comment success !!!'
     ]
 ];

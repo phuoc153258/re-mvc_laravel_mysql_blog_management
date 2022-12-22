@@ -38,7 +38,7 @@
 </style>
 
 <body>
-    <!-- Navigation-->
+    <input type="text" id="user-id-login-js" hidden>
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="/">Laravel</a>
@@ -163,7 +163,6 @@
             </div>
         </div>
     </footer>
-    <!-- Bootstrap core JS-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
@@ -180,7 +179,7 @@
         integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="" {{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/helper/paginate/index.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/notification/index.js') }}"></script>

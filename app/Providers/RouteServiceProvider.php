@@ -81,6 +81,8 @@ class RouteServiceProvider extends ServiceProvider
                 Route::prefix('blogs')->group(base_path('routes/api/user/blog.php'));
 
                 Route::prefix('auth')->group(base_path('routes/api/base/auth.php'));
+
+                Route::prefix('comments')->group(base_path('routes/api/user/comment.php'));
             });
         });
     }
