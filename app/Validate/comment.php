@@ -13,7 +13,7 @@ class CommentValidate
     public function validateLikeCommentBlog(LikeCommentBlogRequestDTO $commentRequest)
     {
         $validator = Validator::make($commentRequest->toArray(), [
-            ...VALIDATE_COMMENT_ID_MYSQL, ...VALIDATE_USER_ID_MYSQL,
+            ...VALIDATE_COMMENT_ID_MYSQL, ...VALIDATE_USER_ID_MYSQL
         ]);
         return $this->baseRunCondition($validator);
     }

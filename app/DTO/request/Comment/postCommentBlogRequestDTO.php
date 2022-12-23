@@ -8,12 +8,14 @@ class PostCommentBlogRequestDTO
 {
     private string $slug;
     private string $comment;
+    private ?int $parent_id;
     private $user;
 
     public function __construct(Request $request, $slug, $user)
     {
         $this->slug = $slug;
         $this->comment = $request->input('comment');
+        $this->parent_id = $request->input('parent_id');
         $this->user = $user;
     }
 
@@ -32,11 +34,17 @@ class PostCommentBlogRequestDTO
         return $this->user;
     }
 
+    public function getParentId()
+    {
+        return $this->parent_id;
+    }
+
     public function toArray()
     {
         return [
             'slug' => $this->slug,
             'comment' => $this->comment,
+            'parent_id' => $this->parent_id,
         ];
     }
 }

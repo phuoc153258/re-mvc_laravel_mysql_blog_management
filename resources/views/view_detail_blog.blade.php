@@ -118,50 +118,7 @@
                     </div>
                 </div>
                 <div id="list-comment-js" class="m-0 p-0">
-
                 </div>
-
-                {{-- <div class="m-0 p-0">
-                    <div class="card mt-3 mb-3" style="padding: 0px;" id="comment-like-js-25">
-                        <div class="card-body p-2">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-1"><img class="w-100 rounded-circle"
-                                            src="/image/user_avatar_default.jpg" alt="">
-                                    </div>
-                                    <div class="col-11 mt-auto mb-auto">
-                                        <h6 class="m-0">admin</h6>
-                                        <p class="m-0" style="font-size: 12px !important;">2022-12-22 09:07:41</p>
-                                        <div class="mt-2" style="font-size: 16px !important;">
-                                            <p></p>
-                                            <p>Bai viet rat huu ich :D</p>
-                                            <p></p>
-                                            <div class="footer d-flex" style="gap: 0 15px;align-items: center;">
-                                                <div class="like border-right d-flex"
-                                                    style="gap: 0 5px;align-items: center;">
-                                                    <a onclick="likeComment(25)" style="cursor: pointer;"><svg
-                                                            class="svg-inline--fa fa-heart" aria-hidden="true"
-                                                            focusable="false" data-prefix="far" data-icon="heart"
-                                                            role="img" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 512 512" data-fa-i2svg="">
-                                                            <path fill="currentColor"
-                                                                d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z">
-                                                            </path>
-                                                        </svg>
-                                                        <!-- <i class="fa-regular fa-heart"></i> Font Awesome fontawesome.com --></a>
-                                                    <p style="font-size: 16px;" class="p-0 m-0">1</p>
-                                                </div>
-                                                <a href="#" style="font-size: 16px">Reply</a>
-                                                <a href="#" style="font-size: 16px">Report</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-
             </div>
         </div>
     </div>
@@ -255,18 +212,24 @@
     <script>
         const socket = io.connect("http://localhost:3000/");
         socket.on("like-comment-response", (data) => {
+            // console.log(data)
             if (window.location.pathname.split("/")[2] == data.data.blog_slug) {
-                const commentLikeIdx = document.getElementById(
-                    `comment-like-js-${data.data.id}`
-                );
-                commentLikeIdx.innerHTML = "";
-                commentLikeIdx.innerHTML = itemDetailComment(data.data);
+                document.getElementById(`avatar-user-comment-${data.data.id}`).src = '/' + data.data.avatar
+                document.getElementById(`fullname-user-comment-${data.data.id}`).innerHTML = data.data.fullname
+                document.getElementById(`created_at-user-comment-${data.data.id}`).innerHTML = data.data.created_at
+                document.getElementById(`content-user-comment-${data.data.id}`).innerHTML = data.data.content
+                document.getElementById(`icon-user-comment-${data.data.id}`).innerHTML =
+                    isLikeComment(data.data) ?
+                    '<i class="fa-solid fa-heart"></i>' :
+                    '<i class="fa-regular fa-heart"></i>'
+                document.getElementById(`like-user-comment-${data.data.id}`).innerHTML = data.data.likes.length
             }
         });
 
         socket.on("post-comment-response", (data) => {
+            console.log(data)
             if (window.location.pathname.split("/")[2] == data.data.blog_slug) {
-                document.getElementById("list-comment-js").innerHTML += itemComment(
+                document.getElementById("list-comment-js").innerHTML += itemCommentUser(
                     data.data
                 );
             }

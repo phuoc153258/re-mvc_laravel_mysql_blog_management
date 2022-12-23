@@ -5,6 +5,7 @@ namespace App\Services\Comment;
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Response\Comment\CommentParentResponseDTO;
 use App\DTO\Response\Comment\CommentResponseDTO;
 use App\Models\Blog;
 use App\Models\Comment;
@@ -38,22 +39,24 @@ class CommentService implements ICommentService
         // }
         // $data['data'] = $comments;
         // return $data;
+
         $blog  = Blog::where('blogs.slug', $slug)->get()->first();
-        $data = Comment::with('replies')
+        $data = Comment::with('replies')->with('users')->with('blogs')
+            ->where('parent_id', null)
             ->where('blog_id', $blog->id)
             ->select()
             ->get();
         $comments = [];
         foreach ($data as &$item) {
-            array_push($comments, (new CommentResponseDTO($item))->toJSON());
+            array_push($comments, (new CommentParentResponseDTO($item))->toJSON());
         }
         return $comments;
     }
 
     public function getComment(int $id)
     {
-        $comment = Comment::with('users')->with('blogs')->find($id);
-        $commentDTO = new CommentResponseDTO($comment);
+        $comment = Comment::with('replies')->with('users')->with('blogs')->find($id);
+        $commentDTO = new CommentParentResponseDTO($comment);
         return $commentDTO;
     }
 
@@ -63,7 +66,8 @@ class CommentService implements ICommentService
         $query = Comment::create([
             'content' => $commentRequest->getComment(),
             'user_id' => $commentRequest->getUser()->id,
-            'blog_id' => $blog->id
+            'blog_id' => $blog->id,
+            'parent_id' => $commentRequest->getParentId()
         ]);
         return $this->getComment($query->id);
     }

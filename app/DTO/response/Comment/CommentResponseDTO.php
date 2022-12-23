@@ -15,10 +15,9 @@ class CommentResponseDTO
     private string $updated_at;
     private string $avatar;
     private string $fullname;
-    // private int $like_count;
     private mixed $likes;
-    private mixed $replies;
     private string $blog_slug;
+    private mixed $parent_id;
 
     public function __construct($comment)
     {
@@ -38,6 +37,62 @@ class CommentResponseDTO
         }
         $this->likes = (new CommentLikeService())->getLikesInComment($comment->id);
         $this->blog_slug = $comment->blogs->slug;
+        $this->parent_id = $comment->parent_id;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    public function getBlogId()
+    {
+        return $this->blog_id;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function getFullname()
+    {
+        return $this->fullname;
+    }
+
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    public function getBlogSlug()
+    {
+        return $this->blog_slug;
+    }
+
+    public function getParentId()
+    {
+        return $this->parent_id;
     }
 
     public function toJSON()
@@ -51,10 +106,9 @@ class CommentResponseDTO
             'updated_at' => $this->updated_at,
             'avatar' => $this->avatar,
             'fullname' => $this->fullname,
-            // 'like_count' => $this->like_count
             'likes' => $this->likes,
-            'replies' => $this->replies,
-            'blog_slug' => $this->blog_slug
+            'blog_slug' => $this->blog_slug,
+            'parent_id' => $this->parent_id
         ];
     }
 }

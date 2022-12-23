@@ -45,38 +45,60 @@ function renderCommentsBlog(data) {
     data.data.forEach((value) => {
         str += itemComment(value);
     });
-    if (str == "")
-        return (listComment.innerHTML = `<h5 class="mt-4">This blog has no comments !!!</h5>`);
     listComment.innerHTML = str;
 }
 
 function itemComment(data) {
-    return `<div class="card mt-3 mb-3" style="padding: 0px;" id="comment-like-js-${
-        data.id
-    }">
-    ${itemDetailComment(data)}
+    return `<div class="card mt-3 mb-3" style="padding: 0px;" >
+    ${itemCommentUser(data, 1)}
     </div>`;
 }
 
-function itemDetailComment(data) {
-    return `<div class="card-body p-2"><div class="content"><div class="row">
-    <div class="col-1"><img class="w-100 rounded-circle"
-    src="/${data.avatar}" alt="">
-    </div><div class="col-11 mt-auto mb-auto">
-    <h6 class="m-0">${data.fullname}</h6>
-    <p class="m-0" style="font-size: 12px !important;">${data.created_at}</p>
-    <div class="mt-2" style="font-size: 16px !important;">
-    <p >${data.content}</p>
-    <div class="footer d-flex" style="gap: 0 15px;align-items: center;">
-    <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
-    <a onclick="likeComment(${data.id})" style="cursor: pointer;" >${
-        isLikeComment(data)
-            ? '<i class="fa-solid fa-heart"></i>'
-            : '<i class="fa-regular fa-heart"></i>'
-    }</a>
-    <p style="font-size: 16px;" class="p-0 m-0">${data.likes.length}</p></div>
-    <a href="#" style="font-size: 16px">Reply</a>
-    <a href="#" style="font-size: 16px">Report</a></div></div> </div></div></div></div>`;
+function replyComment(data) {
+    let str = "";
+    data.replies.forEach((item) => {
+        str += itemCommentUser(item);
+    });
+    return str;
+}
+
+function itemCommentUser(data, type = 0) {
+    let str = "";
+    if (type == 1) {
+        str += `<div class="mt-2" id="replies-comment-js">${replyComment(
+            data
+        )}</div>`;
+    }
+    return (
+        `<div class="content border-top p-2"><div class="row">
+            <div class="col-1"><img class="w-100 rounded-circle" id="avatar-user-comment-${
+                data.id
+            }" src="/${data.avatar}" alt="">
+            </div><div class="col-11 mt-auto mb-auto"><h6 class="m-0"  id="fullname-user-comment-${
+                data.id
+            }" >${data.fullname}</h6>
+            <p class="m-0" style="font-size: 12px !important;"  id="created_at-user-comment-${
+                data.id
+            }" >${data.created_at}</p>
+            <div class="mt-2" style="font-size: 16px !important;" ><div  id="content-user-comment-${
+                data.id
+            }" >${data.content}</div><div class="footer d-flex"
+            style="gap: 0 15px;align-items: center;"><div class="like border-right d-flex"
+            style="gap: 0 5px;align-items: center;"><a onclick="likeComment(${
+                data.id
+            })" style="cursor: pointer;"  id="icon-user-comment-${data.id}" >${
+            isLikeComment(data)
+                ? '<i class="fa-solid fa-heart"></i>'
+                : '<i class="fa-regular fa-heart"></i>'
+        }</a>
+            <p style="font-size: 16px;" class="p-0 m-0"  id="like-user-comment-${
+                data.id
+            }" >${data.likes.length}</p></div>
+            <a href="#" style="font-size: 16px">Reply</a><a href="#" style="font-size: 16px">Report</a>
+            </div>` +
+        str +
+        "</div></div></div></div>"
+    );
 }
 
 function isLikeComment(data) {
