@@ -13,6 +13,7 @@ class Comment extends Model
         'content',
         'user_id',
         'blog_id',
+        'parent_id'
     ];
 
     public function users()
@@ -23,5 +24,10 @@ class Comment extends Model
     public function blogs()
     {
         return $this->belongsTo(Blog::class, 'blog_id', 'id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'parent_id', 'id');
     }
 }

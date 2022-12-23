@@ -22,27 +22,37 @@ class CommentService implements ICommentService
         $this->paginateService = new PaginateService();
     }
 
-    public function getListComment(BasePaginateRequestDTO $option, string $slug = null): array
+    public function getListComment(BasePaginateRequestDTO $option, string $slug = null)
     {
-        $query =  DB::table($option->type_model->getType())
-            ->join('blogs', 'comments.blog_id', '=', 'blogs.id')
-            ->join('users', 'comments.user_id', '=', 'users.id');
+        // $query =  DB::table($option->type_model->getType())
+        //     ->join('blogs', 'comments.blog_id', '=', 'blogs.id')
+        //     ->join('users', 'comments.user_id', '=', 'users.id');
 
-        if ($slug != null) $query->where('blogs.slug', $slug);
+        // if ($slug != null) $query->where('blogs.slug', $slug);
 
-        $data = $this->paginateService->paginate($option, $query);
-        $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
+        // $data = $this->paginateService->paginate($option, $query);
+        // $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
+        // $comments = [];
+        // foreach ($data['data'] as &$item) {
+        //     array_push($comments, (new CommentResponseDTO($item))->toJSON());
+        // }
+        // $data['data'] = $comments;
+        // return $data;
+        $blog  = Blog::where('blogs.slug', $slug)->get()->first();
+        $data = Comment::with('replies')
+            ->where('blog_id', $blog->id)
+            ->select()
+            ->get();
         $comments = [];
-        foreach ($data['data'] as &$item) {
+        foreach ($data as &$item) {
             array_push($comments, (new CommentResponseDTO($item))->toJSON());
         }
-        $data['data'] = $comments;
-        return $data;
+        return $comments;
     }
 
     public function getComment(int $id)
     {
-        $comment = Comment::with('users')->find($id);
+        $comment = Comment::with('users')->with('blogs')->find($id);
         $commentDTO = new CommentResponseDTO($comment);
         return $commentDTO;
     }

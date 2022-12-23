@@ -29,6 +29,7 @@ function renderDataDetailBlog(data) {
         "post-by-detail-blog-js"
     ).innerHTML = `Posted by ${data.username} on ${data.created_at}`;
     document.getElementById("content-detail-blog-js").innerHTML = data.content;
+    document.getElementById("blog-id-details-js").value = data.id;
 }
 
 function emptyDataDetailBlog() {
@@ -58,15 +59,15 @@ function itemComment(data) {
 }
 
 function itemDetailComment(data) {
-    return `<div class="card-body"><div class="content"><div class="row">
+    return `<div class="card-body p-2"><div class="content"><div class="row">
     <div class="col-1"><img class="w-100 rounded-circle"
     src="/${data.avatar}" alt="">
     </div><div class="col-11 mt-auto mb-auto">
     <h6 class="m-0">${data.fullname}</h6>
-    <p class="m-0" style="font-size: 14px;">${data.created_at}</p>
-    </div></div></div><div class="container" style="padding: 20px;">
-    ${data.content}
-    <div class="footer d-flex mt-2" style="gap: 0 15px;align-items: center;">
+    <p class="m-0" style="font-size: 12px !important;">${data.created_at}</p>
+    <div class="mt-2" style="font-size: 16px !important;">
+    <p >${data.content}</p>
+    <div class="footer d-flex" style="gap: 0 15px;align-items: center;">
     <div class="like border-right d-flex" style="gap: 0 5px;align-items: center;">
     <a onclick="likeComment(${data.id})" style="cursor: pointer;" >${
         isLikeComment(data)
@@ -75,7 +76,7 @@ function itemDetailComment(data) {
     }</a>
     <p style="font-size: 16px;" class="p-0 m-0">${data.likes.length}</p></div>
     <a href="#" style="font-size: 16px">Reply</a>
-    <a href="#" style="font-size: 16px">Report</a></div></div></div>`;
+    <a href="#" style="font-size: 16px">Report</a></div></div> </div></div></div></div>`;
 }
 
 function isLikeComment(data) {

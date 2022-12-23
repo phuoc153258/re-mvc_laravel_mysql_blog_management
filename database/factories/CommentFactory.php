@@ -11,7 +11,8 @@ class CommentFactory extends Factory
         return [
             'content' => "<p>Bai viet rat huu ich :D</p>",
             'user_id' => $this->faker->numberBetween(1, 3),
-            'blog_id' => $this->faker->numberBetween(1, 20)
+            'blog_id' => $this->faker->numberBetween(1, 20),
+            'parent_id' => null
         ];
     }
 }

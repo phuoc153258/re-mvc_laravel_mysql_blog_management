@@ -17,6 +17,8 @@ class CommentResponseDTO
     private string $fullname;
     // private int $like_count;
     private mixed $likes;
+    private mixed $replies;
+    private string $blog_slug;
 
     public function __construct($comment)
     {
@@ -26,6 +28,7 @@ class CommentResponseDTO
         $this->blog_id = $comment->blog_id;
         $this->created_at = $comment->created_at;
         $this->updated_at = $comment->updated_at;
+        $this->replies = $comment->replies;
         if (isset($comment->users)) {
             $this->avatar = $comment->users->avatar;
             $this->fullname = $comment->users->fullname;
@@ -34,6 +37,7 @@ class CommentResponseDTO
             $this->fullname = $comment->fullname;
         }
         $this->likes = (new CommentLikeService())->getLikesInComment($comment->id);
+        $this->blog_slug = $comment->blogs->slug;
     }
 
     public function toJSON()
@@ -48,7 +52,9 @@ class CommentResponseDTO
             'avatar' => $this->avatar,
             'fullname' => $this->fullname,
             // 'like_count' => $this->like_count
-            'likes' => $this->likes
+            'likes' => $this->likes,
+            'replies' => $this->replies,
+            'blog_slug' => $this->blog_slug
         ];
     }
 }

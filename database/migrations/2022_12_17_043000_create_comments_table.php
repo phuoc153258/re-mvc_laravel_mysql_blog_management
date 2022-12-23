@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('content');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('blog_id')->references('id')->on('blogs')->onDelete('cascade');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }

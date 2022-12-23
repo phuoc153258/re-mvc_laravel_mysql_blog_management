@@ -54,7 +54,7 @@ async function getCommentBlog() {
                 window.location.pathname.split("/")[2]
             }/comments`,
         });
-        renderCommentsBlog(response.data.data);
+        renderCommentsBlog(response.data);
     } catch (error) {}
 }
 
