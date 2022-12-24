@@ -105,7 +105,7 @@
                                         src="http://127.0.0.1:8000/image/user_avatar_default.jpg" alt="">
                                 </div>
                                 <div class="col-11">
-                                    <textarea style="width: 100%;" id="post-comment-js"></textarea>
+                                    <textarea style="width: 100%;" id="post-comment-js0"></textarea>
                                     <a class="btn btn-primary mt-4" onclick="postCommentBlog()">Comment</a>
                                 </div>
                             </div>
@@ -189,7 +189,7 @@
 
     <script>
         tinymce.init({
-            selector: 'textarea#post-comment-js',
+            selector: 'textarea#post-comment-js0',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
             tinycomments_mode: 'embedded',
@@ -212,7 +212,6 @@
     <script>
         const socket = io.connect("http://localhost:3000/");
         socket.on("like-comment-response", (data) => {
-            // console.log(data)
             if (window.location.pathname.split("/")[2] == data.data.blog_slug) {
                 document.getElementById(`avatar-user-comment-${data.data.id}`).src = '/' + data.data.avatar
                 document.getElementById(`fullname-user-comment-${data.data.id}`).innerHTML = data.data.fullname
@@ -227,11 +226,15 @@
         });
 
         socket.on("post-comment-response", (data) => {
-            console.log(data)
             if (window.location.pathname.split("/")[2] == data.data.blog_slug) {
-                document.getElementById("list-comment-js").innerHTML += itemCommentUser(
-                    data.data
-                );
+                if (data.data.parent_id == null) {
+                    document.getElementById("list-comment-js").innerHTML += itemComment(
+                        data.data
+                    );
+                } else {
+                    document.getElementById("replies-comment-js" + data.data.parent_id).innerHTML +=
+                        itemCommentUser(data.data)
+                }
             }
         });
     </script>

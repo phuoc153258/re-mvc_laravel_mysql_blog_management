@@ -47,7 +47,7 @@ class BlogValidate
     public function validateInfoPostCommentBlog(PostCommentBlogRequestDTO $commentRequest)
     {
         $validator = Validator::make($commentRequest->toArray(), [
-            ...VALIDATE_SLUG, ...VALIDATE_COMMENT, ...VALIDATE_PARENT_ID
+            ...VALIDATE_SLUG, ...VALIDATE_COMMENT
         ]);
         return $this->baseRunCondition($validator);
     }

@@ -8,7 +8,7 @@ class PostCommentBlogRequestDTO
 {
     private string $slug;
     private string $comment;
-    private ?int $parent_id;
+    private ?int $parent_id = null;
     private $user;
 
     public function __construct(Request $request, $slug, $user)

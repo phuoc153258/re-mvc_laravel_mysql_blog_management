@@ -65,9 +65,9 @@ function replyComment(data) {
 function itemCommentUser(data, type = 0) {
     let str = "";
     if (type == 1) {
-        str += `<div class="mt-2" id="replies-comment-js">${replyComment(
-            data
-        )}</div>`;
+        str += `<div class="mt-2" id="replies-comment-js${
+            data.id
+        }">${replyComment(data)}</div>`;
     }
     return (
         `<div class="content border-top p-2"><div class="row">
@@ -94,8 +94,22 @@ function itemCommentUser(data, type = 0) {
             <p style="font-size: 16px;" class="p-0 m-0"  id="like-user-comment-${
                 data.id
             }" >${data.likes.length}</p></div>
-            <a href="#" style="font-size: 16px">Reply</a><a href="#" style="font-size: 16px">Report</a>
-            </div>` +
+            <a style="font-size: 16px;cursor: pointer;" onclick="initializeTinyMce(${
+                data.id
+            },'${
+            data.fullname
+        }')"  >Reply</a><a href="#" style="font-size: 16px">Report</a>
+            </div><div hidden  class="pt-3 pb-3" id="reply-comment-js${
+                data.id
+            }"><textarea  id="post-comment-js${
+            data.id
+        }"></textarea><div class="d-flex justify-content-end pt-2 pb-2" style="gap:0 10px;"><a style="cursor: pointer;" onclick="hideTextAreaComment(${
+            data.id
+        })" class="btn btn-link p-0" >Cancel</a><a style="cursor: pointer;" onclick="postCommentBlog(${
+            data.id
+        },${
+            data.parent_id == null ? data.id : data.parent_id
+        })" class="btn btn-link p-0">Reply</a></div></div> ` +
         str +
         "</div></div></div></div>"
     );
@@ -107,4 +121,24 @@ function isLikeComment(data) {
         if (item.user_id == user_id) return true;
     }
     return false;
+}
+
+async function initializeTinyMce(id, fullname) {
+    await tinymce.init({
+        selector: `textarea#post-comment-js${id}`,
+        height: "250",
+    });
+    showTextAreaComment(id);
+    tinymce.get(`post-comment-js${id}`).setContent(`<p>@${fullname} </p>`);
+}
+
+function showTextAreaComment(id) {
+    document.getElementById("reply-comment-js" + id).removeAttribute("hidden");
+}
+
+function hideTextAreaComment(id) {
+    if (id != 0)
+        document
+            .getElementById("reply-comment-js" + id)
+            .setAttribute("hidden", "");
 }

@@ -27,12 +27,13 @@ io.on("connection", (socket) => {
     });
 
     socket.on("post-comment", async (value) => {
-        const comment = value.comment;
+        const { comment, parent_id } = value;
         const response = await axios({
             method: "post",
             url: `http://localhost:8000/api/blogs/views/${value.slug}/comments`,
             data: {
                 comment,
+                parent_id,
             },
             headers: {
                 Authorization: value.token,

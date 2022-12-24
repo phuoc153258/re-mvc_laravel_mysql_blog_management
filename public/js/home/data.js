@@ -58,17 +58,20 @@ async function getCommentBlog() {
     } catch (error) {}
 }
 
-async function postCommentBlog() {
+async function postCommentBlog(id = 0, parent_id = null) {
     try {
-        const comment = tinymce.get("post-comment-js").getContent();
-
+        const comment = tinymce.get("post-comment-js" + id);
         socket.emit("post-comment", {
             slug: window.location.pathname.split("/")[2],
-            comment,
+            comment: comment.getContent(),
             token: getCookie("access_token"),
+            parent_id,
         });
-        tinymce.get("post-comment-js").setContent("");
-    } catch (error) {}
+        comment.setContent("");
+        hideTextAreaComment(id);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function likeComment(id) {
