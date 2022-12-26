@@ -129,7 +129,7 @@ async function initializeTinyMce(id, fullname) {
         height: "250",
     });
     showTextAreaComment(id);
-    tinymce.get(`post-comment-js${id}`).setContent(`<p>@${fullname} </p>`);
+    tinymce.get(`post-comment-js${id}`).setContent(`<p>@${fullname}&nbsp</p>`);
 }
 
 function showTextAreaComment(id) {

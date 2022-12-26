@@ -78,9 +78,10 @@ function renderDataToTableUser(data) {
              data-toggle="modal" data-target="#detail-blog-modal-js" onclick="getBlog('${
                  value.id
              }')"><i
-            class="fa-solid fa-pencil"></i></a><a href="#"
+            class="fa-solid fa-pencil"></i></a><a href="#" style="margin-right: 8px;"
             onclick="deleteBlogNotice('${value.id}','${value.title}')"><i
-            class="fa-solid fa-trash"></i></a></td>
+            class="fa-solid fa-trash"></i></a>
+            <a style="color: #0d6efd;font-size: 15px;" href="#"><i class="fa-solid fa-circle-info"></i></a></td>
     </tr>`;
     });
     document.getElementById("table-body-js").innerHTML = str;

@@ -12,6 +12,7 @@ class CommentLike extends Model
     protected $fillable = [
         'user_id',
         'comment_id',
+        'rate_id'
     ];
 
     public function users()
@@ -22,5 +23,10 @@ class CommentLike extends Model
     public function comments()
     {
         return $this->belongsTo(Comment::class, 'comment_id', 'id');
+    }
+
+    public function rates()
+    {
+        return $this->belongsTo(Rate::class, 'rate_id', 'id');
     }
 }
