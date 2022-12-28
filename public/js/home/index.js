@@ -82,7 +82,9 @@ function itemCommentUser(data, type = 0) {
                 data.id
             }" >${
             data.created_at
-        }</p></div><div><p class="mr-2"><b>Rating:</b></p>
+        }</p></div><div><p class="mr-2"><b>Rating:</b><span style="font-size: 14px;margin-left: 5px;" id="review-comment-${
+            data.id
+        }-js">${data.rates.length} reviews</span></p>
         <div id="rate-comment-${data.id}-js">
         ${rateComment(data.rates, data.id)}
         </div>

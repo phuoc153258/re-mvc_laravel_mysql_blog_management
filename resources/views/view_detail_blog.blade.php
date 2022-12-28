@@ -226,8 +226,11 @@
 
         socket.on("rate-comment-response", (data) => {
             const rateItem = document.getElementById(`rate-comment-${data.data[0].comment_id}-js`)
+            const reviewItem = document.getElementById(`review-comment-${data.data[0].comment_id}-js`)
             rateItem.innerHTML = ""
+            reviewItem.innerHTML = ""
             rateItem.innerHTML = rateComment(data.data, data.data[0].comment_id)
+            reviewItem.innerHTML = data.data.length + " reviews"
         });
     </script>
 
