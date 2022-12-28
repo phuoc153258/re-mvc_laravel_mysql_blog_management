@@ -4,12 +4,16 @@ namespace App\Services\Comment;
 
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
+use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Response\Comment\CommentParentResponseDTO;
 use App\DTO\Response\Comment\CommentResponseDTO;
+use App\DTO\Response\Comment\RateCommentResponseDTO;
 use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\CommentLike;
+use App\Models\Rate;
+use App\Models\RateComment;
 use App\Services\Comment\ICommentService;
 use App\Services\Paginate\PaginateService;
 use Illuminate\Support\Facades\DB;
@@ -25,21 +29,6 @@ class CommentService implements ICommentService
 
     public function getListComment(BasePaginateRequestDTO $option, string $slug = null)
     {
-        // $query =  DB::table($option->type_model->getType())
-        //     ->join('blogs', 'comments.blog_id', '=', 'blogs.id')
-        //     ->join('users', 'comments.user_id', '=', 'users.id');
-
-        // if ($slug != null) $query->where('blogs.slug', $slug);
-
-        // $data = $this->paginateService->paginate($option, $query);
-        // $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
-        // $comments = [];
-        // foreach ($data['data'] as &$item) {
-        //     array_push($comments, (new CommentResponseDTO($item))->toJSON());
-        // }
-        // $data['data'] = $comments;
-        // return $data;
-
         $blog  = Blog::where('blogs.slug', $slug)->get()->first();
         $data = Comment::with('replies')->with('users')->with('blogs')
             ->where('parent_id', null)
@@ -76,10 +65,46 @@ class CommentService implements ICommentService
     {
         $like = CommentLike::where('user_id', $commentRequest->getUserId())
             ->where('comment_id', $commentRequest->getCommentId())->get()->first();
+
         if ($like != null) $like->delete();
-        else
-            $likeQuery = CommentLike::create($commentRequest->toArray());
+        else $likeQuery = CommentLike::create($commentRequest->toArray());
 
         return $this->getComment($commentRequest->getCommentId());
+    }
+
+    public function rateComment(RateCommentBlogRequestDTO $commentRequest)
+    {
+        $rate = RateComment::where('comment_id', $commentRequest->getCommentId())
+            ->where('user_id', $commentRequest->getUser()->id)->get()->first();
+        $rateDTO = new RateCommentResponseDTO();
+        if (!$rate)
+            $this->createRateComment($commentRequest);
+        else {
+            $rate->rate_id = $commentRequest->getRateId();
+            $rate->save();
+        }
+        $rates = $this->getRateInComment($commentRequest->getCommentId());
+
+        $rateArray = [];
+        foreach ($rates as &$value) {
+            array_push($rateArray, (new RateCommentResponseDTO($value))->toJSON());
+        }
+        return $rateArray;
+    }
+
+    public function getRateInComment(int $comment_id)
+    {
+        $rate = RateComment::where('comment_id', $comment_id)->select()->get();
+        return $rate;
+    }
+
+    public function createRateComment(RateCommentBlogRequestDTO $commentRequest)
+    {
+        error_log($commentRequest->getRateId());
+        return RateComment::create([
+            'comment_id' => $commentRequest->getCommentId(),
+            'user_id' => $commentRequest->getUser()->id,
+            'rate_id' => $commentRequest->getRateId()
+        ]);
     }
 }

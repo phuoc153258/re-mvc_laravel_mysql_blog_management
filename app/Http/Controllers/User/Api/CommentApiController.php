@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Api;
 
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
+use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class CommentApiController extends Controller
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
+
     public function likeComment(Request $request, $comment_id, $user_id)
     {
         try {
@@ -59,6 +61,19 @@ class CommentApiController extends Controller
             $this->commentValidate->validateLikeCommentBlog($commentRequest);
             $data = $this->commentService->likeComment($commentRequest);
             return $this->success($data->toJSON(), trans('success.comment.like-comment'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function rateComment(Request $request, $comment_id, $rate_id)
+    {
+        try {
+            $user = $this->getInfoUser($request);
+            $commentRequest = new RateCommentBlogRequestDTO($comment_id, $rate_id, $user);
+            $this->commentValidate->validateRateCommentBlog($commentRequest);
+            $commentResponse = $this->commentService->rateComment($commentRequest);
+            return $this->success($commentResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

@@ -74,12 +74,16 @@ function itemCommentUser(data, type = 0) {
             <div class="col-1"><img class="w-100 rounded-circle" id="avatar-user-comment-${
                 data.id
             }" src="/${data.avatar}" alt="">
-            </div><div class="col-11 mt-auto mb-auto"><h6 class="m-0"  id="fullname-user-comment-${
+            </div><div class="col-11 mt-auto mb-auto"><div class="d-flex align-items-center" style="gap:0 10px;"><div style="border-right: 1px solid #000;
+            padding-right: 10px;"><h6 class="m-0"  id="fullname-user-comment-${
                 data.id
             }" >${data.fullname}</h6>
             <p class="m-0" style="font-size: 12px !important;"  id="created_at-user-comment-${
                 data.id
-            }" >${data.created_at}</p>
+            }" >${
+            data.created_at
+        }</p></div><div><p class="mr-2"><b>Rating:</b></p>
+         <a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a></div></div>
             <div class="mt-2" style="font-size: 16px !important;" ><div  id="content-user-comment-${
                 data.id
             }" >${data.content}</div><div class="footer d-flex"

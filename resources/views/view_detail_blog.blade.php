@@ -73,7 +73,6 @@
                         <h1 id="title-detail-blog-js"></h1>
                         <h2 class="subheading" id="sub_title-detail-blog-js"></h2>
                         <span class="meta" id="post-by-detail-blog-js">
-
                         </span>
                     </div>
                 </div>

@@ -17,6 +17,8 @@ define('VALIDATE_PARENT_ID', ['parent_id' => VALIDATE_ID_MYSQL_BASE]);
 
 define('VALIDATE_COMMENT_ID_MYSQL', ['comment_id' => VALIDATE_ID_MYSQL_BASE]);
 
+define('VALIDATE_RATE_ID_MYSQL', ['rate_id' => VALIDATE_ID_MYSQL_BASE]);
+
 define('VALIDATE_USERNAME', ['username' => VALIDATE_STR_BASE]);
 
 define('VALIDATE_FULLNAME', ['fullname' => VALIDATE_STR_BASE]);
