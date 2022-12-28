@@ -6,6 +6,7 @@ use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
+use App\DTO\Response\Comment\RateCommentResponseDTO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\HttpResponse;
@@ -74,6 +75,21 @@ class CommentApiController extends Controller
             $this->commentValidate->validateRateCommentBlog($commentRequest);
             $commentResponse = $this->commentService->rateComment($commentRequest);
             return $this->success($commentResponse, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function getListRateComment(Request $request, $comment_id)
+    {
+        try {
+            $this->commentValidate->validateComentBlog($comment_id);
+            $rates = $this->commentService->getRateInComment($comment_id);
+            $rateArray = [];
+            foreach ($rates as &$value) {
+                array_push($rateArray, (new RateCommentResponseDTO($value))->toJSON());
+            }
+            return $this->success($rateArray, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

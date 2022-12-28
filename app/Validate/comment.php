@@ -26,4 +26,12 @@ class CommentValidate
         ]);
         return $this->baseRunCondition($validator);
     }
+
+    public function validateComentBlog($comment_id)
+    {
+        $validator = Validator::make(['comment_id' => $comment_id], [
+            ...VALIDATE_COMMENT_ID_MYSQL
+        ]);
+        return $this->baseRunCondition($validator);
+    }
 }
