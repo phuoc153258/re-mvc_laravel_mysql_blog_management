@@ -157,8 +157,8 @@ function rateComment(rates, id) {
     let averageRate = 0;
     let rateByUser = 0;
     rates.map((value) => {
-        if (value.user_id == user_id) rateByUser = value.rate_level;
-        averageRate += value.rate_level;
+        if (value.user_id == user_id) rateByUser = value.rate_number;
+        averageRate += value.rate_number;
     });
     averageRate = averageRate / rates.length;
     let strStar = "";

@@ -10,6 +10,6 @@ class Rate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'level'
+        'rate_number'
     ];
 }

@@ -16,19 +16,19 @@ class RateSeeder extends Seeder
     public function run()
     {
         Rate::create([
-            'level' => 1
+            'rate_number' => 1
         ]);
         Rate::create([
-            'level' => 2
+            'rate_number' => 2
         ]);
         Rate::create([
-            'level' => 3
+            'rate_number' => 3
         ]);
         Rate::create([
-            'level' => 4
+            'rate_number' => 4
         ]);
         Rate::create([
-            'level' => 5
+            'rate_number' => 5
         ]);
     }
 }
