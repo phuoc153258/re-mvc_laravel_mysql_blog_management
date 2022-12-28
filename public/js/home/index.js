@@ -64,12 +64,6 @@ function replyComment(data) {
 
 function itemCommentUser(data, type = 0) {
     let str = "";
-
-    let averageRate = 0;
-    data.rates.map((value) => {
-        averageRate += 0;
-    });
-
     if (type == 1) {
         str += `<div class="mt-2" id="replies-comment-js${
             data.id
@@ -89,7 +83,10 @@ function itemCommentUser(data, type = 0) {
             }" >${
             data.created_at
         }</p></div><div><p class="mr-2"><b>Rating:</b></p>
-         <a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a><a style="color: #FFEA00;"><i class="fa-solid fa-star"></i></a></div></div>
+        <div id="rate-comment-${data.id}-js">
+        ${rateComment(data.rates, data.id)}
+        </div>
+         </div></div>
             <div class="mt-2" style="font-size: 16px !important;" ><div  id="content-user-comment-${
                 data.id
             }" >${data.content}</div><div class="footer d-flex"
@@ -151,4 +148,28 @@ function hideTextAreaComment(id) {
         document
             .getElementById("reply-comment-js" + id)
             .setAttribute("hidden", "");
+}
+
+function rateComment(rates, id) {
+    const user_id = document.getElementById("user-id-login-js").value;
+    let averageRate = 0;
+    let rateByUser = 0;
+    rates.map((value) => {
+        if (value.user_id == user_id) rateByUser = value.rate_level;
+        averageRate += value.rate_level;
+    });
+    averageRate = averageRate / rates.length;
+    let strStar = "";
+    for (let index = 1; index <= 5; index++) {
+        if (rateByUser != 0) {
+            strStar += `<a style="color: #FFEA00;cursor: pointer;"><i class="${
+                rateByUser >= index ? `fa-solid fa-star` : `fa-regular fa-star`
+            }" onclick="submitRateComment(${id},${index})"></i></a>`;
+        } else {
+            strStar += `<a style="color: #FFEA00;cursor: pointer;"><i class="${
+                averageRate >= index ? `fa-solid fa-star` : `fa-regular fa-star`
+            }" onclick="submitRateComment(${id},${index})"></i></a>`;
+        }
+    }
+    return strStar;
 }

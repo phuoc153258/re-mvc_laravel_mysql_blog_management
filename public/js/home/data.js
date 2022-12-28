@@ -82,5 +82,19 @@ async function likeComment(id) {
             user_id,
             token: getCookie("access_token"),
         });
-    } catch (error) {}
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function submitRateComment(comment_id, rate_id) {
+    try {
+        await socket.emit("rate-comment", {
+            comment_id,
+            rate_id,
+            token: getCookie("access_token"),
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }

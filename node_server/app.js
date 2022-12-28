@@ -42,6 +42,17 @@ io.on("connection", (socket) => {
         io.emit("post-comment-response", response.data);
     });
 
+    socket.on("rate-comment", async (data) => {
+        const response = await axios({
+            method: "post",
+            url: `http://localhost:8000/api/comments/${data.comment_id}/rates/${data.rate_id}`,
+            headers: {
+                Authorization: data.token,
+            },
+        });
+        io.emit("rate-comment-response", response.data);
+    });
+
     socket.on("disconnect", () => {
         console.log("Client disconnected!");
     });

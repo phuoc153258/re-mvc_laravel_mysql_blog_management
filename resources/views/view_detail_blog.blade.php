@@ -223,6 +223,12 @@
                 }
             }
         });
+
+        socket.on("rate-comment-response", (data) => {
+            const rateItem = document.getElementById(`rate-comment-${data.data[0].comment_id}-js`)
+            rateItem.innerHTML = ""
+            rateItem.innerHTML = rateComment(data.data, data.data[0].comment_id)
+        });
     </script>
 
 </body>
