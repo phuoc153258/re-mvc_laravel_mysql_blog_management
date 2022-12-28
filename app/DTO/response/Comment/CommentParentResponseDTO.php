@@ -31,6 +31,7 @@ class CommentParentResponseDTO
             'blog_slug' => $this->commentResponse->getBlogSlug(),
             'parent_id' => $this->commentResponse->getParentId(),
             'likes' => $this->commentResponse->getLikes(),
+            'rates' => $this->commentResponse->getRates(),
             'replies' => $this->replies
         ];
     }

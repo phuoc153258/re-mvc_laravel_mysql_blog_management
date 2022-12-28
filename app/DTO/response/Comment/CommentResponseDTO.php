@@ -2,6 +2,7 @@
 
 namespace App\DTO\Response\Comment;
 
+use App\Services\Comment\CommentService;
 use Illuminate\Http\Request;
 use App\Services\CommentLike\CommentLikeService;
 
@@ -16,6 +17,7 @@ class CommentResponseDTO
     private string $avatar;
     private string $fullname;
     private mixed $likes;
+    private array $rates = [];
     private string $blog_slug;
     private mixed $parent_id;
 
@@ -36,6 +38,10 @@ class CommentResponseDTO
             $this->fullname = $comment->fullname;
         }
         $this->likes = (new CommentLikeService())->getLikesInComment($comment->id);
+        $rates = (new CommentService())->getRateInComment($this->id);
+        foreach ($rates as &$value) {
+            array_push($this->rates, (new RateCommentResponseDTO($value))->toJSON());
+        }
         $this->blog_slug = $comment->blogs->slug;
         $this->parent_id = $comment->parent_id;
     }
@@ -95,6 +101,11 @@ class CommentResponseDTO
         return $this->parent_id;
     }
 
+    public function getRates()
+    {
+        return $this->rates;
+    }
+
     public function toJSON()
     {
         return [
@@ -107,6 +118,7 @@ class CommentResponseDTO
             'avatar' => $this->avatar,
             'fullname' => $this->fullname,
             'likes' => $this->likes,
+            'rates' => $this->rates,
             'blog_slug' => $this->blog_slug,
             'parent_id' => $this->parent_id
         ];
