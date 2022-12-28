@@ -64,6 +64,12 @@ function replyComment(data) {
 
 function itemCommentUser(data, type = 0) {
     let str = "";
+
+    let averageRate = 0;
+    data.rates.map((value) => {
+        averageRate += 0;
+    });
+
     if (type == 1) {
         str += `<div class="mt-2" id="replies-comment-js${
             data.id

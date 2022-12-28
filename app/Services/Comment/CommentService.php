@@ -94,13 +94,12 @@ class CommentService implements ICommentService
 
     public function getRateInComment(int $comment_id)
     {
-        $rate = RateComment::where('comment_id', $comment_id)->select()->get();
+        $rate = RateComment::with('rates')->where('comment_id', $comment_id)->select()->get();
         return $rate;
     }
 
     public function createRateComment(RateCommentBlogRequestDTO $commentRequest)
     {
-        error_log($commentRequest->getRateId());
         return RateComment::create([
             'comment_id' => $commentRequest->getCommentId(),
             'user_id' => $commentRequest->getUser()->id,

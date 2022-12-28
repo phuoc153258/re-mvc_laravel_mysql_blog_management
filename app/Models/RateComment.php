@@ -14,4 +14,9 @@ class RateComment extends Model
         'comment_id',
         'rate_id'
     ];
+
+    public function rates()
+    {
+        return $this->belongsTo(Rate::class, 'rate_id', 'id');
+    }
 }
