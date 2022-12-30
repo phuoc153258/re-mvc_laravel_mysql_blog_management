@@ -105,9 +105,17 @@ function itemCommentUser(data, type = 0) {
             }" >${data.likes.length}</p></div>
             <a style="font-size: 16px;cursor: pointer;" onclick="initializeTinyMce(${
                 data.id
-            },'${
-            data.fullname
-        }')"  >Reply</a><a href="#" style="font-size: 16px">Report</a>
+            },'${data.fullname}')">Reply</a>${sharePost(
+            data.id
+        )}<div class="dropdown">
+        <a style="cursor: pointer;" data-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-ellipsis"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item d-flex align-items-center" href="#" style="gap: 0 10px;" ><i class="fa-solid fa-trash" style="font-size: 14px;"></i><span>Delete</span></a>
+          <a class="dropdown-item d-flex align-items-center" href="#" style="gap: 0 10px;" ><i class="fa-solid fa-flag" style="font-size: 14px;"></i><span>Report</span></a>
+        </div>
+      </div>
             </div><div hidden  class="pt-3 pb-3" id="reply-comment-js${
                 data.id
             }"><textarea  id="post-comment-js${
@@ -174,4 +182,21 @@ function rateComment(rates, id) {
         }
     }
     return strStar;
+}
+
+function sharePost(id) {
+    let slug = window.location.href;
+    let str = `<div class="dropdown">
+    <a class="dropdown-item d-flex align-items-center p-0" style="gap: 0 10px;cursor: pointer;" 
+    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span>Share</span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item">
+        <div class="input-group">
+            <input id="kt_clipboard_${id}" type="text" style="font-size: 14px;min-width: 400px;" class="form-control w-100" placeholder="URL..." value="${slug}" />
+            <a class="btn btn-light-primary" onclick="copyURL(${id})">
+                Copy
+            </a>
+    </div></a></div></div>`;
+    return str;
 }

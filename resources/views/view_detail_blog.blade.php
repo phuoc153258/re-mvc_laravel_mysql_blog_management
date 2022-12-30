@@ -191,6 +191,14 @@
             selector: 'textarea#post-comment-js0',
             height: "300"
         });
+
+        function copyURL(id) {
+            var copyText = document.getElementById("kt_clipboard_" + id);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            alert("Copied the text: " + copyText.value);
+        }
     </script>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"
         integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous">
