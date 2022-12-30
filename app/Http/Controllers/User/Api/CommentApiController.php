@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Api;
 
+use App\DTO\Request\Comment\DeleteCommentBlogRequestDTO;
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
@@ -90,6 +91,19 @@ class CommentApiController extends Controller
                 array_push($rateArray, (new RateCommentResponseDTO($value))->toJSON());
             }
             return $this->success($rateArray, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function deleteComment(Request $request, $comment_id)
+    {
+        try {
+            $user = $this->getInfoUser($request);
+            $commentRequest = new DeleteCommentBlogRequestDTO($comment_id, $user);
+            $this->commentValidate->validateComentBlog($commentRequest->getCommentId());
+            $commentResponse = $this->commentService->deleteComment($commentRequest);
+            return $this->success($commentResponse->toJSON(), trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Services\Comment;
 
+use App\DTO\Request\Comment\DeleteCommentBlogRequestDTO;
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
@@ -105,5 +106,16 @@ class CommentService implements ICommentService
             'user_id' => $commentRequest->getUser()->id,
             'rate_id' => $commentRequest->getRateId()
         ]);
+    }
+
+    public function deleteComment(DeleteCommentBlogRequestDTO $commentRequest)
+    {
+        $comment = Comment::with('blogs')->where('id', $commentRequest->getCommentId())->get()->first();
+        if ($comment->user_id !== $commentRequest->getUser()->id && $comment->blogs->user_id !== $commentRequest->getUser()->id)
+            abort(400, trans('error.comment.do-not-have-permission-to-delete'));
+
+        $comment->delete();
+        $commentDTO = new CommentParentResponseDTO($comment);
+        return $commentDTO;
     }
 }

@@ -51,5 +51,8 @@ return [
         'user-not-send-otp-mail' => 'Bạn chưa yêu cầu gửi thư OTP !!!',
         'otp-expired-time' => 'OTP của bạn đã hết hạn !!!',
         'otp-do-not-match' => 'OTP của bạn không trùng khớp !!!',
+    ],
+    'comment' => [
+        'do-not-have-permission-to-delete' => "Bạn không có quyền để xóa bình luận này !!!"
     ]
 ];

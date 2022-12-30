@@ -51,5 +51,8 @@ return [
         'user-not-send-otp-mail' => 'You have not requested to send OTP mail !!!',
         'otp-expired-time' => 'Your OTP expired !!!',
         'otp-do-not-match' => 'Your OTP do not match !!!',
+    ],
+    'comment' => [
+        'do-not-have-permission-to-delete' => "You don't have permission to delete this comment !!!"
     ]
 ];
