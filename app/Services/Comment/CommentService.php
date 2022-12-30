@@ -6,6 +6,7 @@ use App\DTO\Request\Comment\DeleteCommentBlogRequestDTO;
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
+use App\DTO\Request\Comment\ReportCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Response\Comment\CommentParentResponseDTO;
 use App\DTO\Response\Comment\CommentResponseDTO;
@@ -15,6 +16,7 @@ use App\Models\Comment;
 use App\Models\CommentLike;
 use App\Models\Rate;
 use App\Models\RateComment;
+use App\Models\Report;
 use App\Services\Comment\ICommentService;
 use App\Services\Paginate\PaginateService;
 use Illuminate\Support\Facades\DB;
@@ -122,5 +124,17 @@ class CommentService implements ICommentService
         $comment->delete();
         $commentDTO = new CommentParentResponseDTO($comment);
         return $commentDTO;
+    }
+
+    public function createReportComment(ReportCommentBlogRequestDTO $commentRequest)
+    {
+        $report = new Report();
+
+        $report->content = $commentRequest->getContent();
+        $report->user_id = $commentRequest->getUser()->id;
+        $report->comment_id = $commentRequest->getCommentId();
+        $report->report_id = $commentRequest->getReportId();
+
+        $report->save();
     }
 }

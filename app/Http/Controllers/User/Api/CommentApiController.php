@@ -6,6 +6,7 @@ use App\DTO\Request\Comment\DeleteCommentBlogRequestDTO;
 use App\DTO\Request\Comment\LikeCommentBlogRequestDTO;
 use App\DTO\Request\Comment\PostCommentBlogRequestDTO;
 use App\DTO\Request\Comment\RateCommentBlogRequestDTO;
+use App\DTO\Request\Comment\ReportCommentBlogRequestDTO;
 use App\DTO\Request\Paginate\BasePaginateRequestDTO;
 use App\DTO\Response\Comment\RateCommentResponseDTO;
 use App\Http\Controllers\Controller;
@@ -104,6 +105,18 @@ class CommentApiController extends Controller
             $this->commentValidate->validateComentBlog($commentRequest->getCommentId());
             $commentResponse = $this->commentService->deleteComment($commentRequest);
             return $this->success($commentResponse->toJSON(), trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
+
+    public function createReportComment(Request $request, $comment_id)
+    {
+        try {
+            $user = $this->getInfoUser($request);
+            $commentRequest = new ReportCommentBlogRequestDTO($request, $comment_id, $user);
+            $this->commentValidate->validateReportCommentBlog($commentRequest);
+            return $this->success("", trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
