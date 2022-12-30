@@ -240,6 +240,10 @@
             rateItem.innerHTML = rateComment(data.data, data.data[0].comment_id)
             reviewItem.innerHTML = data.data.length + " reviews"
         });
+
+        socket.on("delete-comment-response", (data) => {
+            removeComment(data.data.id)
+        });
     </script>
 
 </body>

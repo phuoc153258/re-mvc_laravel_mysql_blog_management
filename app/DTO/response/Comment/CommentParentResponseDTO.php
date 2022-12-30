@@ -29,6 +29,7 @@ class CommentParentResponseDTO
             'avatar' => $this->commentResponse->getAvatar(),
             'fullname' => $this->commentResponse->getFullname(),
             'blog_slug' => $this->commentResponse->getBlogSlug(),
+            'blog_user_id' => $this->commentResponse->getBlogUserId(),
             'parent_id' => $this->commentResponse->getParentId(),
             'likes' => $this->commentResponse->getLikes(),
             'rates' => $this->commentResponse->getRates(),

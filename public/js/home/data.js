@@ -98,3 +98,14 @@ async function submitRateComment(comment_id, rate_id) {
         console.log(error);
     }
 }
+
+async function submitDeleteComment(comment_id) {
+    try {
+        await socket.emit("delete-comment", {
+            comment_id,
+            token: getCookie("access_token"),
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}

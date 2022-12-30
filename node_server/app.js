@@ -53,6 +53,17 @@ io.on("connection", (socket) => {
         io.emit("rate-comment-response", response.data);
     });
 
+    socket.on("delete-comment", async (data) => {
+        const response = await axios({
+            method: "delete",
+            url: `http://localhost:8000/api/comments/${data.comment_id}`,
+            headers: {
+                Authorization: data.token,
+            },
+        });
+        io.emit("delete-comment-response", response.data);
+    });
+
     socket.on("disconnect", () => {
         console.log("Client disconnected!");
     });

@@ -19,6 +19,7 @@ class CommentResponseDTO
     private mixed $likes;
     private array $rates = [];
     private string $blog_slug;
+    private int $blog_user_id;
     private mixed $parent_id;
 
     public function __construct($comment)
@@ -43,6 +44,7 @@ class CommentResponseDTO
             array_push($this->rates, (new RateCommentResponseDTO($value))->toJSON());
         }
         $this->blog_slug = $comment->blogs->slug;
+        $this->blog_user_id = $comment->blogs->user_id;
         $this->parent_id = $comment->parent_id;
     }
 
@@ -106,6 +108,11 @@ class CommentResponseDTO
         return $this->rates;
     }
 
+    public function getBlogUserId()
+    {
+        return $this->blog_user_id;
+    }
+
     public function toJSON()
     {
         return [
@@ -120,6 +127,7 @@ class CommentResponseDTO
             'likes' => $this->likes,
             'rates' => $this->rates,
             'blog_slug' => $this->blog_slug,
+            'blog_user_id' => $this->blog_user_id,
             'parent_id' => $this->parent_id
         ];
     }

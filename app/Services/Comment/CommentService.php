@@ -110,8 +110,13 @@ class CommentService implements ICommentService
 
     public function deleteComment(DeleteCommentBlogRequestDTO $commentRequest)
     {
+        $roleName = (array) $commentRequest->getUser()->getRoleNames();
         $comment = Comment::with('blogs')->where('id', $commentRequest->getCommentId())->get()->first();
-        if ($comment->user_id !== $commentRequest->getUser()->id && $comment->blogs->user_id !== $commentRequest->getUser()->id)
+        if (
+            $comment->user_id !== $commentRequest->getUser()->id
+            && $comment->blogs->user_id !== $commentRequest->getUser()->id
+            && in_array("admin", $roleName)
+        )
             abort(400, trans('error.comment.do-not-have-permission-to-delete'));
 
         $comment->delete();

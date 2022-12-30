@@ -42,6 +42,7 @@ function emptyDataDetailBlog() {
 function renderCommentsBlog(data) {
     let listComment = document.getElementById("list-comment-js");
     let str = "";
+    console.log(data);
     data.data.forEach((value) => {
         str += itemComment(value);
     });
@@ -70,7 +71,9 @@ function itemCommentUser(data, type = 0) {
         }">${replyComment(data)}</div>`;
     }
     return (
-        `<div class="content border-top p-2"><div class="row">
+        `<div class="content border-top p-2" id="comment-blog-js-${
+            data.id
+        }"><div class="row">
             <div class="col-1"><img class="w-100 rounded-circle" id="avatar-user-comment-${
                 data.id
             }" src="/${data.avatar}" alt="">
@@ -112,7 +115,7 @@ function itemCommentUser(data, type = 0) {
         <i class="fa-solid fa-ellipsis"></i>
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item d-flex align-items-center" href="#" style="gap: 0 10px;" ><i class="fa-solid fa-trash" style="font-size: 14px;"></i><span>Delete</span></a>
+        ${showDeleteComment(data)}
           <a class="dropdown-item d-flex align-items-center" href="#" style="gap: 0 10px;" ><i class="fa-solid fa-flag" style="font-size: 14px;"></i><span>Report</span></a>
         </div>
       </div>
@@ -199,4 +202,32 @@ function sharePost(id) {
             </a>
     </div></a></div></div>`;
     return str;
+}
+
+function showDeleteComment(data) {
+    const user_id = document.getElementById("user-id-login-js").value;
+    if (data.user_id == user_id || data.blog_user_id == user_id)
+        return `<a class="dropdown-item d-flex align-items-center" 
+        style="gap: 0 10px;cursor: pointer;" onclick="deleteCommentNotice(${data.id})">
+        <i class="fa-solid fa-trash" style="font-size: 14px;"></i><span>Delete</span></a>`;
+    else return "";
+}
+
+function removeComment(id) {
+    document.getElementById("comment-blog-js-" + id).remove();
+}
+
+function deleteCommentNotice(id) {
+    const cookie = getCookie("X-localization");
+    swal({
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text: cookie == "vie" ? `Xóa comment này?` : `Delete this comment ?`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            submitDeleteComment(id);
+        }
+    });
 }
