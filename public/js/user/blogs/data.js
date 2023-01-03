@@ -161,3 +161,19 @@ async function discardCommentReport(id) {
         console.log(error);
     }
 }
+
+async function deleteComment(id) {
+    try {
+        const response = await axios({
+            method: "delete",
+            url: `/api/comments/${id}`,
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+            data: {},
+        });
+        getReportComment();
+    } catch (error) {
+        console.log(error);
+    }
+}

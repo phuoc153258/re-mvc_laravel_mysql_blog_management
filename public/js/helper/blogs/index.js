@@ -141,7 +141,9 @@ function renderTableReportComment(data) {
             <td><a style="cursor: pointer;" class="btn btn-secondary" onclick="discardCommentReportNotice(${
                 value.id
             })">Discard</a>
-            <a style="cursor: pointer;" class="btn btn-danger">Delete</a></td>
+            <a style="cursor: pointer;" class="btn btn-danger" onclick="discardCommentReportNotice(${
+                value.comment_id
+            })">Delete</a></td>
             </tr>`;
     });
     document.getElementById("table-report-comment-js").innerHTML = str;
@@ -173,4 +175,19 @@ function discardCommentReportNotice(id) {
 
 function removeItemTableCommentReport(id) {
     document.getElementById(`report-comment-item-table-js${id}`).remove();
+}
+
+function discardCommentReportNotice(id) {
+    const cookie = getCookie("X-localization");
+    swal({
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text: cookie == "vie" ? `Xóa comment này ?` : `Delete this comment ?`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            deleteComment(id);
+        }
+    });
 }
