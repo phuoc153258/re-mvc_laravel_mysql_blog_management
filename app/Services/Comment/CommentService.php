@@ -168,4 +168,15 @@ class CommentService implements ICommentService
         $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
         return $data;
     }
+
+    public function discardReportComment(int $comment_report_id)
+    {
+        $commentReport = CommentReport::find($comment_report_id);
+
+        if (!$commentReport) abort(400, trans('error.comment-report.comment-report-id-not-found'));
+
+        $commentReport->delete();
+
+        return $commentReport;
+    }
 }

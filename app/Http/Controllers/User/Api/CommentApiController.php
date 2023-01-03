@@ -137,4 +137,15 @@ class CommentApiController extends Controller
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
+
+    public function discardReportComment(Request $request, $comment_report_id)
+    {
+        try {
+            $this->commentValidate->validateDiscardCommentReport($comment_report_id);
+            $commentResponse = $this->commentService->discardReportComment($comment_report_id);
+            return $this->success($commentResponse, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
 }

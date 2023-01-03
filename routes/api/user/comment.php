@@ -11,6 +11,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/{comment_id}/rates', [CommentApiController::class, 'getListRateComment']);
 
+    Route::delete('/reports/{comment_report_id}', [CommentApiController::class, 'discardReportComment']);
+
     Route::post('/{comment_id}/reports', [CommentApiController::class, 'createReportComment']);
 
     Route::delete('/{comment_id}', [CommentApiController::class, 'deleteComment']);

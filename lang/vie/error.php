@@ -60,5 +60,9 @@ return [
     'report' => [
         'report-not-found' => 'Báo cáo không tồn tại !!!',
         'report-id-not-found' => 'Mã báo cáo không tồn tại !!!'
+    ],
+    'comment-report' => [
+        'comment-report-not-found' => 'Bình luận báo cáo không tồn tại!!!',
+        'comment-report-id-not-found' => 'Mã bình luận báo cáo không tồn tại !!!',
     ]
 ];

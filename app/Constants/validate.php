@@ -21,6 +21,8 @@ define('VALIDATE_RATE_ID_MYSQL', ['rate_id' => VALIDATE_ID_MYSQL_BASE]);
 
 define('VALIDATE_REPORT_ID_MYSQL', ['report_id' => VALIDATE_ID_MYSQL_BASE]);
 
+define('VALIDATE_COMMENT_REPORT_ID_MYSQL', ['comment_report_id' => VALIDATE_ID_MYSQL_BASE]);
+
 define('VALIDATE_USERNAME', ['username' => VALIDATE_STR_BASE]);
 
 define('VALIDATE_FULLNAME', ['fullname' => VALIDATE_STR_BASE]);

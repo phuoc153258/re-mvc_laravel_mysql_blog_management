@@ -43,4 +43,12 @@ class CommentValidate
         ]);
         return $this->baseRunCondition($validator);
     }
+
+    public function validateDiscardCommentReport(int $comment_report_id)
+    {
+        $validator = Validator::make(['comment_report_id' => $comment_report_id], [
+            ...VALIDATE_COMMENT_REPORT_ID_MYSQL
+        ]);
+        return $this->baseRunCondition($validator);
+    }
 }

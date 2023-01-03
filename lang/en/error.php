@@ -60,5 +60,9 @@ return [
     'report' => [
         'report-not-found' => 'Report is not found !!!',
         'report-id-not-found' => 'Report ID is not found !!!'
+    ],
+    'comment-report' => [
+        'comment-report-not-found' => 'Comment report is not found !!!',
+        'comment-report-id-not-found' => 'Comment report ID is not found !!!',
     ]
 ];
