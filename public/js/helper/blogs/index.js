@@ -130,16 +130,17 @@ function emptyContentBlog() {
 function renderTableReportComment(data) {
     emptyTableReportComment();
     let str = "";
-    console.log(data);
     data.data.map((value, index) => {
-        str += `<tr>
+        str += `<tr id="report-comment-item-table-js${value.id}">
             <th scope="row">${index + 1}</th>
             <td>${value.blog_title}</td>
             <td>${value.username}</td>
             <td>${eliminateTagHTML(value.comment_content)}</td>
             <td>${value.content}</td>
             <td>${value.report_name}</td>
-            <td><a style="cursor: pointer;" class="btn btn-secondary mb-2">Discard</a>
+            <td><a style="cursor: pointer;" class="btn btn-secondary" onclick="discardCommentReportNotice(${
+                value.id
+            })">Discard</a>
             <a style="cursor: pointer;" class="btn btn-danger">Delete</a></td>
             </tr>`;
     });
@@ -152,4 +153,24 @@ function emptyTableReportComment() {
 
 function eliminateTagHTML(str) {
     return str.replace(/<\/?[^>]+(>|$)/g, "");
+}
+
+function discardCommentReportNotice(id) {
+    const cookie = getCookie("X-localization");
+    swal({
+        title: cookie == "vie" ? "Bạn có chắc?" : "Are you sure?",
+        text:
+            cookie == "vie" ? `Loại bỏ report này ?` : `Discard this report ?`,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            discardCommentReport(id);
+        }
+    });
+}
+
+function removeItemTableCommentReport(id) {
+    document.getElementById(`report-comment-item-table-js${id}`).remove();
 }

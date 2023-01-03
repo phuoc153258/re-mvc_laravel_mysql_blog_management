@@ -144,3 +144,20 @@ async function getReportComment() {
         console.log(error);
     }
 }
+
+async function discardCommentReport(id) {
+    try {
+        const response = await axios({
+            method: "delete",
+            url: `/api/comments/reports/${id}`,
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+            data: {},
+        });
+        console.log(response);
+        removeItemTableCommentReport(response.data.data.id);
+    } catch (error) {
+        console.log(error);
+    }
+}
