@@ -14,9 +14,11 @@ use App\DTO\Response\Comment\RateCommentResponseDTO;
 use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\CommentLike;
+use App\Models\CommentReport;
 use App\Models\Rate;
 use App\Models\RateComment;
 use App\Models\Report;
+use App\Models\User;
 use App\Services\Comment\ICommentService;
 use App\Services\Paginate\PaginateService;
 use Illuminate\Support\Facades\DB;
@@ -128,13 +130,25 @@ class CommentService implements ICommentService
 
     public function createReportComment(ReportCommentBlogRequestDTO $commentRequest)
     {
-        $report = new Report();
+        $commentReport = CommentReport::where('user_id', $commentRequest->getUser()->id)->get()->first();
+        if (!$commentReport) $commentReport = new CommentReport();
 
-        $report->content = $commentRequest->getContent();
-        $report->user_id = $commentRequest->getUser()->id;
-        $report->comment_id = $commentRequest->getCommentId();
-        $report->report_id = $commentRequest->getReportId();
+        $user = User::find($commentRequest->getUser()->id);
+        if (!$user)  abort(400, trans('error.user.user-not-found'));
+        $commentReport->user_id = $commentRequest->getUser()->id;
 
-        $report->save();
+        $comment = Comment::find($commentRequest->getCommentId());
+        if (!$comment) abort(400, trans('error.comment.comment-id-not-found'));
+        $commentReport->comment_id = $commentRequest->getCommentId();
+
+        $report = Report::find($commentRequest->getReportId());
+        if (!$report) abort(400, trans('error.report.report-id-not-found'));
+        $commentReport->report_id = $commentRequest->getReportId();
+
+        $commentReport->content = $commentRequest->getContent();
+
+        $commentReport->save();
+
+        return $commentReport;
     }
 }

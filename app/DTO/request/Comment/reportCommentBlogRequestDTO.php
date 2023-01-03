@@ -8,7 +8,7 @@ class ReportCommentBlogRequestDTO
 {
     private int $comment_id;
     private int $report_id;
-    private int $content;
+    private string $content;
     private mixed $user;
 
     public function __construct(Request $request, $comment_id, mixed $user)

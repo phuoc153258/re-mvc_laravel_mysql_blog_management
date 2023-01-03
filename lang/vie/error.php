@@ -53,6 +53,12 @@ return [
         'otp-do-not-match' => 'OTP của bạn không trùng khớp !!!',
     ],
     'comment' => [
-        'do-not-have-permission-to-delete' => "Bạn không có quyền để xóa bình luận này !!!"
+        'do-not-have-permission-to-delete' => "Bạn không có quyền để xóa bình luận này !!!",
+        'comment-not-found' => 'Bình luận không tồn tại !!!',
+        'comment-id-not-found' => 'Mã bình luận không tồn tại !!!'
+    ],
+    'report' => [
+        'report-not-found' => 'Báo cáo không tồn tại !!!',
+        'report-id-not-found' => 'Mã báo cáo không tồn tại !!!'
     ]
 ];

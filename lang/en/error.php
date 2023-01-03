@@ -53,6 +53,12 @@ return [
         'otp-do-not-match' => 'Your OTP do not match !!!',
     ],
     'comment' => [
-        'do-not-have-permission-to-delete' => "You don't have permission to delete this comment !!!"
+        'do-not-have-permission-to-delete' => "You don't have permission to delete this comment !!!",
+        'comment-not-found' => 'Comment is not found !!!',
+        'comment-id-not-found' => 'Comment ID is not found !!!'
+    ],
+    'report' => [
+        'report-not-found' => 'Report is not found !!!',
+        'report-id-not-found' => 'Report ID is not found !!!'
     ]
 ];

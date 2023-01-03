@@ -116,7 +116,8 @@ class CommentApiController extends Controller
             $user = $this->getInfoUser($request);
             $commentRequest = new ReportCommentBlogRequestDTO($request, $comment_id, $user);
             $this->commentValidate->validateReportCommentBlog($commentRequest);
-            return $this->success("", trans('base.base-success'), 200);
+            $commentResponse = $this->commentService->createReportComment($commentRequest);
+            return $this->success($commentResponse, trans('base.base-success'), 200);
         } catch (\Throwable $th) {
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
