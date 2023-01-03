@@ -4,4 +4,5 @@ window.onload = async function () {
     await checkLoginToComment();
     await getBlog();
     await getCommentBlog();
+    await getReport();
 };

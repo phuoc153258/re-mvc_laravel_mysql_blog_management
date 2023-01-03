@@ -42,7 +42,6 @@ function emptyDataDetailBlog() {
 function renderCommentsBlog(data) {
     let listComment = document.getElementById("list-comment-js");
     let str = "";
-    console.log(data);
     data.data.forEach((value) => {
         str += itemComment(value);
     });
@@ -116,7 +115,10 @@ function itemCommentUser(data, type = 0) {
         </a>
         <div class="dropdown-menu">
         ${showDeleteComment(data)}
-          <a class="dropdown-item d-flex align-items-center" href="#" style="gap: 0 10px;" ><i class="fa-solid fa-flag" style="font-size: 14px;"></i><span>Report</span></a>
+          <a class="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#reportCommentModal" 
+          style="gap: 0 10px;cursor: pointer;" onclick="setCommentIdToModal(${
+              data.id
+          })" ><i class="fa-solid fa-flag" style="font-size: 14px;"></i><span>Report</span></a>
         </div>
       </div>
             </div><div hidden  class="pt-3 pb-3" id="reply-comment-js${
@@ -230,4 +232,31 @@ function deleteCommentNotice(id) {
             submitDeleteComment(id);
         }
     });
+}
+
+function renderListReport(data) {
+    emptyListReport();
+    let str = "";
+    data.data.map((val) => {
+        str += `<option value="${val.id}">${val.name}</option>`;
+    });
+    document.getElementById("list-report-js").innerHTML = str;
+}
+
+function emptyListReport() {
+    document.getElementById("list-report-js").innerHTML = "";
+}
+
+function setCommentIdToModal(id) {
+    emptyDataModalReport();
+    document.getElementById("comment-id-report-js").value = id;
+}
+
+function emptyContentReport() {
+    document.getElementById("content-report-js").value = "";
+}
+
+async function emptyDataModalReport() {
+    emptyContentReport();
+    await getReport();
 }

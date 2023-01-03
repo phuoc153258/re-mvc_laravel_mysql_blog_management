@@ -114,14 +114,40 @@ async function getReport() {
     try {
         const response = await axios({
             method: "get",
-            url: "/api/blogs/views/" + window.location.pathname.split("/")[2],
+            url: "/api/reports",
             data: {},
             headers: {
                 Authorization: getCookie("access_token"),
             },
         });
-        renderDataDetailBlog(response.data.data);
+        renderListReport(response.data);
     } catch (error) {
         return history.go(-1);
+    }
+}
+
+async function postReportComment() {
+    try {
+        const report_id = document.getElementById("list-report-js").value;
+        const comment_id = document.getElementById(
+            "comment-id-report-js"
+        ).value;
+        const content = document.getElementById("content-report-js").value;
+
+        const response = await axios({
+            method: "post",
+            url: `/api/comments/${comment_id}/reports`,
+            data: {
+                report_id,
+                content,
+            },
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+        });
+        hideModal();
+        await successNoti();
+    } catch (error) {
+        console.log(error);
     }
 }

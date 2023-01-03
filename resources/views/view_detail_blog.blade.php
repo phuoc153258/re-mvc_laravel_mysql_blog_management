@@ -156,14 +156,9 @@
             </div>
         </div>
     </footer>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="reportCommentModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -178,24 +173,21 @@
                 <div class="modal-body" style="font-size: 14px !important;">
                     <div class="form-group m-2">
                         <label for="exampleFormControlTextarea1">Reason: </label>
-                        <select class="custom-select w-25">
-                            <option selected>None</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="custom-select w-25" id="list-report-js">
                         </select>
                     </div>
 
                     <div class="form-group m-2">
                         <label for="exampleFormControlTextarea1">Content: </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="content-report-js" rows="3"></textarea>
                     </div>
-                    <input type="text">
+                    <input type="text" id="comment-id-report-js" hidden>
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-secondary" data-dismiss="modal"
                         style="padding: 6px 12px; font-size: 14px; font-weight: 500;">Close</a>
-                    <a class="btn btn-primary" style="padding: 6px 12px; font-size: 14px; font-weight: 500;">Save
+                    <a class="btn btn-primary" style="padding: 6px 12px; font-size: 14px; font-weight: 500;"
+                        onclick="postReportComment()">Save
                         changes</a>
                 </div>
             </div>

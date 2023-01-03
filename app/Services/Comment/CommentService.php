@@ -130,7 +130,8 @@ class CommentService implements ICommentService
 
     public function createReportComment(ReportCommentBlogRequestDTO $commentRequest)
     {
-        $commentReport = CommentReport::where('user_id', $commentRequest->getUser()->id)->get()->first();
+        $commentReport = CommentReport::where('user_id', $commentRequest->getUser()->id)
+            ->where('comment_id', $commentRequest->getCommentId())->get()->first();
         if (!$commentReport) $commentReport = new CommentReport();
 
         $user = User::find($commentRequest->getUser()->id);
