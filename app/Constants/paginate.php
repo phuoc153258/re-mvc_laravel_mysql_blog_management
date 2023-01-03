@@ -57,10 +57,18 @@ define('COMMENT_PAGINATE_TYPE', [
     'SELECT_ITEM' => ['comments.*', 'users.fullname', 'users.avatar']
 ]);
 
+define('COMMENT_REPORT_PAGINATE_TYPE', [
+    'NAME' => 'comment_reports',
+    'SEARCH_BY' => 'content',
+    'SORT_BY' => 'id',
+    'SELECT_ITEM' => ['comment_reports.*', 'users.username', 'blogs.title as blog_title', 'reports.name as report_name', 'comments.content as comment_content']
+]);
+
 define('PAGINATE_TYPE', [
     'USER' => USER_PAGINATE_TYPE,
     'BLOG' => BLOG_PAGINATE_TYPE,
     'ROLE' => ROLE_PAGINATE_TYPE,
     'PERMISSION' => PERMISSION_PAGINATE_TYPE,
     'COMMENT' => COMMENT_PAGINATE_TYPE,
+    'COMMENT_REPORT' => COMMENT_REPORT_PAGINATE_TYPE,
 ]);

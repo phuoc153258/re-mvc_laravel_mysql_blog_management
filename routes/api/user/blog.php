@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('/{id}', [BlogApiController::class, 'update'])->middleware('permission:user-update-my-blog');
 
+    Route::get('/reports', [CommentApiController::class, 'getListReportMyBlog']);
+
     Route::get('/{id}', [BlogApiController::class, 'show'])->middleware('permission:user-get-my-blog');
 
     Route::post('/', [BlogApiController::class, 'create'])->middleware('permission:user-create-my-blog');

@@ -128,3 +128,19 @@ async function updateBlog() {
         return history.go(-1);
     }
 }
+
+async function getReportComment() {
+    try {
+        const response = await axios({
+            method: "get",
+            url: "/api/blogs/reports",
+            headers: {
+                Authorization: getCookie("access_token"),
+            },
+            data: {},
+        });
+        renderTableReportComment(response.data.data);
+    } catch (error) {
+        console.log(error);
+    }
+}

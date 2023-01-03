@@ -13,7 +13,7 @@
         <div class="row justify-content-center">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <div class="d-flex" style="gap: 0 10px;">
+                    <div class="d-flex" style="gap: 0 20px;">
                         <div class="dropdown d-flex align-items-center" style="gap: 0 10px;">
                             <p class="mt-3">{{ __('view.paginate.sort') }}:</p>
                             <a class="btn btn-primary dropdown-toggle w-75 " type="button" id="sort-js"
@@ -42,6 +42,11 @@
                                 <a class="dropdown-item" onclick="setDataEntriesItem(20)">20</a>
                                 <a class="dropdown-item" onclick="setDataEntriesItem(25)">25</a>
                             </div>
+                        </div>
+                        <div class="form-group d-flex align-items-center" style="gap: 0 10px;">
+                            <label for="exampleCheck1">Reports: </label>
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#reportCommentModal"
+                                onclick="getReportComment()">Reports</a>
                         </div>
                     </div>
 
@@ -239,6 +244,44 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="reportCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comment Reports</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        style="    border: none;
+                    background-color: white;
+                    cursor: pointer;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Blog name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Content</th>
+                                <th scope="col">Report</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-report-comment-js">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('js/helper/paginate/index.js') }}"></script>
     <script src="{{ asset('js/helper/blogs/file.js') }}"></script>
     <script src="{{ asset('js/helper/blogs/index.js') }}"></script>
@@ -247,37 +290,11 @@
     <script>
         tinymce.init({
             selector: 'textarea#content-blog-js',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ]
         });
     </script>
     <script>
         tinymce.init({
             selector: 'textarea#content-create-js',
-            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            mergetags_list: [{
-                    value: 'First.Name',
-                    title: 'First Name'
-                },
-                {
-                    value: 'Email',
-                    title: 'Email'
-                },
-            ]
         });
     </script>
 @endsection

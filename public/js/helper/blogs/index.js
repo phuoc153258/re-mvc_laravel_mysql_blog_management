@@ -126,3 +126,30 @@ function renderContentBlog(data) {
 function emptyContentBlog() {
     tinymce.get("content-blog-js").setContent("");
 }
+
+function renderTableReportComment(data) {
+    emptyTableReportComment();
+    let str = "";
+    console.log(data);
+    data.data.map((value, index) => {
+        str += `<tr>
+            <th scope="row">${index + 1}</th>
+            <td>${value.blog_title}</td>
+            <td>${value.username}</td>
+            <td>${eliminateTagHTML(value.comment_content)}</td>
+            <td>${value.content}</td>
+            <td>${value.report_name}</td>
+            <td><a style="cursor: pointer;" class="btn btn-secondary mb-2">Discard</a>
+            <a style="cursor: pointer;" class="btn btn-danger">Delete</a></td>
+            </tr>`;
+    });
+    document.getElementById("table-report-comment-js").innerHTML = str;
+}
+
+function emptyTableReportComment() {
+    document.getElementById("table-report-comment-js").innerHTML = "";
+}
+
+function eliminateTagHTML(str) {
+    return str.replace(/<\/?[^>]+(>|$)/g, "");
+}

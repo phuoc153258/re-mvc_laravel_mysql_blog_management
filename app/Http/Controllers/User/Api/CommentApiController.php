@@ -122,4 +122,19 @@ class CommentApiController extends Controller
             return $this->error($th->getMessage(), trans('base.base-failed'), 400);
         }
     }
+
+    public function getListReportMyBlog(Request $request)
+    {
+        try {
+            $user = $this->getInfoUser($request);
+            $request->merge([
+                'limit' => 50,
+            ]);
+            $option = new BasePaginateRequestDTO($request, 'comment_reports');
+            $commentResponse = $this->commentService->getListReportMyBlog($option, $user);
+            return $this->success($commentResponse, trans('base.base-success'), 200);
+        } catch (\Throwable $th) {
+            return $this->error($th->getMessage(), trans('base.base-failed'), 400);
+        }
+    }
 }

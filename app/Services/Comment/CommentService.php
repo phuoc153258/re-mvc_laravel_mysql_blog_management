@@ -152,4 +152,20 @@ class CommentService implements ICommentService
 
         return $commentReport;
     }
+
+    public function getListReportMyBlog(BasePaginateRequestDTO $option, mixed $user)
+    {
+        $query =  DB::table($option->type_model->getType())
+            ->join('users', 'comment_reports.user_id', '=', 'users.id')
+            ->join('reports', 'comment_reports.report_id', '=', 'reports.id')
+            ->join('comments', 'comment_reports.comment_id', '=', 'comments.id')
+            ->join('blogs', 'comments.blog_id', '=', 'blogs.id');
+
+        if ($user)
+            $query->where('blogs.user_id', '=', $user->id);
+
+        $data = $this->paginateService->paginate($option, $query);
+        $data['data']  = $data['data']->select($option->type_model->getSelectIem())->get();
+        return $data;
+    }
 }

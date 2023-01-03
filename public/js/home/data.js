@@ -138,7 +138,7 @@ async function postReportComment() {
             method: "post",
             url: `/api/comments/${comment_id}/reports`,
             data: {
-                report_id,
+                report_id: parseInt(report_id),
                 content,
             },
             headers: {
